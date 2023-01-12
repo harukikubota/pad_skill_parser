@@ -1,0 +1,67 @@
+
+%start SkillLines
+%title "Skill grammar"
+%comment "スキル本文のパーサ"
+
+%%
+
+SkillLines
+    : Line Period;
+
+Line
+    : ChangeDropStmt
+    ;
+
+ChangeDropStmt
+    : ChangeDropBlock WordChange
+    ;
+
+ChangeDropBlock
+    // 木ドロップ を 水ドロップ に
+    // 火、回復 を 光 に
+    : Drops From Drop To
+    ;
+
+Drops
+    : Drop { Camma Drop }
+    ;
+// 属性のドロップ
+Drop
+    : Color [ WordDrop ]
+    | NonColoredDrop [ WordDrop ]
+    ;
+
+NonColoredDrop
+    : Recovery
+    | Disturb
+    | Bomb
+    | Poison
+    | DeadlyPoison
+    ;
+
+Color
+    : Fire
+    | Water
+    | Wood
+    | Lightning
+    | Dark
+    ;
+
+Fire         : "火";
+Water        : "水";
+Wood         : "木";
+Lightning    : "光";
+Dark         : "闇";
+Recovery     : "回復";
+Disturb      : "お邪魔";
+Bomb         : "爆弾";
+Poison       : "毒";
+DeadlyPoison : "猛毒";
+
+WordChange : "変化";
+WordDrop   : "ドロップ";
+
+From   : "を";
+To     : "に";
+Camma  : "、";
+Period : "。";

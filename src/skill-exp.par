@@ -1,0 +1,45 @@
+%start SkillLines
+%title "Skill grammar"
+%comment "スキル本文のパーサ"
+
+%%
+
+/*  0 */ SkillLines: Line Period;
+/*  1 */ Line: ChangeDropStmt;
+/*  2 */ ChangeDropStmt: ChangeDropBlock WordChange;
+/*  3 */ ChangeDropBlock: Drops From Drop To;
+/*  4 */ Drops: Drop DropsList /* Vec */;
+/*  5 */ DropsList /* Vec<T>::Push */: Camma Drop DropsList;
+/*  6 */ DropsList /* Vec<T>::New */: ;
+/*  7 */ Drop: Color DropOpt /* Option */;
+/*  8 */ Drop: NonColoredDrop DropOpt0 /* Option */;
+/*  9 */ DropOpt0 /* Option<T>::Some */: WordDrop;
+/* 10 */ DropOpt0 /* Option<T>::None */: ;
+/* 11 */ DropOpt /* Option<T>::Some */: WordDrop;
+/* 12 */ DropOpt /* Option<T>::None */: ;
+/* 13 */ NonColoredDrop: Recovery;
+/* 14 */ NonColoredDrop: Disturb;
+/* 15 */ NonColoredDrop: Bomb;
+/* 16 */ NonColoredDrop: Poison;
+/* 17 */ NonColoredDrop: DeadlyPoison;
+/* 18 */ Color: Fire;
+/* 19 */ Color: Water;
+/* 20 */ Color: Wood;
+/* 21 */ Color: Lightning;
+/* 22 */ Color: Dark;
+/* 23 */ Fire: "火";
+/* 24 */ Water: "水";
+/* 25 */ Wood: "木";
+/* 26 */ Lightning: "光";
+/* 27 */ Dark: "闇";
+/* 28 */ Recovery: "回復";
+/* 29 */ Disturb: "お邪魔";
+/* 30 */ Bomb: "爆弾";
+/* 31 */ Poison: "毒";
+/* 32 */ DeadlyPoison: "猛毒";
+/* 33 */ WordChange: "変化";
+/* 34 */ WordDrop: "ドロップ";
+/* 35 */ From: "を";
+/* 36 */ To: "に";
+/* 37 */ Camma: "、";
+/* 38 */ Period: "。";

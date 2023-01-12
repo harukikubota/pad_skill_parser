@@ -1,0 +1,15 @@
+[package]
+name = "pad_skill_parser"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0"
+derive_builder = "0.12.0"
+parol-macros = "0.1"
+parol_runtime = "0.11.2"
+
+[build-dependencies]
+parol = "0.15.1"
