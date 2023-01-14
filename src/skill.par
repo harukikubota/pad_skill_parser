@@ -10,11 +10,15 @@ SkillLines
 
 Line
     : ChangeDropStmt
+    | DropRefreshStmt
     ;
 
 ChangeDropStmt
     : ChangeDropBlock { Camma ChangeDropBlock } WordChange
     ;
+
+DropRefreshStmt
+    : WordRandom So WordDrop From WordReplace;
 
 ChangeDropBlock
     // 木ドロップ を 水ドロップ に
@@ -60,8 +64,11 @@ DeadlyPoison : "猛毒";
 
 WordChange : "変化";
 WordDrop   : "ドロップ";
+WordRandom        : "ランダム";
+WordReplace       : "入れ替える";
 
 From   : "を";
 To     : "に";
+So     : "で";
 Camma  : "、";
 Period : "。";

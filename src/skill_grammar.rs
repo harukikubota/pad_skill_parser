@@ -88,6 +88,8 @@ pub enum SkillEffect {
     /// 0: from
     /// 1: to
     ChangeDropAToB(Drops, Drop),
+    /// ドロップリフレッシュ
+    DropRefresh,
 }
 
 impl SkillGrammar<'_> {
@@ -149,6 +151,16 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         &mut self,
         _arg: &crate::skill_grammar_trait::ChangeDropStmt<'t>,
     ) -> parol_runtime::miette::Result<()> {
+        Ok(())
+    }
+
+    fn drop_refresh_stmt(&mut self, _arg: &crate::skill_grammar_trait::DropRefreshStmt<'t>) -> miette::Result<()> {
+        let skill = Skill {
+            effect: SkillEffect::DropRefresh,
+            ..Default::default()
+        };
+
+        self.skill_list.push(skill);
         Ok(())
     }
 

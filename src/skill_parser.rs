@@ -22,7 +22,7 @@ use parol_runtime::lexer::tokenizer::{
     ERROR_TOKEN, NEW_LINE_TOKEN, UNMATCHABLE_TOKEN, WHITESPACE_TOKEN,
 };
 
-pub const TERMINALS: &[&str; 22] = &[
+pub const TERMINALS: &[&str; 25] = &[
     /*  0 */ UNMATCHABLE_TOKEN,
     /*  1 */ UNMATCHABLE_TOKEN,
     /*  2 */ UNMATCHABLE_TOKEN,
@@ -40,14 +40,17 @@ pub const TERMINALS: &[&str; 22] = &[
     /* 14 */ r###"猛毒"###,
     /* 15 */ r###"変化"###,
     /* 16 */ r###"ドロップ"###,
-    /* 17 */ r###"を"###,
-    /* 18 */ r###"に"###,
-    /* 19 */ r###"、"###,
-    /* 20 */ r###"。"###,
-    /* 21 */ ERROR_TOKEN,
+    /* 17 */ r###"ランダム"###,
+    /* 18 */ r###"入れ替える"###,
+    /* 19 */ r###"を"###,
+    /* 20 */ r###"に"###,
+    /* 21 */ r###"で"###,
+    /* 22 */ r###"、"###,
+    /* 23 */ r###"。"###,
+    /* 24 */ ERROR_TOKEN,
 ];
 
-pub const TERMINAL_NAMES: &[&str; 22] = &[
+pub const TERMINAL_NAMES: &[&str; 25] = &[
     /*  0 */ "EndOfInput",
     /*  1 */ "Newline",
     /*  2 */ "Whitespace",
@@ -65,15 +68,18 @@ pub const TERMINAL_NAMES: &[&str; 22] = &[
     /* 14 */ "DeadlyPoison",
     /* 15 */ "WordChange",
     /* 16 */ "WordDrop",
-    /* 17 */ "From",
-    /* 18 */ "To",
-    /* 19 */ "Camma",
-    /* 20 */ "Period",
-    /* 21 */ "Error",
+    /* 17 */ "WordRandom",
+    /* 18 */ "WordReplace",
+    /* 19 */ "From",
+    /* 20 */ "To",
+    /* 21 */ "So",
+    /* 22 */ "Camma",
+    /* 23 */ "Period",
+    /* 24 */ "Error",
 ];
 
 /* SCANNER_0: "INITIAL" */
-const SCANNER_0: (&[&str; 5], &[usize; 16]) = (
+const SCANNER_0: (&[&str; 5], &[usize; 19]) = (
     &[
         /*  0 */ UNMATCHABLE_TOKEN,
         /*  1 */ NEW_LINE_TOKEN,
@@ -94,16 +100,19 @@ const SCANNER_0: (&[&str; 5], &[usize; 16]) = (
         14, /* DeadlyPoison */
         15, /* WordChange */
         16, /* WordDrop */
-        17, /* From */
-        18, /* To */
-        19, /* Camma */
-        20, /* Period */
+        17, /* WordRandom */
+        18, /* WordReplace */
+        19, /* From */
+        20, /* To */
+        21, /* So */
+        22, /* Camma */
+        23, /* Period */
     ],
 );
 
 const MAX_K: usize = 1;
 
-pub const NON_TERMINALS: &[&str; 28] = &[
+pub const NON_TERMINALS: &[&str; 32] = &[
     /*  0 */ "Bomb",
     /*  1 */ "Camma",
     /*  2 */ "ChangeDropBlock",
@@ -116,58 +125,62 @@ pub const NON_TERMINALS: &[&str; 28] = &[
     /*  9 */ "Drop",
     /* 10 */ "DropOpt",
     /* 11 */ "DropOpt0",
-    /* 12 */ "Drops",
-    /* 13 */ "DropsList",
-    /* 14 */ "Fire",
-    /* 15 */ "From",
-    /* 16 */ "Lightning",
-    /* 17 */ "Line",
-    /* 18 */ "NonColoredDrop",
-    /* 19 */ "Period",
-    /* 20 */ "Poison",
-    /* 21 */ "Recovery",
-    /* 22 */ "SkillLines",
-    /* 23 */ "To",
-    /* 24 */ "Water",
-    /* 25 */ "Wood",
-    /* 26 */ "WordChange",
-    /* 27 */ "WordDrop",
+    /* 12 */ "DropRefreshStmt",
+    /* 13 */ "Drops",
+    /* 14 */ "DropsList",
+    /* 15 */ "Fire",
+    /* 16 */ "From",
+    /* 17 */ "Lightning",
+    /* 18 */ "Line",
+    /* 19 */ "NonColoredDrop",
+    /* 20 */ "Period",
+    /* 21 */ "Poison",
+    /* 22 */ "Recovery",
+    /* 23 */ "SkillLines",
+    /* 24 */ "So",
+    /* 25 */ "To",
+    /* 26 */ "Water",
+    /* 27 */ "Wood",
+    /* 28 */ "WordChange",
+    /* 29 */ "WordDrop",
+    /* 30 */ "WordRandom",
+    /* 31 */ "WordReplace",
 ];
 
-pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 28] = &[
+pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 32] = &[
     /* 0 - "Bomb" */
     LookaheadDFA {
-        states: &[Some(32)],
+        states: &[Some(34)],
         transitions: &[],
         k: 0,
     },
     /* 1 - "Camma" */
     LookaheadDFA {
-        states: &[Some(39)],
+        states: &[Some(44)],
         transitions: &[],
         k: 0,
     },
     /* 2 - "ChangeDropBlock" */
     LookaheadDFA {
-        states: &[Some(5)],
+        states: &[Some(7)],
         transitions: &[],
         k: 0,
     },
     /* 3 - "ChangeDropStmt" */
     LookaheadDFA {
-        states: &[Some(2)],
+        states: &[Some(3)],
         transitions: &[],
         k: 0,
     },
     /* 4 - "ChangeDropStmtList" */
     LookaheadDFA {
-        states: &[None, Some(3), Some(4)],
-        transitions: &[DFATransition(0, 15, 2), DFATransition(0, 19, 1)],
+        states: &[None, Some(4), Some(5)],
+        transitions: &[DFATransition(0, 15, 2), DFATransition(0, 22, 1)],
         k: 1,
     },
     /* 5 - "Color" */
     LookaheadDFA {
-        states: &[None, Some(20), Some(21), Some(22), Some(23), Some(24)],
+        states: &[None, Some(22), Some(23), Some(24), Some(25), Some(26)],
         transitions: &[
             DFATransition(0, 5, 1),
             DFATransition(0, 6, 2),
@@ -179,25 +192,25 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 28] = &[
     },
     /* 6 - "Dark" */
     LookaheadDFA {
-        states: &[Some(29)],
+        states: &[Some(31)],
         transitions: &[],
         k: 0,
     },
     /* 7 - "DeadlyPoison" */
     LookaheadDFA {
-        states: &[Some(34)],
+        states: &[Some(36)],
         transitions: &[],
         k: 0,
     },
     /* 8 - "Disturb" */
     LookaheadDFA {
-        states: &[Some(31)],
+        states: &[Some(33)],
         transitions: &[],
         k: 0,
     },
     /* 9 - "Drop" */
     LookaheadDFA {
-        states: &[None, Some(9), Some(10)],
+        states: &[None, Some(11), Some(12)],
         transitions: &[
             DFATransition(0, 5, 1),
             DFATransition(0, 6, 1),
@@ -214,65 +227,83 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 28] = &[
     },
     /* 10 - "DropOpt" */
     LookaheadDFA {
-        states: &[None, Some(13), Some(14)],
+        states: &[None, Some(15), Some(16)],
         transitions: &[
             DFATransition(0, 16, 1),
-            DFATransition(0, 17, 2),
-            DFATransition(0, 18, 2),
             DFATransition(0, 19, 2),
+            DFATransition(0, 20, 2),
+            DFATransition(0, 22, 2),
         ],
         k: 1,
     },
     /* 11 - "DropOpt0" */
     LookaheadDFA {
-        states: &[None, Some(11), Some(12)],
+        states: &[None, Some(13), Some(14)],
         transitions: &[
             DFATransition(0, 16, 1),
-            DFATransition(0, 17, 2),
-            DFATransition(0, 18, 2),
             DFATransition(0, 19, 2),
+            DFATransition(0, 20, 2),
+            DFATransition(0, 22, 2),
         ],
         k: 1,
     },
-    /* 12 - "Drops" */
+    /* 12 - "DropRefreshStmt" */
     LookaheadDFA {
         states: &[Some(6)],
         transitions: &[],
         k: 0,
     },
-    /* 13 - "DropsList" */
+    /* 13 - "Drops" */
     LookaheadDFA {
-        states: &[None, Some(7), Some(8)],
-        transitions: &[DFATransition(0, 17, 2), DFATransition(0, 19, 1)],
+        states: &[Some(8)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 14 - "DropsList" */
+    LookaheadDFA {
+        states: &[None, Some(9), Some(10)],
+        transitions: &[DFATransition(0, 19, 2), DFATransition(0, 22, 1)],
         k: 1,
     },
-    /* 14 - "Fire" */
+    /* 15 - "Fire" */
     LookaheadDFA {
-        states: &[Some(25)],
+        states: &[Some(27)],
         transitions: &[],
         k: 0,
     },
-    /* 15 - "From" */
+    /* 16 - "From" */
     LookaheadDFA {
-        states: &[Some(37)],
+        states: &[Some(41)],
         transitions: &[],
         k: 0,
     },
-    /* 16 - "Lightning" */
+    /* 17 - "Lightning" */
     LookaheadDFA {
-        states: &[Some(28)],
+        states: &[Some(30)],
         transitions: &[],
         k: 0,
     },
-    /* 17 - "Line" */
+    /* 18 - "Line" */
     LookaheadDFA {
-        states: &[Some(1)],
-        transitions: &[],
-        k: 0,
+        states: &[None, Some(1), Some(2)],
+        transitions: &[
+            DFATransition(0, 5, 1),
+            DFATransition(0, 6, 1),
+            DFATransition(0, 7, 1),
+            DFATransition(0, 8, 1),
+            DFATransition(0, 9, 1),
+            DFATransition(0, 10, 1),
+            DFATransition(0, 11, 1),
+            DFATransition(0, 12, 1),
+            DFATransition(0, 13, 1),
+            DFATransition(0, 14, 1),
+            DFATransition(0, 17, 2),
+        ],
+        k: 1,
     },
-    /* 18 - "NonColoredDrop" */
+    /* 19 - "NonColoredDrop" */
     LookaheadDFA {
-        states: &[None, Some(15), Some(16), Some(17), Some(18), Some(19)],
+        states: &[None, Some(17), Some(18), Some(19), Some(20), Some(21)],
         transitions: &[
             DFATransition(0, 10, 1),
             DFATransition(0, 11, 2),
@@ -282,272 +313,321 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 28] = &[
         ],
         k: 1,
     },
-    /* 19 - "Period" */
+    /* 20 - "Period" */
     LookaheadDFA {
-        states: &[Some(40)],
+        states: &[Some(45)],
         transitions: &[],
         k: 0,
     },
-    /* 20 - "Poison" */
-    LookaheadDFA {
-        states: &[Some(33)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 21 - "Recovery" */
-    LookaheadDFA {
-        states: &[Some(30)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 22 - "SkillLines" */
-    LookaheadDFA {
-        states: &[Some(0)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 23 - "To" */
-    LookaheadDFA {
-        states: &[Some(38)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 24 - "Water" */
-    LookaheadDFA {
-        states: &[Some(26)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 25 - "Wood" */
-    LookaheadDFA {
-        states: &[Some(27)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 26 - "WordChange" */
+    /* 21 - "Poison" */
     LookaheadDFA {
         states: &[Some(35)],
         transitions: &[],
         k: 0,
     },
-    /* 27 - "WordDrop" */
+    /* 22 - "Recovery" */
     LookaheadDFA {
-        states: &[Some(36)],
+        states: &[Some(32)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 23 - "SkillLines" */
+    LookaheadDFA {
+        states: &[Some(0)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 24 - "So" */
+    LookaheadDFA {
+        states: &[Some(43)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 25 - "To" */
+    LookaheadDFA {
+        states: &[Some(42)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 26 - "Water" */
+    LookaheadDFA {
+        states: &[Some(28)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 27 - "Wood" */
+    LookaheadDFA {
+        states: &[Some(29)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 28 - "WordChange" */
+    LookaheadDFA {
+        states: &[Some(37)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 29 - "WordDrop" */
+    LookaheadDFA {
+        states: &[Some(38)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 30 - "WordRandom" */
+    LookaheadDFA {
+        states: &[Some(39)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 31 - "WordReplace" */
+    LookaheadDFA {
+        states: &[Some(40)],
         transitions: &[],
         k: 0,
     },
 ];
 
-pub const PRODUCTIONS: &[Production; 41] = &[
+pub const PRODUCTIONS: &[Production; 46] = &[
     // 0 - SkillLines: Line Period;
     Production {
-        lhs: 22,
-        production: &[ParseType::N(19), ParseType::N(17)],
+        lhs: 23,
+        production: &[ParseType::N(20), ParseType::N(18)],
     },
     // 1 - Line: ChangeDropStmt;
     Production {
-        lhs: 17,
+        lhs: 18,
         production: &[ParseType::N(3)],
     },
-    // 2 - ChangeDropStmt: ChangeDropBlock ChangeDropStmtList /* Vec */ WordChange;
+    // 2 - Line: DropRefreshStmt;
+    Production {
+        lhs: 18,
+        production: &[ParseType::N(12)],
+    },
+    // 3 - ChangeDropStmt: ChangeDropBlock ChangeDropStmtList /* Vec */ WordChange;
     Production {
         lhs: 3,
-        production: &[ParseType::N(26), ParseType::N(4), ParseType::N(2)],
+        production: &[ParseType::N(28), ParseType::N(4), ParseType::N(2)],
     },
-    // 3 - ChangeDropStmtList: Camma ChangeDropBlock ChangeDropStmtList;
+    // 4 - ChangeDropStmtList: Camma ChangeDropBlock ChangeDropStmtList;
     Production {
         lhs: 4,
         production: &[ParseType::N(4), ParseType::N(2), ParseType::N(1)],
     },
-    // 4 - ChangeDropStmtList: ;
+    // 5 - ChangeDropStmtList: ;
     Production {
         lhs: 4,
         production: &[],
     },
-    // 5 - ChangeDropBlock: Drops From Drop To;
+    // 6 - DropRefreshStmt: WordRandom So WordDrop From WordReplace;
+    Production {
+        lhs: 12,
+        production: &[
+            ParseType::N(31),
+            ParseType::N(16),
+            ParseType::N(29),
+            ParseType::N(24),
+            ParseType::N(30),
+        ],
+    },
+    // 7 - ChangeDropBlock: Drops From Drop To;
     Production {
         lhs: 2,
         production: &[
-            ParseType::N(23),
+            ParseType::N(25),
             ParseType::N(9),
-            ParseType::N(15),
-            ParseType::N(12),
+            ParseType::N(16),
+            ParseType::N(13),
         ],
     },
-    // 6 - Drops: Drop DropsList /* Vec */;
-    Production {
-        lhs: 12,
-        production: &[ParseType::N(13), ParseType::N(9)],
-    },
-    // 7 - DropsList: Camma Drop DropsList;
+    // 8 - Drops: Drop DropsList /* Vec */;
     Production {
         lhs: 13,
-        production: &[ParseType::N(13), ParseType::N(9), ParseType::N(1)],
+        production: &[ParseType::N(14), ParseType::N(9)],
     },
-    // 8 - DropsList: ;
+    // 9 - DropsList: Camma Drop DropsList;
     Production {
-        lhs: 13,
+        lhs: 14,
+        production: &[ParseType::N(14), ParseType::N(9), ParseType::N(1)],
+    },
+    // 10 - DropsList: ;
+    Production {
+        lhs: 14,
         production: &[],
     },
-    // 9 - Drop: Color DropOpt /* Option */;
+    // 11 - Drop: Color DropOpt /* Option */;
     Production {
         lhs: 9,
         production: &[ParseType::N(10), ParseType::N(5)],
     },
-    // 10 - Drop: NonColoredDrop DropOpt0 /* Option */;
+    // 12 - Drop: NonColoredDrop DropOpt0 /* Option */;
     Production {
         lhs: 9,
-        production: &[ParseType::N(11), ParseType::N(18)],
+        production: &[ParseType::N(11), ParseType::N(19)],
     },
-    // 11 - DropOpt0: WordDrop;
+    // 13 - DropOpt0: WordDrop;
     Production {
         lhs: 11,
-        production: &[ParseType::N(27)],
+        production: &[ParseType::N(29)],
     },
-    // 12 - DropOpt0: ;
+    // 14 - DropOpt0: ;
     Production {
         lhs: 11,
         production: &[],
     },
-    // 13 - DropOpt: WordDrop;
+    // 15 - DropOpt: WordDrop;
     Production {
         lhs: 10,
-        production: &[ParseType::N(27)],
+        production: &[ParseType::N(29)],
     },
-    // 14 - DropOpt: ;
+    // 16 - DropOpt: ;
     Production {
         lhs: 10,
         production: &[],
     },
-    // 15 - NonColoredDrop: Recovery;
+    // 17 - NonColoredDrop: Recovery;
     Production {
-        lhs: 18,
-        production: &[ParseType::N(21)],
+        lhs: 19,
+        production: &[ParseType::N(22)],
     },
-    // 16 - NonColoredDrop: Disturb;
+    // 18 - NonColoredDrop: Disturb;
     Production {
-        lhs: 18,
+        lhs: 19,
         production: &[ParseType::N(8)],
     },
-    // 17 - NonColoredDrop: Bomb;
+    // 19 - NonColoredDrop: Bomb;
     Production {
-        lhs: 18,
+        lhs: 19,
         production: &[ParseType::N(0)],
     },
-    // 18 - NonColoredDrop: Poison;
+    // 20 - NonColoredDrop: Poison;
     Production {
-        lhs: 18,
-        production: &[ParseType::N(20)],
+        lhs: 19,
+        production: &[ParseType::N(21)],
     },
-    // 19 - NonColoredDrop: DeadlyPoison;
+    // 21 - NonColoredDrop: DeadlyPoison;
     Production {
-        lhs: 18,
+        lhs: 19,
         production: &[ParseType::N(7)],
     },
-    // 20 - Color: Fire;
+    // 22 - Color: Fire;
     Production {
         lhs: 5,
-        production: &[ParseType::N(14)],
+        production: &[ParseType::N(15)],
     },
-    // 21 - Color: Water;
+    // 23 - Color: Water;
     Production {
         lhs: 5,
-        production: &[ParseType::N(24)],
+        production: &[ParseType::N(26)],
     },
-    // 22 - Color: Wood;
+    // 24 - Color: Wood;
     Production {
         lhs: 5,
-        production: &[ParseType::N(25)],
+        production: &[ParseType::N(27)],
     },
-    // 23 - Color: Lightning;
+    // 25 - Color: Lightning;
     Production {
         lhs: 5,
-        production: &[ParseType::N(16)],
+        production: &[ParseType::N(17)],
     },
-    // 24 - Color: Dark;
+    // 26 - Color: Dark;
     Production {
         lhs: 5,
         production: &[ParseType::N(6)],
     },
-    // 25 - Fire: "火";
+    // 27 - Fire: "火";
     Production {
-        lhs: 14,
+        lhs: 15,
         production: &[ParseType::T(5)],
     },
-    // 26 - Water: "水";
+    // 28 - Water: "水";
     Production {
-        lhs: 24,
+        lhs: 26,
         production: &[ParseType::T(6)],
     },
-    // 27 - Wood: "木";
+    // 29 - Wood: "木";
     Production {
-        lhs: 25,
+        lhs: 27,
         production: &[ParseType::T(7)],
     },
-    // 28 - Lightning: "光";
+    // 30 - Lightning: "光";
     Production {
-        lhs: 16,
+        lhs: 17,
         production: &[ParseType::T(8)],
     },
-    // 29 - Dark: "闇";
+    // 31 - Dark: "闇";
     Production {
         lhs: 6,
         production: &[ParseType::T(9)],
     },
-    // 30 - Recovery: "回復";
+    // 32 - Recovery: "回復";
     Production {
-        lhs: 21,
+        lhs: 22,
         production: &[ParseType::T(10)],
     },
-    // 31 - Disturb: "お邪魔";
+    // 33 - Disturb: "お邪魔";
     Production {
         lhs: 8,
         production: &[ParseType::T(11)],
     },
-    // 32 - Bomb: "爆弾";
+    // 34 - Bomb: "爆弾";
     Production {
         lhs: 0,
         production: &[ParseType::T(12)],
     },
-    // 33 - Poison: "毒";
+    // 35 - Poison: "毒";
     Production {
-        lhs: 20,
+        lhs: 21,
         production: &[ParseType::T(13)],
     },
-    // 34 - DeadlyPoison: "猛毒";
+    // 36 - DeadlyPoison: "猛毒";
     Production {
         lhs: 7,
         production: &[ParseType::T(14)],
     },
-    // 35 - WordChange: "変化";
+    // 37 - WordChange: "変化";
     Production {
-        lhs: 26,
+        lhs: 28,
         production: &[ParseType::T(15)],
     },
-    // 36 - WordDrop: "ドロップ";
+    // 38 - WordDrop: "ドロップ";
     Production {
-        lhs: 27,
+        lhs: 29,
         production: &[ParseType::T(16)],
     },
-    // 37 - From: "を";
+    // 39 - WordRandom: "ランダム";
     Production {
-        lhs: 15,
+        lhs: 30,
         production: &[ParseType::T(17)],
     },
-    // 38 - To: "に";
+    // 40 - WordReplace: "入れ替える";
     Production {
-        lhs: 23,
+        lhs: 31,
         production: &[ParseType::T(18)],
     },
-    // 39 - Camma: "、";
+    // 41 - From: "を";
     Production {
-        lhs: 1,
+        lhs: 16,
         production: &[ParseType::T(19)],
     },
-    // 40 - Period: "。";
+    // 42 - To: "に";
     Production {
-        lhs: 19,
+        lhs: 25,
         production: &[ParseType::T(20)],
+    },
+    // 43 - So: "で";
+    Production {
+        lhs: 24,
+        production: &[ParseType::T(21)],
+    },
+    // 44 - Camma: "、";
+    Production {
+        lhs: 1,
+        production: &[ParseType::T(22)],
+    },
+    // 45 - Period: "。";
+    Production {
+        lhs: 20,
+        production: &[ParseType::T(23)],
     },
 ];
 
@@ -567,7 +647,7 @@ where
     T: AsRef<Path>,
 {
     let mut llk_parser = LLKParser::new(
-        22,
+        23,
         LOOKAHEAD_AUTOMATA,
         PRODUCTIONS,
         TERMINAL_NAMES,
