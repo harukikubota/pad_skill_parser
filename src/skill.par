@@ -13,7 +13,7 @@ Line
     ;
 
 ChangeDropStmt
-    : ChangeDropBlock WordChange
+    : ChangeDropBlock { Camma ChangeDropBlock } WordChange
     ;
 
 ChangeDropBlock
