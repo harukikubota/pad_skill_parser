@@ -191,7 +191,7 @@ mod parser_test {
         assert_eq!(except, grammar);
     }
 
-    //#[test]
+    #[test]
     fn change_all_of_board_one_att() {
         let input = "全ドロップを回復に変化。";
         let grammar = &mut SkillGrammar::new();
