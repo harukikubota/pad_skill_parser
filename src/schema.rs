@@ -1,6 +1,8 @@
 /// ドロップリスト
 pub type Drops = Vec<Drop>;
 
+pub type GenDropsWithQty = Vec<(Drop, usize)>;
+
 /// 何かのドロップを表す
 #[derive(Clone, Debug, PartialEq)]
 pub enum Drop {

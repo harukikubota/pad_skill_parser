@@ -59,7 +59,7 @@ impl<'t> SkillGrammar<'_> {
             TmpItem::SkillEffect(item) => Some(TmpItem::SkillEffect(item)),
         };
 
-        tmp.map(|item|{
+        tmp.map(|item| {
             self.tmp = TmpItem::None;
             item
         })
@@ -71,7 +71,7 @@ impl<'t> SkillGrammar<'_> {
 
         match item {
             TmpItem::Stack(item) => item,
-            _ => panic!("from TmpItem::get_tmp(). this Item isn't StackItem!")
+            _ => panic!("from TmpItem::get_tmp(). this Item isn't StackItem!"),
         }
     }
 
@@ -81,7 +81,7 @@ impl<'t> SkillGrammar<'_> {
 
         match item {
             TmpItem::Skill(item) => item,
-            _ => panic!("from TmpItem::get_tmp(). this Item isn't Skill!")
+            _ => panic!("from TmpItem::get_tmp(). this Item isn't Skill!"),
         }
     }
 
@@ -91,7 +91,7 @@ impl<'t> SkillGrammar<'_> {
 
         match item {
             TmpItem::SkillEffect(item) => item,
-            _ => panic!("from TmpItem::get_tmp(). this Item isn't SkillEffect!")
+            _ => panic!("from TmpItem::get_tmp(). this Item isn't SkillEffect!"),
         }
     }
 
@@ -156,7 +156,7 @@ pub enum SkillEffect {
     /// ランダム生成
     /// * 0: FromOtherDrops これに指定されているドロップ以外から生成する
     /// * 1: To 生成するドロップの種類と個数
-    GenRandomDrop(Vec<Drop>, Vec<(Drop, usize)>),
+    GenRandomDrop(Drops, GenDropsWithQty),
     /// ドロップリフレッシュ
     DropRefresh,
 }
@@ -242,7 +242,7 @@ impl SkillGrammar<'_> {
     }
 
     /// ドロップ全てに生成数を付与する
-    fn build_gen_drop_and_qty_list(to: Drops, qty: usize) -> Vec<(Drop, usize)> {
+    fn build_gen_drop_and_qty_list(to: Drops, qty: usize) -> GenDropsWithQty {
         to.into_iter().map(|drop| (drop, qty)).collect()
     }
 
@@ -259,7 +259,11 @@ impl SkillGrammar<'_> {
         specified.to_vec()
     }
 
-    fn push_gen_drop_and_qty_list<'a>(self: &'a mut Self, from: Drops, gen_drop_and_qty_list: Vec<(Drop, usize)>) {
+    fn push_gen_drop_and_qty_list<'a>(
+        self: &'a mut Self,
+        from: Drops,
+        gen_drop_and_qty_list: GenDropsWithQty,
+    ) {
         let se = SkillEffect::GenRandomDrop(from, gen_drop_and_qty_list);
 
         let skill = Skill {
@@ -293,8 +297,8 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
                 match maybe_skill {
                     TmpItem::Skill(skill) => {
                         self.skill_list.push(skill);
-                    },
-                    other => self.set_tmp(other)
+                    }
+                    other => self.set_tmp(other),
                 }
             }
         } else {
@@ -308,7 +312,7 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
                 vec![]
             };
 
-            let exc_from_drops = Self::build_gen_random_drop_exc_from( exc, &mut drops.to_vec());
+            let exc_from_drops = Self::build_gen_random_drop_exc_from(exc, &mut drops.to_vec());
 
             let to = Self::build_gen_drop_and_qty_list(drops, qty);
 
@@ -317,7 +321,10 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
-    fn change_all_of_borad_stmt(&mut self, _arg: &crate::skill_grammar_trait::ChangeAllOfBoradStmt<'t>) -> parol_runtime::miette::Result<()> {
+    fn change_all_of_borad_stmt(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::ChangeAllOfBoradStmt<'t>,
+    ) -> parol_runtime::miette::Result<()> {
         let drops = self.pop().drops();
 
         let skill = Skill {
@@ -329,7 +336,10 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
-    fn drop_refresh_stmt(&mut self, _arg: &crate::skill_grammar_trait::DropRefreshStmt<'t>) -> miette::Result<()> {
+    fn drop_refresh_stmt(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::DropRefreshStmt<'t>,
+    ) -> miette::Result<()> {
         let skill = Skill {
             effect: SkillEffect::DropRefresh,
             ..Default::default()
@@ -342,9 +352,9 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
     /// A ドロップ を B ドロップ に 2回目の出現時のみ呼ばれる
     /// 現在のところ、3色目の変換は別の行に別れるため問題なし
     fn change_drop_block_other_first(
-            &mut self,
-            _arg: &crate::skill_grammar_trait::ChangeDropBlockOtherFirst<'t>,
-        ) -> miette::Result<()> {
+        &mut self,
+        _arg: &crate::skill_grammar_trait::ChangeDropBlockOtherFirst<'t>,
+    ) -> miette::Result<()> {
         let to = self.pop().drop();
         let mut from = self.pop().drops();
 
@@ -363,13 +373,14 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         &mut self,
         _arg: &crate::skill_grammar_trait::GenRandomDropStmt1<'t>,
     ) -> miette::Result<()> {
-
         let gen_quantity = self.pop().pos_int();
         let gen_drops = self.pop().drops();
 
-        let gen_drop_qty_list: Vec<(Drop, usize)> = gen_drops.to_vec().into_iter().map(|drop|{
-            (drop, gen_quantity)
-        }).collect();
+        let gen_drop_qty_list: GenDropsWithQty = gen_drops
+            .to_vec()
+            .into_iter()
+            .map(|drop| (drop, gen_quantity))
+            .collect();
 
         let se = SkillEffect::GenRandomDrop(gen_drops, gen_drop_qty_list);
 
@@ -382,7 +393,10 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
     }
 
     /// N色陣、ランダム生成でのみ使用する文言なのでドロップまで生成する
-    fn five_attribute(&mut self, _arg: &crate::skill_grammar_trait::FiveAttribute<'t>) -> parol_runtime::miette::Result<()> {
+    fn five_attribute(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::FiveAttribute<'t>,
+    ) -> parol_runtime::miette::Result<()> {
         let colors = vec![
             Color::Fire,
             Color::Water,
@@ -391,7 +405,7 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
             Color::Dark,
         ];
 
-        colors.into_iter().for_each(|color|{
+        colors.into_iter().for_each(|color| {
             self.push(StackItem::Drop(Drop::Colored(color)));
         });
         Ok(())

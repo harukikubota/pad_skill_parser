@@ -77,25 +77,24 @@ mod parser_test {
         let grammar = &mut SkillGrammar::new();
         let _parsed = parse(input, FILE_NAME, grammar).unwrap();
 
-        let except =
-            &mut new(vec![
-                Skill {
-                    sub_effects: None,
-                    turns_of_apply: None,
-                    effect: SkillEffect::ChangeDropAToB(
-                        vec![Drop::Colored(Color::Fire),],
-                        vec![Drop::Colored(Color::Water)],
-                    ),
-                },
-                Skill {
-                    sub_effects: None,
-                    turns_of_apply: None,
-                    effect: SkillEffect::ChangeDropAToB(
-                        vec![Drop::Colored(Color::Lightning),],
-                        vec![Drop::NonColored(NonColoredDrop::Recovery)],
-                    ),
-                }
-            ]);
+        let except = &mut new(vec![
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::ChangeDropAToB(
+                    vec![Drop::Colored(Color::Fire)],
+                    vec![Drop::Colored(Color::Water)],
+                ),
+            },
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::ChangeDropAToB(
+                    vec![Drop::Colored(Color::Lightning)],
+                    vec![Drop::NonColored(NonColoredDrop::Recovery)],
+                ),
+            },
+        ]);
 
         assert_eq!(except, grammar);
     }
@@ -109,15 +108,13 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::ChangeAllOfBoard(
-                vec![
-                    Drop::Colored(Color::Fire),
-                    Drop::Colored(Color::Water),
-                    Drop::Colored(Color::Wood),
-                    Drop::Colored(Color::Lightning),
-                    Drop::Colored(Color::Dark),
-                ]
-            ),
+            effect: SkillEffect::ChangeAllOfBoard(vec![
+                Drop::Colored(Color::Fire),
+                Drop::Colored(Color::Water),
+                Drop::Colored(Color::Wood),
+                Drop::Colored(Color::Lightning),
+                Drop::Colored(Color::Dark),
+            ]),
         }]);
 
         assert_eq!(except, grammar);
@@ -132,18 +129,16 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::ChangeAllOfBoard(
-                vec![
-                    Drop::Colored(Color::Fire),
-                    Drop::Colored(Color::Water),
-                    Drop::Colored(Color::Wood),
-                    Drop::Colored(Color::Lightning),
-                    Drop::Colored(Color::Dark),
-                    Drop::NonColored(NonColoredDrop::Recovery),
-                    Drop::NonColored(NonColoredDrop::Poison),
-                    Drop::NonColored(NonColoredDrop::DeadlyPoison),
-                ]
-            ),
+            effect: SkillEffect::ChangeAllOfBoard(vec![
+                Drop::Colored(Color::Fire),
+                Drop::Colored(Color::Water),
+                Drop::Colored(Color::Wood),
+                Drop::Colored(Color::Lightning),
+                Drop::Colored(Color::Dark),
+                Drop::NonColored(NonColoredDrop::Recovery),
+                Drop::NonColored(NonColoredDrop::Poison),
+                Drop::NonColored(NonColoredDrop::DeadlyPoison),
+            ]),
         }]);
 
         assert_eq!(except, grammar);
@@ -158,14 +153,12 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::ChangeAllOfBoard(
-                vec![
-                    Drop::Colored(Color::Fire),
-                    Drop::Colored(Color::Water),
-                    Drop::Colored(Color::Wood),
-                    Drop::NonColored(NonColoredDrop::Recovery),
-                ]
-            ),
+            effect: SkillEffect::ChangeAllOfBoard(vec![
+                Drop::Colored(Color::Fire),
+                Drop::Colored(Color::Water),
+                Drop::Colored(Color::Wood),
+                Drop::NonColored(NonColoredDrop::Recovery),
+            ]),
         }]);
 
         assert_eq!(except, grammar);
@@ -180,12 +173,10 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::ChangeAllOfBoard(
-                vec![
-                    Drop::Colored(Color::Fire),
-                    Drop::Colored(Color::Lightning),
-                ]
-            ),
+            effect: SkillEffect::ChangeAllOfBoard(vec![
+                Drop::Colored(Color::Fire),
+                Drop::Colored(Color::Lightning),
+            ]),
         }]);
 
         assert_eq!(except, grammar);
@@ -200,11 +191,7 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::ChangeAllOfBoard(
-                vec![
-                    Drop::NonColored(NonColoredDrop::Recovery),
-                ]
-            ),
+            effect: SkillEffect::ChangeAllOfBoard(vec![Drop::NonColored(NonColoredDrop::Recovery)]),
         }]);
 
         assert_eq!(except, grammar);
@@ -221,7 +208,7 @@ mod parser_test {
             turns_of_apply: None,
             effect: SkillEffect::GenRandomDrop(
                 vec![Drop::Colored(Color::Fire)],
-                vec![(Drop::Colored(Color::Fire), 1)]
+                vec![(Drop::Colored(Color::Fire), 1)],
             ),
         }]);
 
@@ -238,20 +225,16 @@ mod parser_test {
             sub_effects: None,
             turns_of_apply: None,
             effect: SkillEffect::GenRandomDrop(
-                vec![
-                    Drop::Colored(Color::Fire),
-                    Drop::Colored(Color::Water),
-                ],
+                vec![Drop::Colored(Color::Fire), Drop::Colored(Color::Water)],
                 vec![
                     (Drop::Colored(Color::Fire), 2),
                     (Drop::Colored(Color::Water), 2),
-                ]
+                ],
             ),
         }]);
 
         assert_eq!(except, grammar);
     }
-
 
     #[test]
     fn gen_random_drop_atori() {
@@ -271,7 +254,7 @@ mod parser_test {
                     (Drop::Colored(Color::Lightning), 4),
                     (Drop::Colored(Color::Dark), 4),
                     (Drop::NonColored(NonColoredDrop::Recovery), 4),
-                ]
+                ],
             ),
         }]);
 
@@ -290,11 +273,9 @@ mod parser_test {
             effect: SkillEffect::GenRandomDrop(
                 vec![
                     Drop::NonColored(NonColoredDrop::Recovery),
-                    Drop::Colored(Color::Fire)
+                    Drop::Colored(Color::Fire),
                 ],
-                vec![
-                    (Drop::Colored(Color::Fire), 6),
-                ]
+                vec![(Drop::Colored(Color::Fire), 6)],
             ),
         }]);
 
@@ -320,7 +301,7 @@ mod parser_test {
                 vec![
                     (Drop::Colored(Color::Water), 2),
                     (Drop::Colored(Color::Wood), 2),
-                ]
+                ],
             ),
         }]);
 

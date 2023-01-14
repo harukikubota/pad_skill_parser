@@ -10,13 +10,13 @@
 #![allow(clippy::upper_case_acronyms)]
 
 use derive_builder::Builder;
+#[allow(unused_imports)]
+use parol_macros::{pop_and_reverse_item, pop_item};
 use parol_runtime::id_tree::Tree;
 use parol_runtime::lexer::Token;
 use parol_runtime::log::trace;
 #[allow(unused_imports)]
 use parol_runtime::miette::{bail, miette, IntoDiagnostic, Result};
-#[allow(unused_imports)]
-use parol_macros::{pop_and_reverse_item, pop_item};
 use parol_runtime::parser::{ParseTreeStackEntry, ParseTreeType, UserActionsTrait};
 
 /// Semantic actions trait generated for the user grammar
