@@ -36,6 +36,7 @@ ChangeAllOfBoradBlock
 Drops
     : Drop { ManyDrop }
     | FiveAttribute { ManyDrop }
+    | Drop And Drop
     ;
 
 ManyDrop
@@ -92,6 +93,7 @@ WordReplace       : "入れ替える";
 Wo     : "を";
 Ni     : "に";
 So     : "で";
+And    : "と";
 Plus   : "\+";
 Camma  : "、";
 Period : "。";

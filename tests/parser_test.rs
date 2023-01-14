@@ -171,8 +171,7 @@ mod parser_test {
         assert_eq!(except, grammar);
     }
 
-    /*
-    //#[test]
+    #[test]
     fn change_all_of_board_two_att() {
         let input = "全ドロップを火と光に変化。";
         let grammar = &mut SkillGrammar::new();
@@ -211,6 +210,7 @@ mod parser_test {
         assert_eq!(except, grammar);
     }
 
+    /*
     //#[test]
     fn gen_random_drop_color_of_1() {
         let input = "ランダムで火ドロップを1個生成。";

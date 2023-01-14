@@ -187,6 +187,11 @@ pub trait SkillGrammarTrait<'t> {
         Ok(())
     }
 
+    /// Semantic action for non-terminal 'And'
+    fn and(&mut self, _arg: &And<'t>) -> Result<()> {
+        Ok(())
+    }
+
     /// Semantic action for non-terminal 'Plus'
     fn plus(&mut self, _arg: &Plus<'t>) -> Result<()> {
         Ok(())
@@ -247,18 +252,30 @@ pub struct LineDropRefreshStmt<'t> {
 ///
 /// Type derived for production 11
 ///
-/// Drops: Drop DropsList /* Vec */;
+/// Drops: Drop DropsSuffix;
 ///
 #[allow(dead_code)]
 #[derive(Builder, Debug, Clone)]
 #[builder(crate = "derive_builder")]
-pub struct DropsDropDropsList<'t> {
+pub struct DropsDropDropsSuffix<'t> {
     pub drop: Box<Drop<'t>>,
+    pub drops_suffix: Box<DropsSuffix<'t>>,
+}
+
+///
+/// Type derived for production 12
+///
+/// DropsSuffix: DropsList /* Vec */;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct DropsSuffixDropsList<'t> {
     pub drops_list: Vec<DropsList<'t>>,
 }
 
 ///
-/// Type derived for production 14
+/// Type derived for production 13
 ///
 /// Drops: FiveAttribute DropsList0 /* Vec */;
 ///
@@ -271,7 +288,20 @@ pub struct DropsFiveAttributeDropsList0<'t> {
 }
 
 ///
-/// Type derived for production 17
+/// Type derived for production 14
+///
+/// DropsSuffix: And Drop;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct DropsSuffixAndDrop<'t> {
+    pub and: Box<And<'t>>,
+    pub drop: Box<Drop<'t>>,
+}
+
+///
+/// Type derived for production 19
 ///
 /// ManyDrop: Camma Drop;
 ///
@@ -284,7 +314,7 @@ pub struct ManyDropCammaDrop<'t> {
 }
 
 ///
-/// Type derived for production 18
+/// Type derived for production 20
 ///
 /// ManyDrop: Plus Drop;
 ///
@@ -297,7 +327,7 @@ pub struct ManyDropPlusDrop<'t> {
 }
 
 ///
-/// Type derived for production 23
+/// Type derived for production 25
 ///
 /// Drop: Color DropOpt /* Option */;
 ///
@@ -310,7 +340,7 @@ pub struct DropColorDropOpt<'t> {
 }
 
 ///
-/// Type derived for production 24
+/// Type derived for production 26
 ///
 /// Drop: NonColoredDrop DropOpt0 /* Option */;
 ///
@@ -323,7 +353,7 @@ pub struct DropNonColoredDropDropOpt0<'t> {
 }
 
 ///
-/// Type derived for production 29
+/// Type derived for production 31
 ///
 /// NonColoredDrop: Recovery;
 ///
@@ -335,7 +365,7 @@ pub struct NonColoredDropRecovery<'t> {
 }
 
 ///
-/// Type derived for production 30
+/// Type derived for production 32
 ///
 /// NonColoredDrop: Disturb;
 ///
@@ -347,7 +377,7 @@ pub struct NonColoredDropDisturb<'t> {
 }
 
 ///
-/// Type derived for production 31
+/// Type derived for production 33
 ///
 /// NonColoredDrop: Bomb;
 ///
@@ -359,7 +389,7 @@ pub struct NonColoredDropBomb<'t> {
 }
 
 ///
-/// Type derived for production 32
+/// Type derived for production 34
 ///
 /// NonColoredDrop: Poison;
 ///
@@ -371,7 +401,7 @@ pub struct NonColoredDropPoison<'t> {
 }
 
 ///
-/// Type derived for production 33
+/// Type derived for production 35
 ///
 /// NonColoredDrop: DeadlyPoison;
 ///
@@ -383,7 +413,7 @@ pub struct NonColoredDropDeadlyPoison<'t> {
 }
 
 ///
-/// Type derived for production 34
+/// Type derived for production 36
 ///
 /// Color: Fire;
 ///
@@ -395,7 +425,7 @@ pub struct ColorFire<'t> {
 }
 
 ///
-/// Type derived for production 35
+/// Type derived for production 37
 ///
 /// Color: Water;
 ///
@@ -407,7 +437,7 @@ pub struct ColorWater<'t> {
 }
 
 ///
-/// Type derived for production 36
+/// Type derived for production 38
 ///
 /// Color: Wood;
 ///
@@ -419,7 +449,7 @@ pub struct ColorWood<'t> {
 }
 
 ///
-/// Type derived for production 37
+/// Type derived for production 39
 ///
 /// Color: Lightning;
 ///
@@ -431,7 +461,7 @@ pub struct ColorLightning<'t> {
 }
 
 ///
-/// Type derived for production 38
+/// Type derived for production 40
 ///
 /// Color: Dark;
 ///
@@ -456,6 +486,16 @@ pub struct ColorDark<'t> {
 pub struct AllDrops<'t> {
     pub word_all: Box<WordAll<'t>>,
     pub word_drop: Box<WordDrop<'t>>,
+}
+
+///
+/// Type derived for non-terminal And
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct And<'t> {
+    pub and: Token<'t>, /* と */
 }
 
 ///
@@ -631,7 +671,7 @@ pub struct DropRefreshStmt<'t> {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub enum Drops<'t> {
-    DropDropsList(DropsDropDropsList<'t>),
+    DropDropsSuffix(DropsDropDropsSuffix<'t>),
     FiveAttributeDropsList0(DropsFiveAttributeDropsList0<'t>),
 }
 
@@ -653,6 +693,16 @@ pub struct DropsList<'t> {
 #[builder(crate = "derive_builder")]
 pub struct DropsList0<'t> {
     pub many_drop: Box<ManyDrop<'t>>,
+}
+
+///
+/// Type derived for non-terminal DropsSuffix
+///
+#[allow(dead_code)]
+#[derive(Debug, Clone)]
+pub enum DropsSuffix<'t> {
+    DropsList(DropsSuffixDropsList<'t>),
+    AndDrop(DropsSuffixAndDrop<'t>),
 }
 
 ///
@@ -900,6 +950,7 @@ pub struct WordReplace<'t> {
 #[derive(Debug, Clone)]
 pub enum ASTType<'t> {
     AllDrops(AllDrops<'t>),
+    And(And<'t>),
     Bomb(Bomb<'t>),
     Camma(Camma<'t>),
     ChangeAllOfBoradBlock(ChangeAllOfBoradBlock<'t>),
@@ -918,6 +969,7 @@ pub enum ASTType<'t> {
     Drops(Drops<'t>),
     DropsList(Vec<DropsList<'t>>),
     DropsList0(Vec<DropsList0<'t>>),
+    DropsSuffix(DropsSuffix<'t>),
     Fire(Fire<'t>),
     FiveAttribute(FiveAttribute<'t>),
     FiveAttributeOpt(Option<Box<FiveAttributeOpt<'t>>>),
@@ -1327,25 +1379,25 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
 
     /// Semantic action for production 11:
     ///
-    /// Drops: Drop DropsList /* Vec */;
+    /// Drops: Drop DropsSuffix;
     ///
     #[parol_runtime::function_name::named]
     fn drops_0(
         &mut self,
         _drop: &ParseTreeStackEntry<'t>,
-        _drops_list: &ParseTreeStackEntry<'t>,
+        _drops_suffix: &ParseTreeStackEntry<'t>,
         _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let drops_list = pop_and_reverse_item!(self, drops_list, DropsList, context);
+        let drops_suffix = pop_item!(self, drops_suffix, DropsSuffix, context);
         let drop = pop_item!(self, drop, Drop, context);
-        let drops_0_built = DropsDropDropsListBuilder::default()
+        let drops_0_built = DropsDropDropsSuffixBuilder::default()
             .drop(Box::new(drop))
-            .drops_list(drops_list)
+            .drops_suffix(Box::new(drops_suffix))
             .build()
             .into_diagnostic()?;
-        let drops_0_built = Drops::DropDropsList(drops_0_built);
+        let drops_0_built = Drops::DropDropsSuffix(drops_0_built);
         // Calling user action here
         self.user_grammar.drops(&drops_0_built)?;
         self.push(ASTType::Drops(drops_0_built), context);
@@ -1354,43 +1406,27 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
 
     /// Semantic action for production 12:
     ///
-    /// DropsList /* Vec<T>::Push */: ManyDrop DropsList;
+    /// DropsSuffix: DropsList /* Vec */;
     ///
     #[parol_runtime::function_name::named]
-    fn drops_list_0(
+    fn drops_suffix_0(
         &mut self,
-        _many_drop: &ParseTreeStackEntry<'t>,
         _drops_list: &ParseTreeStackEntry<'t>,
         _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let mut drops_list = pop_item!(self, drops_list, DropsList, context);
-        let many_drop = pop_item!(self, many_drop, ManyDrop, context);
-        let drops_list_0_built = DropsListBuilder::default()
-            .many_drop(Box::new(many_drop))
+        let drops_list = pop_and_reverse_item!(self, drops_list, DropsList, context);
+        let drops_suffix_0_built = DropsSuffixDropsListBuilder::default()
+            .drops_list(drops_list)
             .build()
             .into_diagnostic()?;
-        // Add an element to the vector
-        drops_list.push(drops_list_0_built);
-        self.push(ASTType::DropsList(drops_list), context);
+        let drops_suffix_0_built = DropsSuffix::DropsList(drops_suffix_0_built);
+        self.push(ASTType::DropsSuffix(drops_suffix_0_built), context);
         Ok(())
     }
 
     /// Semantic action for production 13:
-    ///
-    /// DropsList /* Vec<T>::New */: ;
-    ///
-    #[parol_runtime::function_name::named]
-    fn drops_list_1(&mut self, _parse_tree: &Tree<ParseTreeType<'t>>) -> Result<()> {
-        let context = function_name!();
-        trace!("{}", self.trace_item_stack(context));
-        let drops_list_1_built = Vec::new();
-        self.push(ASTType::DropsList(drops_list_1_built), context);
-        Ok(())
-    }
-
-    /// Semantic action for production 14:
     ///
     /// Drops: FiveAttribute DropsList0 /* Vec */;
     ///
@@ -1417,7 +1453,70 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
+    /// Semantic action for production 14:
+    ///
+    /// DropsSuffix: And Drop;
+    ///
+    #[parol_runtime::function_name::named]
+    fn drops_suffix_1(
+        &mut self,
+        _and: &ParseTreeStackEntry<'t>,
+        _drop: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let drop = pop_item!(self, drop, Drop, context);
+        let and = pop_item!(self, and, And, context);
+        let drops_suffix_1_built = DropsSuffixAndDropBuilder::default()
+            .and(Box::new(and))
+            .drop(Box::new(drop))
+            .build()
+            .into_diagnostic()?;
+        let drops_suffix_1_built = DropsSuffix::AndDrop(drops_suffix_1_built);
+        self.push(ASTType::DropsSuffix(drops_suffix_1_built), context);
+        Ok(())
+    }
+
     /// Semantic action for production 15:
+    ///
+    /// DropsList /* Vec<T>::Push */: ManyDrop DropsList;
+    ///
+    #[parol_runtime::function_name::named]
+    fn drops_list_0(
+        &mut self,
+        _many_drop: &ParseTreeStackEntry<'t>,
+        _drops_list: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let mut drops_list = pop_item!(self, drops_list, DropsList, context);
+        let many_drop = pop_item!(self, many_drop, ManyDrop, context);
+        let drops_list_0_built = DropsListBuilder::default()
+            .many_drop(Box::new(many_drop))
+            .build()
+            .into_diagnostic()?;
+        // Add an element to the vector
+        drops_list.push(drops_list_0_built);
+        self.push(ASTType::DropsList(drops_list), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 16:
+    ///
+    /// DropsList /* Vec<T>::New */: ;
+    ///
+    #[parol_runtime::function_name::named]
+    fn drops_list_1(&mut self, _parse_tree: &Tree<ParseTreeType<'t>>) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let drops_list_1_built = Vec::new();
+        self.push(ASTType::DropsList(drops_list_1_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 17:
     ///
     /// DropsList0 /* Vec<T>::Push */: ManyDrop DropsList0;
     ///
@@ -1442,7 +1541,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 16:
+    /// Semantic action for production 18:
     ///
     /// DropsList0 /* Vec<T>::New */: ;
     ///
@@ -1455,7 +1554,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 17:
+    /// Semantic action for production 19:
     ///
     /// ManyDrop: Camma Drop;
     ///
@@ -1482,7 +1581,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 18:
+    /// Semantic action for production 20:
     ///
     /// ManyDrop: Plus Drop;
     ///
@@ -1509,7 +1608,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 19:
+    /// Semantic action for production 21:
     ///
     /// AllDrops: WordAll WordDrop;
     ///
@@ -1535,7 +1634,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 20:
+    /// Semantic action for production 22:
     ///
     /// FiveAttribute: WordFiveAttribute FiveAttributeOpt /* Option */;
     ///
@@ -1561,7 +1660,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 21:
+    /// Semantic action for production 23:
     ///
     /// FiveAttributeOpt /* Option<T>::Some */: WordDrop;
     ///
@@ -1585,7 +1684,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 22:
+    /// Semantic action for production 24:
     ///
     /// FiveAttributeOpt /* Option<T>::None */: ;
     ///
@@ -1597,7 +1696,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 23:
+    /// Semantic action for production 25:
     ///
     /// Drop: Color DropOpt /* Option */;
     ///
@@ -1624,7 +1723,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 24:
+    /// Semantic action for production 26:
     ///
     /// Drop: NonColoredDrop DropOpt0 /* Option */;
     ///
@@ -1651,7 +1750,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 25:
+    /// Semantic action for production 27:
     ///
     /// DropOpt0 /* Option<T>::Some */: WordDrop;
     ///
@@ -1675,7 +1774,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 26:
+    /// Semantic action for production 28:
     ///
     /// DropOpt0 /* Option<T>::None */: ;
     ///
@@ -1687,7 +1786,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 27:
+    /// Semantic action for production 29:
     ///
     /// DropOpt /* Option<T>::Some */: WordDrop;
     ///
@@ -1708,7 +1807,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 28:
+    /// Semantic action for production 30:
     ///
     /// DropOpt /* Option<T>::None */: ;
     ///
@@ -1720,7 +1819,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 29:
+    /// Semantic action for production 31:
     ///
     /// NonColoredDrop: Recovery;
     ///
@@ -1745,7 +1844,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 30:
+    /// Semantic action for production 32:
     ///
     /// NonColoredDrop: Disturb;
     ///
@@ -1770,7 +1869,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 31:
+    /// Semantic action for production 33:
     ///
     /// NonColoredDrop: Bomb;
     ///
@@ -1795,7 +1894,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 32:
+    /// Semantic action for production 34:
     ///
     /// NonColoredDrop: Poison;
     ///
@@ -1820,7 +1919,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 33:
+    /// Semantic action for production 35:
     ///
     /// NonColoredDrop: DeadlyPoison;
     ///
@@ -1845,7 +1944,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 34:
+    /// Semantic action for production 36:
     ///
     /// Color: Fire;
     ///
@@ -1869,7 +1968,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 35:
+    /// Semantic action for production 37:
     ///
     /// Color: Water;
     ///
@@ -1893,7 +1992,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 36:
+    /// Semantic action for production 38:
     ///
     /// Color: Wood;
     ///
@@ -1917,7 +2016,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 37:
+    /// Semantic action for production 39:
     ///
     /// Color: Lightning;
     ///
@@ -1941,7 +2040,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 38:
+    /// Semantic action for production 40:
     ///
     /// Color: Dark;
     ///
@@ -1965,7 +2064,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 39:
+    /// Semantic action for production 41:
     ///
     /// Fire: "火";
     ///
@@ -1988,7 +2087,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 40:
+    /// Semantic action for production 42:
     ///
     /// Water: "水";
     ///
@@ -2011,7 +2110,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 41:
+    /// Semantic action for production 43:
     ///
     /// Wood: "木";
     ///
@@ -2034,7 +2133,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 42:
+    /// Semantic action for production 44:
     ///
     /// Lightning: "光";
     ///
@@ -2057,7 +2156,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 43:
+    /// Semantic action for production 45:
     ///
     /// Dark: "闇";
     ///
@@ -2080,7 +2179,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 44:
+    /// Semantic action for production 46:
     ///
     /// Recovery: "回復";
     ///
@@ -2103,7 +2202,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 45:
+    /// Semantic action for production 47:
     ///
     /// Disturb: "お邪魔";
     ///
@@ -2126,7 +2225,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 46:
+    /// Semantic action for production 48:
     ///
     /// Bomb: "爆弾";
     ///
@@ -2149,7 +2248,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 47:
+    /// Semantic action for production 49:
     ///
     /// Poison: "毒";
     ///
@@ -2172,7 +2271,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 48:
+    /// Semantic action for production 50:
     ///
     /// DeadlyPoison: "猛毒";
     ///
@@ -2195,7 +2294,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 49:
+    /// Semantic action for production 51:
     ///
     /// WordChange: "変化";
     ///
@@ -2218,7 +2317,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 50:
+    /// Semantic action for production 52:
     ///
     /// WordDrop: "ドロップ";
     ///
@@ -2241,7 +2340,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 51:
+    /// Semantic action for production 53:
     ///
     /// WordAll: "全";
     ///
@@ -2264,7 +2363,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 52:
+    /// Semantic action for production 54:
     ///
     /// WordFiveAttribute: "5属性";
     ///
@@ -2291,7 +2390,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 53:
+    /// Semantic action for production 55:
     ///
     /// WordRandom: "ランダム";
     ///
@@ -2314,7 +2413,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 54:
+    /// Semantic action for production 56:
     ///
     /// WordReplace: "入れ替える";
     ///
@@ -2337,7 +2436,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 55:
+    /// Semantic action for production 57:
     ///
     /// Wo: "を";
     ///
@@ -2357,7 +2456,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 56:
+    /// Semantic action for production 58:
     ///
     /// Ni: "に";
     ///
@@ -2377,7 +2476,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 57:
+    /// Semantic action for production 59:
     ///
     /// So: "で";
     ///
@@ -2397,7 +2496,27 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 58:
+    /// Semantic action for production 60:
+    ///
+    /// And: "と";
+    ///
+    #[parol_runtime::function_name::named]
+    fn and(
+        &mut self,
+        and: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let and = and.token(parse_tree)?.clone();
+        let and_built = AndBuilder::default().and(and).build().into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.and(&and_built)?;
+        self.push(ASTType::And(and_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 61:
     ///
     /// Plus: "\+";
     ///
@@ -2420,7 +2539,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 59:
+    /// Semantic action for production 62:
     ///
     /// Camma: "、";
     ///
@@ -2443,7 +2562,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 60:
+    /// Semantic action for production 63:
     ///
     /// Period: "。";
     ///
@@ -2510,55 +2629,58 @@ impl<'t> UserActionsTrait<'t> for SkillGrammarAuto<'t, '_> {
             ),
             10 => self.change_all_of_borad_block(&children[0], parse_tree),
             11 => self.drops_0(&children[0], &children[1], parse_tree),
-            12 => self.drops_list_0(&children[0], &children[1], parse_tree),
-            13 => self.drops_list_1(parse_tree),
-            14 => self.drops_1(&children[0], &children[1], parse_tree),
-            15 => self.drops_list0_0(&children[0], &children[1], parse_tree),
-            16 => self.drops_list0_1(parse_tree),
-            17 => self.many_drop_0(&children[0], &children[1], parse_tree),
-            18 => self.many_drop_1(&children[0], &children[1], parse_tree),
-            19 => self.all_drops(&children[0], &children[1], parse_tree),
-            20 => self.five_attribute(&children[0], &children[1], parse_tree),
-            21 => self.five_attribute_opt_0(&children[0], parse_tree),
-            22 => self.five_attribute_opt_1(parse_tree),
-            23 => self.drop_0(&children[0], &children[1], parse_tree),
-            24 => self.drop_1(&children[0], &children[1], parse_tree),
-            25 => self.drop_opt0_0(&children[0], parse_tree),
-            26 => self.drop_opt0_1(parse_tree),
-            27 => self.drop_opt_0(&children[0], parse_tree),
-            28 => self.drop_opt_1(parse_tree),
-            29 => self.non_colored_drop_0(&children[0], parse_tree),
-            30 => self.non_colored_drop_1(&children[0], parse_tree),
-            31 => self.non_colored_drop_2(&children[0], parse_tree),
-            32 => self.non_colored_drop_3(&children[0], parse_tree),
-            33 => self.non_colored_drop_4(&children[0], parse_tree),
-            34 => self.color_0(&children[0], parse_tree),
-            35 => self.color_1(&children[0], parse_tree),
-            36 => self.color_2(&children[0], parse_tree),
-            37 => self.color_3(&children[0], parse_tree),
-            38 => self.color_4(&children[0], parse_tree),
-            39 => self.fire(&children[0], parse_tree),
-            40 => self.water(&children[0], parse_tree),
-            41 => self.wood(&children[0], parse_tree),
-            42 => self.lightning(&children[0], parse_tree),
-            43 => self.dark(&children[0], parse_tree),
-            44 => self.recovery(&children[0], parse_tree),
-            45 => self.disturb(&children[0], parse_tree),
-            46 => self.bomb(&children[0], parse_tree),
-            47 => self.poison(&children[0], parse_tree),
-            48 => self.deadly_poison(&children[0], parse_tree),
-            49 => self.word_change(&children[0], parse_tree),
-            50 => self.word_drop(&children[0], parse_tree),
-            51 => self.word_all(&children[0], parse_tree),
-            52 => self.word_five_attribute(&children[0], parse_tree),
-            53 => self.word_random(&children[0], parse_tree),
-            54 => self.word_replace(&children[0], parse_tree),
-            55 => self.wo(&children[0], parse_tree),
-            56 => self.ni(&children[0], parse_tree),
-            57 => self.so(&children[0], parse_tree),
-            58 => self.plus(&children[0], parse_tree),
-            59 => self.camma(&children[0], parse_tree),
-            60 => self.period(&children[0], parse_tree),
+            12 => self.drops_suffix_0(&children[0], parse_tree),
+            13 => self.drops_1(&children[0], &children[1], parse_tree),
+            14 => self.drops_suffix_1(&children[0], &children[1], parse_tree),
+            15 => self.drops_list_0(&children[0], &children[1], parse_tree),
+            16 => self.drops_list_1(parse_tree),
+            17 => self.drops_list0_0(&children[0], &children[1], parse_tree),
+            18 => self.drops_list0_1(parse_tree),
+            19 => self.many_drop_0(&children[0], &children[1], parse_tree),
+            20 => self.many_drop_1(&children[0], &children[1], parse_tree),
+            21 => self.all_drops(&children[0], &children[1], parse_tree),
+            22 => self.five_attribute(&children[0], &children[1], parse_tree),
+            23 => self.five_attribute_opt_0(&children[0], parse_tree),
+            24 => self.five_attribute_opt_1(parse_tree),
+            25 => self.drop_0(&children[0], &children[1], parse_tree),
+            26 => self.drop_1(&children[0], &children[1], parse_tree),
+            27 => self.drop_opt0_0(&children[0], parse_tree),
+            28 => self.drop_opt0_1(parse_tree),
+            29 => self.drop_opt_0(&children[0], parse_tree),
+            30 => self.drop_opt_1(parse_tree),
+            31 => self.non_colored_drop_0(&children[0], parse_tree),
+            32 => self.non_colored_drop_1(&children[0], parse_tree),
+            33 => self.non_colored_drop_2(&children[0], parse_tree),
+            34 => self.non_colored_drop_3(&children[0], parse_tree),
+            35 => self.non_colored_drop_4(&children[0], parse_tree),
+            36 => self.color_0(&children[0], parse_tree),
+            37 => self.color_1(&children[0], parse_tree),
+            38 => self.color_2(&children[0], parse_tree),
+            39 => self.color_3(&children[0], parse_tree),
+            40 => self.color_4(&children[0], parse_tree),
+            41 => self.fire(&children[0], parse_tree),
+            42 => self.water(&children[0], parse_tree),
+            43 => self.wood(&children[0], parse_tree),
+            44 => self.lightning(&children[0], parse_tree),
+            45 => self.dark(&children[0], parse_tree),
+            46 => self.recovery(&children[0], parse_tree),
+            47 => self.disturb(&children[0], parse_tree),
+            48 => self.bomb(&children[0], parse_tree),
+            49 => self.poison(&children[0], parse_tree),
+            50 => self.deadly_poison(&children[0], parse_tree),
+            51 => self.word_change(&children[0], parse_tree),
+            52 => self.word_drop(&children[0], parse_tree),
+            53 => self.word_all(&children[0], parse_tree),
+            54 => self.word_five_attribute(&children[0], parse_tree),
+            55 => self.word_random(&children[0], parse_tree),
+            56 => self.word_replace(&children[0], parse_tree),
+            57 => self.wo(&children[0], parse_tree),
+            58 => self.ni(&children[0], parse_tree),
+            59 => self.so(&children[0], parse_tree),
+            60 => self.and(&children[0], parse_tree),
+            61 => self.plus(&children[0], parse_tree),
+            62 => self.camma(&children[0], parse_tree),
+            63 => self.period(&children[0], parse_tree),
             _ => Err(miette!("Unhandled production number: {}", prod_num)),
         }
     }
