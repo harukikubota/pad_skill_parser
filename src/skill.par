@@ -10,6 +10,7 @@ SkillLines
 
 Line
     : ChangeDropStmt
+    | ChangeAllOfBoradStmt
     | DropRefreshStmt
     ;
 
@@ -17,18 +18,37 @@ ChangeDropStmt
     : ChangeDropBlock { Camma ChangeDropBlock } WordChange
     ;
 
+ChangeAllOfBoradStmt
+    : AllDrops Wo ChangeAllOfBoradBlock Ni WordChange;
+
 DropRefreshStmt
-    : WordRandom So WordDrop From WordReplace;
+    : WordRandom So WordDrop Wo WordReplace;
 
 ChangeDropBlock
     // 木ドロップ を 水ドロップ に
     // 火、回復 を 光 に
-    : Drops From Drop To
+    : Drops Wo Drop Ni
     ;
 
+ChangeAllOfBoradBlock
+    : Drops;
+
 Drops
-    : Drop { Camma Drop }
+    : Drop { ManyDrop }
+    | FiveAttribute { ManyDrop }
     ;
+
+ManyDrop
+    : Camma Drop
+    | Plus Drop
+    ;
+
+AllDrops
+    : WordAll WordDrop;
+
+FiveAttribute
+    : WordFiveAttribute [ WordDrop ];
+
 // 属性のドロップ
 Drop
     : Color [ WordDrop ]
@@ -64,11 +84,14 @@ DeadlyPoison : "猛毒";
 
 WordChange : "変化";
 WordDrop   : "ドロップ";
+WordAll           : "全";
+WordFiveAttribute : "5属性";
 WordRandom        : "ランダム";
 WordReplace       : "入れ替える";
 
-From   : "を";
-To     : "に";
+Wo     : "を";
+Ni     : "に";
 So     : "で";
+Plus   : "\+";
 Camma  : "、";
 Period : "。";

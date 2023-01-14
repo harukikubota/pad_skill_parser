@@ -100,8 +100,7 @@ mod parser_test {
         assert_eq!(except, grammar);
     }
 
-    /*
-    //#[test]
+    #[test]
     fn change_all_of_board_five_att() {
         let input = "全ドロップを5属性に変化。";
         let grammar = &mut SkillGrammar::new();
@@ -124,7 +123,7 @@ mod parser_test {
         assert_eq!(except, grammar);
     }
 
-    //#[test]
+    #[test]
     fn change_all_of_board_six_and_other_att() {
         let input = "全ドロップを5属性ドロップ+回復+毒+猛毒に変化。";
         let grammar = &mut SkillGrammar::new();
@@ -150,7 +149,7 @@ mod parser_test {
         assert_eq!(except, grammar);
     }
 
-    //#[test]
+    #[test]
     fn change_all_of_board_four_att() {
         let input = "全ドロップを火、水、木、回復に変化。";
         let grammar = &mut SkillGrammar::new();
@@ -172,6 +171,7 @@ mod parser_test {
         assert_eq!(except, grammar);
     }
 
+    /*
     //#[test]
     fn change_all_of_board_two_att() {
         let input = "全ドロップを火と光に変化。";

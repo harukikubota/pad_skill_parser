@@ -88,6 +88,8 @@ pub enum SkillEffect {
     /// 0: from
     /// 1: to
     ChangeDropAToB(Drops, Drop),
+    /// 全ドロップを変化
+    ChangeAllOfBoard(Drops),
     /// ドロップリフレッシュ
     DropRefresh,
 }
@@ -154,6 +156,18 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
+    fn change_all_of_borad_stmt(&mut self, _arg: &crate::skill_grammar_trait::ChangeAllOfBoradStmt<'t>) -> parol_runtime::miette::Result<()> {
+        let drops = self.pop().drops();
+
+        let skill = Skill {
+            effect: SkillEffect::ChangeAllOfBoard(drops),
+            ..Default::default()
+        };
+
+        self.skill_list.push(skill);
+        Ok(())
+    }
+
     fn drop_refresh_stmt(&mut self, _arg: &crate::skill_grammar_trait::DropRefreshStmt<'t>) -> miette::Result<()> {
         let skill = Skill {
             effect: SkillEffect::DropRefresh,
@@ -181,6 +195,22 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         };
 
         self.skill_list.push(skill);
+        Ok(())
+    }
+
+    /// N色陣、ランダム生成でのみ使用する文言なのでドロップまで生成する
+    fn five_attribute(&mut self, _arg: &crate::skill_grammar_trait::FiveAttribute<'t>) -> parol_runtime::miette::Result<()> {
+        let colors = vec![
+            Color::Fire,
+            Color::Water,
+            Color::Wood,
+            Color::Lightning,
+            Color::Dark,
+        ];
+
+        colors.into_iter().for_each(|color|{
+            self.push(StackItem::Drop(Drop::Colored(color)));
+        });
         Ok(())
     }
 
