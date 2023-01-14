@@ -5,6 +5,7 @@ pub(super) enum StackItem {
     Color(Color),
     Drop(Drop),
     Drops(Drops),
+    PosInt(usize),
 }
 
 #[allow(dead_code)]
@@ -30,6 +31,13 @@ impl StackItem {
         }
     }
 
+    pub(super) fn pos_int(self: Self) -> usize {
+        match self {
+            Self::PosInt(elem) => elem,
+            _ => panic!("from StackItem::pop(). this Item isn't PosInt!"),
+        }
+    }
+
     pub(super) fn is_color(self: &Self) -> bool {
         match self {
             Self::Color(_) => true,
@@ -47,6 +55,13 @@ impl StackItem {
     pub(super) fn is_drops(self: &Self) -> bool {
         match self {
             Self::Drops(_) => true,
+            _ => false,
+        }
+    }
+
+    pub(super) fn is_pos_int(self: &Self) -> bool {
+        match self {
+            Self::PosInt(_) => true,
             _ => false,
         }
     }

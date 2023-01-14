@@ -9,33 +9,39 @@ SkillLines
     : Line Period;
 
 Line
-    : ChangeDropStmt
+    : ChangeDropStmtIncGenRandomDrop
     | ChangeAllOfBoradStmt
+    | GenRandomDropStmt1
     | DropRefreshStmt
     ;
 
-ChangeDropStmt
-    : ChangeDropBlock { Camma ChangeDropBlock } WordChange
+ChangeDropStmtIncGenRandomDrop
+    : Drops Wo Drop Ni { Camma ChangeDropBlockOtherFirst } WordChange
+    // 変換と衝突するためここで拾う
+    // 火を5個生成 , 水と回復を6個ずつ生成
+    // 頭に`ランダムで`は本来のStmtで拾える。
+    | Drops Wo Quantity WordGen
+    | Drops WordOther From Drops Wo Quantity WordGen
     ;
 
 ChangeAllOfBoradStmt
-    : AllDrops Wo ChangeAllOfBoradBlock Ni WordChange;
+    : AllDrops Wo Drops Ni WordChange;
 
 DropRefreshStmt
-    : WordRandom So WordDrop Wo WordReplace;
+    : RandomSuffix WordDrop Wo WordReplace;
 
-ChangeDropBlock
-    // 木ドロップ を 水ドロップ に
-    // 火、回復 を 光 に
+// 木ドロップ を 水ドロップ に, 光ドロップ を 回復ドロップ に
+//                          ~~~~~~~~~~~~~~~~~~~~~~~~
+ChangeDropBlockOtherFirst
     : Drops Wo Drop Ni
     ;
 
-ChangeAllOfBoradBlock
-    : Drops;
+GenRandomDropStmt1
+    : RandomSuffix Drops Wo Quantity WordGen;
 
 Drops
     : Drop { ManyDrop }
-    | FiveAttribute { ManyDrop }
+    | FiveAttribute { Plus Drop }
     | Drop And Drop
     ;
 
@@ -50,11 +56,12 @@ AllDrops
 FiveAttribute
     : WordFiveAttribute [ WordDrop ];
 
-// 属性のドロップ
+Quantity
+    : PosInt WordCount [ Each ];
+
 Drop
     : Color [ WordDrop ]
-    | NonColoredDrop [ WordDrop ]
-    ;
+    | NonColoredDrop [ WordDrop ];
 
 NonColoredDrop
     : Recovery
@@ -72,28 +79,38 @@ Color
     | Dark
     ;
 
-Fire         : "火";
-Water        : "水";
-Wood         : "木";
-Lightning    : "光";
-Dark         : "闇";
-Recovery     : "回復";
-Disturb      : "お邪魔";
-Bomb         : "爆弾";
-Poison       : "毒";
-DeadlyPoison : "猛毒";
+RandomSuffix
+    : WordRandom So;
 
-WordChange : "変化";
-WordDrop   : "ドロップ";
-WordAll           : "全";
-WordFiveAttribute : "5属性";
-WordRandom        : "ランダム";
-WordReplace       : "入れ替える";
+Fire         : '火';
+Water        : '水';
+Wood         : '木';
+Lightning    : '光';
+Dark         : '闇';
+Recovery     : '回復';
+Disturb      : 'お邪魔';
+Bomb         : '爆弾';
+DeadlyPoison : '猛毒';
+Poison       : '毒';
 
-Wo     : "を";
-Ni     : "に";
-So     : "で";
-And    : "と";
-Plus   : "\+";
-Camma  : "、";
-Period : "。";
+WordChange        : '変化';
+WordDrop          : 'ドロップ';
+WordAll           : '全';
+WordFiveAttribute : '5属性';
+WordRandom        : 'ランダム';
+WordReplace       : '入れ替える';
+WordCount         : '個';
+WordGen           : '生成';
+WordOther         : '以外';
+
+Wo     : 'を';
+Ni     : 'に';
+So     : 'で';
+And    : 'と';
+Each   : 'ずつ';
+From   : 'から';
+Plus   : '+';
+Camma  : '、';
+Period : '。';
+
+PosInt : "[1-9]([0-9])*";

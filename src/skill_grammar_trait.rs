@@ -32,8 +32,11 @@ pub trait SkillGrammarTrait<'t> {
         Ok(())
     }
 
-    /// Semantic action for non-terminal 'ChangeDropStmt'
-    fn change_drop_stmt(&mut self, _arg: &ChangeDropStmt<'t>) -> Result<()> {
+    /// Semantic action for non-terminal 'ChangeDropStmtIncGenRandomDrop'
+    fn change_drop_stmt_inc_gen_random_drop(
+        &mut self,
+        _arg: &ChangeDropStmtIncGenRandomDrop<'t>,
+    ) -> Result<()> {
         Ok(())
     }
 
@@ -47,13 +50,16 @@ pub trait SkillGrammarTrait<'t> {
         Ok(())
     }
 
-    /// Semantic action for non-terminal 'ChangeDropBlock'
-    fn change_drop_block(&mut self, _arg: &ChangeDropBlock<'t>) -> Result<()> {
+    /// Semantic action for non-terminal 'ChangeDropBlockOtherFirst'
+    fn change_drop_block_other_first(
+        &mut self,
+        _arg: &ChangeDropBlockOtherFirst<'t>,
+    ) -> Result<()> {
         Ok(())
     }
 
-    /// Semantic action for non-terminal 'ChangeAllOfBoradBlock'
-    fn change_all_of_borad_block(&mut self, _arg: &ChangeAllOfBoradBlock<'t>) -> Result<()> {
+    /// Semantic action for non-terminal 'GenRandomDropStmt1'
+    fn gen_random_drop_stmt1(&mut self, _arg: &GenRandomDropStmt1<'t>) -> Result<()> {
         Ok(())
     }
 
@@ -77,6 +83,11 @@ pub trait SkillGrammarTrait<'t> {
         Ok(())
     }
 
+    /// Semantic action for non-terminal 'Quantity'
+    fn quantity(&mut self, _arg: &Quantity<'t>) -> Result<()> {
+        Ok(())
+    }
+
     /// Semantic action for non-terminal 'Drop'
     fn drop(&mut self, _arg: &Drop<'t>) -> Result<()> {
         Ok(())
@@ -89,6 +100,11 @@ pub trait SkillGrammarTrait<'t> {
 
     /// Semantic action for non-terminal 'Color'
     fn color(&mut self, _arg: &Color<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'RandomSuffix'
+    fn random_suffix(&mut self, _arg: &RandomSuffix<'t>) -> Result<()> {
         Ok(())
     }
 
@@ -132,13 +148,13 @@ pub trait SkillGrammarTrait<'t> {
         Ok(())
     }
 
-    /// Semantic action for non-terminal 'Poison'
-    fn poison(&mut self, _arg: &Poison<'t>) -> Result<()> {
+    /// Semantic action for non-terminal 'DeadlyPoison'
+    fn deadly_poison(&mut self, _arg: &DeadlyPoison<'t>) -> Result<()> {
         Ok(())
     }
 
-    /// Semantic action for non-terminal 'DeadlyPoison'
-    fn deadly_poison(&mut self, _arg: &DeadlyPoison<'t>) -> Result<()> {
+    /// Semantic action for non-terminal 'Poison'
+    fn poison(&mut self, _arg: &Poison<'t>) -> Result<()> {
         Ok(())
     }
 
@@ -172,6 +188,21 @@ pub trait SkillGrammarTrait<'t> {
         Ok(())
     }
 
+    /// Semantic action for non-terminal 'WordCount'
+    fn word_count(&mut self, _arg: &WordCount<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'WordGen'
+    fn word_gen(&mut self, _arg: &WordGen<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'WordOther'
+    fn word_other(&mut self, _arg: &WordOther<'t>) -> Result<()> {
+        Ok(())
+    }
+
     /// Semantic action for non-terminal 'Wo'
     fn wo(&mut self, _arg: &Wo<'t>) -> Result<()> {
         Ok(())
@@ -192,6 +223,16 @@ pub trait SkillGrammarTrait<'t> {
         Ok(())
     }
 
+    /// Semantic action for non-terminal 'Each'
+    fn each(&mut self, _arg: &Each<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'From'
+    fn from(&mut self, _arg: &From<'t>) -> Result<()> {
+        Ok(())
+    }
+
     /// Semantic action for non-terminal 'Plus'
     fn plus(&mut self, _arg: &Plus<'t>) -> Result<()> {
         Ok(())
@@ -206,6 +247,11 @@ pub trait SkillGrammarTrait<'t> {
     fn period(&mut self, _arg: &Period<'t>) -> Result<()> {
         Ok(())
     }
+
+    /// Semantic action for non-terminal 'PosInt'
+    fn pos_int(&mut self, _arg: &PosInt<'t>) -> Result<()> {
+        Ok(())
+    }
 }
 
 // -------------------------------------------------------------------------------------------------
@@ -216,13 +262,13 @@ pub trait SkillGrammarTrait<'t> {
 ///
 /// Type derived for production 1
 ///
-/// Line: ChangeDropStmt;
+/// Line: ChangeDropStmtIncGenRandomDrop;
 ///
 #[allow(dead_code)]
 #[derive(Builder, Debug, Clone)]
 #[builder(crate = "derive_builder")]
-pub struct LineChangeDropStmt<'t> {
-    pub change_drop_stmt: Box<ChangeDropStmt<'t>>,
+pub struct LineChangeDropStmtIncGenRandomDrop<'t> {
+    pub change_drop_stmt_inc_gen_random_drop: Box<ChangeDropStmtIncGenRandomDrop<'t>>,
 }
 
 ///
@@ -240,6 +286,18 @@ pub struct LineChangeAllOfBoradStmt<'t> {
 ///
 /// Type derived for production 3
 ///
+/// Line: GenRandomDropStmt1;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct LineGenRandomDropStmt1<'t> {
+    pub gen_random_drop_stmt1: Box<GenRandomDropStmt1<'t>>,
+}
+
+///
+/// Type derived for production 4
+///
 /// Line: DropRefreshStmt;
 ///
 #[allow(dead_code)]
@@ -250,7 +308,67 @@ pub struct LineDropRefreshStmt<'t> {
 }
 
 ///
-/// Type derived for production 11
+/// Type derived for production 6
+///
+/// ChangeDropStmtIncGenRandomDropSuffix0: Wo ChangeDropStmtIncGenRandomDropSuffix;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ChangeDropStmtIncGenRandomDropSuffix0WoChangeDropStmtIncGenRandomDropSuffix<'t> {
+    pub wo: Box<Wo<'t>>,
+    pub change_drop_stmt_inc_gen_random_drop_suffix: Box<ChangeDropStmtIncGenRandomDropSuffix<'t>>,
+}
+
+///
+/// Type derived for production 7
+///
+/// ChangeDropStmtIncGenRandomDropSuffix0: WordOther From Drops Wo Quantity WordGen;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ChangeDropStmtIncGenRandomDropSuffix0WordOtherFromDropsWoQuantityWordGen<'t> {
+    pub word_other: Box<WordOther<'t>>,
+    pub from: Box<From<'t>>,
+    pub drops: Box<Drops<'t>>,
+    pub wo: Box<Wo<'t>>,
+    pub quantity: Box<Quantity<'t>>,
+    pub word_gen: Box<WordGen<'t>>,
+}
+
+///
+/// Type derived for production 8
+///
+/// ChangeDropStmtIncGenRandomDropSuffix: Drop Ni ChangeDropStmtIncGenRandomDropList /* Vec */ WordChange;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ChangeDropStmtIncGenRandomDropSuffixDropNiChangeDropStmtIncGenRandomDropListWordChange<
+    't,
+> {
+    pub drop: Box<Drop<'t>>,
+    pub ni: Box<Ni<'t>>,
+    pub change_drop_stmt_inc_gen_random_drop_list: Vec<ChangeDropStmtIncGenRandomDropList<'t>>,
+    pub word_change: Box<WordChange<'t>>,
+}
+
+///
+/// Type derived for production 9
+///
+/// ChangeDropStmtIncGenRandomDropSuffix: Quantity WordGen;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ChangeDropStmtIncGenRandomDropSuffixQuantityWordGen<'t> {
+    pub quantity: Box<Quantity<'t>>,
+    pub word_gen: Box<WordGen<'t>>,
+}
+
+///
+/// Type derived for production 16
 ///
 /// Drops: Drop DropsSuffix;
 ///
@@ -263,7 +381,7 @@ pub struct DropsDropDropsSuffix<'t> {
 }
 
 ///
-/// Type derived for production 12
+/// Type derived for production 17
 ///
 /// DropsSuffix: DropsList /* Vec */;
 ///
@@ -275,7 +393,7 @@ pub struct DropsSuffixDropsList<'t> {
 }
 
 ///
-/// Type derived for production 13
+/// Type derived for production 18
 ///
 /// Drops: FiveAttribute DropsList0 /* Vec */;
 ///
@@ -288,7 +406,7 @@ pub struct DropsFiveAttributeDropsList0<'t> {
 }
 
 ///
-/// Type derived for production 14
+/// Type derived for production 19
 ///
 /// DropsSuffix: And Drop;
 ///
@@ -301,7 +419,7 @@ pub struct DropsSuffixAndDrop<'t> {
 }
 
 ///
-/// Type derived for production 19
+/// Type derived for production 24
 ///
 /// ManyDrop: Camma Drop;
 ///
@@ -314,7 +432,7 @@ pub struct ManyDropCammaDrop<'t> {
 }
 
 ///
-/// Type derived for production 20
+/// Type derived for production 25
 ///
 /// ManyDrop: Plus Drop;
 ///
@@ -327,7 +445,7 @@ pub struct ManyDropPlusDrop<'t> {
 }
 
 ///
-/// Type derived for production 25
+/// Type derived for production 33
 ///
 /// Drop: Color DropOpt /* Option */;
 ///
@@ -340,7 +458,7 @@ pub struct DropColorDropOpt<'t> {
 }
 
 ///
-/// Type derived for production 26
+/// Type derived for production 34
 ///
 /// Drop: NonColoredDrop DropOpt0 /* Option */;
 ///
@@ -353,7 +471,7 @@ pub struct DropNonColoredDropDropOpt0<'t> {
 }
 
 ///
-/// Type derived for production 31
+/// Type derived for production 39
 ///
 /// NonColoredDrop: Recovery;
 ///
@@ -365,7 +483,7 @@ pub struct NonColoredDropRecovery<'t> {
 }
 
 ///
-/// Type derived for production 32
+/// Type derived for production 40
 ///
 /// NonColoredDrop: Disturb;
 ///
@@ -377,7 +495,7 @@ pub struct NonColoredDropDisturb<'t> {
 }
 
 ///
-/// Type derived for production 33
+/// Type derived for production 41
 ///
 /// NonColoredDrop: Bomb;
 ///
@@ -389,7 +507,7 @@ pub struct NonColoredDropBomb<'t> {
 }
 
 ///
-/// Type derived for production 34
+/// Type derived for production 42
 ///
 /// NonColoredDrop: Poison;
 ///
@@ -401,7 +519,7 @@ pub struct NonColoredDropPoison<'t> {
 }
 
 ///
-/// Type derived for production 35
+/// Type derived for production 43
 ///
 /// NonColoredDrop: DeadlyPoison;
 ///
@@ -413,7 +531,7 @@ pub struct NonColoredDropDeadlyPoison<'t> {
 }
 
 ///
-/// Type derived for production 36
+/// Type derived for production 44
 ///
 /// Color: Fire;
 ///
@@ -425,7 +543,7 @@ pub struct ColorFire<'t> {
 }
 
 ///
-/// Type derived for production 37
+/// Type derived for production 45
 ///
 /// Color: Water;
 ///
@@ -437,7 +555,7 @@ pub struct ColorWater<'t> {
 }
 
 ///
-/// Type derived for production 38
+/// Type derived for production 46
 ///
 /// Color: Wood;
 ///
@@ -449,7 +567,7 @@ pub struct ColorWood<'t> {
 }
 
 ///
-/// Type derived for production 39
+/// Type derived for production 47
 ///
 /// Color: Lightning;
 ///
@@ -461,7 +579,7 @@ pub struct ColorLightning<'t> {
 }
 
 ///
-/// Type derived for production 40
+/// Type derived for production 48
 ///
 /// Color: Dark;
 ///
@@ -519,16 +637,6 @@ pub struct Camma<'t> {
 }
 
 ///
-/// Type derived for non-terminal ChangeAllOfBoradBlock
-///
-#[allow(dead_code)]
-#[derive(Builder, Debug, Clone)]
-#[builder(crate = "derive_builder")]
-pub struct ChangeAllOfBoradBlock<'t> {
-    pub drops: Box<Drops<'t>>,
-}
-
-///
 /// Type derived for non-terminal ChangeAllOfBoradStmt
 ///
 #[allow(dead_code)]
@@ -537,18 +645,18 @@ pub struct ChangeAllOfBoradBlock<'t> {
 pub struct ChangeAllOfBoradStmt<'t> {
     pub all_drops: Box<AllDrops<'t>>,
     pub wo: Box<Wo<'t>>,
-    pub change_all_of_borad_block: Box<ChangeAllOfBoradBlock<'t>>,
+    pub drops: Box<Drops<'t>>,
     pub ni: Box<Ni<'t>>,
     pub word_change: Box<WordChange<'t>>,
 }
 
 ///
-/// Type derived for non-terminal ChangeDropBlock
+/// Type derived for non-terminal ChangeDropBlockOtherFirst
 ///
 #[allow(dead_code)]
 #[derive(Builder, Debug, Clone)]
 #[builder(crate = "derive_builder")]
-pub struct ChangeDropBlock<'t> {
+pub struct ChangeDropBlockOtherFirst<'t> {
     pub drops: Box<Drops<'t>>,
     pub wo: Box<Wo<'t>>,
     pub drop: Box<Drop<'t>>,
@@ -556,26 +664,52 @@ pub struct ChangeDropBlock<'t> {
 }
 
 ///
-/// Type derived for non-terminal ChangeDropStmt
+/// Type derived for non-terminal ChangeDropStmtIncGenRandomDrop
 ///
 #[allow(dead_code)]
 #[derive(Builder, Debug, Clone)]
 #[builder(crate = "derive_builder")]
-pub struct ChangeDropStmt<'t> {
-    pub change_drop_block: Box<ChangeDropBlock<'t>>,
-    pub change_drop_stmt_list: Vec<ChangeDropStmtList<'t>>,
-    pub word_change: Box<WordChange<'t>>,
+pub struct ChangeDropStmtIncGenRandomDrop<'t> {
+    pub drops: Box<Drops<'t>>,
+    pub change_drop_stmt_inc_gen_random_drop_suffix0:
+        Box<ChangeDropStmtIncGenRandomDropSuffix0<'t>>,
 }
 
 ///
-/// Type derived for non-terminal ChangeDropStmtList
+/// Type derived for non-terminal ChangeDropStmtIncGenRandomDropList
 ///
 #[allow(dead_code)]
 #[derive(Builder, Debug, Clone)]
 #[builder(crate = "derive_builder")]
-pub struct ChangeDropStmtList<'t> {
+pub struct ChangeDropStmtIncGenRandomDropList<'t> {
     pub camma: Box<Camma<'t>>,
-    pub change_drop_block: Box<ChangeDropBlock<'t>>,
+    pub change_drop_block_other_first: Box<ChangeDropBlockOtherFirst<'t>>,
+}
+
+///
+/// Type derived for non-terminal ChangeDropStmtIncGenRandomDropSuffix
+///
+#[allow(dead_code)]
+#[derive(Debug, Clone)]
+pub enum ChangeDropStmtIncGenRandomDropSuffix<'t> {
+    DropNiChangeDropStmtIncGenRandomDropListWordChange(
+        ChangeDropStmtIncGenRandomDropSuffixDropNiChangeDropStmtIncGenRandomDropListWordChange<'t>,
+    ),
+    QuantityWordGen(ChangeDropStmtIncGenRandomDropSuffixQuantityWordGen<'t>),
+}
+
+///
+/// Type derived for non-terminal ChangeDropStmtIncGenRandomDropSuffix0
+///
+#[allow(dead_code)]
+#[derive(Debug, Clone)]
+pub enum ChangeDropStmtIncGenRandomDropSuffix0<'t> {
+    WoChangeDropStmtIncGenRandomDropSuffix(
+        ChangeDropStmtIncGenRandomDropSuffix0WoChangeDropStmtIncGenRandomDropSuffix<'t>,
+    ),
+    WordOtherFromDropsWoQuantityWordGen(
+        ChangeDropStmtIncGenRandomDropSuffix0WordOtherFromDropsWoQuantityWordGen<'t>,
+    ),
 }
 
 ///
@@ -658,8 +792,7 @@ pub struct DropOpt0<'t> {
 #[derive(Builder, Debug, Clone)]
 #[builder(crate = "derive_builder")]
 pub struct DropRefreshStmt<'t> {
-    pub word_random: Box<WordRandom<'t>>,
-    pub so: Box<So<'t>>,
+    pub random_suffix: Box<RandomSuffix<'t>>,
     pub word_drop: Box<WordDrop<'t>>,
     pub wo: Box<Wo<'t>>,
     pub word_replace: Box<WordReplace<'t>>,
@@ -692,7 +825,8 @@ pub struct DropsList<'t> {
 #[derive(Builder, Debug, Clone)]
 #[builder(crate = "derive_builder")]
 pub struct DropsList0<'t> {
-    pub many_drop: Box<ManyDrop<'t>>,
+    pub plus: Box<Plus<'t>>,
+    pub drop: Box<Drop<'t>>,
 }
 
 ///
@@ -703,6 +837,16 @@ pub struct DropsList0<'t> {
 pub enum DropsSuffix<'t> {
     DropsList(DropsSuffixDropsList<'t>),
     AndDrop(DropsSuffixAndDrop<'t>),
+}
+
+///
+/// Type derived for non-terminal Each
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct Each<'t> {
+    pub each: Token<'t>, /* ずつ */
 }
 
 ///
@@ -737,6 +881,30 @@ pub struct FiveAttributeOpt<'t> {
 }
 
 ///
+/// Type derived for non-terminal From
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct From<'t> {
+    pub from: Token<'t>, /* から */
+}
+
+///
+/// Type derived for non-terminal GenRandomDropStmt1
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct GenRandomDropStmt1<'t> {
+    pub random_suffix: Box<RandomSuffix<'t>>,
+    pub drops: Box<Drops<'t>>,
+    pub wo: Box<Wo<'t>>,
+    pub quantity: Box<Quantity<'t>>,
+    pub word_gen: Box<WordGen<'t>>,
+}
+
+///
 /// Type derived for non-terminal Lightning
 ///
 #[allow(dead_code)]
@@ -752,8 +920,9 @@ pub struct Lightning<'t> {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub enum Line<'t> {
-    ChangeDropStmt(LineChangeDropStmt<'t>),
+    ChangeDropStmtIncGenRandomDrop(LineChangeDropStmtIncGenRandomDrop<'t>),
     ChangeAllOfBoradStmt(LineChangeAllOfBoradStmt<'t>),
+    GenRandomDropStmt1(LineGenRandomDropStmt1<'t>),
     DropRefreshStmt(LineDropRefreshStmt<'t>),
 }
 
@@ -807,7 +976,7 @@ pub struct Period<'t> {
 #[derive(Builder, Debug, Clone)]
 #[builder(crate = "derive_builder")]
 pub struct Plus<'t> {
-    pub plus: Token<'t>, /* \+ */
+    pub plus: Token<'t>, /* + */
 }
 
 ///
@@ -818,6 +987,49 @@ pub struct Plus<'t> {
 #[builder(crate = "derive_builder")]
 pub struct Poison<'t> {
     pub poison: Token<'t>, /* 毒 */
+}
+
+///
+/// Type derived for non-terminal PosInt
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct PosInt<'t> {
+    pub pos_int: Token<'t>, /* [1-9]([0-9])* */
+}
+
+///
+/// Type derived for non-terminal Quantity
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct Quantity<'t> {
+    pub pos_int: Box<PosInt<'t>>,
+    pub word_count: Box<WordCount<'t>>,
+    pub quantity_opt: Option<Box<QuantityOpt<'t>>>,
+}
+
+///
+/// Type derived for non-terminal QuantityOpt
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct QuantityOpt<'t> {
+    pub each: Box<Each<'t>>,
+}
+
+///
+/// Type derived for non-terminal RandomSuffix
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct RandomSuffix<'t> {
+    pub word_random: Box<WordRandom<'t>>,
+    pub so: Box<So<'t>>,
 }
 
 ///
@@ -902,6 +1114,16 @@ pub struct WordChange<'t> {
 }
 
 ///
+/// Type derived for non-terminal WordCount
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct WordCount<'t> {
+    pub word_count: Token<'t>, /* 個 */
+}
+
+///
 /// Type derived for non-terminal WordDrop
 ///
 #[allow(dead_code)]
@@ -919,6 +1141,26 @@ pub struct WordDrop<'t> {
 #[builder(crate = "derive_builder")]
 pub struct WordFiveAttribute<'t> {
     pub word_five_attribute: Token<'t>, /* 5属性 */
+}
+
+///
+/// Type derived for non-terminal WordGen
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct WordGen<'t> {
+    pub word_gen: Token<'t>, /* 生成 */
+}
+
+///
+/// Type derived for non-terminal WordOther
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct WordOther<'t> {
+    pub word_other: Token<'t>, /* 以外 */
 }
 
 ///
@@ -953,11 +1195,12 @@ pub enum ASTType<'t> {
     And(And<'t>),
     Bomb(Bomb<'t>),
     Camma(Camma<'t>),
-    ChangeAllOfBoradBlock(ChangeAllOfBoradBlock<'t>),
     ChangeAllOfBoradStmt(ChangeAllOfBoradStmt<'t>),
-    ChangeDropBlock(ChangeDropBlock<'t>),
-    ChangeDropStmt(ChangeDropStmt<'t>),
-    ChangeDropStmtList(Vec<ChangeDropStmtList<'t>>),
+    ChangeDropBlockOtherFirst(ChangeDropBlockOtherFirst<'t>),
+    ChangeDropStmtIncGenRandomDrop(ChangeDropStmtIncGenRandomDrop<'t>),
+    ChangeDropStmtIncGenRandomDropList(Vec<ChangeDropStmtIncGenRandomDropList<'t>>),
+    ChangeDropStmtIncGenRandomDropSuffix(ChangeDropStmtIncGenRandomDropSuffix<'t>),
+    ChangeDropStmtIncGenRandomDropSuffix0(ChangeDropStmtIncGenRandomDropSuffix0<'t>),
     Color(Color<'t>),
     Dark(Dark<'t>),
     DeadlyPoison(DeadlyPoison<'t>),
@@ -970,9 +1213,12 @@ pub enum ASTType<'t> {
     DropsList(Vec<DropsList<'t>>),
     DropsList0(Vec<DropsList0<'t>>),
     DropsSuffix(DropsSuffix<'t>),
+    Each(Each<'t>),
     Fire(Fire<'t>),
     FiveAttribute(FiveAttribute<'t>),
     FiveAttributeOpt(Option<Box<FiveAttributeOpt<'t>>>),
+    From(From<'t>),
+    GenRandomDropStmt1(GenRandomDropStmt1<'t>),
     Lightning(Lightning<'t>),
     Line(Line<'t>),
     ManyDrop(ManyDrop<'t>),
@@ -981,6 +1227,10 @@ pub enum ASTType<'t> {
     Period(Period<'t>),
     Plus(Plus<'t>),
     Poison(Poison<'t>),
+    PosInt(PosInt<'t>),
+    Quantity(Quantity<'t>),
+    QuantityOpt(Option<Box<QuantityOpt<'t>>>),
+    RandomSuffix(RandomSuffix<'t>),
     Recovery(Recovery<'t>),
     SkillLines(SkillLines<'t>),
     So(So<'t>),
@@ -989,8 +1239,11 @@ pub enum ASTType<'t> {
     Wood(Wood<'t>),
     WordAll(WordAll<'t>),
     WordChange(WordChange<'t>),
+    WordCount(WordCount<'t>),
     WordDrop(WordDrop<'t>),
     WordFiveAttribute(WordFiveAttribute<'t>),
+    WordGen(WordGen<'t>),
+    WordOther(WordOther<'t>),
     WordRandom(WordRandom<'t>),
     WordReplace(WordReplace<'t>),
 }
@@ -1086,22 +1339,27 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
 
     /// Semantic action for production 1:
     ///
-    /// Line: ChangeDropStmt;
+    /// Line: ChangeDropStmtIncGenRandomDrop;
     ///
     #[parol_runtime::function_name::named]
     fn line_0(
         &mut self,
-        _change_drop_stmt: &ParseTreeStackEntry<'t>,
+        _change_drop_stmt_inc_gen_random_drop: &ParseTreeStackEntry<'t>,
         _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let change_drop_stmt = pop_item!(self, change_drop_stmt, ChangeDropStmt, context);
-        let line_0_built = LineChangeDropStmtBuilder::default()
-            .change_drop_stmt(Box::new(change_drop_stmt))
+        let change_drop_stmt_inc_gen_random_drop = pop_item!(
+            self,
+            change_drop_stmt_inc_gen_random_drop,
+            ChangeDropStmtIncGenRandomDrop,
+            context
+        );
+        let line_0_built = LineChangeDropStmtIncGenRandomDropBuilder::default()
+            .change_drop_stmt_inc_gen_random_drop(Box::new(change_drop_stmt_inc_gen_random_drop))
             .build()
             .into_diagnostic()?;
-        let line_0_built = Line::ChangeDropStmt(line_0_built);
+        let line_0_built = Line::ChangeDropStmtIncGenRandomDrop(line_0_built);
         // Calling user action here
         self.user_grammar.line(&line_0_built)?;
         self.push(ASTType::Line(line_0_built), context);
@@ -1139,22 +1397,23 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
 
     /// Semantic action for production 3:
     ///
-    /// Line: DropRefreshStmt;
+    /// Line: GenRandomDropStmt1;
     ///
     #[parol_runtime::function_name::named]
     fn line_2(
         &mut self,
-        _drop_refresh_stmt: &ParseTreeStackEntry<'t>,
+        _gen_random_drop_stmt1: &ParseTreeStackEntry<'t>,
         _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let drop_refresh_stmt = pop_item!(self, drop_refresh_stmt, DropRefreshStmt, context);
-        let line_2_built = LineDropRefreshStmtBuilder::default()
-            .drop_refresh_stmt(Box::new(drop_refresh_stmt))
+        let gen_random_drop_stmt1 =
+            pop_item!(self, gen_random_drop_stmt1, GenRandomDropStmt1, context);
+        let line_2_built = LineGenRandomDropStmt1Builder::default()
+            .gen_random_drop_stmt1(Box::new(gen_random_drop_stmt1))
             .build()
             .into_diagnostic()?;
-        let line_2_built = Line::DropRefreshStmt(line_2_built);
+        let line_2_built = Line::GenRandomDropStmt1(line_2_built);
         // Calling user action here
         self.user_grammar.line(&line_2_built)?;
         self.push(ASTType::Line(line_2_built), context);
@@ -1163,75 +1422,99 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
 
     /// Semantic action for production 4:
     ///
-    /// ChangeDropStmt: ChangeDropBlock ChangeDropStmtList /* Vec */ WordChange;
+    /// Line: DropRefreshStmt;
     ///
     #[parol_runtime::function_name::named]
-    fn change_drop_stmt(
+    fn line_3(
         &mut self,
-        _change_drop_block: &ParseTreeStackEntry<'t>,
-        _change_drop_stmt_list: &ParseTreeStackEntry<'t>,
-        _word_change: &ParseTreeStackEntry<'t>,
+        _drop_refresh_stmt: &ParseTreeStackEntry<'t>,
         _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let word_change = pop_item!(self, word_change, WordChange, context);
-        let change_drop_stmt_list =
-            pop_and_reverse_item!(self, change_drop_stmt_list, ChangeDropStmtList, context);
-        let change_drop_block = pop_item!(self, change_drop_block, ChangeDropBlock, context);
-        let change_drop_stmt_built = ChangeDropStmtBuilder::default()
-            .change_drop_block(Box::new(change_drop_block))
-            .change_drop_stmt_list(change_drop_stmt_list)
-            .word_change(Box::new(word_change))
+        let drop_refresh_stmt = pop_item!(self, drop_refresh_stmt, DropRefreshStmt, context);
+        let line_3_built = LineDropRefreshStmtBuilder::default()
+            .drop_refresh_stmt(Box::new(drop_refresh_stmt))
             .build()
             .into_diagnostic()?;
+        let line_3_built = Line::DropRefreshStmt(line_3_built);
         // Calling user action here
-        self.user_grammar
-            .change_drop_stmt(&change_drop_stmt_built)?;
-        self.push(ASTType::ChangeDropStmt(change_drop_stmt_built), context);
+        self.user_grammar.line(&line_3_built)?;
+        self.push(ASTType::Line(line_3_built), context);
         Ok(())
     }
 
     /// Semantic action for production 5:
     ///
-    /// ChangeDropStmtList /* Vec<T>::Push */: Camma ChangeDropBlock ChangeDropStmtList;
+    /// ChangeDropStmtIncGenRandomDrop: Drops ChangeDropStmtIncGenRandomDropSuffix0;
     ///
     #[parol_runtime::function_name::named]
-    fn change_drop_stmt_list_0(
+    fn change_drop_stmt_inc_gen_random_drop(
         &mut self,
-        _camma: &ParseTreeStackEntry<'t>,
-        _change_drop_block: &ParseTreeStackEntry<'t>,
-        _change_drop_stmt_list: &ParseTreeStackEntry<'t>,
+        _drops: &ParseTreeStackEntry<'t>,
+        _change_drop_stmt_inc_gen_random_drop_suffix0: &ParseTreeStackEntry<'t>,
         _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let mut change_drop_stmt_list =
-            pop_item!(self, change_drop_stmt_list, ChangeDropStmtList, context);
-        let change_drop_block = pop_item!(self, change_drop_block, ChangeDropBlock, context);
-        let camma = pop_item!(self, camma, Camma, context);
-        let change_drop_stmt_list_0_built = ChangeDropStmtListBuilder::default()
-            .change_drop_block(Box::new(change_drop_block))
-            .camma(Box::new(camma))
-            .build()
-            .into_diagnostic()?;
-        // Add an element to the vector
-        change_drop_stmt_list.push(change_drop_stmt_list_0_built);
-        self.push(ASTType::ChangeDropStmtList(change_drop_stmt_list), context);
+        let change_drop_stmt_inc_gen_random_drop_suffix0 = pop_item!(
+            self,
+            change_drop_stmt_inc_gen_random_drop_suffix0,
+            ChangeDropStmtIncGenRandomDropSuffix0,
+            context
+        );
+        let drops = pop_item!(self, drops, Drops, context);
+        let change_drop_stmt_inc_gen_random_drop_built =
+            ChangeDropStmtIncGenRandomDropBuilder::default()
+                .drops(Box::new(drops))
+                .change_drop_stmt_inc_gen_random_drop_suffix0(Box::new(
+                    change_drop_stmt_inc_gen_random_drop_suffix0,
+                ))
+                .build()
+                .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar
+            .change_drop_stmt_inc_gen_random_drop(&change_drop_stmt_inc_gen_random_drop_built)?;
+        self.push(
+            ASTType::ChangeDropStmtIncGenRandomDrop(change_drop_stmt_inc_gen_random_drop_built),
+            context,
+        );
         Ok(())
     }
 
     /// Semantic action for production 6:
     ///
-    /// ChangeDropStmtList /* Vec<T>::New */: ;
+    /// ChangeDropStmtIncGenRandomDropSuffix0: Wo ChangeDropStmtIncGenRandomDropSuffix;
     ///
     #[parol_runtime::function_name::named]
-    fn change_drop_stmt_list_1(&mut self, _parse_tree: &Tree<ParseTreeType<'t>>) -> Result<()> {
+    fn change_drop_stmt_inc_gen_random_drop_suffix0_0(
+        &mut self,
+        _wo: &ParseTreeStackEntry<'t>,
+        _change_drop_stmt_inc_gen_random_drop_suffix: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let change_drop_stmt_list_1_built = Vec::new();
+        let change_drop_stmt_inc_gen_random_drop_suffix = pop_item!(
+            self,
+            change_drop_stmt_inc_gen_random_drop_suffix,
+            ChangeDropStmtIncGenRandomDropSuffix,
+            context
+        );
+        let wo = pop_item!(self, wo, Wo, context);
+        let change_drop_stmt_inc_gen_random_drop_suffix0_0_built = ChangeDropStmtIncGenRandomDropSuffix0WoChangeDropStmtIncGenRandomDropSuffixBuilder::default()
+            .wo(Box::new(wo))
+            .change_drop_stmt_inc_gen_random_drop_suffix(Box::new(change_drop_stmt_inc_gen_random_drop_suffix))
+            .build()
+            .into_diagnostic()?;
+        let change_drop_stmt_inc_gen_random_drop_suffix0_0_built =
+            ChangeDropStmtIncGenRandomDropSuffix0::WoChangeDropStmtIncGenRandomDropSuffix(
+                change_drop_stmt_inc_gen_random_drop_suffix0_0_built,
+            );
         self.push(
-            ASTType::ChangeDropStmtList(change_drop_stmt_list_1_built),
+            ASTType::ChangeDropStmtIncGenRandomDropSuffix0(
+                change_drop_stmt_inc_gen_random_drop_suffix0_0_built,
+            ),
             context,
         );
         Ok(())
@@ -1239,14 +1522,198 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
 
     /// Semantic action for production 7:
     ///
-    /// ChangeAllOfBoradStmt: AllDrops Wo ChangeAllOfBoradBlock Ni WordChange;
+    /// ChangeDropStmtIncGenRandomDropSuffix0: WordOther From Drops Wo Quantity WordGen;
+    ///
+    #[parol_runtime::function_name::named]
+    fn change_drop_stmt_inc_gen_random_drop_suffix0_1(
+        &mut self,
+        _word_other: &ParseTreeStackEntry<'t>,
+        _from: &ParseTreeStackEntry<'t>,
+        _drops: &ParseTreeStackEntry<'t>,
+        _wo: &ParseTreeStackEntry<'t>,
+        _quantity: &ParseTreeStackEntry<'t>,
+        _word_gen: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_gen = pop_item!(self, word_gen, WordGen, context);
+        let quantity = pop_item!(self, quantity, Quantity, context);
+        let wo = pop_item!(self, wo, Wo, context);
+        let drops = pop_item!(self, drops, Drops, context);
+        let from = pop_item!(self, from, From, context);
+        let word_other = pop_item!(self, word_other, WordOther, context);
+        let change_drop_stmt_inc_gen_random_drop_suffix0_1_built = ChangeDropStmtIncGenRandomDropSuffix0WordOtherFromDropsWoQuantityWordGenBuilder::default()
+            .word_other(Box::new(word_other))
+            .from(Box::new(from))
+            .drops(Box::new(drops))
+            .wo(Box::new(wo))
+            .quantity(Box::new(quantity))
+            .word_gen(Box::new(word_gen))
+            .build()
+            .into_diagnostic()?;
+        let change_drop_stmt_inc_gen_random_drop_suffix0_1_built =
+            ChangeDropStmtIncGenRandomDropSuffix0::WordOtherFromDropsWoQuantityWordGen(
+                change_drop_stmt_inc_gen_random_drop_suffix0_1_built,
+            );
+        self.push(
+            ASTType::ChangeDropStmtIncGenRandomDropSuffix0(
+                change_drop_stmt_inc_gen_random_drop_suffix0_1_built,
+            ),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 8:
+    ///
+    /// ChangeDropStmtIncGenRandomDropSuffix: Drop Ni ChangeDropStmtIncGenRandomDropList /* Vec */ WordChange;
+    ///
+    #[parol_runtime::function_name::named]
+    fn change_drop_stmt_inc_gen_random_drop_suffix_0(
+        &mut self,
+        _drop: &ParseTreeStackEntry<'t>,
+        _ni: &ParseTreeStackEntry<'t>,
+        _change_drop_stmt_inc_gen_random_drop_list: &ParseTreeStackEntry<'t>,
+        _word_change: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_change = pop_item!(self, word_change, WordChange, context);
+        let change_drop_stmt_inc_gen_random_drop_list = pop_and_reverse_item!(
+            self,
+            change_drop_stmt_inc_gen_random_drop_list,
+            ChangeDropStmtIncGenRandomDropList,
+            context
+        );
+        let ni = pop_item!(self, ni, Ni, context);
+        let drop = pop_item!(self, drop, Drop, context);
+        let change_drop_stmt_inc_gen_random_drop_suffix_0_built = ChangeDropStmtIncGenRandomDropSuffixDropNiChangeDropStmtIncGenRandomDropListWordChangeBuilder::default()
+            .drop(Box::new(drop))
+            .ni(Box::new(ni))
+            .change_drop_stmt_inc_gen_random_drop_list(change_drop_stmt_inc_gen_random_drop_list)
+            .word_change(Box::new(word_change))
+            .build()
+            .into_diagnostic()?;
+        let change_drop_stmt_inc_gen_random_drop_suffix_0_built = ChangeDropStmtIncGenRandomDropSuffix::DropNiChangeDropStmtIncGenRandomDropListWordChange(change_drop_stmt_inc_gen_random_drop_suffix_0_built);
+        self.push(
+            ASTType::ChangeDropStmtIncGenRandomDropSuffix(
+                change_drop_stmt_inc_gen_random_drop_suffix_0_built,
+            ),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 9:
+    ///
+    /// ChangeDropStmtIncGenRandomDropSuffix: Quantity WordGen;
+    ///
+    #[parol_runtime::function_name::named]
+    fn change_drop_stmt_inc_gen_random_drop_suffix_1(
+        &mut self,
+        _quantity: &ParseTreeStackEntry<'t>,
+        _word_gen: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_gen = pop_item!(self, word_gen, WordGen, context);
+        let quantity = pop_item!(self, quantity, Quantity, context);
+        let change_drop_stmt_inc_gen_random_drop_suffix_1_built =
+            ChangeDropStmtIncGenRandomDropSuffixQuantityWordGenBuilder::default()
+                .quantity(Box::new(quantity))
+                .word_gen(Box::new(word_gen))
+                .build()
+                .into_diagnostic()?;
+        let change_drop_stmt_inc_gen_random_drop_suffix_1_built =
+            ChangeDropStmtIncGenRandomDropSuffix::QuantityWordGen(
+                change_drop_stmt_inc_gen_random_drop_suffix_1_built,
+            );
+        self.push(
+            ASTType::ChangeDropStmtIncGenRandomDropSuffix(
+                change_drop_stmt_inc_gen_random_drop_suffix_1_built,
+            ),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 10:
+    ///
+    /// ChangeDropStmtIncGenRandomDropList /* Vec<T>::Push */: Camma ChangeDropBlockOtherFirst ChangeDropStmtIncGenRandomDropList;
+    ///
+    #[parol_runtime::function_name::named]
+    fn change_drop_stmt_inc_gen_random_drop_list_0(
+        &mut self,
+        _camma: &ParseTreeStackEntry<'t>,
+        _change_drop_block_other_first: &ParseTreeStackEntry<'t>,
+        _change_drop_stmt_inc_gen_random_drop_list: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let mut change_drop_stmt_inc_gen_random_drop_list = pop_item!(
+            self,
+            change_drop_stmt_inc_gen_random_drop_list,
+            ChangeDropStmtIncGenRandomDropList,
+            context
+        );
+        let change_drop_block_other_first = pop_item!(
+            self,
+            change_drop_block_other_first,
+            ChangeDropBlockOtherFirst,
+            context
+        );
+        let camma = pop_item!(self, camma, Camma, context);
+        let change_drop_stmt_inc_gen_random_drop_list_0_built =
+            ChangeDropStmtIncGenRandomDropListBuilder::default()
+                .change_drop_block_other_first(Box::new(change_drop_block_other_first))
+                .camma(Box::new(camma))
+                .build()
+                .into_diagnostic()?;
+        // Add an element to the vector
+        change_drop_stmt_inc_gen_random_drop_list
+            .push(change_drop_stmt_inc_gen_random_drop_list_0_built);
+        self.push(
+            ASTType::ChangeDropStmtIncGenRandomDropList(change_drop_stmt_inc_gen_random_drop_list),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 11:
+    ///
+    /// ChangeDropStmtIncGenRandomDropList /* Vec<T>::New */: ;
+    ///
+    #[parol_runtime::function_name::named]
+    fn change_drop_stmt_inc_gen_random_drop_list_1(
+        &mut self,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let change_drop_stmt_inc_gen_random_drop_list_1_built = Vec::new();
+        self.push(
+            ASTType::ChangeDropStmtIncGenRandomDropList(
+                change_drop_stmt_inc_gen_random_drop_list_1_built,
+            ),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 12:
+    ///
+    /// ChangeAllOfBoradStmt: AllDrops Wo Drops Ni WordChange;
     ///
     #[parol_runtime::function_name::named]
     fn change_all_of_borad_stmt(
         &mut self,
         _all_drops: &ParseTreeStackEntry<'t>,
         _wo: &ParseTreeStackEntry<'t>,
-        _change_all_of_borad_block: &ParseTreeStackEntry<'t>,
+        _drops: &ParseTreeStackEntry<'t>,
         _ni: &ParseTreeStackEntry<'t>,
         _word_change: &ParseTreeStackEntry<'t>,
         _parse_tree: &Tree<ParseTreeType<'t>>,
@@ -1255,18 +1722,13 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         trace!("{}", self.trace_item_stack(context));
         let word_change = pop_item!(self, word_change, WordChange, context);
         let ni = pop_item!(self, ni, Ni, context);
-        let change_all_of_borad_block = pop_item!(
-            self,
-            change_all_of_borad_block,
-            ChangeAllOfBoradBlock,
-            context
-        );
+        let drops = pop_item!(self, drops, Drops, context);
         let wo = pop_item!(self, wo, Wo, context);
         let all_drops = pop_item!(self, all_drops, AllDrops, context);
         let change_all_of_borad_stmt_built = ChangeAllOfBoradStmtBuilder::default()
             .all_drops(Box::new(all_drops))
             .wo(Box::new(wo))
-            .change_all_of_borad_block(Box::new(change_all_of_borad_block))
+            .drops(Box::new(drops))
             .ni(Box::new(ni))
             .word_change(Box::new(word_change))
             .build()
@@ -1281,15 +1743,14 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 8:
+    /// Semantic action for production 13:
     ///
-    /// DropRefreshStmt: WordRandom So WordDrop Wo WordReplace;
+    /// DropRefreshStmt: RandomSuffix WordDrop Wo WordReplace;
     ///
     #[parol_runtime::function_name::named]
     fn drop_refresh_stmt(
         &mut self,
-        _word_random: &ParseTreeStackEntry<'t>,
-        _so: &ParseTreeStackEntry<'t>,
+        _random_suffix: &ParseTreeStackEntry<'t>,
         _word_drop: &ParseTreeStackEntry<'t>,
         _wo: &ParseTreeStackEntry<'t>,
         _word_replace: &ParseTreeStackEntry<'t>,
@@ -1300,11 +1761,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         let word_replace = pop_item!(self, word_replace, WordReplace, context);
         let wo = pop_item!(self, wo, Wo, context);
         let word_drop = pop_item!(self, word_drop, WordDrop, context);
-        let so = pop_item!(self, so, So, context);
-        let word_random = pop_item!(self, word_random, WordRandom, context);
+        let random_suffix = pop_item!(self, random_suffix, RandomSuffix, context);
         let drop_refresh_stmt_built = DropRefreshStmtBuilder::default()
-            .word_random(Box::new(word_random))
-            .so(Box::new(so))
+            .random_suffix(Box::new(random_suffix))
             .word_drop(Box::new(word_drop))
             .wo(Box::new(wo))
             .word_replace(Box::new(word_replace))
@@ -1317,12 +1776,12 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 9:
+    /// Semantic action for production 14:
     ///
-    /// ChangeDropBlock: Drops Wo Drop Ni;
+    /// ChangeDropBlockOtherFirst: Drops Wo Drop Ni;
     ///
     #[parol_runtime::function_name::named]
-    fn change_drop_block(
+    fn change_drop_block_other_first(
         &mut self,
         _drops: &ParseTreeStackEntry<'t>,
         _wo: &ParseTreeStackEntry<'t>,
@@ -1336,7 +1795,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         let drop = pop_item!(self, drop, Drop, context);
         let wo = pop_item!(self, wo, Wo, context);
         let drops = pop_item!(self, drops, Drops, context);
-        let change_drop_block_built = ChangeDropBlockBuilder::default()
+        let change_drop_block_other_first_built = ChangeDropBlockOtherFirstBuilder::default()
             .drops(Box::new(drops))
             .wo(Box::new(wo))
             .drop(Box::new(drop))
@@ -1345,39 +1804,54 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
             .into_diagnostic()?;
         // Calling user action here
         self.user_grammar
-            .change_drop_block(&change_drop_block_built)?;
-        self.push(ASTType::ChangeDropBlock(change_drop_block_built), context);
-        Ok(())
-    }
-
-    /// Semantic action for production 10:
-    ///
-    /// ChangeAllOfBoradBlock: Drops;
-    ///
-    #[parol_runtime::function_name::named]
-    fn change_all_of_borad_block(
-        &mut self,
-        _drops: &ParseTreeStackEntry<'t>,
-        _parse_tree: &Tree<ParseTreeType<'t>>,
-    ) -> Result<()> {
-        let context = function_name!();
-        trace!("{}", self.trace_item_stack(context));
-        let drops = pop_item!(self, drops, Drops, context);
-        let change_all_of_borad_block_built = ChangeAllOfBoradBlockBuilder::default()
-            .drops(Box::new(drops))
-            .build()
-            .into_diagnostic()?;
-        // Calling user action here
-        self.user_grammar
-            .change_all_of_borad_block(&change_all_of_borad_block_built)?;
+            .change_drop_block_other_first(&change_drop_block_other_first_built)?;
         self.push(
-            ASTType::ChangeAllOfBoradBlock(change_all_of_borad_block_built),
+            ASTType::ChangeDropBlockOtherFirst(change_drop_block_other_first_built),
             context,
         );
         Ok(())
     }
 
-    /// Semantic action for production 11:
+    /// Semantic action for production 15:
+    ///
+    /// GenRandomDropStmt1: RandomSuffix Drops Wo Quantity WordGen;
+    ///
+    #[parol_runtime::function_name::named]
+    fn gen_random_drop_stmt1(
+        &mut self,
+        _random_suffix: &ParseTreeStackEntry<'t>,
+        _drops: &ParseTreeStackEntry<'t>,
+        _wo: &ParseTreeStackEntry<'t>,
+        _quantity: &ParseTreeStackEntry<'t>,
+        _word_gen: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_gen = pop_item!(self, word_gen, WordGen, context);
+        let quantity = pop_item!(self, quantity, Quantity, context);
+        let wo = pop_item!(self, wo, Wo, context);
+        let drops = pop_item!(self, drops, Drops, context);
+        let random_suffix = pop_item!(self, random_suffix, RandomSuffix, context);
+        let gen_random_drop_stmt1_built = GenRandomDropStmt1Builder::default()
+            .random_suffix(Box::new(random_suffix))
+            .drops(Box::new(drops))
+            .wo(Box::new(wo))
+            .quantity(Box::new(quantity))
+            .word_gen(Box::new(word_gen))
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar
+            .gen_random_drop_stmt1(&gen_random_drop_stmt1_built)?;
+        self.push(
+            ASTType::GenRandomDropStmt1(gen_random_drop_stmt1_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 16:
     ///
     /// Drops: Drop DropsSuffix;
     ///
@@ -1404,7 +1878,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 12:
+    /// Semantic action for production 17:
     ///
     /// DropsSuffix: DropsList /* Vec */;
     ///
@@ -1426,7 +1900,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 13:
+    /// Semantic action for production 18:
     ///
     /// Drops: FiveAttribute DropsList0 /* Vec */;
     ///
@@ -1453,7 +1927,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 14:
+    /// Semantic action for production 19:
     ///
     /// DropsSuffix: And Drop;
     ///
@@ -1478,7 +1952,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 15:
+    /// Semantic action for production 20:
     ///
     /// DropsList /* Vec<T>::Push */: ManyDrop DropsList;
     ///
@@ -1503,7 +1977,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 16:
+    /// Semantic action for production 21:
     ///
     /// DropsList /* Vec<T>::New */: ;
     ///
@@ -1516,23 +1990,26 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 17:
+    /// Semantic action for production 22:
     ///
-    /// DropsList0 /* Vec<T>::Push */: ManyDrop DropsList0;
+    /// DropsList0 /* Vec<T>::Push */: Plus Drop DropsList0;
     ///
     #[parol_runtime::function_name::named]
     fn drops_list0_0(
         &mut self,
-        _many_drop: &ParseTreeStackEntry<'t>,
+        _plus: &ParseTreeStackEntry<'t>,
+        _drop: &ParseTreeStackEntry<'t>,
         _drops_list0: &ParseTreeStackEntry<'t>,
         _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
         let mut drops_list0 = pop_item!(self, drops_list0, DropsList0, context);
-        let many_drop = pop_item!(self, many_drop, ManyDrop, context);
+        let drop = pop_item!(self, drop, Drop, context);
+        let plus = pop_item!(self, plus, Plus, context);
         let drops_list0_0_built = DropsList0Builder::default()
-            .many_drop(Box::new(many_drop))
+            .drop(Box::new(drop))
+            .plus(Box::new(plus))
             .build()
             .into_diagnostic()?;
         // Add an element to the vector
@@ -1541,7 +2018,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 18:
+    /// Semantic action for production 23:
     ///
     /// DropsList0 /* Vec<T>::New */: ;
     ///
@@ -1554,7 +2031,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 19:
+    /// Semantic action for production 24:
     ///
     /// ManyDrop: Camma Drop;
     ///
@@ -1581,7 +2058,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 20:
+    /// Semantic action for production 25:
     ///
     /// ManyDrop: Plus Drop;
     ///
@@ -1608,7 +2085,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 21:
+    /// Semantic action for production 26:
     ///
     /// AllDrops: WordAll WordDrop;
     ///
@@ -1634,7 +2111,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 22:
+    /// Semantic action for production 27:
     ///
     /// FiveAttribute: WordFiveAttribute FiveAttributeOpt /* Option */;
     ///
@@ -1660,7 +2137,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 23:
+    /// Semantic action for production 28:
     ///
     /// FiveAttributeOpt /* Option<T>::Some */: WordDrop;
     ///
@@ -1684,7 +2161,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 24:
+    /// Semantic action for production 29:
     ///
     /// FiveAttributeOpt /* Option<T>::None */: ;
     ///
@@ -1696,7 +2173,72 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 25:
+    /// Semantic action for production 30:
+    ///
+    /// Quantity: PosInt WordCount QuantityOpt /* Option */;
+    ///
+    #[parol_runtime::function_name::named]
+    fn quantity(
+        &mut self,
+        _pos_int: &ParseTreeStackEntry<'t>,
+        _word_count: &ParseTreeStackEntry<'t>,
+        _quantity_opt: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let quantity_opt = pop_item!(self, quantity_opt, QuantityOpt, context);
+        let word_count = pop_item!(self, word_count, WordCount, context);
+        let pos_int = pop_item!(self, pos_int, PosInt, context);
+        let quantity_built = QuantityBuilder::default()
+            .pos_int(Box::new(pos_int))
+            .word_count(Box::new(word_count))
+            .quantity_opt(quantity_opt)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.quantity(&quantity_built)?;
+        self.push(ASTType::Quantity(quantity_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 31:
+    ///
+    /// QuantityOpt /* Option<T>::Some */: Each;
+    ///
+    #[parol_runtime::function_name::named]
+    fn quantity_opt_0(
+        &mut self,
+        _each: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let each = pop_item!(self, each, Each, context);
+        let quantity_opt_0_built = QuantityOptBuilder::default()
+            .each(Box::new(each))
+            .build()
+            .into_diagnostic()?;
+        self.push(
+            ASTType::QuantityOpt(Some(Box::new(quantity_opt_0_built))),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 32:
+    ///
+    /// QuantityOpt /* Option<T>::None */: ;
+    ///
+    #[parol_runtime::function_name::named]
+    fn quantity_opt_1(&mut self, _parse_tree: &Tree<ParseTreeType<'t>>) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        self.push(ASTType::QuantityOpt(None), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 33:
     ///
     /// Drop: Color DropOpt /* Option */;
     ///
@@ -1723,7 +2265,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 26:
+    /// Semantic action for production 34:
     ///
     /// Drop: NonColoredDrop DropOpt0 /* Option */;
     ///
@@ -1750,7 +2292,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 27:
+    /// Semantic action for production 35:
     ///
     /// DropOpt0 /* Option<T>::Some */: WordDrop;
     ///
@@ -1774,7 +2316,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 28:
+    /// Semantic action for production 36:
     ///
     /// DropOpt0 /* Option<T>::None */: ;
     ///
@@ -1786,7 +2328,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 29:
+    /// Semantic action for production 37:
     ///
     /// DropOpt /* Option<T>::Some */: WordDrop;
     ///
@@ -1807,7 +2349,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 30:
+    /// Semantic action for production 38:
     ///
     /// DropOpt /* Option<T>::None */: ;
     ///
@@ -1819,7 +2361,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 31:
+    /// Semantic action for production 39:
     ///
     /// NonColoredDrop: Recovery;
     ///
@@ -1844,7 +2386,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 32:
+    /// Semantic action for production 40:
     ///
     /// NonColoredDrop: Disturb;
     ///
@@ -1869,7 +2411,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 33:
+    /// Semantic action for production 41:
     ///
     /// NonColoredDrop: Bomb;
     ///
@@ -1894,7 +2436,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 34:
+    /// Semantic action for production 42:
     ///
     /// NonColoredDrop: Poison;
     ///
@@ -1919,7 +2461,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 35:
+    /// Semantic action for production 43:
     ///
     /// NonColoredDrop: DeadlyPoison;
     ///
@@ -1944,7 +2486,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 36:
+    /// Semantic action for production 44:
     ///
     /// Color: Fire;
     ///
@@ -1968,7 +2510,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 37:
+    /// Semantic action for production 45:
     ///
     /// Color: Water;
     ///
@@ -1992,7 +2534,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 38:
+    /// Semantic action for production 46:
     ///
     /// Color: Wood;
     ///
@@ -2016,7 +2558,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 39:
+    /// Semantic action for production 47:
     ///
     /// Color: Lightning;
     ///
@@ -2040,7 +2582,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 40:
+    /// Semantic action for production 48:
     ///
     /// Color: Dark;
     ///
@@ -2064,9 +2606,35 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 41:
+    /// Semantic action for production 49:
     ///
-    /// Fire: "火";
+    /// RandomSuffix: WordRandom So;
+    ///
+    #[parol_runtime::function_name::named]
+    fn random_suffix(
+        &mut self,
+        _word_random: &ParseTreeStackEntry<'t>,
+        _so: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let so = pop_item!(self, so, So, context);
+        let word_random = pop_item!(self, word_random, WordRandom, context);
+        let random_suffix_built = RandomSuffixBuilder::default()
+            .word_random(Box::new(word_random))
+            .so(Box::new(so))
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.random_suffix(&random_suffix_built)?;
+        self.push(ASTType::RandomSuffix(random_suffix_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 50:
+    ///
+    /// Fire: '火';
     ///
     #[parol_runtime::function_name::named]
     fn fire(
@@ -2087,9 +2655,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 42:
+    /// Semantic action for production 51:
     ///
-    /// Water: "水";
+    /// Water: '水';
     ///
     #[parol_runtime::function_name::named]
     fn water(
@@ -2110,9 +2678,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 43:
+    /// Semantic action for production 52:
     ///
-    /// Wood: "木";
+    /// Wood: '木';
     ///
     #[parol_runtime::function_name::named]
     fn wood(
@@ -2133,9 +2701,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 44:
+    /// Semantic action for production 53:
     ///
-    /// Lightning: "光";
+    /// Lightning: '光';
     ///
     #[parol_runtime::function_name::named]
     fn lightning(
@@ -2156,9 +2724,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 45:
+    /// Semantic action for production 54:
     ///
-    /// Dark: "闇";
+    /// Dark: '闇';
     ///
     #[parol_runtime::function_name::named]
     fn dark(
@@ -2179,9 +2747,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 46:
+    /// Semantic action for production 55:
     ///
-    /// Recovery: "回復";
+    /// Recovery: '回復';
     ///
     #[parol_runtime::function_name::named]
     fn recovery(
@@ -2202,9 +2770,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 47:
+    /// Semantic action for production 56:
     ///
-    /// Disturb: "お邪魔";
+    /// Disturb: 'お邪魔';
     ///
     #[parol_runtime::function_name::named]
     fn disturb(
@@ -2225,9 +2793,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 48:
+    /// Semantic action for production 57:
     ///
-    /// Bomb: "爆弾";
+    /// Bomb: '爆弾';
     ///
     #[parol_runtime::function_name::named]
     fn bomb(
@@ -2248,32 +2816,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 49:
+    /// Semantic action for production 58:
     ///
-    /// Poison: "毒";
-    ///
-    #[parol_runtime::function_name::named]
-    fn poison(
-        &mut self,
-        poison: &ParseTreeStackEntry<'t>,
-        parse_tree: &Tree<ParseTreeType<'t>>,
-    ) -> Result<()> {
-        let context = function_name!();
-        trace!("{}", self.trace_item_stack(context));
-        let poison = poison.token(parse_tree)?.clone();
-        let poison_built = PoisonBuilder::default()
-            .poison(poison)
-            .build()
-            .into_diagnostic()?;
-        // Calling user action here
-        self.user_grammar.poison(&poison_built)?;
-        self.push(ASTType::Poison(poison_built), context);
-        Ok(())
-    }
-
-    /// Semantic action for production 50:
-    ///
-    /// DeadlyPoison: "猛毒";
+    /// DeadlyPoison: '猛毒';
     ///
     #[parol_runtime::function_name::named]
     fn deadly_poison(
@@ -2294,9 +2839,32 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 51:
+    /// Semantic action for production 59:
     ///
-    /// WordChange: "変化";
+    /// Poison: '毒';
+    ///
+    #[parol_runtime::function_name::named]
+    fn poison(
+        &mut self,
+        poison: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let poison = poison.token(parse_tree)?.clone();
+        let poison_built = PoisonBuilder::default()
+            .poison(poison)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.poison(&poison_built)?;
+        self.push(ASTType::Poison(poison_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 60:
+    ///
+    /// WordChange: '変化';
     ///
     #[parol_runtime::function_name::named]
     fn word_change(
@@ -2317,9 +2885,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 52:
+    /// Semantic action for production 61:
     ///
-    /// WordDrop: "ドロップ";
+    /// WordDrop: 'ドロップ';
     ///
     #[parol_runtime::function_name::named]
     fn word_drop(
@@ -2340,9 +2908,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 53:
+    /// Semantic action for production 62:
     ///
-    /// WordAll: "全";
+    /// WordAll: '全';
     ///
     #[parol_runtime::function_name::named]
     fn word_all(
@@ -2363,9 +2931,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 54:
+    /// Semantic action for production 63:
     ///
-    /// WordFiveAttribute: "5属性";
+    /// WordFiveAttribute: '5属性';
     ///
     #[parol_runtime::function_name::named]
     fn word_five_attribute(
@@ -2390,9 +2958,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 55:
+    /// Semantic action for production 64:
     ///
-    /// WordRandom: "ランダム";
+    /// WordRandom: 'ランダム';
     ///
     #[parol_runtime::function_name::named]
     fn word_random(
@@ -2413,9 +2981,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 56:
+    /// Semantic action for production 65:
     ///
-    /// WordReplace: "入れ替える";
+    /// WordReplace: '入れ替える';
     ///
     #[parol_runtime::function_name::named]
     fn word_replace(
@@ -2436,9 +3004,78 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 57:
+    /// Semantic action for production 66:
     ///
-    /// Wo: "を";
+    /// WordCount: '個';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_count(
+        &mut self,
+        word_count: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_count = word_count.token(parse_tree)?.clone();
+        let word_count_built = WordCountBuilder::default()
+            .word_count(word_count)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.word_count(&word_count_built)?;
+        self.push(ASTType::WordCount(word_count_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 67:
+    ///
+    /// WordGen: '生成';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_gen(
+        &mut self,
+        word_gen: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_gen = word_gen.token(parse_tree)?.clone();
+        let word_gen_built = WordGenBuilder::default()
+            .word_gen(word_gen)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.word_gen(&word_gen_built)?;
+        self.push(ASTType::WordGen(word_gen_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 68:
+    ///
+    /// WordOther: '以外';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_other(
+        &mut self,
+        word_other: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_other = word_other.token(parse_tree)?.clone();
+        let word_other_built = WordOtherBuilder::default()
+            .word_other(word_other)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.word_other(&word_other_built)?;
+        self.push(ASTType::WordOther(word_other_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 69:
+    ///
+    /// Wo: 'を';
     ///
     #[parol_runtime::function_name::named]
     fn wo(
@@ -2456,9 +3093,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 58:
+    /// Semantic action for production 70:
     ///
-    /// Ni: "に";
+    /// Ni: 'に';
     ///
     #[parol_runtime::function_name::named]
     fn ni(
@@ -2476,9 +3113,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 59:
+    /// Semantic action for production 71:
     ///
-    /// So: "で";
+    /// So: 'で';
     ///
     #[parol_runtime::function_name::named]
     fn so(
@@ -2496,9 +3133,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 60:
+    /// Semantic action for production 72:
     ///
-    /// And: "と";
+    /// And: 'と';
     ///
     #[parol_runtime::function_name::named]
     fn and(
@@ -2516,9 +3153,55 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 61:
+    /// Semantic action for production 73:
     ///
-    /// Plus: "\+";
+    /// Each: 'ずつ';
+    ///
+    #[parol_runtime::function_name::named]
+    fn each(
+        &mut self,
+        each: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let each = each.token(parse_tree)?.clone();
+        let each_built = EachBuilder::default()
+            .each(each)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.each(&each_built)?;
+        self.push(ASTType::Each(each_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 74:
+    ///
+    /// From: 'から';
+    ///
+    #[parol_runtime::function_name::named]
+    fn from(
+        &mut self,
+        from: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let from = from.token(parse_tree)?.clone();
+        let from_built = FromBuilder::default()
+            .from(from)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.from(&from_built)?;
+        self.push(ASTType::From(from_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 75:
+    ///
+    /// Plus: '+';
     ///
     #[parol_runtime::function_name::named]
     fn plus(
@@ -2539,9 +3222,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 62:
+    /// Semantic action for production 76:
     ///
-    /// Camma: "、";
+    /// Camma: '、';
     ///
     #[parol_runtime::function_name::named]
     fn camma(
@@ -2562,9 +3245,9 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 63:
+    /// Semantic action for production 77:
     ///
-    /// Period: "。";
+    /// Period: '。';
     ///
     #[parol_runtime::function_name::named]
     fn period(
@@ -2584,6 +3267,29 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         self.push(ASTType::Period(period_built), context);
         Ok(())
     }
+
+    /// Semantic action for production 78:
+    ///
+    /// PosInt: "[1-9]([0-9])*";
+    ///
+    #[parol_runtime::function_name::named]
+    fn pos_int(
+        &mut self,
+        pos_int: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let pos_int = pos_int.token(parse_tree)?.clone();
+        let pos_int_built = PosIntBuilder::default()
+            .pos_int(pos_int)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.pos_int(&pos_int_built)?;
+        self.push(ASTType::PosInt(pos_int_built), context);
+        Ok(())
+    }
 }
 
 impl<'t> UserActionsTrait<'t> for SkillGrammarAuto<'t, '_> {
@@ -2601,10 +3307,42 @@ impl<'t> UserActionsTrait<'t> for SkillGrammarAuto<'t, '_> {
             1 => self.line_0(&children[0], parse_tree),
             2 => self.line_1(&children[0], parse_tree),
             3 => self.line_2(&children[0], parse_tree),
-            4 => self.change_drop_stmt(&children[0], &children[1], &children[2], parse_tree),
-            5 => self.change_drop_stmt_list_0(&children[0], &children[1], &children[2], parse_tree),
-            6 => self.change_drop_stmt_list_1(parse_tree),
-            7 => self.change_all_of_borad_stmt(
+            4 => self.line_3(&children[0], parse_tree),
+            5 => self.change_drop_stmt_inc_gen_random_drop(&children[0], &children[1], parse_tree),
+            6 => self.change_drop_stmt_inc_gen_random_drop_suffix0_0(
+                &children[0],
+                &children[1],
+                parse_tree,
+            ),
+            7 => self.change_drop_stmt_inc_gen_random_drop_suffix0_1(
+                &children[0],
+                &children[1],
+                &children[2],
+                &children[3],
+                &children[4],
+                &children[5],
+                parse_tree,
+            ),
+            8 => self.change_drop_stmt_inc_gen_random_drop_suffix_0(
+                &children[0],
+                &children[1],
+                &children[2],
+                &children[3],
+                parse_tree,
+            ),
+            9 => self.change_drop_stmt_inc_gen_random_drop_suffix_1(
+                &children[0],
+                &children[1],
+                parse_tree,
+            ),
+            10 => self.change_drop_stmt_inc_gen_random_drop_list_0(
+                &children[0],
+                &children[1],
+                &children[2],
+                parse_tree,
+            ),
+            11 => self.change_drop_stmt_inc_gen_random_drop_list_1(parse_tree),
+            12 => self.change_all_of_borad_stmt(
                 &children[0],
                 &children[1],
                 &children[2],
@@ -2612,7 +3350,21 @@ impl<'t> UserActionsTrait<'t> for SkillGrammarAuto<'t, '_> {
                 &children[4],
                 parse_tree,
             ),
-            8 => self.drop_refresh_stmt(
+            13 => self.drop_refresh_stmt(
+                &children[0],
+                &children[1],
+                &children[2],
+                &children[3],
+                parse_tree,
+            ),
+            14 => self.change_drop_block_other_first(
+                &children[0],
+                &children[1],
+                &children[2],
+                &children[3],
+                parse_tree,
+            ),
+            15 => self.gen_random_drop_stmt1(
                 &children[0],
                 &children[1],
                 &children[2],
@@ -2620,67 +3372,69 @@ impl<'t> UserActionsTrait<'t> for SkillGrammarAuto<'t, '_> {
                 &children[4],
                 parse_tree,
             ),
-            9 => self.change_drop_block(
-                &children[0],
-                &children[1],
-                &children[2],
-                &children[3],
-                parse_tree,
-            ),
-            10 => self.change_all_of_borad_block(&children[0], parse_tree),
-            11 => self.drops_0(&children[0], &children[1], parse_tree),
-            12 => self.drops_suffix_0(&children[0], parse_tree),
-            13 => self.drops_1(&children[0], &children[1], parse_tree),
-            14 => self.drops_suffix_1(&children[0], &children[1], parse_tree),
-            15 => self.drops_list_0(&children[0], &children[1], parse_tree),
-            16 => self.drops_list_1(parse_tree),
-            17 => self.drops_list0_0(&children[0], &children[1], parse_tree),
-            18 => self.drops_list0_1(parse_tree),
-            19 => self.many_drop_0(&children[0], &children[1], parse_tree),
-            20 => self.many_drop_1(&children[0], &children[1], parse_tree),
-            21 => self.all_drops(&children[0], &children[1], parse_tree),
-            22 => self.five_attribute(&children[0], &children[1], parse_tree),
-            23 => self.five_attribute_opt_0(&children[0], parse_tree),
-            24 => self.five_attribute_opt_1(parse_tree),
-            25 => self.drop_0(&children[0], &children[1], parse_tree),
-            26 => self.drop_1(&children[0], &children[1], parse_tree),
-            27 => self.drop_opt0_0(&children[0], parse_tree),
-            28 => self.drop_opt0_1(parse_tree),
-            29 => self.drop_opt_0(&children[0], parse_tree),
-            30 => self.drop_opt_1(parse_tree),
-            31 => self.non_colored_drop_0(&children[0], parse_tree),
-            32 => self.non_colored_drop_1(&children[0], parse_tree),
-            33 => self.non_colored_drop_2(&children[0], parse_tree),
-            34 => self.non_colored_drop_3(&children[0], parse_tree),
-            35 => self.non_colored_drop_4(&children[0], parse_tree),
-            36 => self.color_0(&children[0], parse_tree),
-            37 => self.color_1(&children[0], parse_tree),
-            38 => self.color_2(&children[0], parse_tree),
-            39 => self.color_3(&children[0], parse_tree),
-            40 => self.color_4(&children[0], parse_tree),
-            41 => self.fire(&children[0], parse_tree),
-            42 => self.water(&children[0], parse_tree),
-            43 => self.wood(&children[0], parse_tree),
-            44 => self.lightning(&children[0], parse_tree),
-            45 => self.dark(&children[0], parse_tree),
-            46 => self.recovery(&children[0], parse_tree),
-            47 => self.disturb(&children[0], parse_tree),
-            48 => self.bomb(&children[0], parse_tree),
-            49 => self.poison(&children[0], parse_tree),
-            50 => self.deadly_poison(&children[0], parse_tree),
-            51 => self.word_change(&children[0], parse_tree),
-            52 => self.word_drop(&children[0], parse_tree),
-            53 => self.word_all(&children[0], parse_tree),
-            54 => self.word_five_attribute(&children[0], parse_tree),
-            55 => self.word_random(&children[0], parse_tree),
-            56 => self.word_replace(&children[0], parse_tree),
-            57 => self.wo(&children[0], parse_tree),
-            58 => self.ni(&children[0], parse_tree),
-            59 => self.so(&children[0], parse_tree),
-            60 => self.and(&children[0], parse_tree),
-            61 => self.plus(&children[0], parse_tree),
-            62 => self.camma(&children[0], parse_tree),
-            63 => self.period(&children[0], parse_tree),
+            16 => self.drops_0(&children[0], &children[1], parse_tree),
+            17 => self.drops_suffix_0(&children[0], parse_tree),
+            18 => self.drops_1(&children[0], &children[1], parse_tree),
+            19 => self.drops_suffix_1(&children[0], &children[1], parse_tree),
+            20 => self.drops_list_0(&children[0], &children[1], parse_tree),
+            21 => self.drops_list_1(parse_tree),
+            22 => self.drops_list0_0(&children[0], &children[1], &children[2], parse_tree),
+            23 => self.drops_list0_1(parse_tree),
+            24 => self.many_drop_0(&children[0], &children[1], parse_tree),
+            25 => self.many_drop_1(&children[0], &children[1], parse_tree),
+            26 => self.all_drops(&children[0], &children[1], parse_tree),
+            27 => self.five_attribute(&children[0], &children[1], parse_tree),
+            28 => self.five_attribute_opt_0(&children[0], parse_tree),
+            29 => self.five_attribute_opt_1(parse_tree),
+            30 => self.quantity(&children[0], &children[1], &children[2], parse_tree),
+            31 => self.quantity_opt_0(&children[0], parse_tree),
+            32 => self.quantity_opt_1(parse_tree),
+            33 => self.drop_0(&children[0], &children[1], parse_tree),
+            34 => self.drop_1(&children[0], &children[1], parse_tree),
+            35 => self.drop_opt0_0(&children[0], parse_tree),
+            36 => self.drop_opt0_1(parse_tree),
+            37 => self.drop_opt_0(&children[0], parse_tree),
+            38 => self.drop_opt_1(parse_tree),
+            39 => self.non_colored_drop_0(&children[0], parse_tree),
+            40 => self.non_colored_drop_1(&children[0], parse_tree),
+            41 => self.non_colored_drop_2(&children[0], parse_tree),
+            42 => self.non_colored_drop_3(&children[0], parse_tree),
+            43 => self.non_colored_drop_4(&children[0], parse_tree),
+            44 => self.color_0(&children[0], parse_tree),
+            45 => self.color_1(&children[0], parse_tree),
+            46 => self.color_2(&children[0], parse_tree),
+            47 => self.color_3(&children[0], parse_tree),
+            48 => self.color_4(&children[0], parse_tree),
+            49 => self.random_suffix(&children[0], &children[1], parse_tree),
+            50 => self.fire(&children[0], parse_tree),
+            51 => self.water(&children[0], parse_tree),
+            52 => self.wood(&children[0], parse_tree),
+            53 => self.lightning(&children[0], parse_tree),
+            54 => self.dark(&children[0], parse_tree),
+            55 => self.recovery(&children[0], parse_tree),
+            56 => self.disturb(&children[0], parse_tree),
+            57 => self.bomb(&children[0], parse_tree),
+            58 => self.deadly_poison(&children[0], parse_tree),
+            59 => self.poison(&children[0], parse_tree),
+            60 => self.word_change(&children[0], parse_tree),
+            61 => self.word_drop(&children[0], parse_tree),
+            62 => self.word_all(&children[0], parse_tree),
+            63 => self.word_five_attribute(&children[0], parse_tree),
+            64 => self.word_random(&children[0], parse_tree),
+            65 => self.word_replace(&children[0], parse_tree),
+            66 => self.word_count(&children[0], parse_tree),
+            67 => self.word_gen(&children[0], parse_tree),
+            68 => self.word_other(&children[0], parse_tree),
+            69 => self.wo(&children[0], parse_tree),
+            70 => self.ni(&children[0], parse_tree),
+            71 => self.so(&children[0], parse_tree),
+            72 => self.and(&children[0], parse_tree),
+            73 => self.each(&children[0], parse_tree),
+            74 => self.from(&children[0], parse_tree),
+            75 => self.plus(&children[0], parse_tree),
+            76 => self.camma(&children[0], parse_tree),
+            77 => self.period(&children[0], parse_tree),
+            78 => self.pos_int(&children[0], parse_tree),
             _ => Err(miette!("Unhandled production number: {}", prod_num)),
         }
     }
