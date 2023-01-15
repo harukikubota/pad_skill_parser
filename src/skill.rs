@@ -24,14 +24,15 @@ pub enum SkillEffect {
     /// * 0: FromOtherDrops これに指定されているドロップ以外から生成する
     /// * 1: To 生成するドロップの種類と個数
     GenRandomDrop(Drops, GenDropsWithQty),
+    DropShapeGen(Vec<ShapeType>),
     /// ドロップリフレッシュ
     DropRefresh,
 }
 
 impl Default for SkillEffect {
-  fn default() -> Self {
-      Self::Other
-  }
+    fn default() -> Self {
+        Self::Other
+    }
 }
 
 /// スキルの副次効果
@@ -59,4 +60,18 @@ pub enum SubEffectAttribute {
     Available,
     /// 条件を満たしている場合に適用される
     IfApply,
+}
+
+/// 指定型生成の生成位置を表す。
+/// * col.pos: 左からN番目
+/// * col.neg: 右からN番目
+/// * row.pos: 上からN番目
+/// * row.neg: 下からN番目
+pub type ShapeGenIdx = isize;
+
+/// 形状生成の種類
+#[derive(Clone, Debug, PartialEq)]
+pub enum ShapeType {
+    /// 縦に生成
+    Col(ShapeGenIdx, Drop),
 }

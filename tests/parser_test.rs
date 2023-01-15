@@ -310,6 +310,167 @@ mod parser_test {
     }
 
     #[test]
+    fn gen_shape_col_leftside_1() {
+        let input = "左端1列を光ドロップに変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(
+                vec![
+                    ShapeType::Col(1, Drop::Colored(Color::Lightning))
+                ]
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_col_rightside_1() {
+        let input = "右端1列を回復に変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(
+                vec![
+                    ShapeType::Col(-1, Drop::NonColored(NonColoredDrop::Recovery))
+                ]
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_col_left_and_rightside_1() {
+        let input = "両端1列を闇ドロップに変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(
+                vec![
+                    ShapeType::Col(1, Drop::Colored(Color::Dark)),
+                    ShapeType::Col(-1, Drop::Colored(Color::Dark)),
+                ]
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_col_left_1_right_1() {
+        let input = "左端1列を闇ドロップに、右端1列を光ドロップに変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(
+                vec![
+                    ShapeType::Col(1, Drop::Colored(Color::Dark)),
+                    ShapeType::Col(-1, Drop::Colored(Color::Lightning)),
+                ]
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_col_leftside_2() {
+        let input = "左端縦2列を木ドロップに変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(
+                vec![
+                    ShapeType::Col(1, Drop::Colored(Color::Wood)),
+                    ShapeType::Col(2, Drop::Colored(Color::Wood)),
+                ]
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_col_rightside_2() {
+        let input = "右端縦2列をお邪魔に変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(
+                vec![
+                    ShapeType::Col(-1, Drop::NonColored(NonColoredDrop::Disturb)),
+                    ShapeType::Col(-2, Drop::NonColored(NonColoredDrop::Disturb)),
+                ]
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_col_left_and_rightside_2() {
+        let input = "両端縦2列を火ドロップに変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(
+                vec![
+                    ShapeType::Col(1, Drop::Colored(Color::Fire)),
+                    ShapeType::Col(-1, Drop::Colored(Color::Fire)),
+                    ShapeType::Col(2, Drop::Colored(Color::Fire)),
+                    ShapeType::Col(-2, Drop::Colored(Color::Fire)),
+                ]
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_col_leftside_3() {
+        let input = "左縦3列を火ドロップに変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(
+                vec![
+                    ShapeType::Col(1, Drop::Colored(Color::Fire)),
+                    ShapeType::Col(2, Drop::Colored(Color::Fire)),
+                    ShapeType::Col(3, Drop::Colored(Color::Fire)),
+                ]
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
     fn drop_refresh() {
         let input = "ランダムでドロップを入れ替える。";
         let grammar = &mut SkillGrammar::new();

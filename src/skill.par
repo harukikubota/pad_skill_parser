@@ -12,6 +12,7 @@ Line
     : ChangeDropStmtIncGenRandomDrop
     | ChangeAllOfBoradStmt
     | GenRandomDropStmt1
+    | GenShapeStmt
     | DropRefreshStmt
     ;
 
@@ -38,6 +39,52 @@ ChangeDropBlockOtherFirst
 
 GenRandomDropStmt1
     : RandomSuffix Drops Wo Quantity WordGen;
+
+//! 指定型 START
+GenShapeStmt
+    : GenShapeBlock { Camma GenShapeBlock } WordChange;
+
+GenShapeBlock
+    : GSStartPosition Wo Drop Ni;
+
+GSStartPosition
+    : GSSPSide
+    ;
+
+GSSPSide
+    // ○端N列
+    : PositionLR GSSPSideWriteWidth PosInt WordCol
+    ;
+
+GSSPSideWriteWidth
+    : WordSide [ WordVertical ]
+    | WordVertical
+    ;
+
+PositionLR
+    : WordLeft
+    | WordRight
+    | WordLeftAndRight
+    ;
+
+//PositionTB
+//    : WordTop
+//    | WordBottom
+//    ;
+
+WordVertical      : '縦';
+//WordHorizon       : '横';
+//WordRow           : '段';
+WordCol           : '列';
+WordSide          : '端';
+WordLeftAndRight  : '両';
+WordLeft          : '左';
+WordRight         : '右';
+//WordTop           : '上';
+//WordBottom        : '下';
+//WordMost          : '最';
+
+//! 指定型 END
 
 Drops
     : Drop { ManyDrop }

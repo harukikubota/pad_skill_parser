@@ -1,4 +1,5 @@
 use std::marker::PhantomData;
+use std::ops::Neg;
 
 use super::schema::*;
 use super::skill::*;
@@ -332,6 +333,63 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
+    fn gen_shape_stmt(&mut self, _arg: &crate::skill_grammar_trait::GenShapeStmt<'t>) -> miette::Result<()> {
+        let shape_type_list = self.steal();
+
+        let drop_shape_gen_list: Vec<ShapeType> =
+            shape_type_list.into_iter().map(|se| se.shape_type()).collect();
+
+        let se = SkillEffect::DropShapeGen(drop_shape_gen_list);
+
+        let skill = Skill {
+            effect: se,
+            ..Default::default()
+        };
+        self.skill_list.push(skill);
+        Ok(())
+    }
+
+    fn gen_shape_block(&mut self, _arg: &crate::skill_grammar_trait::GenShapeBlock<'t>) -> miette::Result<()> {
+        let drop = self.pop().drop();
+        let positions = self.pop().gen_positions();
+
+        positions.into_iter().for_each(|p| {
+            let shape_type = match p {
+                GenShapeRowCol::Row(_) => panic!("todo!"),
+                GenShapeRowCol::Col(idx) => {
+                    ShapeType::Col(idx, drop.clone())
+                }
+            };
+
+            self.push(StackItem::DropShapeGenShapeType(shape_type));
+        });
+        Ok(())
+    }
+
+    /// 端N列の生成
+    fn g_s_s_p_side(&mut self, _arg: &crate::skill_grammar_trait::GSSPSide<'t>) -> miette::Result<()> {
+        let gen_count = self.pop().pos_int();
+        let position = self.pop().position();
+        let mut gen_positions: GenPositions = Vec::new();
+
+        // N列分繰り返す
+        for idx in 1..=gen_count {
+            let p = position.clone();
+            match p {
+                Position::Left => gen_positions.push(GenShapeRowCol::Col(idx as isize)),
+                Position::Right => gen_positions.push(GenShapeRowCol::Col((idx as isize).neg())),
+                Position::LeftAndRight => {
+                    gen_positions.push(GenShapeRowCol::Col(idx as isize));
+                    gen_positions.push(GenShapeRowCol::Col((idx as isize).neg()))
+                },
+                _ => ()
+            }
+        };
+
+        self.push(StackItem::GenPositions(gen_positions));
+        Ok(())
+    }
+
     /// N色陣、ランダム生成でのみ使用する文言なのでドロップまで生成する
     fn five_attribute(
         &mut self,
@@ -468,6 +526,27 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
     ) -> parol_runtime::miette::Result<()> {
         let drop = Color::from(arg.dark.text());
         self.stack.push(StackItem::Color(drop));
+        Ok(())
+    }
+
+    fn word_left(&mut self, arg: &crate::skill_grammar_trait::WordLeft<'t>) -> miette::Result<()> {
+        let position = Position::from(arg.word_left.text());
+
+        self.stack.push(StackItem::Position(position));
+        Ok(())
+    }
+
+    fn word_right(&mut self, arg: &crate::skill_grammar_trait::WordRight<'t>) -> miette::Result<()> {
+        let position = Position::from(arg.word_right.text());
+
+        self.stack.push(StackItem::Position(position));
+        Ok(())
+    }
+
+    fn word_left_and_right(&mut self, arg: &crate::skill_grammar_trait::WordLeftAndRight<'t>) -> miette::Result<()> {
+        let position = Position::from(arg.word_left_and_right.text());
+
+        self.stack.push(StackItem::Position(position));
         Ok(())
     }
 

@@ -67,3 +67,39 @@ impl From<&str> for NonColoredDrop {
         }
     }
 }
+
+/// 位置を表す
+#[derive(Clone, Debug, PartialEq)]
+pub enum Position {
+    Left,
+    Right,
+    LeftAndRight,
+    Top,
+    Bottom,
+}
+
+impl From<&str> for Position {
+    fn from(item: &str) -> Self {
+        if item == "左" {
+            Position::Left
+        } else if item == "右" {
+            Position::Right
+        } else if item == "両" {
+            Position::LeftAndRight
+        } else if item == "上" {
+            Position::Top
+        } else if item == "下" {
+            Position::Bottom
+        } else {
+            panic!("from Position::from(&str). Expected Position {item}");
+        }
+    }
+}
+
+#[derive(Clone, Debug, PartialEq)]
+pub enum GenShapeRowCol {
+    Row(isize),
+    Col(isize),
+}
+
+pub type GenPositions = Vec<GenShapeRowCol>;
