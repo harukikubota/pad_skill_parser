@@ -3,4 +3,5 @@ mod skill_grammar_trait;
 pub mod skill_parser;
 
 pub mod schema;
+pub mod skill;
 pub mod stack_item;

@@ -1,6 +1,7 @@
 use std::marker::PhantomData;
 
 use super::schema::*;
+use super::skill::*;
 use super::skill_grammar_trait::SkillGrammarTrait;
 use super::stack_item::*;
 
@@ -98,67 +99,6 @@ impl<'t> SkillGrammar<'_> {
     pub(super) fn set_tmp(self: &mut Self, tmp: TmpItem) {
         self.tmp = tmp;
     }
-}
-
-#[derive(Clone, Debug, Default, PartialEq)]
-pub struct Skill {
-    /// スキル発動前後の制約
-    pub sub_effects: Option<SubEffect>,
-    /// Nターンの間、XXする。ターン数を設定する。
-    pub turns_of_apply: Option<usize>,
-    /// スキルの効果
-    pub effect: SkillEffect,
-}
-
-impl Default for SkillEffect {
-    fn default() -> Self {
-        Self::Other
-    }
-}
-
-#[derive(Clone, Debug, PartialEq)]
-/// スキルの副次効果
-/// 制約、条件による効果追加、スキル進化など
-pub enum SubEffect {
-    /// バトル(以後|以前)の場合
-    /// * pos_int 6  バトル6以降
-    /// * neg_int -5 バトル5以前
-    Floor(isize, SubEffectAttribute),
-
-    /// HPがN%(以上|以下)
-    /// * pos_int 80  80％以上
-    /// * neg_int -50 50%以下
-    HitPoint(isize, SubEffectAttribute),
-
-    /// Nターン後に発動
-    Reserve(usize),
-}
-
-/// 副次効果に付加される属性
-#[derive(Clone, Debug, PartialEq)]
-pub enum SubEffectAttribute {
-    /// 条件を満たしている場合にのみ使用可能
-    Available,
-    /// 条件を満たしている場合に適用される
-    IfApply,
-}
-
-#[derive(Clone, Debug, PartialEq)]
-/// スキル効果
-pub enum SkillEffect {
-    Other,
-    /// N色のドロップを(単色|ランダムでN色)に変換する。
-    /// 0: from
-    /// 1: to
-    ChangeDropAToB(Drops, Drops),
-    /// 全ドロップを変化
-    ChangeAllOfBoard(Drops),
-    /// ランダム生成
-    /// * 0: FromOtherDrops これに指定されているドロップ以外から生成する
-    /// * 1: To 生成するドロップの種類と個数
-    GenRandomDrop(Drops, GenDropsWithQty),
-    /// ドロップリフレッシュ
-    DropRefresh,
 }
 
 impl SkillGrammar<'_> {

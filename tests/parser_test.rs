@@ -1,6 +1,7 @@
 #[cfg(test)]
 mod parser_test {
     use pad_skill_parser::schema::*;
+    use pad_skill_parser::skill::*;
     use pad_skill_parser::skill_grammar::*;
     use pad_skill_parser::skill_parser::parse;
 
