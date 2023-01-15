@@ -102,4 +102,20 @@ pub enum GenShapeRowCol {
     Col(isize),
 }
 
+impl GenShapeRowCol {
+    pub(super) fn idx(self: &Self) -> isize {
+        match self {
+            Self::Col(i) => i,
+            Self::Row(i) => i,
+        }.to_owned()
+    }
+
+    pub(super) fn update(self: &Self, new_idx: isize) -> Self {
+        match self {
+            Self::Col(_) => Self::Col(new_idx),
+            Self::Row(_) => Self::Row(new_idx),
+        }
+    }
+}
+
 pub type GenPositions = Vec<GenShapeRowCol>;

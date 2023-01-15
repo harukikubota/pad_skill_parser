@@ -390,6 +390,57 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
+    fn g_s_s_p_center(&mut self, _arg: &crate::skill_grammar_trait::GSSPCenter<'t>) -> miette::Result<()> {
+        let gen_count = self.pop().pos_int();
+        let gen_positions = self.pop().gen_positions();
+
+        let mut new_gen_positions: GenPositions = Vec::new();
+
+        gen_positions.into_iter().for_each(|gp| {
+            // 生成する列数だけ繰り返す
+            for idx in 0..gen_count {
+                let base_idx = gp.idx();
+
+                let new_idx = if base_idx.is_positive() {
+                    base_idx + (idx as isize)
+                } else {
+                    base_idx - (idx as isize)
+                };
+
+                new_gen_positions.push(gp.update(new_idx));
+            }
+        });
+
+        self.push(StackItem::GenPositions(new_gen_positions));
+        Ok(())
+    }
+
+    fn g_s_s_p_center_blocks(&mut self, _arg: &crate::skill_grammar_trait::GSSPCenterBlocks<'t>) -> miette::Result<()> {
+        if self.stack.len() > 1 {
+            // 2要素以上の場合、1つのリストにまとめる
+            let list: GenPositions = self.steal().into_iter().map(|item| {
+                item.gen_positions().pop().unwrap()
+            }).collect();
+
+            self.push(StackItem::GenPositions(list));
+        }
+        Ok(())
+    }
+
+    fn g_s_s_p_center_block(&mut self, _arg: &crate::skill_grammar_trait::GSSPCenterBlock<'t>) -> miette::Result<()> {
+        let gen_idx = self.pop().pos_int();
+        let position = self.pop().position();
+
+        let item = match position {
+            Position::Left => GenShapeRowCol::Col(gen_idx as isize),
+            Position::Right => GenShapeRowCol::Col((gen_idx as isize).neg()),
+            _ => todo!()
+        };
+
+        self.push(StackItem::GenPositions(vec![item]));
+        Ok(())
+    }
+
     /// N色陣、ランダム生成でのみ使用する文言なのでドロップまで生成する
     fn five_attribute(
         &mut self,

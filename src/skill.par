@@ -49,17 +49,22 @@ GenShapeBlock
 
 GSStartPosition
     : GSSPSide
+    | GSSPCenter
     ;
 
 GSSPSide
-    // ○端N列
-    : PositionLR GSSPSideWriteWidth PosInt WordCol
+    // ○端
+    : PositionLR GSSPSideWriteWidth GenShapeNumOfGen
     ;
 
-GSSPSideWriteWidth
-    : WordSide [ WordVertical ]
-    | WordVertical
-    ;
+GSSPCenter
+    : GSSPCenterBlocks WordVertical GenShapeNumOfGen;
+
+GSSPCenterBlocks
+    : GSSPCenterBlock [ And GSSPCenterBlock ];
+
+GSSPCenterBlock
+    : PositionLOrR From PosInt WordCol WordLook;
 
 PositionLR
     : WordLeft
@@ -67,10 +72,23 @@ PositionLR
     | WordLeftAndRight
     ;
 
+GSSPSideWriteWidth
+    : WordSide [ WordVertical ]
+    | WordVertical
+    ;
+
+PositionLOrR
+    : WordLeft
+    | WordRight
+    ;
+
 //PositionTB
 //    : WordTop
 //    | WordBottom
 //    ;
+
+GenShapeNumOfGen
+    : PosInt WordCol;
 
 WordVertical      : '縦';
 //WordHorizon       : '横';
@@ -83,6 +101,7 @@ WordRight         : '右';
 //WordTop           : '上';
 //WordBottom        : '下';
 //WordMost          : '最';
+WordLook          : '目';
 
 //! 指定型 END
 
