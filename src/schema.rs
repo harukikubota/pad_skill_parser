@@ -107,7 +107,8 @@ impl GenShapeRowCol {
         match self {
             Self::Col(i) => i,
             Self::Row(i) => i,
-        }.to_owned()
+        }
+        .to_owned()
     }
 
     pub(super) fn update(self: &Self, new_idx: isize) -> Self {

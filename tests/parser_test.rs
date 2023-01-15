@@ -318,11 +318,10 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::DropShapeGen(
-                vec![
-                    ShapeType::Col(1, Drop::Colored(Color::Lightning))
-                ]
-            ),
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::Col(
+                1,
+                Drop::Colored(Color::Lightning),
+            )]),
         }]);
 
         assert_eq!(except, grammar);
@@ -337,11 +336,10 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::DropShapeGen(
-                vec![
-                    ShapeType::Col(-1, Drop::NonColored(NonColoredDrop::Recovery))
-                ]
-            ),
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::Col(
+                -1,
+                Drop::NonColored(NonColoredDrop::Recovery),
+            )]),
         }]);
 
         assert_eq!(except, grammar);
@@ -356,12 +354,10 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::DropShapeGen(
-                vec![
-                    ShapeType::Col(1, Drop::Colored(Color::Dark)),
-                    ShapeType::Col(-1, Drop::Colored(Color::Dark)),
-                ]
-            ),
+            effect: SkillEffect::DropShapeGen(vec![
+                ShapeType::Col(1, Drop::Colored(Color::Dark)),
+                ShapeType::Col(-1, Drop::Colored(Color::Dark)),
+            ]),
         }]);
 
         assert_eq!(except, grammar);
@@ -376,12 +372,10 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::DropShapeGen(
-                vec![
-                    ShapeType::Col(1, Drop::Colored(Color::Dark)),
-                    ShapeType::Col(-1, Drop::Colored(Color::Lightning)),
-                ]
-            ),
+            effect: SkillEffect::DropShapeGen(vec![
+                ShapeType::Col(1, Drop::Colored(Color::Dark)),
+                ShapeType::Col(-1, Drop::Colored(Color::Lightning)),
+            ]),
         }]);
 
         assert_eq!(except, grammar);
@@ -396,12 +390,10 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::DropShapeGen(
-                vec![
-                    ShapeType::Col(1, Drop::Colored(Color::Wood)),
-                    ShapeType::Col(2, Drop::Colored(Color::Wood)),
-                ]
-            ),
+            effect: SkillEffect::DropShapeGen(vec![
+                ShapeType::Col(1, Drop::Colored(Color::Wood)),
+                ShapeType::Col(2, Drop::Colored(Color::Wood)),
+            ]),
         }]);
 
         assert_eq!(except, grammar);
@@ -416,12 +408,10 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::DropShapeGen(
-                vec![
-                    ShapeType::Col(-1, Drop::NonColored(NonColoredDrop::Disturb)),
-                    ShapeType::Col(-2, Drop::NonColored(NonColoredDrop::Disturb)),
-                ]
-            ),
+            effect: SkillEffect::DropShapeGen(vec![
+                ShapeType::Col(-1, Drop::NonColored(NonColoredDrop::Disturb)),
+                ShapeType::Col(-2, Drop::NonColored(NonColoredDrop::Disturb)),
+            ]),
         }]);
 
         assert_eq!(except, grammar);
@@ -436,14 +426,32 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::DropShapeGen(
-                vec![
-                    ShapeType::Col(1, Drop::Colored(Color::Fire)),
-                    ShapeType::Col(-1, Drop::Colored(Color::Fire)),
-                    ShapeType::Col(2, Drop::Colored(Color::Fire)),
-                    ShapeType::Col(-2, Drop::Colored(Color::Fire)),
-                ]
-            ),
+            effect: SkillEffect::DropShapeGen(vec![
+                ShapeType::Col(1, Drop::Colored(Color::Fire)),
+                ShapeType::Col(-1, Drop::Colored(Color::Fire)),
+                ShapeType::Col(2, Drop::Colored(Color::Fire)),
+                ShapeType::Col(-2, Drop::Colored(Color::Fire)),
+            ]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_col_left_and_rightside_2_split() {
+        let input = "左端2列と右端2列を水ドロップに変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![
+                ShapeType::Col(1, Drop::Colored(Color::Water)),
+                ShapeType::Col(2, Drop::Colored(Color::Water)),
+                ShapeType::Col(-1, Drop::Colored(Color::Water)),
+                ShapeType::Col(-2, Drop::Colored(Color::Water)),
+            ]),
         }]);
 
         assert_eq!(except, grammar);
@@ -458,13 +466,11 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::DropShapeGen(
-                vec![
-                    ShapeType::Col(1, Drop::Colored(Color::Fire)),
-                    ShapeType::Col(2, Drop::Colored(Color::Fire)),
-                    ShapeType::Col(3, Drop::Colored(Color::Fire)),
-                ]
-            ),
+            effect: SkillEffect::DropShapeGen(vec![
+                ShapeType::Col(1, Drop::Colored(Color::Fire)),
+                ShapeType::Col(2, Drop::Colored(Color::Fire)),
+                ShapeType::Col(3, Drop::Colored(Color::Fire)),
+            ]),
         }]);
 
         assert_eq!(except, grammar);
@@ -479,11 +485,7 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::DropShapeGen(
-                vec![
-                    ShapeType::Col(3, Drop::Colored(Color::Wood)),
-                ]
-            ),
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::Col(3, Drop::Colored(Color::Wood))]),
         }]);
 
         assert_eq!(except, grammar);
@@ -498,11 +500,7 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::DropShapeGen(
-                vec![
-                    ShapeType::Col(-2, Drop::Colored(Color::Fire)),
-                ]
-            ),
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::Col(-2, Drop::Colored(Color::Fire))]),
         }]);
 
         assert_eq!(except, grammar);
@@ -517,12 +515,10 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::DropShapeGen(
-                vec![
-                    ShapeType::Col(3, Drop::Colored(Color::Lightning)),
-                    ShapeType::Col(4, Drop::Colored(Color::Lightning)),
-                ]
-            ),
+            effect: SkillEffect::DropShapeGen(vec![
+                ShapeType::Col(3, Drop::Colored(Color::Lightning)),
+                ShapeType::Col(4, Drop::Colored(Color::Lightning)),
+            ]),
         }]);
 
         assert_eq!(except, grammar);
@@ -537,13 +533,11 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::DropShapeGen(
-                vec![
-                    ShapeType::Col(-2, Drop::Colored(Color::Lightning)),
-                    ShapeType::Col(-3, Drop::Colored(Color::Lightning)),
-                    ShapeType::Col(-4, Drop::Colored(Color::Lightning)),
-                ]
-            ),
+            effect: SkillEffect::DropShapeGen(vec![
+                ShapeType::Col(-2, Drop::Colored(Color::Lightning)),
+                ShapeType::Col(-3, Drop::Colored(Color::Lightning)),
+                ShapeType::Col(-4, Drop::Colored(Color::Lightning)),
+            ]),
         }]);
 
         assert_eq!(except, grammar);
@@ -558,12 +552,10 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::DropShapeGen(
-                vec![
-                    ShapeType::Col(2, Drop::Colored(Color::Wood)),
-                    ShapeType::Col(-2, Drop::Colored(Color::Wood)),
-                ]
-            ),
+            effect: SkillEffect::DropShapeGen(vec![
+                ShapeType::Col(2, Drop::Colored(Color::Wood)),
+                ShapeType::Col(-2, Drop::Colored(Color::Wood)),
+            ]),
         }]);
 
         assert_eq!(except, grammar);
@@ -579,14 +571,165 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::DropShapeGen(
-                vec![
-                    ShapeType::Col(2, Drop::Colored(Color::Wood)),
-                    ShapeType::Col(3, Drop::Colored(Color::Wood)),
-                    ShapeType::Col(-2, Drop::Colored(Color::Wood)),
-                    ShapeType::Col(-3, Drop::Colored(Color::Wood)),
-                ]
-            ),
+            effect: SkillEffect::DropShapeGen(vec![
+                ShapeType::Col(2, Drop::Colored(Color::Wood)),
+                ShapeType::Col(3, Drop::Colored(Color::Wood)),
+                ShapeType::Col(-2, Drop::Colored(Color::Wood)),
+                ShapeType::Col(-3, Drop::Colored(Color::Wood)),
+            ]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_row_top_1() {
+        let input = "最上段横1列を水ドロップに変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::Row(1, Drop::Colored(Color::Water))]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_row_bottom_1() {
+        let input = "最下段横1列を闇ドロップに変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::Row(-1, Drop::Colored(Color::Dark))]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_row_top_2() {
+        let input = "最上段横2列を水ドロップに変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![
+                ShapeType::Row(1, Drop::Colored(Color::Water)),
+                ShapeType::Row(2, Drop::Colored(Color::Water)),
+            ]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_row_bottom_2() {
+        let input = "最下段横2列を火ドロップに変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![
+                ShapeType::Row(-1, Drop::Colored(Color::Fire)),
+                ShapeType::Row(-2, Drop::Colored(Color::Fire)),
+            ]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_row_top_1_bottom_1() {
+        let input = "最上段横1列と最下段横1列を木ドロップに変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![
+                ShapeType::Row(1, Drop::Colored(Color::Wood)),
+                ShapeType::Row(-1, Drop::Colored(Color::Wood)),
+            ]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_row_tcenter_2_1() {
+        let input = "上から2段目横1列を木ドロップに変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::Row(2, Drop::Colored(Color::Wood))]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_row_bcenter_2_2() {
+        let input = "下から2段目横2列を木ドロップに変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![
+                ShapeType::Row(-2, Drop::Colored(Color::Wood)),
+                ShapeType::Row(-3, Drop::Colored(Color::Wood)),
+            ]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_row_tcenter_2_bcenter_2() {
+        let input = "上から2段目と下から2段目横1列を木ドロップに変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![
+                ShapeType::Row(2, Drop::Colored(Color::Wood)),
+                ShapeType::Row(-2, Drop::Colored(Color::Wood)),
+            ]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_row_top_1_bcenter_2() {
+        let input = "最上段横1列を火に、下から2段目横1列を木ドロップに変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![
+                ShapeType::Row(1, Drop::Colored(Color::Fire)),
+                ShapeType::Row(-2, Drop::Colored(Color::Wood)),
+            ]),
         }]);
 
         assert_eq!(except, grammar);

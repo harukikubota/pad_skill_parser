@@ -45,6 +45,20 @@ impl<'t> SkillGrammar<'_> {
         }
     }
 
+    pub(super) fn peek_check<F>(self: &mut Self, fun: F) -> bool
+    where
+        F: FnOnce(&StackItem) -> bool,
+    {
+        let last = self.stack.pop();
+
+        if last.clone().is_none() {
+            false
+        } else {
+            self.push(last.clone().unwrap());
+            fun(&last.unwrap())
+        }
+    }
+
     pub(super) fn is_zero(self: &mut Self) -> bool {
         self.stack.len() == 0
     }
@@ -114,7 +128,7 @@ impl SkillGrammar<'_> {
 
     #[allow(dead_code)]
     fn show_stack(self: &Self) {
-        self.show_stack_("");
+        self.show_stack_("")
     }
 
     #[allow(dead_code)]
@@ -153,23 +167,41 @@ impl SkillGrammar<'_> {
         ret
     }
 
-    /// stack から StackItem::Drop を再起的に取得する
-    fn drops_<'a>(self: &'a mut Self, result: &'a mut Drops) -> &'a mut Drops {
-        // 全部Drop
-        if self.stack.len() == 0 {
-            result
+    /// 条件に合う要素を終端から取得し、取得した要素はスタックから取り除く
+    fn steal_if<'a, F, M, R>(self: &'a mut Self, type_check_fun: F, map_fun: M) -> Vec<R>
+    where
+        F: Fn(&StackItem) -> bool,
+        M: Fn(&StackItem) -> R,
+        R: Clone,
+    {
+        let ret: &mut Vec<R> = &mut Vec::new();
+
+        let result = self.steal_if_(ret, type_check_fun, map_fun).to_vec();
+        result
+    }
+
+    fn steal_if_<'a, F, M, R>(
+        self: &'a mut Self,
+        list: &'a mut Vec<R>,
+        type_check_fun: F,
+        map_fun: M,
+    ) -> &'a mut Vec<R>
+    where
+        F: Fn(&StackItem) -> bool,
+        M: Fn(&StackItem) -> R,
+    {
+        if self.is_zero() {
+            // 全て取得した
+            list
         } else {
             let last = self.pop();
 
-            match last {
-                StackItem::Drop(drop) => {
-                    result.push(drop);
-                    self.drops_(result)
-                }
-                _ => {
-                    self.push(last);
-                    result
-                }
+            if type_check_fun(&last) {
+                list.push(map_fun(&last));
+                self.steal_if_(list, type_check_fun, map_fun)
+            } else {
+                self.push(last);
+                list
             }
         }
     }
@@ -214,6 +246,26 @@ impl SkillGrammar<'_> {
 
         self.skill_list.push(skill);
     }
+
+    fn g_s_s_p_side_<'a>(self: &'a mut Self, gen_count: usize, position: Position) -> GenPositions {
+        let mut result: GenPositions = Vec::new();
+
+        // N列分繰り返す
+        for idx in 1..=gen_count {
+            match position {
+                Position::Left => result.push(GenShapeRowCol::Col(idx as isize)),
+                Position::Right => result.push(GenShapeRowCol::Col((idx as isize).neg())),
+                Position::LeftAndRight => {
+                    result.push(GenShapeRowCol::Col(idx as isize));
+                    result.push(GenShapeRowCol::Col((idx as isize).neg()))
+                }
+                Position::Top => result.push(GenShapeRowCol::Row(idx as isize)),
+                Position::Bottom => result.push(GenShapeRowCol::Row((idx as isize).neg())),
+            }
+        }
+
+        result
+    }
 }
 
 impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
@@ -221,8 +273,6 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         &mut self,
         _arg: &crate::skill_grammar_trait::ChangeDropStmtIncGenRandomDrop<'t>,
     ) -> parol_runtime::miette::Result<()> {
-        self.show_stack_("change_drop_stmt_inc_gen_random_drop s");
-
         let item = self.pop();
 
         if item.is_drop() {
@@ -333,11 +383,16 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
-    fn gen_shape_stmt(&mut self, _arg: &crate::skill_grammar_trait::GenShapeStmt<'t>) -> miette::Result<()> {
+    fn gen_shape_stmt(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::GenShapeStmt<'t>,
+    ) -> miette::Result<()> {
         let shape_type_list = self.steal();
 
-        let drop_shape_gen_list: Vec<ShapeType> =
-            shape_type_list.into_iter().map(|se| se.shape_type()).collect();
+        let drop_shape_gen_list: Vec<ShapeType> = shape_type_list
+            .into_iter()
+            .map(|se| se.shape_type())
+            .collect();
 
         let se = SkillEffect::DropShapeGen(drop_shape_gen_list);
 
@@ -349,48 +404,51 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
-    fn gen_shape_block(&mut self, _arg: &crate::skill_grammar_trait::GenShapeBlock<'t>) -> miette::Result<()> {
+    fn gen_shape_block(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::GenShapeBlock<'t>,
+    ) -> miette::Result<()> {
         let drop = self.pop().drop();
         let positions = self.pop().gen_positions();
 
         positions.into_iter().for_each(|p| {
             let shape_type = match p {
-                GenShapeRowCol::Row(_) => panic!("todo!"),
-                GenShapeRowCol::Col(idx) => {
-                    ShapeType::Col(idx, drop.clone())
-                }
+                GenShapeRowCol::Row(idx) => ShapeType::Row(idx, drop.clone()),
+                GenShapeRowCol::Col(idx) => ShapeType::Col(idx, drop.clone()),
             };
 
             self.push(StackItem::DropShapeGenShapeType(shape_type));
         });
+
         Ok(())
     }
 
     /// 端N列の生成
-    fn g_s_s_p_side(&mut self, _arg: &crate::skill_grammar_trait::GSSPSide<'t>) -> miette::Result<()> {
-        let gen_count = self.pop().pos_int();
-        let position = self.pop().position();
-        let mut gen_positions: GenPositions = Vec::new();
+    fn g_s_s_p_side(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::GSSPSide<'t>,
+    ) -> miette::Result<()> {
+        let mut gen_positions_list: Vec<GenPositions> = Vec::new();
 
-        // N列分繰り返す
-        for idx in 1..=gen_count {
-            let p = position.clone();
-            match p {
-                Position::Left => gen_positions.push(GenShapeRowCol::Col(idx as isize)),
-                Position::Right => gen_positions.push(GenShapeRowCol::Col((idx as isize).neg())),
-                Position::LeftAndRight => {
-                    gen_positions.push(GenShapeRowCol::Col(idx as isize));
-                    gen_positions.push(GenShapeRowCol::Col((idx as isize).neg()))
-                },
-                _ => ()
-            }
-        };
+        while self.peek_check(|i| i.is_pos_int()) {
+            let gen_count = self.pop().pos_int();
+            let position = self.pop().position();
+
+            gen_positions_list.push(self.g_s_s_p_side_(gen_count, position));
+        }
+
+        // 右側から解決されているため、左からになるようにする
+        gen_positions_list.reverse();
+        let gen_positions = gen_positions_list.concat();
 
         self.push(StackItem::GenPositions(gen_positions));
         Ok(())
     }
 
-    fn g_s_s_p_center(&mut self, _arg: &crate::skill_grammar_trait::GSSPCenter<'t>) -> miette::Result<()> {
+    fn g_s_s_p_center(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::GSSPCenter<'t>,
+    ) -> miette::Result<()> {
         let gen_count = self.pop().pos_int();
         let gen_positions = self.pop().gen_positions();
 
@@ -415,26 +473,36 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
-    fn g_s_s_p_center_blocks(&mut self, _arg: &crate::skill_grammar_trait::GSSPCenterBlocks<'t>) -> miette::Result<()> {
+    fn g_s_s_p_center_blocks(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::GSSPCenterBlocks<'t>,
+    ) -> miette::Result<()> {
         if self.stack.len() > 1 {
             // 2要素以上の場合、1つのリストにまとめる
-            let list: GenPositions = self.steal().into_iter().map(|item| {
-                item.gen_positions().pop().unwrap()
-            }).collect();
+            let mut list: Vec<GenPositions> =
+                self.steal_if(|i| i.is_gen_positions(), |i| i.to_owned().gen_positions());
+            list.reverse();
 
-            self.push(StackItem::GenPositions(list));
+            let concated = list.concat();
+
+            self.push(StackItem::GenPositions(concated));
         }
         Ok(())
     }
 
-    fn g_s_s_p_center_block(&mut self, _arg: &crate::skill_grammar_trait::GSSPCenterBlock<'t>) -> miette::Result<()> {
+    fn g_s_s_p_center_block(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::GSSPCenterBlock<'t>,
+    ) -> miette::Result<()> {
         let gen_idx = self.pop().pos_int();
         let position = self.pop().position();
 
         let item = match position {
             Position::Left => GenShapeRowCol::Col(gen_idx as isize),
             Position::Right => GenShapeRowCol::Col((gen_idx as isize).neg()),
-            _ => todo!()
+            Position::Top => GenShapeRowCol::Row(gen_idx as isize),
+            Position::Bottom => GenShapeRowCol::Row((gen_idx as isize).neg()),
+            _ => panic!("from g_s_s_p_center_block. unexpected pattern!"),
         };
 
         self.push(StackItem::GenPositions(vec![item]));
@@ -464,7 +532,9 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         &mut self,
         _arg: &crate::skill_grammar_trait::Drops<'t>,
     ) -> parol_runtime::miette::Result<()> {
-        let mut drops = self.drops_(&mut Vec::new()).to_vec();
+        let mut drops: Drops = self
+            .steal_if(|i| i.is_drop(), |i| i.clone().drop())
+            .to_vec();
         drops.reverse();
 
         self.push(StackItem::Drops(drops));
@@ -587,15 +657,38 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
-    fn word_right(&mut self, arg: &crate::skill_grammar_trait::WordRight<'t>) -> miette::Result<()> {
+    fn word_right(
+        &mut self,
+        arg: &crate::skill_grammar_trait::WordRight<'t>,
+    ) -> miette::Result<()> {
         let position = Position::from(arg.word_right.text());
 
         self.stack.push(StackItem::Position(position));
         Ok(())
     }
 
-    fn word_left_and_right(&mut self, arg: &crate::skill_grammar_trait::WordLeftAndRight<'t>) -> miette::Result<()> {
+    fn word_left_and_right(
+        &mut self,
+        arg: &crate::skill_grammar_trait::WordLeftAndRight<'t>,
+    ) -> miette::Result<()> {
         let position = Position::from(arg.word_left_and_right.text());
+
+        self.stack.push(StackItem::Position(position));
+        Ok(())
+    }
+
+    fn word_top(&mut self, arg: &crate::skill_grammar_trait::WordTop<'t>) -> miette::Result<()> {
+        let position = Position::from(arg.word_top.text());
+
+        self.stack.push(StackItem::Position(position));
+        Ok(())
+    }
+
+    fn word_bottom(
+        &mut self,
+        arg: &crate::skill_grammar_trait::WordBottom<'t>,
+    ) -> miette::Result<()> {
+        let position = Position::from(arg.word_bottom.text());
 
         self.stack.push(StackItem::Position(position));
         Ok(())

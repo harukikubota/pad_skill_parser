@@ -74,4 +74,6 @@ pub type ShapeGenIdx = isize;
 pub enum ShapeType {
     /// 縦に生成
     Col(ShapeGenIdx, Drop),
+    /// 横に生成
+    Row(ShapeGenIdx, Drop),
 }

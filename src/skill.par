@@ -28,6 +28,12 @@ ChangeDropStmtIncGenRandomDrop
 ChangeAllOfBoradStmt
     : AllDrops Wo Drops Ni WordChange;
 
+GenRandomDropStmt1
+    : RandomSuffix Drops Wo Quantity WordGen;
+
+GenShapeStmt
+    : GenShapeBlock { Camma GenShapeBlock } WordChange;
+
 DropRefreshStmt
     : RandomSuffix WordDrop Wo WordReplace;
 
@@ -36,13 +42,6 @@ DropRefreshStmt
 ChangeDropBlockOtherFirst
     : Drops Wo Drop Ni
     ;
-
-GenRandomDropStmt1
-    : RandomSuffix Drops Wo Quantity WordGen;
-
-//! 指定型 START
-GenShapeStmt
-    : GenShapeBlock { Camma GenShapeBlock } WordChange;
 
 GenShapeBlock
     : GSStartPosition Wo Drop Ni;
@@ -53,23 +52,20 @@ GSStartPosition
     ;
 
 GSSPSide
-    // ○端
-    : PositionLR GSSPSideWriteWidth GenShapeNumOfGen
-    ;
+    : Position [ WordHorizon ] GenShapeNumOfGen [ And Position [ WordHorizon ] GenShapeNumOfGen ];
 
 GSSPCenter
-    : GSSPCenterBlocks WordVertical GenShapeNumOfGen;
+    : GSSPCenterBlocks [ No ] [ WordVertical | WordHorizon ] GenShapeNumOfGen;
 
 GSSPCenterBlocks
     : GSSPCenterBlock [ And GSSPCenterBlock ];
 
 GSSPCenterBlock
-    : PositionLOrR From PosInt WordCol WordLook;
+    : PositionLRTB From PosInt [ WordCol | WordRow ] WordLook;
 
-PositionLR
-    : WordLeft
-    | WordRight
-    | WordLeftAndRight
+Position
+    : PositionLR GSSPSideWriteWidth
+    | PositionTB
     ;
 
 GSSPSideWriteWidth
@@ -77,33 +73,30 @@ GSSPSideWriteWidth
     | WordVertical
     ;
 
-PositionLOrR
+PositionLRTB
     : WordLeft
     | WordRight
+    | WordTop
+    | WordBottom
     ;
 
-//PositionTB
-//    : WordTop
-//    | WordBottom
-//    ;
+PositionLR
+    : WordLeft
+    | WordRight
+    | WordLeftAndRight
+    ;
 
+PositionTB
+    : [ WordMost ] PositionTOrB WordRow;
+
+PositionTOrB
+    : WordTop
+    | WordBottom
+    ;
+
+// 横、縦生成で共通
 GenShapeNumOfGen
     : PosInt WordCol;
-
-WordVertical      : '縦';
-//WordHorizon       : '横';
-//WordRow           : '段';
-WordCol           : '列';
-WordSide          : '端';
-WordLeftAndRight  : '両';
-WordLeft          : '左';
-WordRight         : '右';
-//WordTop           : '上';
-//WordBottom        : '下';
-//WordMost          : '最';
-WordLook          : '目';
-
-//! 指定型 END
 
 Drops
     : Drop { ManyDrop }
@@ -168,9 +161,23 @@ WordReplace       : '入れ替える';
 WordCount         : '個';
 WordGen           : '生成';
 WordOther         : '以外';
+WordVertical      : '縦';
+WordHorizon       : '横';
+WordRow           : '段';
+WordCol           : '列';
+WordSide          : '端';
+WordLeftAndRight  : '両';
+WordLeft          : '左';
+WordRight         : '右';
+WordTop           : '上';
+WordBottom        : '下';
+WordMost          : '最';
+WordLook          : '目';
+
 
 Wo     : 'を';
 Ni     : 'に';
+No     : 'の';
 So     : 'で';
 And    : 'と';
 Each   : 'ずつ';
