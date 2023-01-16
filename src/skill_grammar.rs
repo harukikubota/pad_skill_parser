@@ -312,9 +312,9 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
-    fn change_all_of_borad_stmt(
+    fn change_all_of_borad_block(
         &mut self,
-        _arg: &crate::skill_grammar_trait::ChangeAllOfBoradStmt<'t>,
+        _arg: &crate::skill_grammar_trait::ChangeAllOfBoradBlock<'t>,
     ) -> parol_runtime::miette::Result<()> {
         let drops = self.pop().drops();
 
@@ -327,7 +327,10 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
-    fn drop_un_lock_stmt(&mut self, _arg: &crate::skill_grammar_trait::DropUnLockStmt<'t>) -> miette::Result<()> {
+    fn drop_un_lock_stmt(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::DropUnLockStmt<'t>,
+    ) -> miette::Result<()> {
         let skill = Skill {
             effect: SkillEffect::DropUnLock,
             ..Default::default()
@@ -558,6 +561,19 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         };
 
         self.push(StackItem::GenPositions(vec![item]));
+        Ok(())
+    }
+
+    fn drop_unlock_block(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::DropUnlockBlock<'t>,
+    ) -> miette::Result<()> {
+        let skill = Skill {
+            effect: SkillEffect::DropUnLock,
+            ..Default::default()
+        };
+
+        self.skill_list.push(skill);
         Ok(())
     }
 

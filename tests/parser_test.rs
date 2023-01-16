@@ -1012,6 +1012,213 @@ mod parser_test {
     }
 
     #[test]
+    fn drop_change_with_drop_unlock() {
+        let input = "ドロップのロック状態を解除。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropUnLock,
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_drop_with_drop_unlock_1() {
+        let input = "全ドロップのロックを解除し、右端1列を光に変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::DropUnLock,
+            },
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::DropShapeGen(vec![ShapeType::Col(
+                    -1,
+                    Drop::Colored(Color::Lightning),
+                )]),
+            },
+        ]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_drop_with_drop_unlock_2() {
+        let input = "ドロップのロックを解除し、右端1列を光に変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::DropUnLock,
+            },
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::DropShapeGen(vec![ShapeType::Col(
+                    -1,
+                    Drop::Colored(Color::Lightning),
+                )]),
+            },
+        ]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_drop_with_drop_unlock_3() {
+        let input = "ロックを解除し、右端1列を光に変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::DropUnLock,
+            },
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::DropShapeGen(vec![ShapeType::Col(
+                    -1,
+                    Drop::Colored(Color::Lightning),
+                )]),
+            },
+        ]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_random_drop_with_drop_unlock_1() {
+        let input = "ドロップのロックを解除し、火と回復を6個ずつ生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::DropUnLock,
+            },
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::GenRandomDrop(
+                    vec![
+                        Drop::Colored(Color::Fire),
+                        Drop::NonColored(NonColoredDrop::Recovery),
+                    ],
+                    vec![
+                        (Drop::Colored(Color::Fire), 6),
+                        (Drop::NonColored(NonColoredDrop::Recovery), 6),
+                    ],
+                ),
+            },
+        ]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_random_drop_with_drop_unlock_2() {
+        let input = "ドロップのロックを解除し、回復以外から火と闇を3個ずつ生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::DropUnLock,
+            },
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::GenRandomDrop(
+                    vec![
+                        Drop::NonColored(NonColoredDrop::Recovery),
+                        Drop::Colored(Color::Fire),
+                        Drop::Colored(Color::Dark),
+                    ],
+                    vec![
+                        (Drop::Colored(Color::Fire), 3),
+                        (Drop::Colored(Color::Dark), 3),
+                    ],
+                ),
+            },
+        ]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn change_drop_with_drop_unlock_1() {
+        let input = "ドロップのロックを解除し、光を闇に変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::DropUnLock,
+            },
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::ChangeDropAToB(
+                    vec![Drop::Colored(Color::Lightning)],
+                    vec![Drop::Colored(Color::Dark)],
+                ),
+            },
+        ]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn change_all_of_board_with_drop_unlock_1() {
+        let input = "全ドロップのロックを解除し、5属性+回復に変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::DropUnLock,
+            },
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::ChangeAllOfBoard(vec![
+                    Drop::Colored(Color::Fire),
+                    Drop::Colored(Color::Water),
+                    Drop::Colored(Color::Wood),
+                    Drop::Colored(Color::Lightning),
+                    Drop::Colored(Color::Dark),
+                    Drop::NonColored(NonColoredDrop::Recovery),
+                ]),
+            },
+        ]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
     fn drop_refresh() {
         let input = "ランダムでドロップを入れ替える。";
         let grammar = &mut SkillGrammar::new();

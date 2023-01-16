@@ -9,13 +9,18 @@ SkillLines
     : Line Period;
 
 Line
-    : ChangeDropStmtIncGenRandomDrop
-    | ChangeAllOfBoradStmt
-    | GenRandomDropStmt1
-    | GenShapeStmt
+    : GroupOfDropChange
     | DropRefreshStmt
     | DropUnLockStmt
     ;
+
+GroupOfDropChange
+    : [ DropUnlockBlock ] [ ChangeDropStmtIncGenRandomDrop | GenRandomDropStmt1 | GenShapeStmt ]
+    | ChangeDropWithDropUnlockLine
+    ;
+
+ChangeDropWithDropUnlockLine
+    : AllDrops [ DropUnlockBlock | Wo ] [ ChangeAllOfBoradBlock | GenShapeStmt ];
 
 ChangeDropStmtIncGenRandomDrop
     : Drops Wo Drop Ni { Camma ChangeDropBlockOtherFirst } WordChange
@@ -26,8 +31,8 @@ ChangeDropStmtIncGenRandomDrop
     | Drops WordOther From Drops Wo Quantity WordGen
     ;
 
-ChangeAllOfBoradStmt
-    : AllDrops Wo Drops Ni WordChange;
+ChangeAllOfBoradBlock
+    : Drops Ni WordChange;
 
 GenRandomDropStmt1
     : RandomSuffix Drops Wo Quantity WordGen;
@@ -128,6 +133,11 @@ ShapeType
     // 現在では `7の形`のみ それ以外は改修必要
     | PosInt ShapeOfSomeKind
     ;
+
+DropUnlockBlock
+    // [ドロップの]?ロックを解除し、
+    // 単色変換、ランダム生成用
+    : [ [WordDrop] No ] WordLock Wo WordRelease Si Camma;
 
 Drops
     : Drop { ManyDrop }
@@ -234,6 +244,7 @@ Ni     : 'に';
 No     : 'の';
 So     : 'で';
 And    : 'と';
+Si     : 'し';
 Each   : 'ずつ';
 From   : 'から';
 Plus   : '+';
