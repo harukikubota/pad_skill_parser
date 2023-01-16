@@ -404,9 +404,9 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
-    fn gen_shape_block(
+    fn gen_shape_block_row_col(
         &mut self,
-        _arg: &crate::skill_grammar_trait::GenShapeBlock<'t>,
+        _arg: &crate::skill_grammar_trait::GenShapeBlockRowCol<'t>,
     ) -> miette::Result<()> {
         let drop = self.pop().drop();
         let positions = self.pop().gen_positions();
@@ -419,7 +419,49 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
 
             self.push(StackItem::DropShapeGenShapeType(shape_type));
         });
+        Ok(())
+    }
 
+    /// 縦、横以外の指定型生成
+    fn gen_shape_block_other_row_col(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::GenShapeBlockOtherRowCol<'t>,
+    ) -> miette::Result<()> {
+        self.show_stack_("gen_shape_block_other_row_col");
+        if self.stack.len() == 2 {
+            // 形状とドロップのみ
+            let drop = self.pop().drops().pop().unwrap();
+            let shape = self.pop().shape_type();
+
+            if shape.is_spiderweb() {
+                // 蜘蛛の巣状はデフォルト値で設定しているので未処理
+                self.push(StackItem::DropShapeGenShapeType(shape))
+            } else {
+                self.push(StackItem::DropShapeGenShapeType(shape.set_drop(drop)));
+            }
+        } else {
+            let qty = self.pop().pos_int();
+            let drop = self.pop().drops().pop().unwrap();
+            let shape = self.pop().shape_type();
+
+            let shape = if shape.is_square() {
+                // 1辺だけ分かればいいので、片方は捨てる
+                let size = self.pop().pos_int();
+                let _ = self.pop();
+
+                shape.set_for_square(drop, size, qty)
+            } else if shape.is_some_kind() {
+                // 現在では`7`の形のみなので通る。
+                // UnsignedInt 以外でスキルが追加された場合は対応が必要
+
+                let some_kind = self.pop().pos_int().to_string();
+                shape.set_for_some_kind(drop, some_kind, qty)
+            } else {
+                shape.set_with_qty(drop, qty)
+            };
+
+            self.push(StackItem::DropShapeGenShapeType(shape));
+        }
         Ok(())
     }
 
@@ -650,6 +692,119 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
+    fn shape_of_l(&mut self, arg: &crate::skill_grammar_trait::ShapeOfL<'t>) -> miette::Result<()> {
+        let shape = ShapeType::from(arg.shape_of_l.text());
+        self.stack.push(StackItem::DropShapeGenShapeType(shape));
+        Ok(())
+    }
+
+    fn shape_of_z(&mut self, arg: &crate::skill_grammar_trait::ShapeOfZ<'t>) -> miette::Result<()> {
+        let shape = ShapeType::from(arg.shape_of_z.text());
+        self.stack.push(StackItem::DropShapeGenShapeType(shape));
+        Ok(())
+    }
+
+    /// デフォルトでは盤面一杯に生成する十字型として扱う。
+    /// 個数が指定されている場合に小型にキャストされる。
+    fn shape_of_cross(
+        &mut self,
+        arg: &crate::skill_grammar_trait::ShapeOfCross<'t>,
+    ) -> miette::Result<()> {
+        let shape = ShapeType::from(arg.shape_of_cross.text());
+        self.stack.push(StackItem::DropShapeGenShapeType(shape));
+        Ok(())
+    }
+
+    fn shape_of_square(
+        &mut self,
+        arg: &crate::skill_grammar_trait::ShapeOfSquare<'t>,
+    ) -> miette::Result<()> {
+        let shape = ShapeType::from(arg.shape_of_square.text());
+        self.stack.push(StackItem::DropShapeGenShapeType(shape));
+        Ok(())
+    }
+
+    fn shape_of_board_perimeter(
+        &mut self,
+        arg: &crate::skill_grammar_trait::ShapeOfBoardPerimeter<'t>,
+    ) -> miette::Result<()> {
+        let shape = ShapeType::from(arg.shape_of_board_perimeter.text());
+        self.stack.push(StackItem::DropShapeGenShapeType(shape));
+        Ok(())
+    }
+
+    fn shape_of_board_corners(
+        &mut self,
+        arg: &crate::skill_grammar_trait::ShapeOfBoardCorners<'t>,
+    ) -> miette::Result<()> {
+        let shape = ShapeType::from(arg.shape_of_board_corners.text());
+        self.stack.push(StackItem::DropShapeGenShapeType(shape));
+        Ok(())
+    }
+
+    fn shape_of_board_top(
+        &mut self,
+        arg: &crate::skill_grammar_trait::ShapeOfBoardTop<'t>,
+    ) -> miette::Result<()> {
+        let shape = ShapeType::from(arg.shape_of_board_top.text());
+        self.stack.push(StackItem::DropShapeGenShapeType(shape));
+        Ok(())
+    }
+
+    fn shape_of_board_center(
+        &mut self,
+        arg: &crate::skill_grammar_trait::ShapeOfBoardCenter<'t>,
+    ) -> miette::Result<()> {
+        let shape = ShapeType::from(arg.shape_of_board_center.text());
+        self.stack.push(StackItem::DropShapeGenShapeType(shape));
+        Ok(())
+    }
+
+    fn shape_of_board_bottom(
+        &mut self,
+        arg: &crate::skill_grammar_trait::ShapeOfBoardBottom<'t>,
+    ) -> miette::Result<()> {
+        let shape = ShapeType::from(arg.shape_of_board_bottom.text());
+        self.stack.push(StackItem::DropShapeGenShapeType(shape));
+        Ok(())
+    }
+
+    fn shape_of_spiderweb(
+        &mut self,
+        arg: &crate::skill_grammar_trait::ShapeOfSpiderweb<'t>,
+    ) -> miette::Result<()> {
+        let shape = ShapeType::from(arg.shape_of_spiderweb.text());
+        self.stack.push(StackItem::DropShapeGenShapeType(shape));
+        Ok(())
+    }
+
+    fn shape_of_crescent_moon(
+        &mut self,
+        arg: &crate::skill_grammar_trait::ShapeOfCrescentMoon<'t>,
+    ) -> miette::Result<()> {
+        let shape = ShapeType::from(arg.shape_of_crescent_moon.text());
+        self.stack.push(StackItem::DropShapeGenShapeType(shape));
+        Ok(())
+    }
+
+    fn shape_of_oblique(
+        &mut self,
+        arg: &crate::skill_grammar_trait::ShapeOfOblique<'t>,
+    ) -> miette::Result<()> {
+        let shape = ShapeType::from(arg.shape_of_oblique.text());
+        self.stack.push(StackItem::DropShapeGenShapeType(shape));
+        Ok(())
+    }
+
+    fn shape_of_some_kind(
+        &mut self,
+        arg: &crate::skill_grammar_trait::ShapeOfSomeKind<'t>,
+    ) -> miette::Result<()> {
+        let shape = ShapeType::from(arg.shape_of_some_kind.text());
+        self.stack.push(StackItem::DropShapeGenShapeType(shape));
+        Ok(())
+    }
+
     fn word_left(&mut self, arg: &crate::skill_grammar_trait::WordLeft<'t>) -> miette::Result<()> {
         let position = Position::from(arg.word_left.text());
 
@@ -699,6 +854,13 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         let num = text.parse::<usize>().unwrap();
 
         self.push(StackItem::PosInt(num));
+
+        Ok(())
+    }
+
+    fn on_board(&mut self, _arg: &crate::skill_grammar_trait::OnBoard<'t>) -> miette::Result<()> {
+        // パターンを引っ掛けたいだけなのでスタックから削除する
+        let _ = self.pop();
 
         Ok(())
     }

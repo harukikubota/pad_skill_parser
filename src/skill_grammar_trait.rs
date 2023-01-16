@@ -45,6 +45,16 @@ pub trait SkillGrammarTrait<'t> {
         Ok(())
     }
 
+    /// Semantic action for non-terminal 'GenRandomDropStmt1'
+    fn gen_random_drop_stmt1(&mut self, _arg: &GenRandomDropStmt1<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'GenShapeStmt'
+    fn gen_shape_stmt(&mut self, _arg: &GenShapeStmt<'t>) -> Result<()> {
+        Ok(())
+    }
+
     /// Semantic action for non-terminal 'DropRefreshStmt'
     fn drop_refresh_stmt(&mut self, _arg: &DropRefreshStmt<'t>) -> Result<()> {
         Ok(())
@@ -58,18 +68,18 @@ pub trait SkillGrammarTrait<'t> {
         Ok(())
     }
 
-    /// Semantic action for non-terminal 'GenRandomDropStmt1'
-    fn gen_random_drop_stmt1(&mut self, _arg: &GenRandomDropStmt1<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'GenShapeStmt'
-    fn gen_shape_stmt(&mut self, _arg: &GenShapeStmt<'t>) -> Result<()> {
-        Ok(())
-    }
-
     /// Semantic action for non-terminal 'GenShapeBlock'
     fn gen_shape_block(&mut self, _arg: &GenShapeBlock<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'GenShapeBlockRowCol'
+    fn gen_shape_block_row_col(&mut self, _arg: &GenShapeBlockRowCol<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'GenShapeBlockOtherRowCol'
+    fn gen_shape_block_other_row_col(&mut self, _arg: &GenShapeBlockOtherRowCol<'t>) -> Result<()> {
         Ok(())
     }
 
@@ -103,6 +113,16 @@ pub trait SkillGrammarTrait<'t> {
         Ok(())
     }
 
+    /// Semantic action for non-terminal 'GSSPSideWriteWidth'
+    fn g_s_s_p_side_write_width(&mut self, _arg: &GSSPSideWriteWidth<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'PositionLRTB'
+    fn position_l_r_t_b(&mut self, _arg: &PositionLRTB<'t>) -> Result<()> {
+        Ok(())
+    }
+
     /// Semantic action for non-terminal 'PositionLR'
     fn position_l_r(&mut self, _arg: &PositionLR<'t>) -> Result<()> {
         Ok(())
@@ -118,18 +138,228 @@ pub trait SkillGrammarTrait<'t> {
         Ok(())
     }
 
-    /// Semantic action for non-terminal 'GSSPSideWriteWidth'
-    fn g_s_s_p_side_write_width(&mut self, _arg: &GSSPSideWriteWidth<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'PositionLRTB'
-    fn position_l_r_t_b(&mut self, _arg: &PositionLRTB<'t>) -> Result<()> {
-        Ok(())
-    }
-
     /// Semantic action for non-terminal 'GenShapeNumOfGen'
     fn gen_shape_num_of_gen(&mut self, _arg: &GenShapeNumOfGen<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'ShapeType'
+    fn shape_type(&mut self, _arg: &ShapeType<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'Drops'
+    fn drops(&mut self, _arg: &Drops<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'ManyDrop'
+    fn many_drop(&mut self, _arg: &ManyDrop<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'AllDrops'
+    fn all_drops(&mut self, _arg: &AllDrops<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'FiveAttribute'
+    fn five_attribute(&mut self, _arg: &FiveAttribute<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'Quantity'
+    fn quantity(&mut self, _arg: &Quantity<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'Drop'
+    fn drop(&mut self, _arg: &Drop<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'NonColoredDrop'
+    fn non_colored_drop(&mut self, _arg: &NonColoredDrop<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'Color'
+    fn color(&mut self, _arg: &Color<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'RandomSuffix'
+    fn random_suffix(&mut self, _arg: &RandomSuffix<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'Size'
+    fn size(&mut self, _arg: &Size<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'OnBoard'
+    fn on_board(&mut self, _arg: &OnBoard<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'Fire'
+    fn fire(&mut self, _arg: &Fire<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'Water'
+    fn water(&mut self, _arg: &Water<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'Wood'
+    fn wood(&mut self, _arg: &Wood<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'Lightning'
+    fn lightning(&mut self, _arg: &Lightning<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'Dark'
+    fn dark(&mut self, _arg: &Dark<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'Recovery'
+    fn recovery(&mut self, _arg: &Recovery<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'Disturb'
+    fn disturb(&mut self, _arg: &Disturb<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'Bomb'
+    fn bomb(&mut self, _arg: &Bomb<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'DeadlyPoison'
+    fn deadly_poison(&mut self, _arg: &DeadlyPoison<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'Poison'
+    fn poison(&mut self, _arg: &Poison<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'ShapeOfL'
+    fn shape_of_l(&mut self, _arg: &ShapeOfL<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'ShapeOfZ'
+    fn shape_of_z(&mut self, _arg: &ShapeOfZ<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'ShapeOfCross'
+    fn shape_of_cross(&mut self, _arg: &ShapeOfCross<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'ShapeOfSquare'
+    fn shape_of_square(&mut self, _arg: &ShapeOfSquare<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'ShapeOfBoardPerimeter'
+    fn shape_of_board_perimeter(&mut self, _arg: &ShapeOfBoardPerimeter<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'ShapeOfBoardCenter'
+    fn shape_of_board_center(&mut self, _arg: &ShapeOfBoardCenter<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'ShapeOfBoardTop'
+    fn shape_of_board_top(&mut self, _arg: &ShapeOfBoardTop<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'ShapeOfBoardBottom'
+    fn shape_of_board_bottom(&mut self, _arg: &ShapeOfBoardBottom<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'ShapeOfBoardCorners'
+    fn shape_of_board_corners(&mut self, _arg: &ShapeOfBoardCorners<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'ShapeOfSpiderweb'
+    fn shape_of_spiderweb(&mut self, _arg: &ShapeOfSpiderweb<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'ShapeOfCrescentMoon'
+    fn shape_of_crescent_moon(&mut self, _arg: &ShapeOfCrescentMoon<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'ShapeOfOblique'
+    fn shape_of_oblique(&mut self, _arg: &ShapeOfOblique<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'ShapeOfSomeKind'
+    fn shape_of_some_kind(&mut self, _arg: &ShapeOfSomeKind<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'WordChange'
+    fn word_change(&mut self, _arg: &WordChange<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'WordDrop'
+    fn word_drop(&mut self, _arg: &WordDrop<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'WordAll'
+    fn word_all(&mut self, _arg: &WordAll<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'WordFiveAttribute'
+    fn word_five_attribute(&mut self, _arg: &WordFiveAttribute<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'WordRandom'
+    fn word_random(&mut self, _arg: &WordRandom<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'WordReplace'
+    fn word_replace(&mut self, _arg: &WordReplace<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'WordCount'
+    fn word_count(&mut self, _arg: &WordCount<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'WordGen'
+    fn word_gen(&mut self, _arg: &WordGen<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'WordOther'
+    fn word_other(&mut self, _arg: &WordOther<'t>) -> Result<()> {
         Ok(())
     }
 
@@ -193,143 +423,8 @@ pub trait SkillGrammarTrait<'t> {
         Ok(())
     }
 
-    /// Semantic action for non-terminal 'Drops'
-    fn drops(&mut self, _arg: &Drops<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'ManyDrop'
-    fn many_drop(&mut self, _arg: &ManyDrop<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'AllDrops'
-    fn all_drops(&mut self, _arg: &AllDrops<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'FiveAttribute'
-    fn five_attribute(&mut self, _arg: &FiveAttribute<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'Quantity'
-    fn quantity(&mut self, _arg: &Quantity<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'Drop'
-    fn drop(&mut self, _arg: &Drop<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'NonColoredDrop'
-    fn non_colored_drop(&mut self, _arg: &NonColoredDrop<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'Color'
-    fn color(&mut self, _arg: &Color<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'RandomSuffix'
-    fn random_suffix(&mut self, _arg: &RandomSuffix<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'Fire'
-    fn fire(&mut self, _arg: &Fire<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'Water'
-    fn water(&mut self, _arg: &Water<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'Wood'
-    fn wood(&mut self, _arg: &Wood<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'Lightning'
-    fn lightning(&mut self, _arg: &Lightning<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'Dark'
-    fn dark(&mut self, _arg: &Dark<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'Recovery'
-    fn recovery(&mut self, _arg: &Recovery<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'Disturb'
-    fn disturb(&mut self, _arg: &Disturb<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'Bomb'
-    fn bomb(&mut self, _arg: &Bomb<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'DeadlyPoison'
-    fn deadly_poison(&mut self, _arg: &DeadlyPoison<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'Poison'
-    fn poison(&mut self, _arg: &Poison<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'WordChange'
-    fn word_change(&mut self, _arg: &WordChange<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'WordDrop'
-    fn word_drop(&mut self, _arg: &WordDrop<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'WordAll'
-    fn word_all(&mut self, _arg: &WordAll<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'WordFiveAttribute'
-    fn word_five_attribute(&mut self, _arg: &WordFiveAttribute<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'WordRandom'
-    fn word_random(&mut self, _arg: &WordRandom<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'WordReplace'
-    fn word_replace(&mut self, _arg: &WordReplace<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'WordCount'
-    fn word_count(&mut self, _arg: &WordCount<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'WordGen'
-    fn word_gen(&mut self, _arg: &WordGen<'t>) -> Result<()> {
-        Ok(())
-    }
-
-    /// Semantic action for non-terminal 'WordOther'
-    fn word_other(&mut self, _arg: &WordOther<'t>) -> Result<()> {
+    /// Semantic action for non-terminal 'WordBoard'
+    fn word_board(&mut self, _arg: &WordBoard<'t>) -> Result<()> {
         Ok(())
     }
 
@@ -370,6 +465,11 @@ pub trait SkillGrammarTrait<'t> {
 
     /// Semantic action for non-terminal 'Plus'
     fn plus(&mut self, _arg: &Plus<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'Multi'
+    fn multi(&mut self, _arg: &Multi<'t>) -> Result<()> {
         Ok(())
     }
 
@@ -515,7 +615,85 @@ pub struct ChangeDropStmtIncGenRandomDropSuffixQuantityWordGen<'t> {
 }
 
 ///
-/// Type derived for production 21
+/// Type derived for production 17
+///
+/// GenShapeStmtOptGroup: WordChange;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct GenShapeStmtOptGroupWordChange<'t> {
+    pub word_change: Box<WordChange<'t>>,
+}
+
+///
+/// Type derived for production 18
+///
+/// GenShapeStmtOptGroup: WordGen;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct GenShapeStmtOptGroupWordGen<'t> {
+    pub word_gen: Box<WordGen<'t>>,
+}
+
+///
+/// Type derived for production 22
+///
+/// GenShapeBlock: GenShapeBlockRowCol GenShapeBlockList /* Vec */;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct GenShapeBlockGenShapeBlockRowColGenShapeBlockList<'t> {
+    pub gen_shape_block_row_col: Box<GenShapeBlockRowCol<'t>>,
+    pub gen_shape_block_list: Vec<GenShapeBlockList<'t>>,
+}
+
+///
+/// Type derived for production 25
+///
+/// GenShapeBlock: GenShapeBlockOtherRowCol;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct GenShapeBlockGenShapeBlockOtherRowCol<'t> {
+    pub gen_shape_block_other_row_col: Box<GenShapeBlockOtherRowCol<'t>>,
+}
+
+///
+/// Type derived for production 28
+///
+/// GenShapeBlockOtherRowColSuffix: Ni Drops Wo GenShapeBlockOtherRowColOpt /* Option */;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct GenShapeBlockOtherRowColSuffixNiDropsWoGenShapeBlockOtherRowColOpt<'t> {
+    pub ni: Box<Ni<'t>>,
+    pub drops: Box<Drops<'t>>,
+    pub wo: Box<Wo<'t>>,
+    pub gen_shape_block_other_row_col_opt: Option<Box<GenShapeBlockOtherRowColOpt<'t>>>,
+}
+
+///
+/// Type derived for production 29
+///
+/// GenShapeBlockOtherRowColSuffix: Wo Drops Ni;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct GenShapeBlockOtherRowColSuffixWoDropsNi<'t> {
+    pub wo: Box<Wo<'t>>,
+    pub drops: Box<Drops<'t>>,
+    pub ni: Box<Ni<'t>>,
+}
+
+///
+/// Type derived for production 32
 ///
 /// GSStartPosition: GSSPSide;
 ///
@@ -527,7 +705,7 @@ pub struct GSStartPositionGSSPSide<'t> {
 }
 
 ///
-/// Type derived for production 22
+/// Type derived for production 33
 ///
 /// GSStartPosition: GSSPCenter;
 ///
@@ -539,7 +717,7 @@ pub struct GSStartPositionGSSPCenter<'t> {
 }
 
 ///
-/// Type derived for production 32
+/// Type derived for production 43
 ///
 /// GSSPCenterOpt0Group: WordVertical;
 ///
@@ -551,7 +729,7 @@ pub struct GSSPCenterOpt0GroupWordVertical<'t> {
 }
 
 ///
-/// Type derived for production 33
+/// Type derived for production 44
 ///
 /// GSSPCenterOpt0Group: WordHorizon;
 ///
@@ -563,7 +741,7 @@ pub struct GSSPCenterOpt0GroupWordHorizon<'t> {
 }
 
 ///
-/// Type derived for production 42
+/// Type derived for production 53
 ///
 /// GSSPCenterBlockOptGroup: WordCol;
 ///
@@ -575,7 +753,7 @@ pub struct GSSPCenterBlockOptGroupWordCol<'t> {
 }
 
 ///
-/// Type derived for production 43
+/// Type derived for production 54
 ///
 /// GSSPCenterBlockOptGroup: WordRow;
 ///
@@ -587,7 +765,7 @@ pub struct GSSPCenterBlockOptGroupWordRow<'t> {
 }
 
 ///
-/// Type derived for production 45
+/// Type derived for production 56
 ///
 /// Position: PositionLR GSSPSideWriteWidth;
 ///
@@ -600,7 +778,7 @@ pub struct PositionPositionLRGSSPSideWriteWidth<'t> {
 }
 
 ///
-/// Type derived for production 46
+/// Type derived for production 57
 ///
 /// Position: PositionTB;
 ///
@@ -612,67 +790,7 @@ pub struct PositionPositionTB<'t> {
 }
 
 ///
-/// Type derived for production 47
-///
-/// PositionLR: WordLeft;
-///
-#[allow(dead_code)]
-#[derive(Builder, Debug, Clone)]
-#[builder(crate = "derive_builder")]
-pub struct PositionLRWordLeft<'t> {
-    pub word_left: Box<WordLeft<'t>>,
-}
-
-///
-/// Type derived for production 48
-///
-/// PositionLR: WordRight;
-///
-#[allow(dead_code)]
-#[derive(Builder, Debug, Clone)]
-#[builder(crate = "derive_builder")]
-pub struct PositionLRWordRight<'t> {
-    pub word_right: Box<WordRight<'t>>,
-}
-
-///
-/// Type derived for production 49
-///
-/// PositionLR: WordLeftAndRight;
-///
-#[allow(dead_code)]
-#[derive(Builder, Debug, Clone)]
-#[builder(crate = "derive_builder")]
-pub struct PositionLRWordLeftAndRight<'t> {
-    pub word_left_and_right: Box<WordLeftAndRight<'t>>,
-}
-
-///
-/// Type derived for production 53
-///
-/// PositionTOrB: WordTop;
-///
-#[allow(dead_code)]
-#[derive(Builder, Debug, Clone)]
-#[builder(crate = "derive_builder")]
-pub struct PositionTOrBWordTop<'t> {
-    pub word_top: Box<WordTop<'t>>,
-}
-
-///
-/// Type derived for production 54
-///
-/// PositionTOrB: WordBottom;
-///
-#[allow(dead_code)]
-#[derive(Builder, Debug, Clone)]
-#[builder(crate = "derive_builder")]
-pub struct PositionTOrBWordBottom<'t> {
-    pub word_bottom: Box<WordBottom<'t>>,
-}
-
-///
-/// Type derived for production 55
+/// Type derived for production 58
 ///
 /// GSSPSideWriteWidth: WordSide GSSPSideWriteWidthOpt /* Option */;
 ///
@@ -685,7 +803,7 @@ pub struct GSSPSideWriteWidthWordSideGSSPSideWriteWidthOpt<'t> {
 }
 
 ///
-/// Type derived for production 56
+/// Type derived for production 59
 ///
 /// GSSPSideWriteWidth: WordVertical;
 ///
@@ -697,7 +815,7 @@ pub struct GSSPSideWriteWidthWordVertical<'t> {
 }
 
 ///
-/// Type derived for production 59
+/// Type derived for production 62
 ///
 /// PositionLRTB: WordLeft;
 ///
@@ -709,7 +827,7 @@ pub struct PositionLRTBWordLeft<'t> {
 }
 
 ///
-/// Type derived for production 60
+/// Type derived for production 63
 ///
 /// PositionLRTB: WordRight;
 ///
@@ -721,7 +839,7 @@ pub struct PositionLRTBWordRight<'t> {
 }
 
 ///
-/// Type derived for production 61
+/// Type derived for production 64
 ///
 /// PositionLRTB: WordTop;
 ///
@@ -733,7 +851,7 @@ pub struct PositionLRTBWordTop<'t> {
 }
 
 ///
-/// Type derived for production 62
+/// Type derived for production 65
 ///
 /// PositionLRTB: WordBottom;
 ///
@@ -745,7 +863,228 @@ pub struct PositionLRTBWordBottom<'t> {
 }
 
 ///
+/// Type derived for production 66
+///
+/// PositionLR: WordLeft;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct PositionLRWordLeft<'t> {
+    pub word_left: Box<WordLeft<'t>>,
+}
+
+///
+/// Type derived for production 67
+///
+/// PositionLR: WordRight;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct PositionLRWordRight<'t> {
+    pub word_right: Box<WordRight<'t>>,
+}
+
+///
+/// Type derived for production 68
+///
+/// PositionLR: WordLeftAndRight;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct PositionLRWordLeftAndRight<'t> {
+    pub word_left_and_right: Box<WordLeftAndRight<'t>>,
+}
+
+///
+/// Type derived for production 72
+///
+/// PositionTOrB: WordTop;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct PositionTOrBWordTop<'t> {
+    pub word_top: Box<WordTop<'t>>,
+}
+
+///
+/// Type derived for production 73
+///
+/// PositionTOrB: WordBottom;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct PositionTOrBWordBottom<'t> {
+    pub word_bottom: Box<WordBottom<'t>>,
+}
+
+///
+/// Type derived for production 75
+///
+/// ShapeType: ShapeOfL;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeTypeShapeOfL<'t> {
+    pub shape_of_l: Box<ShapeOfL<'t>>,
+}
+
+///
 /// Type derived for production 76
+///
+/// ShapeType: ShapeTypeOpt /* Option */ ShapeOfZ;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeTypeShapeTypeOptShapeOfZ<'t> {
+    pub shape_type_opt: Option<Box<ShapeTypeOpt<'t>>>,
+    pub shape_of_z: Box<ShapeOfZ<'t>>,
+}
+
+///
+/// Type derived for production 77
+///
+/// ShapeType: ShapeOfCross;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeTypeShapeOfCross<'t> {
+    pub shape_of_cross: Box<ShapeOfCross<'t>>,
+}
+
+///
+/// Type derived for production 78
+///
+/// ShapeType: Size No ShapeOfSquare;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeTypeSizeNoShapeOfSquare<'t> {
+    pub size: Box<Size<'t>>,
+    pub no: Box<No<'t>>,
+    pub shape_of_square: Box<ShapeOfSquare<'t>>,
+}
+
+///
+/// Type derived for production 79
+///
+/// ShapeType: ShapeOfBoardPerimeter;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeTypeShapeOfBoardPerimeter<'t> {
+    pub shape_of_board_perimeter: Box<ShapeOfBoardPerimeter<'t>>,
+}
+
+///
+/// Type derived for production 80
+///
+/// ShapeType: ShapeOfBoardCenter;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeTypeShapeOfBoardCenter<'t> {
+    pub shape_of_board_center: Box<ShapeOfBoardCenter<'t>>,
+}
+
+///
+/// Type derived for production 81
+///
+/// ShapeType: ShapeOfBoardTop;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeTypeShapeOfBoardTop<'t> {
+    pub shape_of_board_top: Box<ShapeOfBoardTop<'t>>,
+}
+
+///
+/// Type derived for production 82
+///
+/// ShapeType: ShapeOfBoardBottom;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeTypeShapeOfBoardBottom<'t> {
+    pub shape_of_board_bottom: Box<ShapeOfBoardBottom<'t>>,
+}
+
+///
+/// Type derived for production 83
+///
+/// ShapeType: ShapeOfBoardCorners;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeTypeShapeOfBoardCorners<'t> {
+    pub shape_of_board_corners: Box<ShapeOfBoardCorners<'t>>,
+}
+
+///
+/// Type derived for production 84
+///
+/// ShapeType: ShapeOfSpiderweb;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeTypeShapeOfSpiderweb<'t> {
+    pub shape_of_spiderweb: Box<ShapeOfSpiderweb<'t>>,
+}
+
+///
+/// Type derived for production 85
+///
+/// ShapeType: ShapeOfCrescentMoon;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeTypeShapeOfCrescentMoon<'t> {
+    pub shape_of_crescent_moon: Box<ShapeOfCrescentMoon<'t>>,
+}
+
+///
+/// Type derived for production 86
+///
+/// ShapeType: ShapeTypeOpt0 /* Option */ ShapeOfOblique;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeTypeShapeTypeOpt0ShapeOfOblique<'t> {
+    pub shape_type_opt0: Option<Box<ShapeTypeOpt0<'t>>>,
+    pub shape_of_oblique: Box<ShapeOfOblique<'t>>,
+}
+
+///
+/// Type derived for production 87
+///
+/// ShapeType: PosInt ShapeOfSomeKind;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeTypePosIntShapeOfSomeKind<'t> {
+    pub pos_int: Box<PosInt<'t>>,
+    pub shape_of_some_kind: Box<ShapeOfSomeKind<'t>>,
+}
+
+///
+/// Type derived for production 92
 ///
 /// Drops: Drop DropsSuffix;
 ///
@@ -758,7 +1097,7 @@ pub struct DropsDropDropsSuffix<'t> {
 }
 
 ///
-/// Type derived for production 77
+/// Type derived for production 93
 ///
 /// DropsSuffix: DropsList /* Vec */;
 ///
@@ -770,7 +1109,7 @@ pub struct DropsSuffixDropsList<'t> {
 }
 
 ///
-/// Type derived for production 78
+/// Type derived for production 94
 ///
 /// Drops: FiveAttribute DropsList0 /* Vec */;
 ///
@@ -783,7 +1122,7 @@ pub struct DropsFiveAttributeDropsList0<'t> {
 }
 
 ///
-/// Type derived for production 79
+/// Type derived for production 95
 ///
 /// DropsSuffix: And Drop;
 ///
@@ -796,7 +1135,7 @@ pub struct DropsSuffixAndDrop<'t> {
 }
 
 ///
-/// Type derived for production 84
+/// Type derived for production 100
 ///
 /// ManyDrop: Camma Drop;
 ///
@@ -809,7 +1148,7 @@ pub struct ManyDropCammaDrop<'t> {
 }
 
 ///
-/// Type derived for production 85
+/// Type derived for production 101
 ///
 /// ManyDrop: Plus Drop;
 ///
@@ -822,7 +1161,7 @@ pub struct ManyDropPlusDrop<'t> {
 }
 
 ///
-/// Type derived for production 93
+/// Type derived for production 109
 ///
 /// Drop: Color DropOpt /* Option */;
 ///
@@ -835,7 +1174,7 @@ pub struct DropColorDropOpt<'t> {
 }
 
 ///
-/// Type derived for production 94
+/// Type derived for production 110
 ///
 /// Drop: NonColoredDrop DropOpt0 /* Option */;
 ///
@@ -848,7 +1187,7 @@ pub struct DropNonColoredDropDropOpt0<'t> {
 }
 
 ///
-/// Type derived for production 99
+/// Type derived for production 115
 ///
 /// NonColoredDrop: Recovery;
 ///
@@ -860,7 +1199,7 @@ pub struct NonColoredDropRecovery<'t> {
 }
 
 ///
-/// Type derived for production 100
+/// Type derived for production 116
 ///
 /// NonColoredDrop: Disturb;
 ///
@@ -872,7 +1211,7 @@ pub struct NonColoredDropDisturb<'t> {
 }
 
 ///
-/// Type derived for production 101
+/// Type derived for production 117
 ///
 /// NonColoredDrop: Bomb;
 ///
@@ -884,7 +1223,7 @@ pub struct NonColoredDropBomb<'t> {
 }
 
 ///
-/// Type derived for production 102
+/// Type derived for production 118
 ///
 /// NonColoredDrop: Poison;
 ///
@@ -896,7 +1235,7 @@ pub struct NonColoredDropPoison<'t> {
 }
 
 ///
-/// Type derived for production 103
+/// Type derived for production 119
 ///
 /// NonColoredDrop: DeadlyPoison;
 ///
@@ -908,7 +1247,7 @@ pub struct NonColoredDropDeadlyPoison<'t> {
 }
 
 ///
-/// Type derived for production 104
+/// Type derived for production 120
 ///
 /// Color: Fire;
 ///
@@ -920,7 +1259,7 @@ pub struct ColorFire<'t> {
 }
 
 ///
-/// Type derived for production 105
+/// Type derived for production 121
 ///
 /// Color: Water;
 ///
@@ -932,7 +1271,7 @@ pub struct ColorWater<'t> {
 }
 
 ///
-/// Type derived for production 106
+/// Type derived for production 122
 ///
 /// Color: Wood;
 ///
@@ -944,7 +1283,7 @@ pub struct ColorWood<'t> {
 }
 
 ///
-/// Type derived for production 107
+/// Type derived for production 123
 ///
 /// Color: Lightning;
 ///
@@ -956,7 +1295,7 @@ pub struct ColorLightning<'t> {
 }
 
 ///
-/// Type derived for production 108
+/// Type derived for production 124
 ///
 /// Color: Dark;
 ///
@@ -965,6 +1304,30 @@ pub struct ColorLightning<'t> {
 #[builder(crate = "derive_builder")]
 pub struct ColorDark<'t> {
     pub dark: Box<Dark<'t>>,
+}
+
+///
+/// Type derived for production 159
+///
+/// WordCountOptGroup: '個';
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct WordCountOptGroup個<'t> {
+    pub 個: Token<'t>, /* 個 */
+}
+
+///
+/// Type derived for production 160
+///
+/// WordCountOptGroup: 'つ';
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct WordCountOptGroupつ<'t> {
+    pub つ: Token<'t>, /* つ */
 }
 
 // -------------------------------------------------------------------------------------------------
@@ -1460,9 +1823,63 @@ pub struct GenRandomDropStmt1<'t> {
 /// Type derived for non-terminal GenShapeBlock
 ///
 #[allow(dead_code)]
+#[derive(Debug, Clone)]
+pub enum GenShapeBlock<'t> {
+    GenShapeBlockRowColGenShapeBlockList(GenShapeBlockGenShapeBlockRowColGenShapeBlockList<'t>),
+    GenShapeBlockOtherRowCol(GenShapeBlockGenShapeBlockOtherRowCol<'t>),
+}
+
+///
+/// Type derived for non-terminal GenShapeBlockList
+///
+#[allow(dead_code)]
 #[derive(Builder, Debug, Clone)]
 #[builder(crate = "derive_builder")]
-pub struct GenShapeBlock<'t> {
+pub struct GenShapeBlockList<'t> {
+    pub camma: Box<Camma<'t>>,
+    pub gen_shape_block_row_col: Box<GenShapeBlockRowCol<'t>>,
+}
+
+///
+/// Type derived for non-terminal GenShapeBlockOtherRowCol
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct GenShapeBlockOtherRowCol<'t> {
+    pub shape_type: Box<ShapeType<'t>>,
+    pub gen_shape_block_other_row_col_suffix: Box<GenShapeBlockOtherRowColSuffix<'t>>,
+}
+
+///
+/// Type derived for non-terminal GenShapeBlockOtherRowColOpt
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct GenShapeBlockOtherRowColOpt<'t> {
+    pub quantity: Box<Quantity<'t>>,
+}
+
+///
+/// Type derived for non-terminal GenShapeBlockOtherRowColSuffix
+///
+#[allow(dead_code)]
+#[derive(Debug, Clone)]
+pub enum GenShapeBlockOtherRowColSuffix<'t> {
+    NiDropsWoGenShapeBlockOtherRowColOpt(
+        GenShapeBlockOtherRowColSuffixNiDropsWoGenShapeBlockOtherRowColOpt<'t>,
+    ),
+    WoDropsNi(GenShapeBlockOtherRowColSuffixWoDropsNi<'t>),
+}
+
+///
+/// Type derived for non-terminal GenShapeBlockRowCol
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct GenShapeBlockRowCol<'t> {
     pub g_s_start_position: Box<GSStartPosition<'t>>,
     pub wo: Box<Wo<'t>>,
     pub drop: Box<Drop<'t>>,
@@ -1488,19 +1905,27 @@ pub struct GenShapeNumOfGen<'t> {
 #[builder(crate = "derive_builder")]
 pub struct GenShapeStmt<'t> {
     pub gen_shape_block: Box<GenShapeBlock<'t>>,
-    pub gen_shape_stmt_list: Vec<GenShapeStmtList<'t>>,
-    pub word_change: Box<WordChange<'t>>,
+    pub gen_shape_stmt_opt: Option<Box<GenShapeStmtOpt<'t>>>,
 }
 
 ///
-/// Type derived for non-terminal GenShapeStmtList
+/// Type derived for non-terminal GenShapeStmtOpt
 ///
 #[allow(dead_code)]
 #[derive(Builder, Debug, Clone)]
 #[builder(crate = "derive_builder")]
-pub struct GenShapeStmtList<'t> {
-    pub camma: Box<Camma<'t>>,
-    pub gen_shape_block: Box<GenShapeBlock<'t>>,
+pub struct GenShapeStmtOpt<'t> {
+    pub gen_shape_stmt_opt_group: Box<GenShapeStmtOptGroup<'t>>,
+}
+
+///
+/// Type derived for non-terminal GenShapeStmtOptGroup
+///
+#[allow(dead_code)]
+#[derive(Debug, Clone)]
+pub enum GenShapeStmtOptGroup<'t> {
+    WordChange(GenShapeStmtOptGroupWordChange<'t>),
+    WordGen(GenShapeStmtOptGroupWordGen<'t>),
 }
 
 ///
@@ -1537,6 +1962,16 @@ pub enum ManyDrop<'t> {
 }
 
 ///
+/// Type derived for non-terminal Multi
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct Multi<'t> {
+    pub multi: Token<'t>, /* × */
+}
+
+///
 /// Type derived for non-terminal Ni
 ///
 #[allow(dead_code)]
@@ -1567,6 +2002,18 @@ pub enum NonColoredDrop<'t> {
     Bomb(NonColoredDropBomb<'t>),
     Poison(NonColoredDropPoison<'t>),
     DeadlyPoison(NonColoredDropDeadlyPoison<'t>),
+}
+
+///
+/// Type derived for non-terminal OnBoard
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct OnBoard<'t> {
+    pub word_board: Box<WordBoard<'t>>,
+    pub word_top: Box<WordTop<'t>>,
+    pub ni: Box<Ni<'t>>,
 }
 
 ///
@@ -1718,6 +2165,189 @@ pub struct Recovery<'t> {
 }
 
 ///
+/// Type derived for non-terminal ShapeOfBoardBottom
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeOfBoardBottom<'t> {
+    pub shape_of_board_bottom: Token<'t>, /* 盤面下部 */
+}
+
+///
+/// Type derived for non-terminal ShapeOfBoardCenter
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeOfBoardCenter<'t> {
+    pub shape_of_board_center: Token<'t>, /* 盤面中央 */
+}
+
+///
+/// Type derived for non-terminal ShapeOfBoardCorners
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeOfBoardCorners<'t> {
+    pub shape_of_board_corners: Token<'t>, /* 盤面4隅 */
+}
+
+///
+/// Type derived for non-terminal ShapeOfBoardPerimeter
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeOfBoardPerimeter<'t> {
+    pub shape_of_board_perimeter: Token<'t>, /* 盤面外周 */
+}
+
+///
+/// Type derived for non-terminal ShapeOfBoardTop
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeOfBoardTop<'t> {
+    pub shape_of_board_top: Token<'t>, /* 盤面上部 */
+}
+
+///
+/// Type derived for non-terminal ShapeOfCrescentMoon
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeOfCrescentMoon<'t> {
+    pub shape_of_crescent_moon: Token<'t>, /* 三日月状 */
+}
+
+///
+/// Type derived for non-terminal ShapeOfCross
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeOfCross<'t> {
+    pub shape_of_cross: Token<'t>, /* 十字型 */
+}
+
+///
+/// Type derived for non-terminal ShapeOfL
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeOfL<'t> {
+    pub shape_of_l: Token<'t>, /* L字型 */
+}
+
+///
+/// Type derived for non-terminal ShapeOfOblique
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeOfOblique<'t> {
+    pub shape_of_oblique: Token<'t>, /* 斜め */
+}
+
+///
+/// Type derived for non-terminal ShapeOfSomeKind
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeOfSomeKind<'t> {
+    pub shape_of_some_kind: Token<'t>, /* の形 */
+}
+
+///
+/// Type derived for non-terminal ShapeOfSpiderweb
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeOfSpiderweb<'t> {
+    pub shape_of_spiderweb: Token<'t>, /* 蜘蛛の巣状 */
+}
+
+///
+/// Type derived for non-terminal ShapeOfSquare
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeOfSquare<'t> {
+    pub shape_of_square: Token<'t>, /* 正方形 */
+}
+
+///
+/// Type derived for non-terminal ShapeOfZ
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeOfZ<'t> {
+    pub shape_of_z: Token<'t>, /* Z字型 */
+}
+
+///
+/// Type derived for non-terminal ShapeType
+///
+#[allow(dead_code)]
+#[derive(Debug, Clone)]
+pub enum ShapeType<'t> {
+    ShapeOfL(ShapeTypeShapeOfL<'t>),
+    ShapeTypeOptShapeOfZ(ShapeTypeShapeTypeOptShapeOfZ<'t>),
+    ShapeOfCross(ShapeTypeShapeOfCross<'t>),
+    SizeNoShapeOfSquare(ShapeTypeSizeNoShapeOfSquare<'t>),
+    ShapeOfBoardPerimeter(ShapeTypeShapeOfBoardPerimeter<'t>),
+    ShapeOfBoardCenter(ShapeTypeShapeOfBoardCenter<'t>),
+    ShapeOfBoardTop(ShapeTypeShapeOfBoardTop<'t>),
+    ShapeOfBoardBottom(ShapeTypeShapeOfBoardBottom<'t>),
+    ShapeOfBoardCorners(ShapeTypeShapeOfBoardCorners<'t>),
+    ShapeOfSpiderweb(ShapeTypeShapeOfSpiderweb<'t>),
+    ShapeOfCrescentMoon(ShapeTypeShapeOfCrescentMoon<'t>),
+    ShapeTypeOpt0ShapeOfOblique(ShapeTypeShapeTypeOpt0ShapeOfOblique<'t>),
+    PosIntShapeOfSomeKind(ShapeTypePosIntShapeOfSomeKind<'t>),
+}
+
+///
+/// Type derived for non-terminal ShapeTypeOpt
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeTypeOpt<'t> {
+    pub on_board: Box<OnBoard<'t>>,
+}
+
+///
+/// Type derived for non-terminal ShapeTypeOpt0
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ShapeTypeOpt0<'t> {
+    pub on_board: Box<OnBoard<'t>>,
+}
+
+///
+/// Type derived for non-terminal Size
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct Size<'t> {
+    pub pos_int: Box<PosInt<'t>>,
+    pub multi: Box<Multi<'t>>,
+    pub pos_int0: Box<PosInt<'t>>,
+}
+
+///
 /// Type derived for non-terminal SkillLines
 ///
 #[allow(dead_code)]
@@ -1779,6 +2409,16 @@ pub struct WordAll<'t> {
 }
 
 ///
+/// Type derived for non-terminal WordBoard
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct WordBoard<'t> {
+    pub word_board: Token<'t>, /* 盤面 */
+}
+
+///
 /// Type derived for non-terminal WordBottom
 ///
 #[allow(dead_code)]
@@ -1815,7 +2455,27 @@ pub struct WordCol<'t> {
 #[derive(Builder, Debug, Clone)]
 #[builder(crate = "derive_builder")]
 pub struct WordCount<'t> {
-    pub word_count: Token<'t>, /* 個 */
+    pub word_count_opt: Option<Box<WordCountOpt<'t>>>,
+}
+
+///
+/// Type derived for non-terminal WordCountOpt
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct WordCountOpt<'t> {
+    pub word_count_opt_group: Box<WordCountOptGroup<'t>>,
+}
+
+///
+/// Type derived for non-terminal WordCountOptGroup
+///
+#[allow(dead_code)]
+#[derive(Debug, Clone)]
+pub enum WordCountOptGroup<'t> {
+    個(WordCountOptGroup個<'t>),
+    つ(WordCountOptGroupつ<'t>),
 }
 
 ///
@@ -2031,15 +2691,23 @@ pub enum ASTType<'t> {
     GSStartPosition(GSStartPosition<'t>),
     GenRandomDropStmt1(GenRandomDropStmt1<'t>),
     GenShapeBlock(GenShapeBlock<'t>),
+    GenShapeBlockList(Vec<GenShapeBlockList<'t>>),
+    GenShapeBlockOtherRowCol(GenShapeBlockOtherRowCol<'t>),
+    GenShapeBlockOtherRowColOpt(Option<Box<GenShapeBlockOtherRowColOpt<'t>>>),
+    GenShapeBlockOtherRowColSuffix(GenShapeBlockOtherRowColSuffix<'t>),
+    GenShapeBlockRowCol(GenShapeBlockRowCol<'t>),
     GenShapeNumOfGen(GenShapeNumOfGen<'t>),
     GenShapeStmt(GenShapeStmt<'t>),
-    GenShapeStmtList(Vec<GenShapeStmtList<'t>>),
+    GenShapeStmtOpt(Option<Box<GenShapeStmtOpt<'t>>>),
+    GenShapeStmtOptGroup(GenShapeStmtOptGroup<'t>),
     Lightning(Lightning<'t>),
     Line(Line<'t>),
     ManyDrop(ManyDrop<'t>),
+    Multi(Multi<'t>),
     Ni(Ni<'t>),
     No(No<'t>),
     NonColoredDrop(NonColoredDrop<'t>),
+    OnBoard(OnBoard<'t>),
     Period(Period<'t>),
     Plus(Plus<'t>),
     Poison(Poison<'t>),
@@ -2054,16 +2722,36 @@ pub enum ASTType<'t> {
     QuantityOpt(Option<Box<QuantityOpt<'t>>>),
     RandomSuffix(RandomSuffix<'t>),
     Recovery(Recovery<'t>),
+    ShapeOfBoardBottom(ShapeOfBoardBottom<'t>),
+    ShapeOfBoardCenter(ShapeOfBoardCenter<'t>),
+    ShapeOfBoardCorners(ShapeOfBoardCorners<'t>),
+    ShapeOfBoardPerimeter(ShapeOfBoardPerimeter<'t>),
+    ShapeOfBoardTop(ShapeOfBoardTop<'t>),
+    ShapeOfCrescentMoon(ShapeOfCrescentMoon<'t>),
+    ShapeOfCross(ShapeOfCross<'t>),
+    ShapeOfL(ShapeOfL<'t>),
+    ShapeOfOblique(ShapeOfOblique<'t>),
+    ShapeOfSomeKind(ShapeOfSomeKind<'t>),
+    ShapeOfSpiderweb(ShapeOfSpiderweb<'t>),
+    ShapeOfSquare(ShapeOfSquare<'t>),
+    ShapeOfZ(ShapeOfZ<'t>),
+    ShapeType(ShapeType<'t>),
+    ShapeTypeOpt(Option<Box<ShapeTypeOpt<'t>>>),
+    ShapeTypeOpt0(Option<Box<ShapeTypeOpt0<'t>>>),
+    Size(Size<'t>),
     SkillLines(SkillLines<'t>),
     So(So<'t>),
     Water(Water<'t>),
     Wo(Wo<'t>),
     Wood(Wood<'t>),
     WordAll(WordAll<'t>),
+    WordBoard(WordBoard<'t>),
     WordBottom(WordBottom<'t>),
     WordChange(WordChange<'t>),
     WordCol(WordCol<'t>),
     WordCount(WordCount<'t>),
+    WordCountOpt(Option<Box<WordCountOpt<'t>>>),
+    WordCountOptGroup(WordCountOptGroup<'t>),
     WordDrop(WordDrop<'t>),
     WordFiveAttribute(WordFiveAttribute<'t>),
     WordGen(WordGen<'t>),
@@ -2603,75 +3291,6 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
 
     /// Semantic action for production 14:
     ///
-    /// DropRefreshStmt: RandomSuffix WordDrop Wo WordReplace;
-    ///
-    #[parol_runtime::function_name::named]
-    fn drop_refresh_stmt(
-        &mut self,
-        _random_suffix: &ParseTreeStackEntry<'t>,
-        _word_drop: &ParseTreeStackEntry<'t>,
-        _wo: &ParseTreeStackEntry<'t>,
-        _word_replace: &ParseTreeStackEntry<'t>,
-        _parse_tree: &Tree<ParseTreeType<'t>>,
-    ) -> Result<()> {
-        let context = function_name!();
-        trace!("{}", self.trace_item_stack(context));
-        let word_replace = pop_item!(self, word_replace, WordReplace, context);
-        let wo = pop_item!(self, wo, Wo, context);
-        let word_drop = pop_item!(self, word_drop, WordDrop, context);
-        let random_suffix = pop_item!(self, random_suffix, RandomSuffix, context);
-        let drop_refresh_stmt_built = DropRefreshStmtBuilder::default()
-            .random_suffix(Box::new(random_suffix))
-            .word_drop(Box::new(word_drop))
-            .wo(Box::new(wo))
-            .word_replace(Box::new(word_replace))
-            .build()
-            .into_diagnostic()?;
-        // Calling user action here
-        self.user_grammar
-            .drop_refresh_stmt(&drop_refresh_stmt_built)?;
-        self.push(ASTType::DropRefreshStmt(drop_refresh_stmt_built), context);
-        Ok(())
-    }
-
-    /// Semantic action for production 15:
-    ///
-    /// ChangeDropBlockOtherFirst: Drops Wo Drop Ni;
-    ///
-    #[parol_runtime::function_name::named]
-    fn change_drop_block_other_first(
-        &mut self,
-        _drops: &ParseTreeStackEntry<'t>,
-        _wo: &ParseTreeStackEntry<'t>,
-        _drop: &ParseTreeStackEntry<'t>,
-        _ni: &ParseTreeStackEntry<'t>,
-        _parse_tree: &Tree<ParseTreeType<'t>>,
-    ) -> Result<()> {
-        let context = function_name!();
-        trace!("{}", self.trace_item_stack(context));
-        let ni = pop_item!(self, ni, Ni, context);
-        let drop = pop_item!(self, drop, Drop, context);
-        let wo = pop_item!(self, wo, Wo, context);
-        let drops = pop_item!(self, drops, Drops, context);
-        let change_drop_block_other_first_built = ChangeDropBlockOtherFirstBuilder::default()
-            .drops(Box::new(drops))
-            .wo(Box::new(wo))
-            .drop(Box::new(drop))
-            .ni(Box::new(ni))
-            .build()
-            .into_diagnostic()?;
-        // Calling user action here
-        self.user_grammar
-            .change_drop_block_other_first(&change_drop_block_other_first_built)?;
-        self.push(
-            ASTType::ChangeDropBlockOtherFirst(change_drop_block_other_first_built),
-            context,
-        );
-        Ok(())
-    }
-
-    /// Semantic action for production 16:
-    ///
     /// GenRandomDropStmt1: RandomSuffix Drops Wo Quantity WordGen;
     ///
     #[parol_runtime::function_name::named]
@@ -2709,28 +3328,24 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 17:
+    /// Semantic action for production 15:
     ///
-    /// GenShapeStmt: GenShapeBlock GenShapeStmtList /* Vec */ WordChange;
+    /// GenShapeStmt: GenShapeBlock GenShapeStmtOpt /* Option */;
     ///
     #[parol_runtime::function_name::named]
     fn gen_shape_stmt(
         &mut self,
         _gen_shape_block: &ParseTreeStackEntry<'t>,
-        _gen_shape_stmt_list: &ParseTreeStackEntry<'t>,
-        _word_change: &ParseTreeStackEntry<'t>,
+        _gen_shape_stmt_opt: &ParseTreeStackEntry<'t>,
         _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let word_change = pop_item!(self, word_change, WordChange, context);
-        let gen_shape_stmt_list =
-            pop_and_reverse_item!(self, gen_shape_stmt_list, GenShapeStmtList, context);
+        let gen_shape_stmt_opt = pop_item!(self, gen_shape_stmt_opt, GenShapeStmtOpt, context);
         let gen_shape_block = pop_item!(self, gen_shape_block, GenShapeBlock, context);
         let gen_shape_stmt_built = GenShapeStmtBuilder::default()
             .gen_shape_block(Box::new(gen_shape_block))
-            .gen_shape_stmt_list(gen_shape_stmt_list)
-            .word_change(Box::new(word_change))
+            .gen_shape_stmt_opt(gen_shape_stmt_opt)
             .build()
             .into_diagnostic()?;
         // Calling user action here
@@ -2739,57 +3354,283 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 18:
+    /// Semantic action for production 16:
     ///
-    /// GenShapeStmtList /* Vec<T>::Push */: Camma GenShapeBlock GenShapeStmtList;
+    /// GenShapeStmtOpt /* Option<T>::Some */: GenShapeStmtOptGroup;
     ///
     #[parol_runtime::function_name::named]
-    fn gen_shape_stmt_list_0(
+    fn gen_shape_stmt_opt_0(
         &mut self,
-        _camma: &ParseTreeStackEntry<'t>,
-        _gen_shape_block: &ParseTreeStackEntry<'t>,
-        _gen_shape_stmt_list: &ParseTreeStackEntry<'t>,
+        _gen_shape_stmt_opt_group: &ParseTreeStackEntry<'t>,
         _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let mut gen_shape_stmt_list =
-            pop_item!(self, gen_shape_stmt_list, GenShapeStmtList, context);
-        let gen_shape_block = pop_item!(self, gen_shape_block, GenShapeBlock, context);
-        let camma = pop_item!(self, camma, Camma, context);
-        let gen_shape_stmt_list_0_built = GenShapeStmtListBuilder::default()
-            .gen_shape_block(Box::new(gen_shape_block))
-            .camma(Box::new(camma))
+        let gen_shape_stmt_opt_group = pop_item!(
+            self,
+            gen_shape_stmt_opt_group,
+            GenShapeStmtOptGroup,
+            context
+        );
+        let gen_shape_stmt_opt_0_built = GenShapeStmtOptBuilder::default()
+            .gen_shape_stmt_opt_group(Box::new(gen_shape_stmt_opt_group))
             .build()
             .into_diagnostic()?;
-        // Add an element to the vector
-        gen_shape_stmt_list.push(gen_shape_stmt_list_0_built);
-        self.push(ASTType::GenShapeStmtList(gen_shape_stmt_list), context);
-        Ok(())
-    }
-
-    /// Semantic action for production 19:
-    ///
-    /// GenShapeStmtList /* Vec<T>::New */: ;
-    ///
-    #[parol_runtime::function_name::named]
-    fn gen_shape_stmt_list_1(&mut self, _parse_tree: &Tree<ParseTreeType<'t>>) -> Result<()> {
-        let context = function_name!();
-        trace!("{}", self.trace_item_stack(context));
-        let gen_shape_stmt_list_1_built = Vec::new();
         self.push(
-            ASTType::GenShapeStmtList(gen_shape_stmt_list_1_built),
+            ASTType::GenShapeStmtOpt(Some(Box::new(gen_shape_stmt_opt_0_built))),
             context,
         );
         Ok(())
     }
 
-    /// Semantic action for production 20:
+    /// Semantic action for production 17:
     ///
-    /// GenShapeBlock: GSStartPosition Wo Drop Ni;
+    /// GenShapeStmtOptGroup: WordChange;
     ///
     #[parol_runtime::function_name::named]
-    fn gen_shape_block(
+    fn gen_shape_stmt_opt_group_0(
+        &mut self,
+        _word_change: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_change = pop_item!(self, word_change, WordChange, context);
+        let gen_shape_stmt_opt_group_0_built = GenShapeStmtOptGroupWordChangeBuilder::default()
+            .word_change(Box::new(word_change))
+            .build()
+            .into_diagnostic()?;
+        let gen_shape_stmt_opt_group_0_built =
+            GenShapeStmtOptGroup::WordChange(gen_shape_stmt_opt_group_0_built);
+        self.push(
+            ASTType::GenShapeStmtOptGroup(gen_shape_stmt_opt_group_0_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 18:
+    ///
+    /// GenShapeStmtOptGroup: WordGen;
+    ///
+    #[parol_runtime::function_name::named]
+    fn gen_shape_stmt_opt_group_1(
+        &mut self,
+        _word_gen: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_gen = pop_item!(self, word_gen, WordGen, context);
+        let gen_shape_stmt_opt_group_1_built = GenShapeStmtOptGroupWordGenBuilder::default()
+            .word_gen(Box::new(word_gen))
+            .build()
+            .into_diagnostic()?;
+        let gen_shape_stmt_opt_group_1_built =
+            GenShapeStmtOptGroup::WordGen(gen_shape_stmt_opt_group_1_built);
+        self.push(
+            ASTType::GenShapeStmtOptGroup(gen_shape_stmt_opt_group_1_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 19:
+    ///
+    /// GenShapeStmtOpt /* Option<T>::None */: ;
+    ///
+    #[parol_runtime::function_name::named]
+    fn gen_shape_stmt_opt_1(&mut self, _parse_tree: &Tree<ParseTreeType<'t>>) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        self.push(ASTType::GenShapeStmtOpt(None), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 20:
+    ///
+    /// DropRefreshStmt: RandomSuffix WordDrop Wo WordReplace;
+    ///
+    #[parol_runtime::function_name::named]
+    fn drop_refresh_stmt(
+        &mut self,
+        _random_suffix: &ParseTreeStackEntry<'t>,
+        _word_drop: &ParseTreeStackEntry<'t>,
+        _wo: &ParseTreeStackEntry<'t>,
+        _word_replace: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_replace = pop_item!(self, word_replace, WordReplace, context);
+        let wo = pop_item!(self, wo, Wo, context);
+        let word_drop = pop_item!(self, word_drop, WordDrop, context);
+        let random_suffix = pop_item!(self, random_suffix, RandomSuffix, context);
+        let drop_refresh_stmt_built = DropRefreshStmtBuilder::default()
+            .random_suffix(Box::new(random_suffix))
+            .word_drop(Box::new(word_drop))
+            .wo(Box::new(wo))
+            .word_replace(Box::new(word_replace))
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar
+            .drop_refresh_stmt(&drop_refresh_stmt_built)?;
+        self.push(ASTType::DropRefreshStmt(drop_refresh_stmt_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 21:
+    ///
+    /// ChangeDropBlockOtherFirst: Drops Wo Drop Ni;
+    ///
+    #[parol_runtime::function_name::named]
+    fn change_drop_block_other_first(
+        &mut self,
+        _drops: &ParseTreeStackEntry<'t>,
+        _wo: &ParseTreeStackEntry<'t>,
+        _drop: &ParseTreeStackEntry<'t>,
+        _ni: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let ni = pop_item!(self, ni, Ni, context);
+        let drop = pop_item!(self, drop, Drop, context);
+        let wo = pop_item!(self, wo, Wo, context);
+        let drops = pop_item!(self, drops, Drops, context);
+        let change_drop_block_other_first_built = ChangeDropBlockOtherFirstBuilder::default()
+            .drops(Box::new(drops))
+            .wo(Box::new(wo))
+            .drop(Box::new(drop))
+            .ni(Box::new(ni))
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar
+            .change_drop_block_other_first(&change_drop_block_other_first_built)?;
+        self.push(
+            ASTType::ChangeDropBlockOtherFirst(change_drop_block_other_first_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 22:
+    ///
+    /// GenShapeBlock: GenShapeBlockRowCol GenShapeBlockList /* Vec */;
+    ///
+    #[parol_runtime::function_name::named]
+    fn gen_shape_block_0(
+        &mut self,
+        _gen_shape_block_row_col: &ParseTreeStackEntry<'t>,
+        _gen_shape_block_list: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let gen_shape_block_list =
+            pop_and_reverse_item!(self, gen_shape_block_list, GenShapeBlockList, context);
+        let gen_shape_block_row_col =
+            pop_item!(self, gen_shape_block_row_col, GenShapeBlockRowCol, context);
+        let gen_shape_block_0_built =
+            GenShapeBlockGenShapeBlockRowColGenShapeBlockListBuilder::default()
+                .gen_shape_block_row_col(Box::new(gen_shape_block_row_col))
+                .gen_shape_block_list(gen_shape_block_list)
+                .build()
+                .into_diagnostic()?;
+        let gen_shape_block_0_built =
+            GenShapeBlock::GenShapeBlockRowColGenShapeBlockList(gen_shape_block_0_built);
+        // Calling user action here
+        self.user_grammar
+            .gen_shape_block(&gen_shape_block_0_built)?;
+        self.push(ASTType::GenShapeBlock(gen_shape_block_0_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 23:
+    ///
+    /// GenShapeBlockList /* Vec<T>::Push */: Camma GenShapeBlockRowCol GenShapeBlockList;
+    ///
+    #[parol_runtime::function_name::named]
+    fn gen_shape_block_list_0(
+        &mut self,
+        _camma: &ParseTreeStackEntry<'t>,
+        _gen_shape_block_row_col: &ParseTreeStackEntry<'t>,
+        _gen_shape_block_list: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let mut gen_shape_block_list =
+            pop_item!(self, gen_shape_block_list, GenShapeBlockList, context);
+        let gen_shape_block_row_col =
+            pop_item!(self, gen_shape_block_row_col, GenShapeBlockRowCol, context);
+        let camma = pop_item!(self, camma, Camma, context);
+        let gen_shape_block_list_0_built = GenShapeBlockListBuilder::default()
+            .gen_shape_block_row_col(Box::new(gen_shape_block_row_col))
+            .camma(Box::new(camma))
+            .build()
+            .into_diagnostic()?;
+        // Add an element to the vector
+        gen_shape_block_list.push(gen_shape_block_list_0_built);
+        self.push(ASTType::GenShapeBlockList(gen_shape_block_list), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 24:
+    ///
+    /// GenShapeBlockList /* Vec<T>::New */: ;
+    ///
+    #[parol_runtime::function_name::named]
+    fn gen_shape_block_list_1(&mut self, _parse_tree: &Tree<ParseTreeType<'t>>) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let gen_shape_block_list_1_built = Vec::new();
+        self.push(
+            ASTType::GenShapeBlockList(gen_shape_block_list_1_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 25:
+    ///
+    /// GenShapeBlock: GenShapeBlockOtherRowCol;
+    ///
+    #[parol_runtime::function_name::named]
+    fn gen_shape_block_1(
+        &mut self,
+        _gen_shape_block_other_row_col: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let gen_shape_block_other_row_col = pop_item!(
+            self,
+            gen_shape_block_other_row_col,
+            GenShapeBlockOtherRowCol,
+            context
+        );
+        let gen_shape_block_1_built = GenShapeBlockGenShapeBlockOtherRowColBuilder::default()
+            .gen_shape_block_other_row_col(Box::new(gen_shape_block_other_row_col))
+            .build()
+            .into_diagnostic()?;
+        let gen_shape_block_1_built =
+            GenShapeBlock::GenShapeBlockOtherRowCol(gen_shape_block_1_built);
+        // Calling user action here
+        self.user_grammar
+            .gen_shape_block(&gen_shape_block_1_built)?;
+        self.push(ASTType::GenShapeBlock(gen_shape_block_1_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 26:
+    ///
+    /// GenShapeBlockRowCol: GSStartPosition Wo Drop Ni;
+    ///
+    #[parol_runtime::function_name::named]
+    fn gen_shape_block_row_col(
         &mut self,
         _g_s_start_position: &ParseTreeStackEntry<'t>,
         _wo: &ParseTreeStackEntry<'t>,
@@ -2803,7 +3644,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         let drop = pop_item!(self, drop, Drop, context);
         let wo = pop_item!(self, wo, Wo, context);
         let g_s_start_position = pop_item!(self, g_s_start_position, GSStartPosition, context);
-        let gen_shape_block_built = GenShapeBlockBuilder::default()
+        let gen_shape_block_row_col_built = GenShapeBlockRowColBuilder::default()
             .g_s_start_position(Box::new(g_s_start_position))
             .wo(Box::new(wo))
             .drop(Box::new(drop))
@@ -2811,12 +3652,169 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
             .build()
             .into_diagnostic()?;
         // Calling user action here
-        self.user_grammar.gen_shape_block(&gen_shape_block_built)?;
-        self.push(ASTType::GenShapeBlock(gen_shape_block_built), context);
+        self.user_grammar
+            .gen_shape_block_row_col(&gen_shape_block_row_col_built)?;
+        self.push(
+            ASTType::GenShapeBlockRowCol(gen_shape_block_row_col_built),
+            context,
+        );
         Ok(())
     }
 
-    /// Semantic action for production 21:
+    /// Semantic action for production 27:
+    ///
+    /// GenShapeBlockOtherRowCol: ShapeType GenShapeBlockOtherRowColSuffix;
+    ///
+    #[parol_runtime::function_name::named]
+    fn gen_shape_block_other_row_col(
+        &mut self,
+        _shape_type: &ParseTreeStackEntry<'t>,
+        _gen_shape_block_other_row_col_suffix: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let gen_shape_block_other_row_col_suffix = pop_item!(
+            self,
+            gen_shape_block_other_row_col_suffix,
+            GenShapeBlockOtherRowColSuffix,
+            context
+        );
+        let shape_type = pop_item!(self, shape_type, ShapeType, context);
+        let gen_shape_block_other_row_col_built = GenShapeBlockOtherRowColBuilder::default()
+            .shape_type(Box::new(shape_type))
+            .gen_shape_block_other_row_col_suffix(Box::new(gen_shape_block_other_row_col_suffix))
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar
+            .gen_shape_block_other_row_col(&gen_shape_block_other_row_col_built)?;
+        self.push(
+            ASTType::GenShapeBlockOtherRowCol(gen_shape_block_other_row_col_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 28:
+    ///
+    /// GenShapeBlockOtherRowColSuffix: Ni Drops Wo GenShapeBlockOtherRowColOpt /* Option */;
+    ///
+    #[parol_runtime::function_name::named]
+    fn gen_shape_block_other_row_col_suffix_0(
+        &mut self,
+        _ni: &ParseTreeStackEntry<'t>,
+        _drops: &ParseTreeStackEntry<'t>,
+        _wo: &ParseTreeStackEntry<'t>,
+        _gen_shape_block_other_row_col_opt: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let gen_shape_block_other_row_col_opt = pop_item!(
+            self,
+            gen_shape_block_other_row_col_opt,
+            GenShapeBlockOtherRowColOpt,
+            context
+        );
+        let wo = pop_item!(self, wo, Wo, context);
+        let drops = pop_item!(self, drops, Drops, context);
+        let ni = pop_item!(self, ni, Ni, context);
+        let gen_shape_block_other_row_col_suffix_0_built =
+            GenShapeBlockOtherRowColSuffixNiDropsWoGenShapeBlockOtherRowColOptBuilder::default()
+                .ni(Box::new(ni))
+                .drops(Box::new(drops))
+                .wo(Box::new(wo))
+                .gen_shape_block_other_row_col_opt(gen_shape_block_other_row_col_opt)
+                .build()
+                .into_diagnostic()?;
+        let gen_shape_block_other_row_col_suffix_0_built =
+            GenShapeBlockOtherRowColSuffix::NiDropsWoGenShapeBlockOtherRowColOpt(
+                gen_shape_block_other_row_col_suffix_0_built,
+            );
+        self.push(
+            ASTType::GenShapeBlockOtherRowColSuffix(gen_shape_block_other_row_col_suffix_0_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 29:
+    ///
+    /// GenShapeBlockOtherRowColSuffix: Wo Drops Ni;
+    ///
+    #[parol_runtime::function_name::named]
+    fn gen_shape_block_other_row_col_suffix_1(
+        &mut self,
+        _wo: &ParseTreeStackEntry<'t>,
+        _drops: &ParseTreeStackEntry<'t>,
+        _ni: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let ni = pop_item!(self, ni, Ni, context);
+        let drops = pop_item!(self, drops, Drops, context);
+        let wo = pop_item!(self, wo, Wo, context);
+        let gen_shape_block_other_row_col_suffix_1_built =
+            GenShapeBlockOtherRowColSuffixWoDropsNiBuilder::default()
+                .wo(Box::new(wo))
+                .drops(Box::new(drops))
+                .ni(Box::new(ni))
+                .build()
+                .into_diagnostic()?;
+        let gen_shape_block_other_row_col_suffix_1_built =
+            GenShapeBlockOtherRowColSuffix::WoDropsNi(gen_shape_block_other_row_col_suffix_1_built);
+        self.push(
+            ASTType::GenShapeBlockOtherRowColSuffix(gen_shape_block_other_row_col_suffix_1_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 30:
+    ///
+    /// GenShapeBlockOtherRowColOpt /* Option<T>::Some */: Quantity;
+    ///
+    #[parol_runtime::function_name::named]
+    fn gen_shape_block_other_row_col_opt_0(
+        &mut self,
+        _quantity: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let quantity = pop_item!(self, quantity, Quantity, context);
+        let gen_shape_block_other_row_col_opt_0_built =
+            GenShapeBlockOtherRowColOptBuilder::default()
+                .quantity(Box::new(quantity))
+                .build()
+                .into_diagnostic()?;
+        self.push(
+            ASTType::GenShapeBlockOtherRowColOpt(Some(Box::new(
+                gen_shape_block_other_row_col_opt_0_built,
+            ))),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 31:
+    ///
+    /// GenShapeBlockOtherRowColOpt /* Option<T>::None */: ;
+    ///
+    #[parol_runtime::function_name::named]
+    fn gen_shape_block_other_row_col_opt_1(
+        &mut self,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        self.push(ASTType::GenShapeBlockOtherRowColOpt(None), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 32:
     ///
     /// GSStartPosition: GSSPSide;
     ///
@@ -2844,7 +3842,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 22:
+    /// Semantic action for production 33:
     ///
     /// GSStartPosition: GSSPCenter;
     ///
@@ -2872,7 +3870,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 23:
+    /// Semantic action for production 34:
     ///
     /// GSSPSide: Position GSSPSideOpt /* Option */ GenShapeNumOfGen GSSPSideOpt0 /* Option */;
     ///
@@ -2904,7 +3902,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 24:
+    /// Semantic action for production 35:
     ///
     /// GSSPSideOpt0 /* Option<T>::Some */: And Position GSSPSideOpt1 /* Option */ GenShapeNumOfGen;
     ///
@@ -2937,7 +3935,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 25:
+    /// Semantic action for production 36:
     ///
     /// GSSPSideOpt1 /* Option<T>::Some */: WordHorizon;
     ///
@@ -2961,7 +3959,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 26:
+    /// Semantic action for production 37:
     ///
     /// GSSPSideOpt1 /* Option<T>::None */: ;
     ///
@@ -2973,7 +3971,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 27:
+    /// Semantic action for production 38:
     ///
     /// GSSPSideOpt0 /* Option<T>::None */: ;
     ///
@@ -2985,7 +3983,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 28:
+    /// Semantic action for production 39:
     ///
     /// GSSPSideOpt /* Option<T>::Some */: WordHorizon;
     ///
@@ -3009,7 +4007,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 29:
+    /// Semantic action for production 40:
     ///
     /// GSSPSideOpt /* Option<T>::None */: ;
     ///
@@ -3021,7 +4019,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 30:
+    /// Semantic action for production 41:
     ///
     /// GSSPCenter: GSSPCenterBlocks GSSPCenterOpt /* Option */ GSSPCenterOpt0 /* Option */ GenShapeNumOfGen;
     ///
@@ -3054,7 +4052,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 31:
+    /// Semantic action for production 42:
     ///
     /// GSSPCenterOpt0 /* Option<T>::Some */: GSSPCenterOpt0Group;
     ///
@@ -3083,7 +4081,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 32:
+    /// Semantic action for production 43:
     ///
     /// GSSPCenterOpt0Group: WordVertical;
     ///
@@ -3109,7 +4107,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 33:
+    /// Semantic action for production 44:
     ///
     /// GSSPCenterOpt0Group: WordHorizon;
     ///
@@ -3135,7 +4133,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 34:
+    /// Semantic action for production 45:
     ///
     /// GSSPCenterOpt0 /* Option<T>::None */: ;
     ///
@@ -3147,7 +4145,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 35:
+    /// Semantic action for production 46:
     ///
     /// GSSPCenterOpt /* Option<T>::Some */: No;
     ///
@@ -3171,7 +4169,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 36:
+    /// Semantic action for production 47:
     ///
     /// GSSPCenterOpt /* Option<T>::None */: ;
     ///
@@ -3183,7 +4181,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 37:
+    /// Semantic action for production 48:
     ///
     /// GSSPCenterBlocks: GSSPCenterBlock GSSPCenterBlocksOpt /* Option */;
     ///
@@ -3218,7 +4216,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 38:
+    /// Semantic action for production 49:
     ///
     /// GSSPCenterBlocksOpt /* Option<T>::Some */: And GSSPCenterBlock;
     ///
@@ -3245,7 +4243,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 39:
+    /// Semantic action for production 50:
     ///
     /// GSSPCenterBlocksOpt /* Option<T>::None */: ;
     ///
@@ -3257,7 +4255,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 40:
+    /// Semantic action for production 51:
     ///
     /// GSSPCenterBlock: PositionLRTB From PosInt GSSPCenterBlockOpt /* Option */ WordLook;
     ///
@@ -3297,7 +4295,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 41:
+    /// Semantic action for production 52:
     ///
     /// GSSPCenterBlockOpt /* Option<T>::Some */: GSSPCenterBlockOptGroup;
     ///
@@ -3326,7 +4324,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 42:
+    /// Semantic action for production 53:
     ///
     /// GSSPCenterBlockOptGroup: WordCol;
     ///
@@ -3353,7 +4351,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 43:
+    /// Semantic action for production 54:
     ///
     /// GSSPCenterBlockOptGroup: WordRow;
     ///
@@ -3380,7 +4378,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 44:
+    /// Semantic action for production 55:
     ///
     /// GSSPCenterBlockOpt /* Option<T>::None */: ;
     ///
@@ -3392,7 +4390,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 45:
+    /// Semantic action for production 56:
     ///
     /// Position: PositionLR GSSPSideWriteWidth;
     ///
@@ -3420,7 +4418,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 46:
+    /// Semantic action for production 57:
     ///
     /// Position: PositionTB;
     ///
@@ -3444,194 +4442,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 47:
-    ///
-    /// PositionLR: WordLeft;
-    ///
-    #[parol_runtime::function_name::named]
-    fn position_l_r_0(
-        &mut self,
-        _word_left: &ParseTreeStackEntry<'t>,
-        _parse_tree: &Tree<ParseTreeType<'t>>,
-    ) -> Result<()> {
-        let context = function_name!();
-        trace!("{}", self.trace_item_stack(context));
-        let word_left = pop_item!(self, word_left, WordLeft, context);
-        let position_l_r_0_built = PositionLRWordLeftBuilder::default()
-            .word_left(Box::new(word_left))
-            .build()
-            .into_diagnostic()?;
-        let position_l_r_0_built = PositionLR::WordLeft(position_l_r_0_built);
-        // Calling user action here
-        self.user_grammar.position_l_r(&position_l_r_0_built)?;
-        self.push(ASTType::PositionLR(position_l_r_0_built), context);
-        Ok(())
-    }
-
-    /// Semantic action for production 48:
-    ///
-    /// PositionLR: WordRight;
-    ///
-    #[parol_runtime::function_name::named]
-    fn position_l_r_1(
-        &mut self,
-        _word_right: &ParseTreeStackEntry<'t>,
-        _parse_tree: &Tree<ParseTreeType<'t>>,
-    ) -> Result<()> {
-        let context = function_name!();
-        trace!("{}", self.trace_item_stack(context));
-        let word_right = pop_item!(self, word_right, WordRight, context);
-        let position_l_r_1_built = PositionLRWordRightBuilder::default()
-            .word_right(Box::new(word_right))
-            .build()
-            .into_diagnostic()?;
-        let position_l_r_1_built = PositionLR::WordRight(position_l_r_1_built);
-        // Calling user action here
-        self.user_grammar.position_l_r(&position_l_r_1_built)?;
-        self.push(ASTType::PositionLR(position_l_r_1_built), context);
-        Ok(())
-    }
-
-    /// Semantic action for production 49:
-    ///
-    /// PositionLR: WordLeftAndRight;
-    ///
-    #[parol_runtime::function_name::named]
-    fn position_l_r_2(
-        &mut self,
-        _word_left_and_right: &ParseTreeStackEntry<'t>,
-        _parse_tree: &Tree<ParseTreeType<'t>>,
-    ) -> Result<()> {
-        let context = function_name!();
-        trace!("{}", self.trace_item_stack(context));
-        let word_left_and_right = pop_item!(self, word_left_and_right, WordLeftAndRight, context);
-        let position_l_r_2_built = PositionLRWordLeftAndRightBuilder::default()
-            .word_left_and_right(Box::new(word_left_and_right))
-            .build()
-            .into_diagnostic()?;
-        let position_l_r_2_built = PositionLR::WordLeftAndRight(position_l_r_2_built);
-        // Calling user action here
-        self.user_grammar.position_l_r(&position_l_r_2_built)?;
-        self.push(ASTType::PositionLR(position_l_r_2_built), context);
-        Ok(())
-    }
-
-    /// Semantic action for production 50:
-    ///
-    /// PositionTB: PositionTBOpt /* Option */ PositionTOrB WordRow;
-    ///
-    #[parol_runtime::function_name::named]
-    fn position_t_b(
-        &mut self,
-        _position_t_b_opt: &ParseTreeStackEntry<'t>,
-        _position_t_or_b: &ParseTreeStackEntry<'t>,
-        _word_row: &ParseTreeStackEntry<'t>,
-        _parse_tree: &Tree<ParseTreeType<'t>>,
-    ) -> Result<()> {
-        let context = function_name!();
-        trace!("{}", self.trace_item_stack(context));
-        let word_row = pop_item!(self, word_row, WordRow, context);
-        let position_t_or_b = pop_item!(self, position_t_or_b, PositionTOrB, context);
-        let position_t_b_opt = pop_item!(self, position_t_b_opt, PositionTBOpt, context);
-        let position_t_b_built = PositionTBBuilder::default()
-            .position_t_b_opt(position_t_b_opt)
-            .position_t_or_b(Box::new(position_t_or_b))
-            .word_row(Box::new(word_row))
-            .build()
-            .into_diagnostic()?;
-        // Calling user action here
-        self.user_grammar.position_t_b(&position_t_b_built)?;
-        self.push(ASTType::PositionTB(position_t_b_built), context);
-        Ok(())
-    }
-
-    /// Semantic action for production 51:
-    ///
-    /// PositionTBOpt /* Option<T>::Some */: WordMost;
-    ///
-    #[parol_runtime::function_name::named]
-    fn position_t_b_opt_0(
-        &mut self,
-        _word_most: &ParseTreeStackEntry<'t>,
-        _parse_tree: &Tree<ParseTreeType<'t>>,
-    ) -> Result<()> {
-        let context = function_name!();
-        trace!("{}", self.trace_item_stack(context));
-        let word_most = pop_item!(self, word_most, WordMost, context);
-        let position_t_b_opt_0_built = PositionTBOptBuilder::default()
-            .word_most(Box::new(word_most))
-            .build()
-            .into_diagnostic()?;
-        self.push(
-            ASTType::PositionTBOpt(Some(Box::new(position_t_b_opt_0_built))),
-            context,
-        );
-        Ok(())
-    }
-
-    /// Semantic action for production 52:
-    ///
-    /// PositionTBOpt /* Option<T>::None */: ;
-    ///
-    #[parol_runtime::function_name::named]
-    fn position_t_b_opt_1(&mut self, _parse_tree: &Tree<ParseTreeType<'t>>) -> Result<()> {
-        let context = function_name!();
-        trace!("{}", self.trace_item_stack(context));
-        self.push(ASTType::PositionTBOpt(None), context);
-        Ok(())
-    }
-
-    /// Semantic action for production 53:
-    ///
-    /// PositionTOrB: WordTop;
-    ///
-    #[parol_runtime::function_name::named]
-    fn position_t_or_b_0(
-        &mut self,
-        _word_top: &ParseTreeStackEntry<'t>,
-        _parse_tree: &Tree<ParseTreeType<'t>>,
-    ) -> Result<()> {
-        let context = function_name!();
-        trace!("{}", self.trace_item_stack(context));
-        let word_top = pop_item!(self, word_top, WordTop, context);
-        let position_t_or_b_0_built = PositionTOrBWordTopBuilder::default()
-            .word_top(Box::new(word_top))
-            .build()
-            .into_diagnostic()?;
-        let position_t_or_b_0_built = PositionTOrB::WordTop(position_t_or_b_0_built);
-        // Calling user action here
-        self.user_grammar
-            .position_t_or_b(&position_t_or_b_0_built)?;
-        self.push(ASTType::PositionTOrB(position_t_or_b_0_built), context);
-        Ok(())
-    }
-
-    /// Semantic action for production 54:
-    ///
-    /// PositionTOrB: WordBottom;
-    ///
-    #[parol_runtime::function_name::named]
-    fn position_t_or_b_1(
-        &mut self,
-        _word_bottom: &ParseTreeStackEntry<'t>,
-        _parse_tree: &Tree<ParseTreeType<'t>>,
-    ) -> Result<()> {
-        let context = function_name!();
-        trace!("{}", self.trace_item_stack(context));
-        let word_bottom = pop_item!(self, word_bottom, WordBottom, context);
-        let position_t_or_b_1_built = PositionTOrBWordBottomBuilder::default()
-            .word_bottom(Box::new(word_bottom))
-            .build()
-            .into_diagnostic()?;
-        let position_t_or_b_1_built = PositionTOrB::WordBottom(position_t_or_b_1_built);
-        // Calling user action here
-        self.user_grammar
-            .position_t_or_b(&position_t_or_b_1_built)?;
-        self.push(ASTType::PositionTOrB(position_t_or_b_1_built), context);
-        Ok(())
-    }
-
-    /// Semantic action for production 55:
+    /// Semantic action for production 58:
     ///
     /// GSSPSideWriteWidth: WordSide GSSPSideWriteWidthOpt /* Option */;
     ///
@@ -3669,7 +4480,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 56:
+    /// Semantic action for production 59:
     ///
     /// GSSPSideWriteWidth: WordVertical;
     ///
@@ -3698,7 +4509,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 57:
+    /// Semantic action for production 60:
     ///
     /// GSSPSideWriteWidthOpt /* Option<T>::Some */: WordVertical;
     ///
@@ -3722,7 +4533,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 58:
+    /// Semantic action for production 61:
     ///
     /// GSSPSideWriteWidthOpt /* Option<T>::None */: ;
     ///
@@ -3737,7 +4548,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 59:
+    /// Semantic action for production 62:
     ///
     /// PositionLRTB: WordLeft;
     ///
@@ -3762,7 +4573,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 60:
+    /// Semantic action for production 63:
     ///
     /// PositionLRTB: WordRight;
     ///
@@ -3787,7 +4598,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 61:
+    /// Semantic action for production 64:
     ///
     /// PositionLRTB: WordTop;
     ///
@@ -3812,7 +4623,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 62:
+    /// Semantic action for production 65:
     ///
     /// PositionLRTB: WordBottom;
     ///
@@ -3837,7 +4648,194 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 63:
+    /// Semantic action for production 66:
+    ///
+    /// PositionLR: WordLeft;
+    ///
+    #[parol_runtime::function_name::named]
+    fn position_l_r_0(
+        &mut self,
+        _word_left: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_left = pop_item!(self, word_left, WordLeft, context);
+        let position_l_r_0_built = PositionLRWordLeftBuilder::default()
+            .word_left(Box::new(word_left))
+            .build()
+            .into_diagnostic()?;
+        let position_l_r_0_built = PositionLR::WordLeft(position_l_r_0_built);
+        // Calling user action here
+        self.user_grammar.position_l_r(&position_l_r_0_built)?;
+        self.push(ASTType::PositionLR(position_l_r_0_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 67:
+    ///
+    /// PositionLR: WordRight;
+    ///
+    #[parol_runtime::function_name::named]
+    fn position_l_r_1(
+        &mut self,
+        _word_right: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_right = pop_item!(self, word_right, WordRight, context);
+        let position_l_r_1_built = PositionLRWordRightBuilder::default()
+            .word_right(Box::new(word_right))
+            .build()
+            .into_diagnostic()?;
+        let position_l_r_1_built = PositionLR::WordRight(position_l_r_1_built);
+        // Calling user action here
+        self.user_grammar.position_l_r(&position_l_r_1_built)?;
+        self.push(ASTType::PositionLR(position_l_r_1_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 68:
+    ///
+    /// PositionLR: WordLeftAndRight;
+    ///
+    #[parol_runtime::function_name::named]
+    fn position_l_r_2(
+        &mut self,
+        _word_left_and_right: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_left_and_right = pop_item!(self, word_left_and_right, WordLeftAndRight, context);
+        let position_l_r_2_built = PositionLRWordLeftAndRightBuilder::default()
+            .word_left_and_right(Box::new(word_left_and_right))
+            .build()
+            .into_diagnostic()?;
+        let position_l_r_2_built = PositionLR::WordLeftAndRight(position_l_r_2_built);
+        // Calling user action here
+        self.user_grammar.position_l_r(&position_l_r_2_built)?;
+        self.push(ASTType::PositionLR(position_l_r_2_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 69:
+    ///
+    /// PositionTB: PositionTBOpt /* Option */ PositionTOrB WordRow;
+    ///
+    #[parol_runtime::function_name::named]
+    fn position_t_b(
+        &mut self,
+        _position_t_b_opt: &ParseTreeStackEntry<'t>,
+        _position_t_or_b: &ParseTreeStackEntry<'t>,
+        _word_row: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_row = pop_item!(self, word_row, WordRow, context);
+        let position_t_or_b = pop_item!(self, position_t_or_b, PositionTOrB, context);
+        let position_t_b_opt = pop_item!(self, position_t_b_opt, PositionTBOpt, context);
+        let position_t_b_built = PositionTBBuilder::default()
+            .position_t_b_opt(position_t_b_opt)
+            .position_t_or_b(Box::new(position_t_or_b))
+            .word_row(Box::new(word_row))
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.position_t_b(&position_t_b_built)?;
+        self.push(ASTType::PositionTB(position_t_b_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 70:
+    ///
+    /// PositionTBOpt /* Option<T>::Some */: WordMost;
+    ///
+    #[parol_runtime::function_name::named]
+    fn position_t_b_opt_0(
+        &mut self,
+        _word_most: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_most = pop_item!(self, word_most, WordMost, context);
+        let position_t_b_opt_0_built = PositionTBOptBuilder::default()
+            .word_most(Box::new(word_most))
+            .build()
+            .into_diagnostic()?;
+        self.push(
+            ASTType::PositionTBOpt(Some(Box::new(position_t_b_opt_0_built))),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 71:
+    ///
+    /// PositionTBOpt /* Option<T>::None */: ;
+    ///
+    #[parol_runtime::function_name::named]
+    fn position_t_b_opt_1(&mut self, _parse_tree: &Tree<ParseTreeType<'t>>) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        self.push(ASTType::PositionTBOpt(None), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 72:
+    ///
+    /// PositionTOrB: WordTop;
+    ///
+    #[parol_runtime::function_name::named]
+    fn position_t_or_b_0(
+        &mut self,
+        _word_top: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_top = pop_item!(self, word_top, WordTop, context);
+        let position_t_or_b_0_built = PositionTOrBWordTopBuilder::default()
+            .word_top(Box::new(word_top))
+            .build()
+            .into_diagnostic()?;
+        let position_t_or_b_0_built = PositionTOrB::WordTop(position_t_or_b_0_built);
+        // Calling user action here
+        self.user_grammar
+            .position_t_or_b(&position_t_or_b_0_built)?;
+        self.push(ASTType::PositionTOrB(position_t_or_b_0_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 73:
+    ///
+    /// PositionTOrB: WordBottom;
+    ///
+    #[parol_runtime::function_name::named]
+    fn position_t_or_b_1(
+        &mut self,
+        _word_bottom: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_bottom = pop_item!(self, word_bottom, WordBottom, context);
+        let position_t_or_b_1_built = PositionTOrBWordBottomBuilder::default()
+            .word_bottom(Box::new(word_bottom))
+            .build()
+            .into_diagnostic()?;
+        let position_t_or_b_1_built = PositionTOrB::WordBottom(position_t_or_b_1_built);
+        // Calling user action here
+        self.user_grammar
+            .position_t_or_b(&position_t_or_b_1_built)?;
+        self.push(ASTType::PositionTOrB(position_t_or_b_1_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 74:
     ///
     /// GenShapeNumOfGen: PosInt WordCol;
     ///
@@ -3867,287 +4865,415 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 64:
+    /// Semantic action for production 75:
     ///
-    /// WordVertical: '縦';
+    /// ShapeType: ShapeOfL;
     ///
     #[parol_runtime::function_name::named]
-    fn word_vertical(
+    fn shape_type_0(
         &mut self,
-        word_vertical: &ParseTreeStackEntry<'t>,
-        parse_tree: &Tree<ParseTreeType<'t>>,
+        _shape_of_l: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let word_vertical = word_vertical.token(parse_tree)?.clone();
-        let word_vertical_built = WordVerticalBuilder::default()
-            .word_vertical(word_vertical)
+        let shape_of_l = pop_item!(self, shape_of_l, ShapeOfL, context);
+        let shape_type_0_built = ShapeTypeShapeOfLBuilder::default()
+            .shape_of_l(Box::new(shape_of_l))
             .build()
             .into_diagnostic()?;
+        let shape_type_0_built = ShapeType::ShapeOfL(shape_type_0_built);
         // Calling user action here
-        self.user_grammar.word_vertical(&word_vertical_built)?;
-        self.push(ASTType::WordVertical(word_vertical_built), context);
+        self.user_grammar.shape_type(&shape_type_0_built)?;
+        self.push(ASTType::ShapeType(shape_type_0_built), context);
         Ok(())
     }
 
-    /// Semantic action for production 65:
+    /// Semantic action for production 76:
     ///
-    /// WordHorizon: '横';
+    /// ShapeType: ShapeTypeOpt /* Option */ ShapeOfZ;
     ///
     #[parol_runtime::function_name::named]
-    fn word_horizon(
+    fn shape_type_1(
         &mut self,
-        word_horizon: &ParseTreeStackEntry<'t>,
-        parse_tree: &Tree<ParseTreeType<'t>>,
+        _shape_type_opt: &ParseTreeStackEntry<'t>,
+        _shape_of_z: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let word_horizon = word_horizon.token(parse_tree)?.clone();
-        let word_horizon_built = WordHorizonBuilder::default()
-            .word_horizon(word_horizon)
+        let shape_of_z = pop_item!(self, shape_of_z, ShapeOfZ, context);
+        let shape_type_opt = pop_item!(self, shape_type_opt, ShapeTypeOpt, context);
+        let shape_type_1_built = ShapeTypeShapeTypeOptShapeOfZBuilder::default()
+            .shape_type_opt(shape_type_opt)
+            .shape_of_z(Box::new(shape_of_z))
             .build()
             .into_diagnostic()?;
+        let shape_type_1_built = ShapeType::ShapeTypeOptShapeOfZ(shape_type_1_built);
         // Calling user action here
-        self.user_grammar.word_horizon(&word_horizon_built)?;
-        self.push(ASTType::WordHorizon(word_horizon_built), context);
+        self.user_grammar.shape_type(&shape_type_1_built)?;
+        self.push(ASTType::ShapeType(shape_type_1_built), context);
         Ok(())
     }
 
-    /// Semantic action for production 66:
+    /// Semantic action for production 77:
     ///
-    /// WordRow: '段';
+    /// ShapeType: ShapeOfCross;
     ///
     #[parol_runtime::function_name::named]
-    fn word_row(
+    fn shape_type_2(
         &mut self,
-        word_row: &ParseTreeStackEntry<'t>,
-        parse_tree: &Tree<ParseTreeType<'t>>,
+        _shape_of_cross: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let word_row = word_row.token(parse_tree)?.clone();
-        let word_row_built = WordRowBuilder::default()
-            .word_row(word_row)
+        let shape_of_cross = pop_item!(self, shape_of_cross, ShapeOfCross, context);
+        let shape_type_2_built = ShapeTypeShapeOfCrossBuilder::default()
+            .shape_of_cross(Box::new(shape_of_cross))
             .build()
             .into_diagnostic()?;
+        let shape_type_2_built = ShapeType::ShapeOfCross(shape_type_2_built);
         // Calling user action here
-        self.user_grammar.word_row(&word_row_built)?;
-        self.push(ASTType::WordRow(word_row_built), context);
+        self.user_grammar.shape_type(&shape_type_2_built)?;
+        self.push(ASTType::ShapeType(shape_type_2_built), context);
         Ok(())
     }
 
-    /// Semantic action for production 67:
+    /// Semantic action for production 78:
     ///
-    /// WordCol: '列';
+    /// ShapeType: Size No ShapeOfSquare;
     ///
     #[parol_runtime::function_name::named]
-    fn word_col(
+    fn shape_type_3(
         &mut self,
-        word_col: &ParseTreeStackEntry<'t>,
-        parse_tree: &Tree<ParseTreeType<'t>>,
+        _size: &ParseTreeStackEntry<'t>,
+        _no: &ParseTreeStackEntry<'t>,
+        _shape_of_square: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let word_col = word_col.token(parse_tree)?.clone();
-        let word_col_built = WordColBuilder::default()
-            .word_col(word_col)
+        let shape_of_square = pop_item!(self, shape_of_square, ShapeOfSquare, context);
+        let no = pop_item!(self, no, No, context);
+        let size = pop_item!(self, size, Size, context);
+        let shape_type_3_built = ShapeTypeSizeNoShapeOfSquareBuilder::default()
+            .size(Box::new(size))
+            .no(Box::new(no))
+            .shape_of_square(Box::new(shape_of_square))
             .build()
             .into_diagnostic()?;
+        let shape_type_3_built = ShapeType::SizeNoShapeOfSquare(shape_type_3_built);
         // Calling user action here
-        self.user_grammar.word_col(&word_col_built)?;
-        self.push(ASTType::WordCol(word_col_built), context);
+        self.user_grammar.shape_type(&shape_type_3_built)?;
+        self.push(ASTType::ShapeType(shape_type_3_built), context);
         Ok(())
     }
 
-    /// Semantic action for production 68:
+    /// Semantic action for production 79:
     ///
-    /// WordSide: '端';
+    /// ShapeType: ShapeOfBoardPerimeter;
     ///
     #[parol_runtime::function_name::named]
-    fn word_side(
+    fn shape_type_4(
         &mut self,
-        word_side: &ParseTreeStackEntry<'t>,
-        parse_tree: &Tree<ParseTreeType<'t>>,
+        _shape_of_board_perimeter: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let word_side = word_side.token(parse_tree)?.clone();
-        let word_side_built = WordSideBuilder::default()
-            .word_side(word_side)
+        let shape_of_board_perimeter = pop_item!(
+            self,
+            shape_of_board_perimeter,
+            ShapeOfBoardPerimeter,
+            context
+        );
+        let shape_type_4_built = ShapeTypeShapeOfBoardPerimeterBuilder::default()
+            .shape_of_board_perimeter(Box::new(shape_of_board_perimeter))
             .build()
             .into_diagnostic()?;
+        let shape_type_4_built = ShapeType::ShapeOfBoardPerimeter(shape_type_4_built);
         // Calling user action here
-        self.user_grammar.word_side(&word_side_built)?;
-        self.push(ASTType::WordSide(word_side_built), context);
+        self.user_grammar.shape_type(&shape_type_4_built)?;
+        self.push(ASTType::ShapeType(shape_type_4_built), context);
         Ok(())
     }
 
-    /// Semantic action for production 69:
+    /// Semantic action for production 80:
     ///
-    /// WordLeftAndRight: '両';
+    /// ShapeType: ShapeOfBoardCenter;
     ///
     #[parol_runtime::function_name::named]
-    fn word_left_and_right(
+    fn shape_type_5(
         &mut self,
-        word_left_and_right: &ParseTreeStackEntry<'t>,
-        parse_tree: &Tree<ParseTreeType<'t>>,
+        _shape_of_board_center: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let word_left_and_right = word_left_and_right.token(parse_tree)?.clone();
-        let word_left_and_right_built = WordLeftAndRightBuilder::default()
-            .word_left_and_right(word_left_and_right)
+        let shape_of_board_center =
+            pop_item!(self, shape_of_board_center, ShapeOfBoardCenter, context);
+        let shape_type_5_built = ShapeTypeShapeOfBoardCenterBuilder::default()
+            .shape_of_board_center(Box::new(shape_of_board_center))
             .build()
             .into_diagnostic()?;
+        let shape_type_5_built = ShapeType::ShapeOfBoardCenter(shape_type_5_built);
         // Calling user action here
-        self.user_grammar
-            .word_left_and_right(&word_left_and_right_built)?;
+        self.user_grammar.shape_type(&shape_type_5_built)?;
+        self.push(ASTType::ShapeType(shape_type_5_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 81:
+    ///
+    /// ShapeType: ShapeOfBoardTop;
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_type_6(
+        &mut self,
+        _shape_of_board_top: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_board_top = pop_item!(self, shape_of_board_top, ShapeOfBoardTop, context);
+        let shape_type_6_built = ShapeTypeShapeOfBoardTopBuilder::default()
+            .shape_of_board_top(Box::new(shape_of_board_top))
+            .build()
+            .into_diagnostic()?;
+        let shape_type_6_built = ShapeType::ShapeOfBoardTop(shape_type_6_built);
+        // Calling user action here
+        self.user_grammar.shape_type(&shape_type_6_built)?;
+        self.push(ASTType::ShapeType(shape_type_6_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 82:
+    ///
+    /// ShapeType: ShapeOfBoardBottom;
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_type_7(
+        &mut self,
+        _shape_of_board_bottom: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_board_bottom =
+            pop_item!(self, shape_of_board_bottom, ShapeOfBoardBottom, context);
+        let shape_type_7_built = ShapeTypeShapeOfBoardBottomBuilder::default()
+            .shape_of_board_bottom(Box::new(shape_of_board_bottom))
+            .build()
+            .into_diagnostic()?;
+        let shape_type_7_built = ShapeType::ShapeOfBoardBottom(shape_type_7_built);
+        // Calling user action here
+        self.user_grammar.shape_type(&shape_type_7_built)?;
+        self.push(ASTType::ShapeType(shape_type_7_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 83:
+    ///
+    /// ShapeType: ShapeOfBoardCorners;
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_type_8(
+        &mut self,
+        _shape_of_board_corners: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_board_corners =
+            pop_item!(self, shape_of_board_corners, ShapeOfBoardCorners, context);
+        let shape_type_8_built = ShapeTypeShapeOfBoardCornersBuilder::default()
+            .shape_of_board_corners(Box::new(shape_of_board_corners))
+            .build()
+            .into_diagnostic()?;
+        let shape_type_8_built = ShapeType::ShapeOfBoardCorners(shape_type_8_built);
+        // Calling user action here
+        self.user_grammar.shape_type(&shape_type_8_built)?;
+        self.push(ASTType::ShapeType(shape_type_8_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 84:
+    ///
+    /// ShapeType: ShapeOfSpiderweb;
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_type_9(
+        &mut self,
+        _shape_of_spiderweb: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_spiderweb = pop_item!(self, shape_of_spiderweb, ShapeOfSpiderweb, context);
+        let shape_type_9_built = ShapeTypeShapeOfSpiderwebBuilder::default()
+            .shape_of_spiderweb(Box::new(shape_of_spiderweb))
+            .build()
+            .into_diagnostic()?;
+        let shape_type_9_built = ShapeType::ShapeOfSpiderweb(shape_type_9_built);
+        // Calling user action here
+        self.user_grammar.shape_type(&shape_type_9_built)?;
+        self.push(ASTType::ShapeType(shape_type_9_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 85:
+    ///
+    /// ShapeType: ShapeOfCrescentMoon;
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_type_10(
+        &mut self,
+        _shape_of_crescent_moon: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_crescent_moon =
+            pop_item!(self, shape_of_crescent_moon, ShapeOfCrescentMoon, context);
+        let shape_type_10_built = ShapeTypeShapeOfCrescentMoonBuilder::default()
+            .shape_of_crescent_moon(Box::new(shape_of_crescent_moon))
+            .build()
+            .into_diagnostic()?;
+        let shape_type_10_built = ShapeType::ShapeOfCrescentMoon(shape_type_10_built);
+        // Calling user action here
+        self.user_grammar.shape_type(&shape_type_10_built)?;
+        self.push(ASTType::ShapeType(shape_type_10_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 86:
+    ///
+    /// ShapeType: ShapeTypeOpt0 /* Option */ ShapeOfOblique;
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_type_11(
+        &mut self,
+        _shape_type_opt0: &ParseTreeStackEntry<'t>,
+        _shape_of_oblique: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_oblique = pop_item!(self, shape_of_oblique, ShapeOfOblique, context);
+        let shape_type_opt0 = pop_item!(self, shape_type_opt0, ShapeTypeOpt0, context);
+        let shape_type_11_built = ShapeTypeShapeTypeOpt0ShapeOfObliqueBuilder::default()
+            .shape_type_opt0(shape_type_opt0)
+            .shape_of_oblique(Box::new(shape_of_oblique))
+            .build()
+            .into_diagnostic()?;
+        let shape_type_11_built = ShapeType::ShapeTypeOpt0ShapeOfOblique(shape_type_11_built);
+        // Calling user action here
+        self.user_grammar.shape_type(&shape_type_11_built)?;
+        self.push(ASTType::ShapeType(shape_type_11_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 87:
+    ///
+    /// ShapeType: PosInt ShapeOfSomeKind;
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_type_12(
+        &mut self,
+        _pos_int: &ParseTreeStackEntry<'t>,
+        _shape_of_some_kind: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_some_kind = pop_item!(self, shape_of_some_kind, ShapeOfSomeKind, context);
+        let pos_int = pop_item!(self, pos_int, PosInt, context);
+        let shape_type_12_built = ShapeTypePosIntShapeOfSomeKindBuilder::default()
+            .pos_int(Box::new(pos_int))
+            .shape_of_some_kind(Box::new(shape_of_some_kind))
+            .build()
+            .into_diagnostic()?;
+        let shape_type_12_built = ShapeType::PosIntShapeOfSomeKind(shape_type_12_built);
+        // Calling user action here
+        self.user_grammar.shape_type(&shape_type_12_built)?;
+        self.push(ASTType::ShapeType(shape_type_12_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 88:
+    ///
+    /// ShapeTypeOpt0 /* Option<T>::Some */: OnBoard;
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_type_opt0_0(
+        &mut self,
+        _on_board: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let on_board = pop_item!(self, on_board, OnBoard, context);
+        let shape_type_opt0_0_built = ShapeTypeOpt0Builder::default()
+            .on_board(Box::new(on_board))
+            .build()
+            .into_diagnostic()?;
         self.push(
-            ASTType::WordLeftAndRight(word_left_and_right_built),
+            ASTType::ShapeTypeOpt0(Some(Box::new(shape_type_opt0_0_built))),
             context,
         );
         Ok(())
     }
 
-    /// Semantic action for production 70:
+    /// Semantic action for production 89:
     ///
-    /// WordLeft: '左';
+    /// ShapeTypeOpt0 /* Option<T>::None */: ;
     ///
     #[parol_runtime::function_name::named]
-    fn word_left(
-        &mut self,
-        word_left: &ParseTreeStackEntry<'t>,
-        parse_tree: &Tree<ParseTreeType<'t>>,
-    ) -> Result<()> {
+    fn shape_type_opt0_1(&mut self, _parse_tree: &Tree<ParseTreeType<'t>>) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let word_left = word_left.token(parse_tree)?.clone();
-        let word_left_built = WordLeftBuilder::default()
-            .word_left(word_left)
-            .build()
-            .into_diagnostic()?;
-        // Calling user action here
-        self.user_grammar.word_left(&word_left_built)?;
-        self.push(ASTType::WordLeft(word_left_built), context);
+        self.push(ASTType::ShapeTypeOpt0(None), context);
         Ok(())
     }
 
-    /// Semantic action for production 71:
+    /// Semantic action for production 90:
     ///
-    /// WordRight: '右';
+    /// ShapeTypeOpt /* Option<T>::Some */: OnBoard;
     ///
     #[parol_runtime::function_name::named]
-    fn word_right(
+    fn shape_type_opt_0(
         &mut self,
-        word_right: &ParseTreeStackEntry<'t>,
-        parse_tree: &Tree<ParseTreeType<'t>>,
+        _on_board: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let word_right = word_right.token(parse_tree)?.clone();
-        let word_right_built = WordRightBuilder::default()
-            .word_right(word_right)
+        let on_board = pop_item!(self, on_board, OnBoard, context);
+        let shape_type_opt_0_built = ShapeTypeOptBuilder::default()
+            .on_board(Box::new(on_board))
             .build()
             .into_diagnostic()?;
-        // Calling user action here
-        self.user_grammar.word_right(&word_right_built)?;
-        self.push(ASTType::WordRight(word_right_built), context);
+        self.push(
+            ASTType::ShapeTypeOpt(Some(Box::new(shape_type_opt_0_built))),
+            context,
+        );
         Ok(())
     }
 
-    /// Semantic action for production 72:
+    /// Semantic action for production 91:
     ///
-    /// WordTop: '上';
+    /// ShapeTypeOpt /* Option<T>::None */: ;
     ///
     #[parol_runtime::function_name::named]
-    fn word_top(
-        &mut self,
-        word_top: &ParseTreeStackEntry<'t>,
-        parse_tree: &Tree<ParseTreeType<'t>>,
-    ) -> Result<()> {
+    fn shape_type_opt_1(&mut self, _parse_tree: &Tree<ParseTreeType<'t>>) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let word_top = word_top.token(parse_tree)?.clone();
-        let word_top_built = WordTopBuilder::default()
-            .word_top(word_top)
-            .build()
-            .into_diagnostic()?;
-        // Calling user action here
-        self.user_grammar.word_top(&word_top_built)?;
-        self.push(ASTType::WordTop(word_top_built), context);
+        self.push(ASTType::ShapeTypeOpt(None), context);
         Ok(())
     }
 
-    /// Semantic action for production 73:
-    ///
-    /// WordBottom: '下';
-    ///
-    #[parol_runtime::function_name::named]
-    fn word_bottom(
-        &mut self,
-        word_bottom: &ParseTreeStackEntry<'t>,
-        parse_tree: &Tree<ParseTreeType<'t>>,
-    ) -> Result<()> {
-        let context = function_name!();
-        trace!("{}", self.trace_item_stack(context));
-        let word_bottom = word_bottom.token(parse_tree)?.clone();
-        let word_bottom_built = WordBottomBuilder::default()
-            .word_bottom(word_bottom)
-            .build()
-            .into_diagnostic()?;
-        // Calling user action here
-        self.user_grammar.word_bottom(&word_bottom_built)?;
-        self.push(ASTType::WordBottom(word_bottom_built), context);
-        Ok(())
-    }
-
-    /// Semantic action for production 74:
-    ///
-    /// WordMost: '最';
-    ///
-    #[parol_runtime::function_name::named]
-    fn word_most(
-        &mut self,
-        word_most: &ParseTreeStackEntry<'t>,
-        parse_tree: &Tree<ParseTreeType<'t>>,
-    ) -> Result<()> {
-        let context = function_name!();
-        trace!("{}", self.trace_item_stack(context));
-        let word_most = word_most.token(parse_tree)?.clone();
-        let word_most_built = WordMostBuilder::default()
-            .word_most(word_most)
-            .build()
-            .into_diagnostic()?;
-        // Calling user action here
-        self.user_grammar.word_most(&word_most_built)?;
-        self.push(ASTType::WordMost(word_most_built), context);
-        Ok(())
-    }
-
-    /// Semantic action for production 75:
-    ///
-    /// WordLook: '目';
-    ///
-    #[parol_runtime::function_name::named]
-    fn word_look(
-        &mut self,
-        word_look: &ParseTreeStackEntry<'t>,
-        parse_tree: &Tree<ParseTreeType<'t>>,
-    ) -> Result<()> {
-        let context = function_name!();
-        trace!("{}", self.trace_item_stack(context));
-        let word_look = word_look.token(parse_tree)?.clone();
-        let word_look_built = WordLookBuilder::default()
-            .word_look(word_look)
-            .build()
-            .into_diagnostic()?;
-        // Calling user action here
-        self.user_grammar.word_look(&word_look_built)?;
-        self.push(ASTType::WordLook(word_look_built), context);
-        Ok(())
-    }
-
-    /// Semantic action for production 76:
+    /// Semantic action for production 92:
     ///
     /// Drops: Drop DropsSuffix;
     ///
@@ -4174,7 +5300,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 77:
+    /// Semantic action for production 93:
     ///
     /// DropsSuffix: DropsList /* Vec */;
     ///
@@ -4196,7 +5322,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 78:
+    /// Semantic action for production 94:
     ///
     /// Drops: FiveAttribute DropsList0 /* Vec */;
     ///
@@ -4223,7 +5349,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 79:
+    /// Semantic action for production 95:
     ///
     /// DropsSuffix: And Drop;
     ///
@@ -4248,7 +5374,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 80:
+    /// Semantic action for production 96:
     ///
     /// DropsList /* Vec<T>::Push */: ManyDrop DropsList;
     ///
@@ -4273,7 +5399,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 81:
+    /// Semantic action for production 97:
     ///
     /// DropsList /* Vec<T>::New */: ;
     ///
@@ -4286,7 +5412,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 82:
+    /// Semantic action for production 98:
     ///
     /// DropsList0 /* Vec<T>::Push */: Plus Drop DropsList0;
     ///
@@ -4314,7 +5440,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 83:
+    /// Semantic action for production 99:
     ///
     /// DropsList0 /* Vec<T>::New */: ;
     ///
@@ -4327,7 +5453,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 84:
+    /// Semantic action for production 100:
     ///
     /// ManyDrop: Camma Drop;
     ///
@@ -4354,7 +5480,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 85:
+    /// Semantic action for production 101:
     ///
     /// ManyDrop: Plus Drop;
     ///
@@ -4381,7 +5507,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 86:
+    /// Semantic action for production 102:
     ///
     /// AllDrops: WordAll WordDrop;
     ///
@@ -4407,7 +5533,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 87:
+    /// Semantic action for production 103:
     ///
     /// FiveAttribute: WordFiveAttribute FiveAttributeOpt /* Option */;
     ///
@@ -4433,7 +5559,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 88:
+    /// Semantic action for production 104:
     ///
     /// FiveAttributeOpt /* Option<T>::Some */: WordDrop;
     ///
@@ -4457,7 +5583,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 89:
+    /// Semantic action for production 105:
     ///
     /// FiveAttributeOpt /* Option<T>::None */: ;
     ///
@@ -4469,7 +5595,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 90:
+    /// Semantic action for production 106:
     ///
     /// Quantity: PosInt WordCount QuantityOpt /* Option */;
     ///
@@ -4498,7 +5624,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 91:
+    /// Semantic action for production 107:
     ///
     /// QuantityOpt /* Option<T>::Some */: Each;
     ///
@@ -4522,7 +5648,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 92:
+    /// Semantic action for production 108:
     ///
     /// QuantityOpt /* Option<T>::None */: ;
     ///
@@ -4534,7 +5660,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 93:
+    /// Semantic action for production 109:
     ///
     /// Drop: Color DropOpt /* Option */;
     ///
@@ -4561,7 +5687,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 94:
+    /// Semantic action for production 110:
     ///
     /// Drop: NonColoredDrop DropOpt0 /* Option */;
     ///
@@ -4588,7 +5714,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 95:
+    /// Semantic action for production 111:
     ///
     /// DropOpt0 /* Option<T>::Some */: WordDrop;
     ///
@@ -4612,7 +5738,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 96:
+    /// Semantic action for production 112:
     ///
     /// DropOpt0 /* Option<T>::None */: ;
     ///
@@ -4624,7 +5750,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 97:
+    /// Semantic action for production 113:
     ///
     /// DropOpt /* Option<T>::Some */: WordDrop;
     ///
@@ -4645,7 +5771,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 98:
+    /// Semantic action for production 114:
     ///
     /// DropOpt /* Option<T>::None */: ;
     ///
@@ -4657,7 +5783,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 99:
+    /// Semantic action for production 115:
     ///
     /// NonColoredDrop: Recovery;
     ///
@@ -4682,7 +5808,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 100:
+    /// Semantic action for production 116:
     ///
     /// NonColoredDrop: Disturb;
     ///
@@ -4707,7 +5833,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 101:
+    /// Semantic action for production 117:
     ///
     /// NonColoredDrop: Bomb;
     ///
@@ -4732,7 +5858,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 102:
+    /// Semantic action for production 118:
     ///
     /// NonColoredDrop: Poison;
     ///
@@ -4757,7 +5883,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 103:
+    /// Semantic action for production 119:
     ///
     /// NonColoredDrop: DeadlyPoison;
     ///
@@ -4782,7 +5908,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 104:
+    /// Semantic action for production 120:
     ///
     /// Color: Fire;
     ///
@@ -4806,7 +5932,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 105:
+    /// Semantic action for production 121:
     ///
     /// Color: Water;
     ///
@@ -4830,7 +5956,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 106:
+    /// Semantic action for production 122:
     ///
     /// Color: Wood;
     ///
@@ -4854,7 +5980,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 107:
+    /// Semantic action for production 123:
     ///
     /// Color: Lightning;
     ///
@@ -4878,7 +6004,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 108:
+    /// Semantic action for production 124:
     ///
     /// Color: Dark;
     ///
@@ -4902,7 +6028,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 109:
+    /// Semantic action for production 125:
     ///
     /// RandomSuffix: WordRandom So;
     ///
@@ -4928,7 +6054,65 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 110:
+    /// Semantic action for production 126:
+    ///
+    /// Size: PosInt Multi PosInt;
+    ///
+    #[parol_runtime::function_name::named]
+    fn size(
+        &mut self,
+        _pos_int: &ParseTreeStackEntry<'t>,
+        _multi: &ParseTreeStackEntry<'t>,
+        _pos_int0: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let pos_int0 = pop_item!(self, pos_int0, PosInt, context);
+        let multi = pop_item!(self, multi, Multi, context);
+        let pos_int = pop_item!(self, pos_int, PosInt, context);
+        let size_built = SizeBuilder::default()
+            .pos_int(Box::new(pos_int))
+            .multi(Box::new(multi))
+            .pos_int0(Box::new(pos_int0))
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.size(&size_built)?;
+        self.push(ASTType::Size(size_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 127:
+    ///
+    /// OnBoard: WordBoard WordTop Ni;
+    ///
+    #[parol_runtime::function_name::named]
+    fn on_board(
+        &mut self,
+        _word_board: &ParseTreeStackEntry<'t>,
+        _word_top: &ParseTreeStackEntry<'t>,
+        _ni: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let ni = pop_item!(self, ni, Ni, context);
+        let word_top = pop_item!(self, word_top, WordTop, context);
+        let word_board = pop_item!(self, word_board, WordBoard, context);
+        let on_board_built = OnBoardBuilder::default()
+            .word_board(Box::new(word_board))
+            .word_top(Box::new(word_top))
+            .ni(Box::new(ni))
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.on_board(&on_board_built)?;
+        self.push(ASTType::OnBoard(on_board_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 128:
     ///
     /// Fire: '火';
     ///
@@ -4951,7 +6135,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 111:
+    /// Semantic action for production 129:
     ///
     /// Water: '水';
     ///
@@ -4974,7 +6158,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 112:
+    /// Semantic action for production 130:
     ///
     /// Wood: '木';
     ///
@@ -4997,7 +6181,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 113:
+    /// Semantic action for production 131:
     ///
     /// Lightning: '光';
     ///
@@ -5020,7 +6204,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 114:
+    /// Semantic action for production 132:
     ///
     /// Dark: '闇';
     ///
@@ -5043,7 +6227,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 115:
+    /// Semantic action for production 133:
     ///
     /// Recovery: '回復';
     ///
@@ -5066,7 +6250,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 116:
+    /// Semantic action for production 134:
     ///
     /// Disturb: 'お邪魔';
     ///
@@ -5089,7 +6273,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 117:
+    /// Semantic action for production 135:
     ///
     /// Bomb: '爆弾';
     ///
@@ -5112,7 +6296,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 118:
+    /// Semantic action for production 136:
     ///
     /// DeadlyPoison: '猛毒';
     ///
@@ -5135,7 +6319,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 119:
+    /// Semantic action for production 137:
     ///
     /// Poison: '毒';
     ///
@@ -5158,7 +6342,330 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 120:
+    /// Semantic action for production 138:
+    ///
+    /// ShapeOfL: 'L字型';
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_of_l(
+        &mut self,
+        shape_of_l: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_l = shape_of_l.token(parse_tree)?.clone();
+        let shape_of_l_built = ShapeOfLBuilder::default()
+            .shape_of_l(shape_of_l)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.shape_of_l(&shape_of_l_built)?;
+        self.push(ASTType::ShapeOfL(shape_of_l_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 139:
+    ///
+    /// ShapeOfZ: 'Z字型';
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_of_z(
+        &mut self,
+        shape_of_z: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_z = shape_of_z.token(parse_tree)?.clone();
+        let shape_of_z_built = ShapeOfZBuilder::default()
+            .shape_of_z(shape_of_z)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.shape_of_z(&shape_of_z_built)?;
+        self.push(ASTType::ShapeOfZ(shape_of_z_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 140:
+    ///
+    /// ShapeOfCross: '十字型';
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_of_cross(
+        &mut self,
+        shape_of_cross: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_cross = shape_of_cross.token(parse_tree)?.clone();
+        let shape_of_cross_built = ShapeOfCrossBuilder::default()
+            .shape_of_cross(shape_of_cross)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.shape_of_cross(&shape_of_cross_built)?;
+        self.push(ASTType::ShapeOfCross(shape_of_cross_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 141:
+    ///
+    /// ShapeOfSquare: '正方形';
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_of_square(
+        &mut self,
+        shape_of_square: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_square = shape_of_square.token(parse_tree)?.clone();
+        let shape_of_square_built = ShapeOfSquareBuilder::default()
+            .shape_of_square(shape_of_square)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.shape_of_square(&shape_of_square_built)?;
+        self.push(ASTType::ShapeOfSquare(shape_of_square_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 142:
+    ///
+    /// ShapeOfBoardPerimeter: '盤面外周';
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_of_board_perimeter(
+        &mut self,
+        shape_of_board_perimeter: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_board_perimeter = shape_of_board_perimeter.token(parse_tree)?.clone();
+        let shape_of_board_perimeter_built = ShapeOfBoardPerimeterBuilder::default()
+            .shape_of_board_perimeter(shape_of_board_perimeter)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar
+            .shape_of_board_perimeter(&shape_of_board_perimeter_built)?;
+        self.push(
+            ASTType::ShapeOfBoardPerimeter(shape_of_board_perimeter_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 143:
+    ///
+    /// ShapeOfBoardCenter: '盤面中央';
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_of_board_center(
+        &mut self,
+        shape_of_board_center: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_board_center = shape_of_board_center.token(parse_tree)?.clone();
+        let shape_of_board_center_built = ShapeOfBoardCenterBuilder::default()
+            .shape_of_board_center(shape_of_board_center)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar
+            .shape_of_board_center(&shape_of_board_center_built)?;
+        self.push(
+            ASTType::ShapeOfBoardCenter(shape_of_board_center_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 144:
+    ///
+    /// ShapeOfBoardTop: '盤面上部';
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_of_board_top(
+        &mut self,
+        shape_of_board_top: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_board_top = shape_of_board_top.token(parse_tree)?.clone();
+        let shape_of_board_top_built = ShapeOfBoardTopBuilder::default()
+            .shape_of_board_top(shape_of_board_top)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar
+            .shape_of_board_top(&shape_of_board_top_built)?;
+        self.push(ASTType::ShapeOfBoardTop(shape_of_board_top_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 145:
+    ///
+    /// ShapeOfBoardBottom: '盤面下部';
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_of_board_bottom(
+        &mut self,
+        shape_of_board_bottom: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_board_bottom = shape_of_board_bottom.token(parse_tree)?.clone();
+        let shape_of_board_bottom_built = ShapeOfBoardBottomBuilder::default()
+            .shape_of_board_bottom(shape_of_board_bottom)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar
+            .shape_of_board_bottom(&shape_of_board_bottom_built)?;
+        self.push(
+            ASTType::ShapeOfBoardBottom(shape_of_board_bottom_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 146:
+    ///
+    /// ShapeOfBoardCorners: '盤面4隅';
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_of_board_corners(
+        &mut self,
+        shape_of_board_corners: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_board_corners = shape_of_board_corners.token(parse_tree)?.clone();
+        let shape_of_board_corners_built = ShapeOfBoardCornersBuilder::default()
+            .shape_of_board_corners(shape_of_board_corners)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar
+            .shape_of_board_corners(&shape_of_board_corners_built)?;
+        self.push(
+            ASTType::ShapeOfBoardCorners(shape_of_board_corners_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 147:
+    ///
+    /// ShapeOfSpiderweb: '蜘蛛の巣状';
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_of_spiderweb(
+        &mut self,
+        shape_of_spiderweb: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_spiderweb = shape_of_spiderweb.token(parse_tree)?.clone();
+        let shape_of_spiderweb_built = ShapeOfSpiderwebBuilder::default()
+            .shape_of_spiderweb(shape_of_spiderweb)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar
+            .shape_of_spiderweb(&shape_of_spiderweb_built)?;
+        self.push(ASTType::ShapeOfSpiderweb(shape_of_spiderweb_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 148:
+    ///
+    /// ShapeOfCrescentMoon: '三日月状';
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_of_crescent_moon(
+        &mut self,
+        shape_of_crescent_moon: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_crescent_moon = shape_of_crescent_moon.token(parse_tree)?.clone();
+        let shape_of_crescent_moon_built = ShapeOfCrescentMoonBuilder::default()
+            .shape_of_crescent_moon(shape_of_crescent_moon)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar
+            .shape_of_crescent_moon(&shape_of_crescent_moon_built)?;
+        self.push(
+            ASTType::ShapeOfCrescentMoon(shape_of_crescent_moon_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 149:
+    ///
+    /// ShapeOfOblique: '斜め';
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_of_oblique(
+        &mut self,
+        shape_of_oblique: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_oblique = shape_of_oblique.token(parse_tree)?.clone();
+        let shape_of_oblique_built = ShapeOfObliqueBuilder::default()
+            .shape_of_oblique(shape_of_oblique)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar
+            .shape_of_oblique(&shape_of_oblique_built)?;
+        self.push(ASTType::ShapeOfOblique(shape_of_oblique_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 150:
+    ///
+    /// ShapeOfSomeKind: 'の形';
+    ///
+    #[parol_runtime::function_name::named]
+    fn shape_of_some_kind(
+        &mut self,
+        shape_of_some_kind: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let shape_of_some_kind = shape_of_some_kind.token(parse_tree)?.clone();
+        let shape_of_some_kind_built = ShapeOfSomeKindBuilder::default()
+            .shape_of_some_kind(shape_of_some_kind)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar
+            .shape_of_some_kind(&shape_of_some_kind_built)?;
+        self.push(ASTType::ShapeOfSomeKind(shape_of_some_kind_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 151:
     ///
     /// WordChange: '変化';
     ///
@@ -5181,7 +6688,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 121:
+    /// Semantic action for production 152:
     ///
     /// WordDrop: 'ドロップ';
     ///
@@ -5204,7 +6711,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 122:
+    /// Semantic action for production 153:
     ///
     /// WordAll: '全';
     ///
@@ -5227,7 +6734,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 123:
+    /// Semantic action for production 154:
     ///
     /// WordFiveAttribute: '5属性';
     ///
@@ -5254,7 +6761,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 124:
+    /// Semantic action for production 155:
     ///
     /// WordRandom: 'ランダム';
     ///
@@ -5277,7 +6784,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 125:
+    /// Semantic action for production 156:
     ///
     /// WordReplace: '入れ替える';
     ///
@@ -5300,21 +6807,21 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 126:
+    /// Semantic action for production 157:
     ///
-    /// WordCount: '個';
+    /// WordCount: WordCountOpt /* Option */;
     ///
     #[parol_runtime::function_name::named]
     fn word_count(
         &mut self,
-        word_count: &ParseTreeStackEntry<'t>,
-        parse_tree: &Tree<ParseTreeType<'t>>,
+        _word_count_opt: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let word_count = word_count.token(parse_tree)?.clone();
+        let word_count_opt = pop_item!(self, word_count_opt, WordCountOpt, context);
         let word_count_built = WordCountBuilder::default()
-            .word_count(word_count)
+            .word_count_opt(word_count_opt)
             .build()
             .into_diagnostic()?;
         // Calling user action here
@@ -5323,7 +6830,94 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 127:
+    /// Semantic action for production 158:
+    ///
+    /// WordCountOpt /* Option<T>::Some */: WordCountOptGroup;
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_count_opt_0(
+        &mut self,
+        _word_count_opt_group: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_count_opt_group =
+            pop_item!(self, word_count_opt_group, WordCountOptGroup, context);
+        let word_count_opt_0_built = WordCountOptBuilder::default()
+            .word_count_opt_group(Box::new(word_count_opt_group))
+            .build()
+            .into_diagnostic()?;
+        self.push(
+            ASTType::WordCountOpt(Some(Box::new(word_count_opt_0_built))),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 159:
+    ///
+    /// WordCountOptGroup: '個';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_count_opt_group_0(
+        &mut self,
+        個: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let 個 = 個.token(parse_tree)?.clone();
+        let word_count_opt_group_0_built = WordCountOptGroup個Builder::default()
+            .個(個)
+            .build()
+            .into_diagnostic()?;
+        let word_count_opt_group_0_built = WordCountOptGroup::個(word_count_opt_group_0_built);
+        self.push(
+            ASTType::WordCountOptGroup(word_count_opt_group_0_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 160:
+    ///
+    /// WordCountOptGroup: 'つ';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_count_opt_group_1(
+        &mut self,
+        つ: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let つ = つ.token(parse_tree)?.clone();
+        let word_count_opt_group_1_built = WordCountOptGroupつBuilder::default()
+            .つ(つ)
+            .build()
+            .into_diagnostic()?;
+        let word_count_opt_group_1_built = WordCountOptGroup::つ(word_count_opt_group_1_built);
+        self.push(
+            ASTType::WordCountOptGroup(word_count_opt_group_1_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 161:
+    ///
+    /// WordCountOpt /* Option<T>::None */: ;
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_count_opt_1(&mut self, _parse_tree: &Tree<ParseTreeType<'t>>) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        self.push(ASTType::WordCountOpt(None), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 162:
     ///
     /// WordGen: '生成';
     ///
@@ -5346,7 +6940,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 128:
+    /// Semantic action for production 163:
     ///
     /// WordOther: '以外';
     ///
@@ -5369,7 +6963,310 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 129:
+    /// Semantic action for production 164:
+    ///
+    /// WordVertical: '縦';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_vertical(
+        &mut self,
+        word_vertical: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_vertical = word_vertical.token(parse_tree)?.clone();
+        let word_vertical_built = WordVerticalBuilder::default()
+            .word_vertical(word_vertical)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.word_vertical(&word_vertical_built)?;
+        self.push(ASTType::WordVertical(word_vertical_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 165:
+    ///
+    /// WordHorizon: '横';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_horizon(
+        &mut self,
+        word_horizon: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_horizon = word_horizon.token(parse_tree)?.clone();
+        let word_horizon_built = WordHorizonBuilder::default()
+            .word_horizon(word_horizon)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.word_horizon(&word_horizon_built)?;
+        self.push(ASTType::WordHorizon(word_horizon_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 166:
+    ///
+    /// WordRow: '段';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_row(
+        &mut self,
+        word_row: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_row = word_row.token(parse_tree)?.clone();
+        let word_row_built = WordRowBuilder::default()
+            .word_row(word_row)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.word_row(&word_row_built)?;
+        self.push(ASTType::WordRow(word_row_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 167:
+    ///
+    /// WordCol: '列';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_col(
+        &mut self,
+        word_col: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_col = word_col.token(parse_tree)?.clone();
+        let word_col_built = WordColBuilder::default()
+            .word_col(word_col)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.word_col(&word_col_built)?;
+        self.push(ASTType::WordCol(word_col_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 168:
+    ///
+    /// WordSide: '端';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_side(
+        &mut self,
+        word_side: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_side = word_side.token(parse_tree)?.clone();
+        let word_side_built = WordSideBuilder::default()
+            .word_side(word_side)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.word_side(&word_side_built)?;
+        self.push(ASTType::WordSide(word_side_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 169:
+    ///
+    /// WordLeftAndRight: '両';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_left_and_right(
+        &mut self,
+        word_left_and_right: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_left_and_right = word_left_and_right.token(parse_tree)?.clone();
+        let word_left_and_right_built = WordLeftAndRightBuilder::default()
+            .word_left_and_right(word_left_and_right)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar
+            .word_left_and_right(&word_left_and_right_built)?;
+        self.push(
+            ASTType::WordLeftAndRight(word_left_and_right_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 170:
+    ///
+    /// WordLeft: '左';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_left(
+        &mut self,
+        word_left: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_left = word_left.token(parse_tree)?.clone();
+        let word_left_built = WordLeftBuilder::default()
+            .word_left(word_left)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.word_left(&word_left_built)?;
+        self.push(ASTType::WordLeft(word_left_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 171:
+    ///
+    /// WordRight: '右';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_right(
+        &mut self,
+        word_right: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_right = word_right.token(parse_tree)?.clone();
+        let word_right_built = WordRightBuilder::default()
+            .word_right(word_right)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.word_right(&word_right_built)?;
+        self.push(ASTType::WordRight(word_right_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 172:
+    ///
+    /// WordTop: '上';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_top(
+        &mut self,
+        word_top: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_top = word_top.token(parse_tree)?.clone();
+        let word_top_built = WordTopBuilder::default()
+            .word_top(word_top)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.word_top(&word_top_built)?;
+        self.push(ASTType::WordTop(word_top_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 173:
+    ///
+    /// WordBottom: '下';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_bottom(
+        &mut self,
+        word_bottom: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_bottom = word_bottom.token(parse_tree)?.clone();
+        let word_bottom_built = WordBottomBuilder::default()
+            .word_bottom(word_bottom)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.word_bottom(&word_bottom_built)?;
+        self.push(ASTType::WordBottom(word_bottom_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 174:
+    ///
+    /// WordMost: '最';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_most(
+        &mut self,
+        word_most: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_most = word_most.token(parse_tree)?.clone();
+        let word_most_built = WordMostBuilder::default()
+            .word_most(word_most)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.word_most(&word_most_built)?;
+        self.push(ASTType::WordMost(word_most_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 175:
+    ///
+    /// WordLook: '目';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_look(
+        &mut self,
+        word_look: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_look = word_look.token(parse_tree)?.clone();
+        let word_look_built = WordLookBuilder::default()
+            .word_look(word_look)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.word_look(&word_look_built)?;
+        self.push(ASTType::WordLook(word_look_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 176:
+    ///
+    /// WordBoard: '盤面';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_board(
+        &mut self,
+        word_board: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_board = word_board.token(parse_tree)?.clone();
+        let word_board_built = WordBoardBuilder::default()
+            .word_board(word_board)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.word_board(&word_board_built)?;
+        self.push(ASTType::WordBoard(word_board_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 177:
     ///
     /// Wo: 'を';
     ///
@@ -5389,7 +7286,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 130:
+    /// Semantic action for production 178:
     ///
     /// Ni: 'に';
     ///
@@ -5409,7 +7306,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 131:
+    /// Semantic action for production 179:
     ///
     /// No: 'の';
     ///
@@ -5429,7 +7326,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 132:
+    /// Semantic action for production 180:
     ///
     /// So: 'で';
     ///
@@ -5449,7 +7346,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 133:
+    /// Semantic action for production 181:
     ///
     /// And: 'と';
     ///
@@ -5469,7 +7366,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 134:
+    /// Semantic action for production 182:
     ///
     /// Each: 'ずつ';
     ///
@@ -5492,7 +7389,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 135:
+    /// Semantic action for production 183:
     ///
     /// From: 'から';
     ///
@@ -5515,7 +7412,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 136:
+    /// Semantic action for production 184:
     ///
     /// Plus: '+';
     ///
@@ -5538,7 +7435,30 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 137:
+    /// Semantic action for production 185:
+    ///
+    /// Multi: '×';
+    ///
+    #[parol_runtime::function_name::named]
+    fn multi(
+        &mut self,
+        multi: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let multi = multi.token(parse_tree)?.clone();
+        let multi_built = MultiBuilder::default()
+            .multi(multi)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.multi(&multi_built)?;
+        self.push(ASTType::Multi(multi_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 186:
     ///
     /// Camma: '、';
     ///
@@ -5561,7 +7481,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 138:
+    /// Semantic action for production 187:
     ///
     /// Period: '。';
     ///
@@ -5584,7 +7504,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 139:
+    /// Semantic action for production 188:
     ///
     /// PosInt: "[1-9]([0-9])*";
     ///
@@ -5667,21 +7587,7 @@ impl<'t> UserActionsTrait<'t> for SkillGrammarAuto<'t, '_> {
                 &children[4],
                 parse_tree,
             ),
-            14 => self.drop_refresh_stmt(
-                &children[0],
-                &children[1],
-                &children[2],
-                &children[3],
-                parse_tree,
-            ),
-            15 => self.change_drop_block_other_first(
-                &children[0],
-                &children[1],
-                &children[2],
-                &children[3],
-                parse_tree,
-            ),
-            16 => self.gen_random_drop_stmt1(
+            14 => self.gen_random_drop_stmt1(
                 &children[0],
                 &children[1],
                 &children[2],
@@ -5689,54 +7595,90 @@ impl<'t> UserActionsTrait<'t> for SkillGrammarAuto<'t, '_> {
                 &children[4],
                 parse_tree,
             ),
-            17 => self.gen_shape_stmt(&children[0], &children[1], &children[2], parse_tree),
-            18 => self.gen_shape_stmt_list_0(&children[0], &children[1], &children[2], parse_tree),
-            19 => self.gen_shape_stmt_list_1(parse_tree),
-            20 => self.gen_shape_block(
+            15 => self.gen_shape_stmt(&children[0], &children[1], parse_tree),
+            16 => self.gen_shape_stmt_opt_0(&children[0], parse_tree),
+            17 => self.gen_shape_stmt_opt_group_0(&children[0], parse_tree),
+            18 => self.gen_shape_stmt_opt_group_1(&children[0], parse_tree),
+            19 => self.gen_shape_stmt_opt_1(parse_tree),
+            20 => self.drop_refresh_stmt(
                 &children[0],
                 &children[1],
                 &children[2],
                 &children[3],
                 parse_tree,
             ),
-            21 => self.g_s_start_position_0(&children[0], parse_tree),
-            22 => self.g_s_start_position_1(&children[0], parse_tree),
-            23 => self.g_s_s_p_side(
+            21 => self.change_drop_block_other_first(
                 &children[0],
                 &children[1],
                 &children[2],
                 &children[3],
                 parse_tree,
             ),
-            24 => self.g_s_s_p_side_opt0_0(
+            22 => self.gen_shape_block_0(&children[0], &children[1], parse_tree),
+            23 => self.gen_shape_block_list_0(&children[0], &children[1], &children[2], parse_tree),
+            24 => self.gen_shape_block_list_1(parse_tree),
+            25 => self.gen_shape_block_1(&children[0], parse_tree),
+            26 => self.gen_shape_block_row_col(
                 &children[0],
                 &children[1],
                 &children[2],
                 &children[3],
                 parse_tree,
             ),
-            25 => self.g_s_s_p_side_opt1_0(&children[0], parse_tree),
-            26 => self.g_s_s_p_side_opt1_1(parse_tree),
-            27 => self.g_s_s_p_side_opt0_1(parse_tree),
-            28 => self.g_s_s_p_side_opt_0(&children[0], parse_tree),
-            29 => self.g_s_s_p_side_opt_1(parse_tree),
-            30 => self.g_s_s_p_center(
+            27 => self.gen_shape_block_other_row_col(&children[0], &children[1], parse_tree),
+            28 => self.gen_shape_block_other_row_col_suffix_0(
                 &children[0],
                 &children[1],
                 &children[2],
                 &children[3],
                 parse_tree,
             ),
-            31 => self.g_s_s_p_center_opt0_0(&children[0], parse_tree),
-            32 => self.g_s_s_p_center_opt0_group_0(&children[0], parse_tree),
-            33 => self.g_s_s_p_center_opt0_group_1(&children[0], parse_tree),
-            34 => self.g_s_s_p_center_opt0_1(parse_tree),
-            35 => self.g_s_s_p_center_opt_0(&children[0], parse_tree),
-            36 => self.g_s_s_p_center_opt_1(parse_tree),
-            37 => self.g_s_s_p_center_blocks(&children[0], &children[1], parse_tree),
-            38 => self.g_s_s_p_center_blocks_opt_0(&children[0], &children[1], parse_tree),
-            39 => self.g_s_s_p_center_blocks_opt_1(parse_tree),
-            40 => self.g_s_s_p_center_block(
+            29 => self.gen_shape_block_other_row_col_suffix_1(
+                &children[0],
+                &children[1],
+                &children[2],
+                parse_tree,
+            ),
+            30 => self.gen_shape_block_other_row_col_opt_0(&children[0], parse_tree),
+            31 => self.gen_shape_block_other_row_col_opt_1(parse_tree),
+            32 => self.g_s_start_position_0(&children[0], parse_tree),
+            33 => self.g_s_start_position_1(&children[0], parse_tree),
+            34 => self.g_s_s_p_side(
+                &children[0],
+                &children[1],
+                &children[2],
+                &children[3],
+                parse_tree,
+            ),
+            35 => self.g_s_s_p_side_opt0_0(
+                &children[0],
+                &children[1],
+                &children[2],
+                &children[3],
+                parse_tree,
+            ),
+            36 => self.g_s_s_p_side_opt1_0(&children[0], parse_tree),
+            37 => self.g_s_s_p_side_opt1_1(parse_tree),
+            38 => self.g_s_s_p_side_opt0_1(parse_tree),
+            39 => self.g_s_s_p_side_opt_0(&children[0], parse_tree),
+            40 => self.g_s_s_p_side_opt_1(parse_tree),
+            41 => self.g_s_s_p_center(
+                &children[0],
+                &children[1],
+                &children[2],
+                &children[3],
+                parse_tree,
+            ),
+            42 => self.g_s_s_p_center_opt0_0(&children[0], parse_tree),
+            43 => self.g_s_s_p_center_opt0_group_0(&children[0], parse_tree),
+            44 => self.g_s_s_p_center_opt0_group_1(&children[0], parse_tree),
+            45 => self.g_s_s_p_center_opt0_1(parse_tree),
+            46 => self.g_s_s_p_center_opt_0(&children[0], parse_tree),
+            47 => self.g_s_s_p_center_opt_1(parse_tree),
+            48 => self.g_s_s_p_center_blocks(&children[0], &children[1], parse_tree),
+            49 => self.g_s_s_p_center_blocks_opt_0(&children[0], &children[1], parse_tree),
+            50 => self.g_s_s_p_center_blocks_opt_1(parse_tree),
+            51 => self.g_s_s_p_center_block(
                 &children[0],
                 &children[1],
                 &children[2],
@@ -5744,105 +7686,143 @@ impl<'t> UserActionsTrait<'t> for SkillGrammarAuto<'t, '_> {
                 &children[4],
                 parse_tree,
             ),
-            41 => self.g_s_s_p_center_block_opt_0(&children[0], parse_tree),
-            42 => self.g_s_s_p_center_block_opt_group_0(&children[0], parse_tree),
-            43 => self.g_s_s_p_center_block_opt_group_1(&children[0], parse_tree),
-            44 => self.g_s_s_p_center_block_opt_1(parse_tree),
-            45 => self.position_0(&children[0], &children[1], parse_tree),
-            46 => self.position_1(&children[0], parse_tree),
-            47 => self.position_l_r_0(&children[0], parse_tree),
-            48 => self.position_l_r_1(&children[0], parse_tree),
-            49 => self.position_l_r_2(&children[0], parse_tree),
-            50 => self.position_t_b(&children[0], &children[1], &children[2], parse_tree),
-            51 => self.position_t_b_opt_0(&children[0], parse_tree),
-            52 => self.position_t_b_opt_1(parse_tree),
-            53 => self.position_t_or_b_0(&children[0], parse_tree),
-            54 => self.position_t_or_b_1(&children[0], parse_tree),
-            55 => self.g_s_s_p_side_write_width_0(&children[0], &children[1], parse_tree),
-            56 => self.g_s_s_p_side_write_width_1(&children[0], parse_tree),
-            57 => self.g_s_s_p_side_write_width_opt_0(&children[0], parse_tree),
-            58 => self.g_s_s_p_side_write_width_opt_1(parse_tree),
-            59 => self.position_l_r_t_b_0(&children[0], parse_tree),
-            60 => self.position_l_r_t_b_1(&children[0], parse_tree),
-            61 => self.position_l_r_t_b_2(&children[0], parse_tree),
-            62 => self.position_l_r_t_b_3(&children[0], parse_tree),
-            63 => self.gen_shape_num_of_gen(&children[0], &children[1], parse_tree),
-            64 => self.word_vertical(&children[0], parse_tree),
-            65 => self.word_horizon(&children[0], parse_tree),
-            66 => self.word_row(&children[0], parse_tree),
-            67 => self.word_col(&children[0], parse_tree),
-            68 => self.word_side(&children[0], parse_tree),
-            69 => self.word_left_and_right(&children[0], parse_tree),
-            70 => self.word_left(&children[0], parse_tree),
-            71 => self.word_right(&children[0], parse_tree),
-            72 => self.word_top(&children[0], parse_tree),
-            73 => self.word_bottom(&children[0], parse_tree),
-            74 => self.word_most(&children[0], parse_tree),
-            75 => self.word_look(&children[0], parse_tree),
-            76 => self.drops_0(&children[0], &children[1], parse_tree),
-            77 => self.drops_suffix_0(&children[0], parse_tree),
-            78 => self.drops_1(&children[0], &children[1], parse_tree),
-            79 => self.drops_suffix_1(&children[0], &children[1], parse_tree),
-            80 => self.drops_list_0(&children[0], &children[1], parse_tree),
-            81 => self.drops_list_1(parse_tree),
-            82 => self.drops_list0_0(&children[0], &children[1], &children[2], parse_tree),
-            83 => self.drops_list0_1(parse_tree),
-            84 => self.many_drop_0(&children[0], &children[1], parse_tree),
-            85 => self.many_drop_1(&children[0], &children[1], parse_tree),
-            86 => self.all_drops(&children[0], &children[1], parse_tree),
-            87 => self.five_attribute(&children[0], &children[1], parse_tree),
-            88 => self.five_attribute_opt_0(&children[0], parse_tree),
-            89 => self.five_attribute_opt_1(parse_tree),
-            90 => self.quantity(&children[0], &children[1], &children[2], parse_tree),
-            91 => self.quantity_opt_0(&children[0], parse_tree),
-            92 => self.quantity_opt_1(parse_tree),
-            93 => self.drop_0(&children[0], &children[1], parse_tree),
-            94 => self.drop_1(&children[0], &children[1], parse_tree),
-            95 => self.drop_opt0_0(&children[0], parse_tree),
-            96 => self.drop_opt0_1(parse_tree),
-            97 => self.drop_opt_0(&children[0], parse_tree),
-            98 => self.drop_opt_1(parse_tree),
-            99 => self.non_colored_drop_0(&children[0], parse_tree),
-            100 => self.non_colored_drop_1(&children[0], parse_tree),
-            101 => self.non_colored_drop_2(&children[0], parse_tree),
-            102 => self.non_colored_drop_3(&children[0], parse_tree),
-            103 => self.non_colored_drop_4(&children[0], parse_tree),
-            104 => self.color_0(&children[0], parse_tree),
-            105 => self.color_1(&children[0], parse_tree),
-            106 => self.color_2(&children[0], parse_tree),
-            107 => self.color_3(&children[0], parse_tree),
-            108 => self.color_4(&children[0], parse_tree),
-            109 => self.random_suffix(&children[0], &children[1], parse_tree),
-            110 => self.fire(&children[0], parse_tree),
-            111 => self.water(&children[0], parse_tree),
-            112 => self.wood(&children[0], parse_tree),
-            113 => self.lightning(&children[0], parse_tree),
-            114 => self.dark(&children[0], parse_tree),
-            115 => self.recovery(&children[0], parse_tree),
-            116 => self.disturb(&children[0], parse_tree),
-            117 => self.bomb(&children[0], parse_tree),
-            118 => self.deadly_poison(&children[0], parse_tree),
-            119 => self.poison(&children[0], parse_tree),
-            120 => self.word_change(&children[0], parse_tree),
-            121 => self.word_drop(&children[0], parse_tree),
-            122 => self.word_all(&children[0], parse_tree),
-            123 => self.word_five_attribute(&children[0], parse_tree),
-            124 => self.word_random(&children[0], parse_tree),
-            125 => self.word_replace(&children[0], parse_tree),
-            126 => self.word_count(&children[0], parse_tree),
-            127 => self.word_gen(&children[0], parse_tree),
-            128 => self.word_other(&children[0], parse_tree),
-            129 => self.wo(&children[0], parse_tree),
-            130 => self.ni(&children[0], parse_tree),
-            131 => self.no(&children[0], parse_tree),
-            132 => self.so(&children[0], parse_tree),
-            133 => self.and(&children[0], parse_tree),
-            134 => self.each(&children[0], parse_tree),
-            135 => self.from(&children[0], parse_tree),
-            136 => self.plus(&children[0], parse_tree),
-            137 => self.camma(&children[0], parse_tree),
-            138 => self.period(&children[0], parse_tree),
-            139 => self.pos_int(&children[0], parse_tree),
+            52 => self.g_s_s_p_center_block_opt_0(&children[0], parse_tree),
+            53 => self.g_s_s_p_center_block_opt_group_0(&children[0], parse_tree),
+            54 => self.g_s_s_p_center_block_opt_group_1(&children[0], parse_tree),
+            55 => self.g_s_s_p_center_block_opt_1(parse_tree),
+            56 => self.position_0(&children[0], &children[1], parse_tree),
+            57 => self.position_1(&children[0], parse_tree),
+            58 => self.g_s_s_p_side_write_width_0(&children[0], &children[1], parse_tree),
+            59 => self.g_s_s_p_side_write_width_1(&children[0], parse_tree),
+            60 => self.g_s_s_p_side_write_width_opt_0(&children[0], parse_tree),
+            61 => self.g_s_s_p_side_write_width_opt_1(parse_tree),
+            62 => self.position_l_r_t_b_0(&children[0], parse_tree),
+            63 => self.position_l_r_t_b_1(&children[0], parse_tree),
+            64 => self.position_l_r_t_b_2(&children[0], parse_tree),
+            65 => self.position_l_r_t_b_3(&children[0], parse_tree),
+            66 => self.position_l_r_0(&children[0], parse_tree),
+            67 => self.position_l_r_1(&children[0], parse_tree),
+            68 => self.position_l_r_2(&children[0], parse_tree),
+            69 => self.position_t_b(&children[0], &children[1], &children[2], parse_tree),
+            70 => self.position_t_b_opt_0(&children[0], parse_tree),
+            71 => self.position_t_b_opt_1(parse_tree),
+            72 => self.position_t_or_b_0(&children[0], parse_tree),
+            73 => self.position_t_or_b_1(&children[0], parse_tree),
+            74 => self.gen_shape_num_of_gen(&children[0], &children[1], parse_tree),
+            75 => self.shape_type_0(&children[0], parse_tree),
+            76 => self.shape_type_1(&children[0], &children[1], parse_tree),
+            77 => self.shape_type_2(&children[0], parse_tree),
+            78 => self.shape_type_3(&children[0], &children[1], &children[2], parse_tree),
+            79 => self.shape_type_4(&children[0], parse_tree),
+            80 => self.shape_type_5(&children[0], parse_tree),
+            81 => self.shape_type_6(&children[0], parse_tree),
+            82 => self.shape_type_7(&children[0], parse_tree),
+            83 => self.shape_type_8(&children[0], parse_tree),
+            84 => self.shape_type_9(&children[0], parse_tree),
+            85 => self.shape_type_10(&children[0], parse_tree),
+            86 => self.shape_type_11(&children[0], &children[1], parse_tree),
+            87 => self.shape_type_12(&children[0], &children[1], parse_tree),
+            88 => self.shape_type_opt0_0(&children[0], parse_tree),
+            89 => self.shape_type_opt0_1(parse_tree),
+            90 => self.shape_type_opt_0(&children[0], parse_tree),
+            91 => self.shape_type_opt_1(parse_tree),
+            92 => self.drops_0(&children[0], &children[1], parse_tree),
+            93 => self.drops_suffix_0(&children[0], parse_tree),
+            94 => self.drops_1(&children[0], &children[1], parse_tree),
+            95 => self.drops_suffix_1(&children[0], &children[1], parse_tree),
+            96 => self.drops_list_0(&children[0], &children[1], parse_tree),
+            97 => self.drops_list_1(parse_tree),
+            98 => self.drops_list0_0(&children[0], &children[1], &children[2], parse_tree),
+            99 => self.drops_list0_1(parse_tree),
+            100 => self.many_drop_0(&children[0], &children[1], parse_tree),
+            101 => self.many_drop_1(&children[0], &children[1], parse_tree),
+            102 => self.all_drops(&children[0], &children[1], parse_tree),
+            103 => self.five_attribute(&children[0], &children[1], parse_tree),
+            104 => self.five_attribute_opt_0(&children[0], parse_tree),
+            105 => self.five_attribute_opt_1(parse_tree),
+            106 => self.quantity(&children[0], &children[1], &children[2], parse_tree),
+            107 => self.quantity_opt_0(&children[0], parse_tree),
+            108 => self.quantity_opt_1(parse_tree),
+            109 => self.drop_0(&children[0], &children[1], parse_tree),
+            110 => self.drop_1(&children[0], &children[1], parse_tree),
+            111 => self.drop_opt0_0(&children[0], parse_tree),
+            112 => self.drop_opt0_1(parse_tree),
+            113 => self.drop_opt_0(&children[0], parse_tree),
+            114 => self.drop_opt_1(parse_tree),
+            115 => self.non_colored_drop_0(&children[0], parse_tree),
+            116 => self.non_colored_drop_1(&children[0], parse_tree),
+            117 => self.non_colored_drop_2(&children[0], parse_tree),
+            118 => self.non_colored_drop_3(&children[0], parse_tree),
+            119 => self.non_colored_drop_4(&children[0], parse_tree),
+            120 => self.color_0(&children[0], parse_tree),
+            121 => self.color_1(&children[0], parse_tree),
+            122 => self.color_2(&children[0], parse_tree),
+            123 => self.color_3(&children[0], parse_tree),
+            124 => self.color_4(&children[0], parse_tree),
+            125 => self.random_suffix(&children[0], &children[1], parse_tree),
+            126 => self.size(&children[0], &children[1], &children[2], parse_tree),
+            127 => self.on_board(&children[0], &children[1], &children[2], parse_tree),
+            128 => self.fire(&children[0], parse_tree),
+            129 => self.water(&children[0], parse_tree),
+            130 => self.wood(&children[0], parse_tree),
+            131 => self.lightning(&children[0], parse_tree),
+            132 => self.dark(&children[0], parse_tree),
+            133 => self.recovery(&children[0], parse_tree),
+            134 => self.disturb(&children[0], parse_tree),
+            135 => self.bomb(&children[0], parse_tree),
+            136 => self.deadly_poison(&children[0], parse_tree),
+            137 => self.poison(&children[0], parse_tree),
+            138 => self.shape_of_l(&children[0], parse_tree),
+            139 => self.shape_of_z(&children[0], parse_tree),
+            140 => self.shape_of_cross(&children[0], parse_tree),
+            141 => self.shape_of_square(&children[0], parse_tree),
+            142 => self.shape_of_board_perimeter(&children[0], parse_tree),
+            143 => self.shape_of_board_center(&children[0], parse_tree),
+            144 => self.shape_of_board_top(&children[0], parse_tree),
+            145 => self.shape_of_board_bottom(&children[0], parse_tree),
+            146 => self.shape_of_board_corners(&children[0], parse_tree),
+            147 => self.shape_of_spiderweb(&children[0], parse_tree),
+            148 => self.shape_of_crescent_moon(&children[0], parse_tree),
+            149 => self.shape_of_oblique(&children[0], parse_tree),
+            150 => self.shape_of_some_kind(&children[0], parse_tree),
+            151 => self.word_change(&children[0], parse_tree),
+            152 => self.word_drop(&children[0], parse_tree),
+            153 => self.word_all(&children[0], parse_tree),
+            154 => self.word_five_attribute(&children[0], parse_tree),
+            155 => self.word_random(&children[0], parse_tree),
+            156 => self.word_replace(&children[0], parse_tree),
+            157 => self.word_count(&children[0], parse_tree),
+            158 => self.word_count_opt_0(&children[0], parse_tree),
+            159 => self.word_count_opt_group_0(&children[0], parse_tree),
+            160 => self.word_count_opt_group_1(&children[0], parse_tree),
+            161 => self.word_count_opt_1(parse_tree),
+            162 => self.word_gen(&children[0], parse_tree),
+            163 => self.word_other(&children[0], parse_tree),
+            164 => self.word_vertical(&children[0], parse_tree),
+            165 => self.word_horizon(&children[0], parse_tree),
+            166 => self.word_row(&children[0], parse_tree),
+            167 => self.word_col(&children[0], parse_tree),
+            168 => self.word_side(&children[0], parse_tree),
+            169 => self.word_left_and_right(&children[0], parse_tree),
+            170 => self.word_left(&children[0], parse_tree),
+            171 => self.word_right(&children[0], parse_tree),
+            172 => self.word_top(&children[0], parse_tree),
+            173 => self.word_bottom(&children[0], parse_tree),
+            174 => self.word_most(&children[0], parse_tree),
+            175 => self.word_look(&children[0], parse_tree),
+            176 => self.word_board(&children[0], parse_tree),
+            177 => self.wo(&children[0], parse_tree),
+            178 => self.ni(&children[0], parse_tree),
+            179 => self.no(&children[0], parse_tree),
+            180 => self.so(&children[0], parse_tree),
+            181 => self.and(&children[0], parse_tree),
+            182 => self.each(&children[0], parse_tree),
+            183 => self.from(&children[0], parse_tree),
+            184 => self.plus(&children[0], parse_tree),
+            185 => self.multi(&children[0], parse_tree),
+            186 => self.camma(&children[0], parse_tree),
+            187 => self.period(&children[0], parse_tree),
+            188 => self.pos_int(&children[0], parse_tree),
             _ => Err(miette!("Unhandled production number: {}", prod_num)),
         }
     }

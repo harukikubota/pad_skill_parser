@@ -32,7 +32,7 @@ GenRandomDropStmt1
     : RandomSuffix Drops Wo Quantity WordGen;
 
 GenShapeStmt
-    : GenShapeBlock { Camma GenShapeBlock } WordChange;
+    : GenShapeBlock [ WordChange | WordGen ];
 
 DropRefreshStmt
     : RandomSuffix WordDrop Wo WordReplace;
@@ -44,7 +44,17 @@ ChangeDropBlockOtherFirst
     ;
 
 GenShapeBlock
+    : GenShapeBlockRowCol { Camma GenShapeBlockRowCol }
+    | GenShapeBlockOtherRowCol
+    ;
+
+GenShapeBlockRowCol
     : GSStartPosition Wo Drop Ni;
+
+GenShapeBlockOtherRowCol
+    : ShapeType Ni Drops Wo [ Quantity ]
+    | ShapeType Wo Drops Ni
+    ;
 
 GSStartPosition
     : GSSPSide
@@ -98,6 +108,23 @@ PositionTOrB
 GenShapeNumOfGen
     : PosInt WordCol;
 
+ShapeType
+    : ShapeOfL
+    | [ OnBoard ] ShapeOfZ
+    | ShapeOfCross
+    | Size No ShapeOfSquare
+    | ShapeOfBoardPerimeter
+    | ShapeOfBoardCenter
+    | ShapeOfBoardTop
+    | ShapeOfBoardBottom
+    | ShapeOfBoardCorners
+    | ShapeOfSpiderweb
+    | ShapeOfCrescentMoon
+    | [ OnBoard ] ShapeOfOblique
+    // 現在では `7の形`のみ それ以外は改修必要
+    | PosInt ShapeOfSomeKind
+    ;
+
 Drops
     : Drop { ManyDrop }
     | FiveAttribute { Plus Drop }
@@ -141,6 +168,12 @@ Color
 RandomSuffix
     : WordRandom So;
 
+Size
+    : PosInt Multi PosInt;
+
+OnBoard
+    : WordBoard WordTop Ni;
+
 Fire         : '火';
 Water        : '水';
 Wood         : '木';
@@ -152,13 +185,27 @@ Bomb         : '爆弾';
 DeadlyPoison : '猛毒';
 Poison       : '毒';
 
+ShapeOfL              : 'L字型';
+ShapeOfZ              : 'Z字型';
+ShapeOfCross          : '十字型';
+ShapeOfSquare         : '正方形';
+ShapeOfBoardPerimeter : '盤面外周';
+ShapeOfBoardCenter    : '盤面中央';
+ShapeOfBoardTop       : '盤面上部';
+ShapeOfBoardBottom    : '盤面下部';
+ShapeOfBoardCorners   : '盤面4隅';
+ShapeOfSpiderweb      : '蜘蛛の巣状';
+ShapeOfCrescentMoon   : '三日月状';
+ShapeOfOblique        : '斜め';
+ShapeOfSomeKind       : 'の形';
+
 WordChange        : '変化';
 WordDrop          : 'ドロップ';
 WordAll           : '全';
 WordFiveAttribute : '5属性';
 WordRandom        : 'ランダム';
 WordReplace       : '入れ替える';
-WordCount         : '個';
+WordCount         : ['個' | 'つ'];
 WordGen           : '生成';
 WordOther         : '以外';
 WordVertical      : '縦';
@@ -173,7 +220,7 @@ WordTop           : '上';
 WordBottom        : '下';
 WordMost          : '最';
 WordLook          : '目';
-
+WordBoard         : '盤面';
 
 Wo     : 'を';
 Ni     : 'に';
@@ -183,6 +230,7 @@ And    : 'と';
 Each   : 'ずつ';
 From   : 'から';
 Plus   : '+';
+Multi  : '×';
 Camma  : '、';
 Period : '。';
 

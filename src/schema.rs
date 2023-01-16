@@ -10,6 +10,12 @@ pub enum Drop {
     NonColored(NonColoredDrop),
 }
 
+impl Drop {
+    pub(super) fn default() -> Self {
+        Self::Colored(Color::Fire)
+    }
+}
+
 /// 何かの色を表す
 #[derive(Clone, Debug, Default, PartialEq)]
 pub enum Color {

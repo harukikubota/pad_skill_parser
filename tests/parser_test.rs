@@ -736,6 +736,267 @@ mod parser_test {
     }
 
     #[test]
+    fn gen_shape_l_1() {
+        let input = "L字型に光を1つ生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::LShape(
+                Drop::Colored(Color::Lightning),
+                1,
+            )]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_l_2() {
+        let input = "L字型に闇を2つ生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::LShape(
+                Drop::Colored(Color::Dark),
+                2,
+            )]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_z() {
+        let input = "盤面上にZ字型に水を生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::ZShape(Drop::Colored(Color::Water))]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_smallcloss_1() {
+        let input = "十字型に火を1つ生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::SmallCrossShape(
+                Drop::Colored(Color::Fire),
+                1,
+            )]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_bigcloss_1() {
+        let input = "十字型に光ドロップを生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::CrossShape(Drop::Colored(
+                Color::Lightning,
+            ))]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_square() {
+        let input = "3×3の正方形に木ドロップを1つ生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::Square(
+                Drop::Colored(Color::Wood),
+                3,
+                1,
+            )]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_of_board_perimeter() {
+        let input = "盤面外周を火ドロップに変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::ShapeOfBoardPerimeter(
+                Drop::Colored(Color::Fire),
+            )]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_of_board_top() {
+        let input = "盤面上部に闇ドロップを12個生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::ShapeOfBoardTop(
+                Drop::Colored(Color::Dark),
+                12,
+            )]),
+        }]);
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_of_board_center() {
+        let input = "盤面中央を闇ドロップに変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::ShapeOfBoardCenter(Drop::Colored(
+                Color::Dark,
+            ))]),
+        }]);
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_of_board_bottom() {
+        let input = "盤面下部に回復ドロップを12個生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::ShapeOfBoardBottom(
+                Drop::NonColored(NonColoredDrop::Recovery),
+                12,
+            )]),
+        }]);
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_of_board_corners() {
+        let input = "盤面4隅に水ドロップを1個ずつ生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::ShapeOfBoardCorners(
+                Drop::Colored(Color::Water),
+                1,
+            )]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_of_spiderweb() {
+        let input = "蜘蛛の巣状に火と回復ドロップを生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::ShapeOfSpiderweb(
+                Drop::Colored(Color::Fire),
+                Drop::NonColored(NonColoredDrop::Recovery),
+            )]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_of_crescent_moon() {
+        let input = "三日月状に光ドロップを生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::ShapeOfCrescentMoon(Drop::Colored(
+                Color::Lightning,
+            ))]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_of_oblique() {
+        let input = "盤面上に斜めに木ドロップを生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::ShapeOfOblique(Drop::Colored(
+                Color::Wood,
+            ))]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_shape_of_some_kind() {
+        let input = "7の形に火ドロップを1個生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropShapeGen(vec![ShapeType::ShapeOfSomeKind(
+                Drop::Colored(Color::Fire),
+                "7".to_owned(),
+                1,
+            )]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
     fn drop_refresh() {
         let input = "ランダムでドロップを入れ替える。";
         let grammar = &mut SkillGrammar::new();
