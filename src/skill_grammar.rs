@@ -327,6 +327,16 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
+    fn drop_un_lock_stmt(&mut self, _arg: &crate::skill_grammar_trait::DropUnLockStmt<'t>) -> miette::Result<()> {
+        let skill = Skill {
+            effect: SkillEffect::DropUnLock,
+            ..Default::default()
+        };
+
+        self.skill_list.push(skill);
+        Ok(())
+    }
+
     fn drop_refresh_stmt(
         &mut self,
         _arg: &crate::skill_grammar_trait::DropRefreshStmt<'t>,

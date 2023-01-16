@@ -997,6 +997,21 @@ mod parser_test {
     }
 
     #[test]
+    fn drop_unlock() {
+        let input = "ドロップのロック状態を解除。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropUnLock,
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
     fn drop_refresh() {
         let input = "ランダムでドロップを入れ替える。";
         let grammar = &mut SkillGrammar::new();

@@ -14,6 +14,7 @@ Line
     | GenRandomDropStmt1
     | GenShapeStmt
     | DropRefreshStmt
+    | DropUnLockStmt
     ;
 
 ChangeDropStmtIncGenRandomDrop
@@ -36,6 +37,9 @@ GenShapeStmt
 
 DropRefreshStmt
     : RandomSuffix WordDrop Wo WordReplace;
+
+DropUnLockStmt
+    : WordDrop No WordLock WordState Wo WordRelease;
 
 // 木ドロップ を 水ドロップ に, 光ドロップ を 回復ドロップ に
 //                          ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -221,6 +225,9 @@ WordBottom        : '下';
 WordMost          : '最';
 WordLook          : '目';
 WordBoard         : '盤面';
+WordRelease       : '解除';
+WordLock          : 'ロック';
+WordState         : '状態';
 
 Wo     : 'を';
 Ni     : 'に';

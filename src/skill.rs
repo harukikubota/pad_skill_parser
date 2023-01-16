@@ -25,6 +25,8 @@ pub enum SkillEffect {
     /// * 1: To 生成するドロップの種類と個数
     GenRandomDrop(Drops, GenDropsWithQty),
     DropShapeGen(Vec<ShapeType>),
+    // ロック解除
+    DropUnLock,
     /// ドロップリフレッシュ
     DropRefresh,
 }
