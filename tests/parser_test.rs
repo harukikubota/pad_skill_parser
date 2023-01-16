@@ -110,13 +110,10 @@ mod parser_test {
             sub_effects: None,
             turns_of_apply: None,
             effect: SkillEffect::ChangeDropAToB(
-                vec![
-                    Drop::Colored(Color::Fire),
-                    Drop::Colored(Color::Wood),
-                ],
+                vec![Drop::Colored(Color::Fire), Drop::Colored(Color::Wood)],
                 vec![
                     Drop::Colored(Color::Lightning),
-                    Drop::NonColored(NonColoredDrop::Recovery)
+                    Drop::NonColored(NonColoredDrop::Recovery),
                 ],
             ),
         }]);
@@ -136,7 +133,7 @@ mod parser_test {
             effect: SkillEffect::ChangeDropAToB(
                 vec![
                     Drop::Colored(Color::Lightning),
-                    Drop::NonColored(NonColoredDrop::Recovery)
+                    Drop::NonColored(NonColoredDrop::Recovery),
                 ],
                 vec![
                     Drop::Colored(Color::Fire),
@@ -399,10 +396,67 @@ mod parser_test {
                     vec![
                         (Drop::Colored(Color::Water), 10),
                         (Drop::Colored(Color::Lightning), 10),
-                        (Drop::NonColored(NonColoredDrop::Recovery), 10)
+                        (Drop::NonColored(NonColoredDrop::Recovery), 10),
                     ],
                 ),
-            }
+            },
+        ]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_random_drops_diff_num_1() {
+        let input = "ランダムで木ドロップを11個、闇ドロップを7個、回復ドロップを5個生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::GenRandomDrop(
+                vec![
+                    Drop::Colored(Color::Wood),
+                    Drop::Colored(Color::Dark),
+                    Drop::NonColored(NonColoredDrop::Recovery),
+                ],
+                vec![
+                    (Drop::Colored(Color::Wood), 11),
+                    (Drop::Colored(Color::Dark), 7),
+                    (Drop::NonColored(NonColoredDrop::Recovery), 5),
+                ],
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_random_drops_diff_num_2() {
+        let input = "ドロップのロックを解除し、水を3個、回復を9個生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::DropUnLock,
+            },
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::GenRandomDrop(
+                    vec![
+                        Drop::Colored(Color::Water),
+                        Drop::NonColored(NonColoredDrop::Recovery),
+                    ],
+                    vec![
+                        (Drop::Colored(Color::Water), 3),
+                        (Drop::NonColored(NonColoredDrop::Recovery), 9),
+                    ],
+                ),
+            },
         ]);
 
         assert_eq!(except, grammar);

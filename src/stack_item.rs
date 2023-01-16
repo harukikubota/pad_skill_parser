@@ -6,6 +6,7 @@ pub(super) enum StackItem {
     Drop(Drop),
     Drops(Drops),
     PosInt(usize),
+    GenDropsWithQty(GenDropsWithQty),
     Position(Position),
     GenPositions(GenPositions),
     DropShapeGenShapeType(ShapeType),
@@ -31,6 +32,13 @@ impl StackItem {
         match self {
             Self::Drops(elem) => elem,
             _ => panic!("from StackItem::pop(). this Item isn't Drops!"),
+        }
+    }
+
+    pub(super) fn gen_drop_with_qty(self: Self) -> GenDropsWithQty {
+        match self {
+            Self::GenDropsWithQty(elem) => elem,
+            _ => panic!("from StackItem::pop(). this Item isn't GenDropsWithQty!"),
         }
     }
 
@@ -79,6 +87,13 @@ impl StackItem {
     pub(super) fn is_drops(self: &Self) -> bool {
         match self {
             Self::Drops(_) => true,
+            _ => false,
+        }
+    }
+
+    pub(super) fn is_gen_drops_with_qty(self: &Self) -> bool {
+        match self {
+            Self::GenDropsWithQty(_) => true,
             _ => false,
         }
     }

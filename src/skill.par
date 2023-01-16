@@ -15,7 +15,7 @@ Line
     ;
 
 GroupOfDropChange
-    : [ DropUnlockBlock ] [ ChangeDropStmtIncGenRandomDrop | GenRandomDropStmt1 | GenShapeStmt ]
+    : [ DropUnlockBlock ] [ ChangeDropStmtIncGenRandomDrop | GenRandomDropStmt | GenShapeStmt ]
     | ChangeDropWithDropUnlockLine
     ;
 
@@ -28,15 +28,18 @@ ChangeDropStmtIncGenRandomDrop
     // 変換と衝突するためここで拾う
     // 火を5個生成 , 水と回復を6個ずつ生成
     // 頭に`ランダムで`は本来のStmtで拾える。
-    | Drops Wo Quantity WordGen
-    | Drops WordOther From Drops Wo Quantity WordGen
+    | Drops Wo Quantity { Camma GenRandomDropBlock } WordGen
+    | Drops WordOther From GenRandomDropBlock WordGen
     ;
 
 ChangeAllOfBoradBlock
     : Drops Ni WordChange;
 
-GenRandomDropStmt1
-    : RandomSuffix Drops Wo Quantity WordGen;
+GenRandomDropStmt
+    : RandomSuffix GenRandomDropBlock { Camma GenRandomDropBlock } WordGen;
+
+GenRandomDropBlock
+    : Drops Wo Quantity;
 
 GenShapeStmt
     : GenShapeBlock [ WordChange | WordGen ];

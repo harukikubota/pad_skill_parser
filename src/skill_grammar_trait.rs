@@ -10,13 +10,13 @@
 #![allow(clippy::upper_case_acronyms)]
 
 use derive_builder::Builder;
+#[allow(unused_imports)]
+use parol_macros::{pop_and_reverse_item, pop_item};
 use parol_runtime::id_tree::Tree;
 use parol_runtime::lexer::Token;
 use parol_runtime::log::trace;
 #[allow(unused_imports)]
 use parol_runtime::miette::{bail, miette, IntoDiagnostic, Result};
-#[allow(unused_imports)]
-use parol_macros::{pop_and_reverse_item, pop_item};
 use parol_runtime::parser::{ParseTreeStackEntry, ParseTreeType, UserActionsTrait};
 
 /// Semantic actions trait generated for the user grammar
@@ -58,8 +58,13 @@ pub trait SkillGrammarTrait<'t> {
         Ok(())
     }
 
-    /// Semantic action for non-terminal 'GenRandomDropStmt1'
-    fn gen_random_drop_stmt1(&mut self, _arg: &GenRandomDropStmt1<'t>) -> Result<()> {
+    /// Semantic action for non-terminal 'GenRandomDropStmt'
+    fn gen_random_drop_stmt(&mut self, _arg: &GenRandomDropStmt<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'GenRandomDropBlock'
+    fn gen_random_drop_block(&mut self, _arg: &GenRandomDropBlock<'t>) -> Result<()> {
         Ok(())
     }
 
@@ -613,13 +618,13 @@ pub struct GroupOfDropChangeOpt0GroupChangeDropStmtIncGenRandomDrop<'t> {
 ///
 /// Type derived for production 8
 ///
-/// GroupOfDropChangeOpt0Group: GenRandomDropStmt1;
+/// GroupOfDropChangeOpt0Group: GenRandomDropStmt;
 ///
 #[allow(dead_code)]
 #[derive(Builder, Debug, Clone)]
 #[builder(crate = "derive_builder")]
-pub struct GroupOfDropChangeOpt0GroupGenRandomDropStmt1<'t> {
-    pub gen_random_drop_stmt1: Box<GenRandomDropStmt1<'t>>,
+pub struct GroupOfDropChangeOpt0GroupGenRandomDropStmt<'t> {
+    pub gen_random_drop_stmt: Box<GenRandomDropStmt<'t>>,
 }
 
 ///
@@ -698,17 +703,15 @@ pub struct ChangeDropStmtIncGenRandomDropSuffix0WoChangeDropStmtIncGenRandomDrop
 ///
 /// Type derived for production 24
 ///
-/// ChangeDropStmtIncGenRandomDropSuffix0: WordOther From Drops Wo Quantity WordGen;
+/// ChangeDropStmtIncGenRandomDropSuffix0: WordOther From GenRandomDropBlock WordGen;
 ///
 #[allow(dead_code)]
 #[derive(Builder, Debug, Clone)]
 #[builder(crate = "derive_builder")]
-pub struct ChangeDropStmtIncGenRandomDropSuffix0WordOtherFromDropsWoQuantityWordGen<'t> {
+pub struct ChangeDropStmtIncGenRandomDropSuffix0WordOtherFromGenRandomDropBlockWordGen<'t> {
     pub word_other: Box<WordOther<'t>>,
     pub from: Box<From<'t>>,
-    pub drops: Box<Drops<'t>>,
-    pub wo: Box<Wo<'t>>,
-    pub quantity: Box<Quantity<'t>>,
+    pub gen_random_drop_block: Box<GenRandomDropBlock<'t>>,
     pub word_gen: Box<WordGen<'t>>,
 }
 
@@ -747,18 +750,21 @@ pub struct ChangeDropStmtIncGenRandomDropSuffixRandomSuffixDropsNiWordChange<'t>
 ///
 /// Type derived for production 27
 ///
-/// ChangeDropStmtIncGenRandomDropSuffix: Quantity WordGen;
+/// ChangeDropStmtIncGenRandomDropSuffix: Quantity ChangeDropStmtIncGenRandomDropList0 /* Vec */ WordGen;
 ///
 #[allow(dead_code)]
 #[derive(Builder, Debug, Clone)]
 #[builder(crate = "derive_builder")]
-pub struct ChangeDropStmtIncGenRandomDropSuffixQuantityWordGen<'t> {
+pub struct ChangeDropStmtIncGenRandomDropSuffixQuantityChangeDropStmtIncGenRandomDropList0WordGen<
+    't,
+> {
     pub quantity: Box<Quantity<'t>>,
+    pub change_drop_stmt_inc_gen_random_drop_list0: Vec<ChangeDropStmtIncGenRandomDropList0<'t>>,
     pub word_gen: Box<WordGen<'t>>,
 }
 
 ///
-/// Type derived for production 34
+/// Type derived for production 39
 ///
 /// GenShapeStmtOptGroup: WordChange;
 ///
@@ -770,7 +776,7 @@ pub struct GenShapeStmtOptGroupWordChange<'t> {
 }
 
 ///
-/// Type derived for production 35
+/// Type derived for production 40
 ///
 /// GenShapeStmtOptGroup: WordGen;
 ///
@@ -782,7 +788,7 @@ pub struct GenShapeStmtOptGroupWordGen<'t> {
 }
 
 ///
-/// Type derived for production 40
+/// Type derived for production 45
 ///
 /// GenShapeBlock: GenShapeBlockRowCol GenShapeBlockList /* Vec */;
 ///
@@ -795,7 +801,7 @@ pub struct GenShapeBlockGenShapeBlockRowColGenShapeBlockList<'t> {
 }
 
 ///
-/// Type derived for production 43
+/// Type derived for production 48
 ///
 /// GenShapeBlock: GenShapeBlockOtherRowCol;
 ///
@@ -807,7 +813,7 @@ pub struct GenShapeBlockGenShapeBlockOtherRowCol<'t> {
 }
 
 ///
-/// Type derived for production 46
+/// Type derived for production 51
 ///
 /// GenShapeBlockOtherRowColSuffix: Ni Drops Wo GenShapeBlockOtherRowColOpt /* Option */;
 ///
@@ -822,7 +828,7 @@ pub struct GenShapeBlockOtherRowColSuffixNiDropsWoGenShapeBlockOtherRowColOpt<'t
 }
 
 ///
-/// Type derived for production 47
+/// Type derived for production 52
 ///
 /// GenShapeBlockOtherRowColSuffix: Wo Drops Ni;
 ///
@@ -836,7 +842,7 @@ pub struct GenShapeBlockOtherRowColSuffixWoDropsNi<'t> {
 }
 
 ///
-/// Type derived for production 50
+/// Type derived for production 55
 ///
 /// GSStartPosition: GSSPSide;
 ///
@@ -848,7 +854,7 @@ pub struct GSStartPositionGSSPSide<'t> {
 }
 
 ///
-/// Type derived for production 51
+/// Type derived for production 56
 ///
 /// GSStartPosition: GSSPCenter;
 ///
@@ -860,7 +866,7 @@ pub struct GSStartPositionGSSPCenter<'t> {
 }
 
 ///
-/// Type derived for production 61
+/// Type derived for production 66
 ///
 /// GSSPCenterOpt0Group: WordVertical;
 ///
@@ -872,7 +878,7 @@ pub struct GSSPCenterOpt0GroupWordVertical<'t> {
 }
 
 ///
-/// Type derived for production 62
+/// Type derived for production 67
 ///
 /// GSSPCenterOpt0Group: WordHorizon;
 ///
@@ -884,7 +890,7 @@ pub struct GSSPCenterOpt0GroupWordHorizon<'t> {
 }
 
 ///
-/// Type derived for production 71
+/// Type derived for production 76
 ///
 /// GSSPCenterBlockOptGroup: WordCol;
 ///
@@ -896,7 +902,7 @@ pub struct GSSPCenterBlockOptGroupWordCol<'t> {
 }
 
 ///
-/// Type derived for production 72
+/// Type derived for production 77
 ///
 /// GSSPCenterBlockOptGroup: WordRow;
 ///
@@ -908,7 +914,7 @@ pub struct GSSPCenterBlockOptGroupWordRow<'t> {
 }
 
 ///
-/// Type derived for production 74
+/// Type derived for production 79
 ///
 /// Position: PositionLR GSSPSideWriteWidth;
 ///
@@ -921,7 +927,7 @@ pub struct PositionPositionLRGSSPSideWriteWidth<'t> {
 }
 
 ///
-/// Type derived for production 75
+/// Type derived for production 80
 ///
 /// Position: PositionTB;
 ///
@@ -933,7 +939,7 @@ pub struct PositionPositionTB<'t> {
 }
 
 ///
-/// Type derived for production 76
+/// Type derived for production 81
 ///
 /// GSSPSideWriteWidth: WordSide GSSPSideWriteWidthOpt /* Option */;
 ///
@@ -946,7 +952,7 @@ pub struct GSSPSideWriteWidthWordSideGSSPSideWriteWidthOpt<'t> {
 }
 
 ///
-/// Type derived for production 77
+/// Type derived for production 82
 ///
 /// GSSPSideWriteWidth: WordVertical;
 ///
@@ -958,7 +964,7 @@ pub struct GSSPSideWriteWidthWordVertical<'t> {
 }
 
 ///
-/// Type derived for production 80
+/// Type derived for production 85
 ///
 /// PositionLRTB: WordLeft;
 ///
@@ -970,7 +976,7 @@ pub struct PositionLRTBWordLeft<'t> {
 }
 
 ///
-/// Type derived for production 81
+/// Type derived for production 86
 ///
 /// PositionLRTB: WordRight;
 ///
@@ -982,7 +988,7 @@ pub struct PositionLRTBWordRight<'t> {
 }
 
 ///
-/// Type derived for production 82
+/// Type derived for production 87
 ///
 /// PositionLRTB: WordTop;
 ///
@@ -994,7 +1000,7 @@ pub struct PositionLRTBWordTop<'t> {
 }
 
 ///
-/// Type derived for production 83
+/// Type derived for production 88
 ///
 /// PositionLRTB: WordBottom;
 ///
@@ -1006,7 +1012,7 @@ pub struct PositionLRTBWordBottom<'t> {
 }
 
 ///
-/// Type derived for production 84
+/// Type derived for production 89
 ///
 /// PositionLR: WordLeft;
 ///
@@ -1018,7 +1024,7 @@ pub struct PositionLRWordLeft<'t> {
 }
 
 ///
-/// Type derived for production 85
+/// Type derived for production 90
 ///
 /// PositionLR: WordRight;
 ///
@@ -1030,7 +1036,7 @@ pub struct PositionLRWordRight<'t> {
 }
 
 ///
-/// Type derived for production 86
+/// Type derived for production 91
 ///
 /// PositionLR: WordLeftAndRight;
 ///
@@ -1042,7 +1048,7 @@ pub struct PositionLRWordLeftAndRight<'t> {
 }
 
 ///
-/// Type derived for production 90
+/// Type derived for production 95
 ///
 /// PositionTOrB: WordTop;
 ///
@@ -1054,7 +1060,7 @@ pub struct PositionTOrBWordTop<'t> {
 }
 
 ///
-/// Type derived for production 91
+/// Type derived for production 96
 ///
 /// PositionTOrB: WordBottom;
 ///
@@ -1066,7 +1072,7 @@ pub struct PositionTOrBWordBottom<'t> {
 }
 
 ///
-/// Type derived for production 93
+/// Type derived for production 98
 ///
 /// ShapeType: ShapeOfL;
 ///
@@ -1078,7 +1084,7 @@ pub struct ShapeTypeShapeOfL<'t> {
 }
 
 ///
-/// Type derived for production 94
+/// Type derived for production 99
 ///
 /// ShapeType: ShapeTypeOpt /* Option */ ShapeOfZ;
 ///
@@ -1091,7 +1097,7 @@ pub struct ShapeTypeShapeTypeOptShapeOfZ<'t> {
 }
 
 ///
-/// Type derived for production 95
+/// Type derived for production 100
 ///
 /// ShapeType: ShapeOfCross;
 ///
@@ -1103,7 +1109,7 @@ pub struct ShapeTypeShapeOfCross<'t> {
 }
 
 ///
-/// Type derived for production 96
+/// Type derived for production 101
 ///
 /// ShapeType: Size No ShapeOfSquare;
 ///
@@ -1117,7 +1123,7 @@ pub struct ShapeTypeSizeNoShapeOfSquare<'t> {
 }
 
 ///
-/// Type derived for production 97
+/// Type derived for production 102
 ///
 /// ShapeType: ShapeOfBoardPerimeter;
 ///
@@ -1129,7 +1135,7 @@ pub struct ShapeTypeShapeOfBoardPerimeter<'t> {
 }
 
 ///
-/// Type derived for production 98
+/// Type derived for production 103
 ///
 /// ShapeType: ShapeOfBoardCenter;
 ///
@@ -1141,7 +1147,7 @@ pub struct ShapeTypeShapeOfBoardCenter<'t> {
 }
 
 ///
-/// Type derived for production 99
+/// Type derived for production 104
 ///
 /// ShapeType: ShapeOfBoardTop;
 ///
@@ -1153,7 +1159,7 @@ pub struct ShapeTypeShapeOfBoardTop<'t> {
 }
 
 ///
-/// Type derived for production 100
+/// Type derived for production 105
 ///
 /// ShapeType: ShapeOfBoardBottom;
 ///
@@ -1165,7 +1171,7 @@ pub struct ShapeTypeShapeOfBoardBottom<'t> {
 }
 
 ///
-/// Type derived for production 101
+/// Type derived for production 106
 ///
 /// ShapeType: ShapeOfBoardCorners;
 ///
@@ -1177,7 +1183,7 @@ pub struct ShapeTypeShapeOfBoardCorners<'t> {
 }
 
 ///
-/// Type derived for production 102
+/// Type derived for production 107
 ///
 /// ShapeType: ShapeOfSpiderweb;
 ///
@@ -1189,7 +1195,7 @@ pub struct ShapeTypeShapeOfSpiderweb<'t> {
 }
 
 ///
-/// Type derived for production 103
+/// Type derived for production 108
 ///
 /// ShapeType: ShapeOfCrescentMoon;
 ///
@@ -1201,7 +1207,7 @@ pub struct ShapeTypeShapeOfCrescentMoon<'t> {
 }
 
 ///
-/// Type derived for production 104
+/// Type derived for production 109
 ///
 /// ShapeType: ShapeTypeOpt0 /* Option */ ShapeOfOblique;
 ///
@@ -1214,7 +1220,7 @@ pub struct ShapeTypeShapeTypeOpt0ShapeOfOblique<'t> {
 }
 
 ///
-/// Type derived for production 105
+/// Type derived for production 110
 ///
 /// ShapeType: PosInt ShapeOfSomeKind;
 ///
@@ -1227,7 +1233,7 @@ pub struct ShapeTypePosIntShapeOfSomeKind<'t> {
 }
 
 ///
-/// Type derived for production 115
+/// Type derived for production 120
 ///
 /// Drops: Drop DropsSuffix;
 ///
@@ -1240,7 +1246,7 @@ pub struct DropsDropDropsSuffix<'t> {
 }
 
 ///
-/// Type derived for production 116
+/// Type derived for production 121
 ///
 /// DropsSuffix: DropsList /* Vec */;
 ///
@@ -1252,7 +1258,7 @@ pub struct DropsSuffixDropsList<'t> {
 }
 
 ///
-/// Type derived for production 117
+/// Type derived for production 122
 ///
 /// Drops: FiveAttribute DropsList0 /* Vec */;
 ///
@@ -1265,7 +1271,7 @@ pub struct DropsFiveAttributeDropsList0<'t> {
 }
 
 ///
-/// Type derived for production 118
+/// Type derived for production 123
 ///
 /// DropsSuffix: And Drop;
 ///
@@ -1278,7 +1284,7 @@ pub struct DropsSuffixAndDrop<'t> {
 }
 
 ///
-/// Type derived for production 123
+/// Type derived for production 128
 ///
 /// ManyDrop: Camma Drop;
 ///
@@ -1291,7 +1297,7 @@ pub struct ManyDropCammaDrop<'t> {
 }
 
 ///
-/// Type derived for production 124
+/// Type derived for production 129
 ///
 /// ManyDrop: Plus Drop;
 ///
@@ -1304,7 +1310,7 @@ pub struct ManyDropPlusDrop<'t> {
 }
 
 ///
-/// Type derived for production 132
+/// Type derived for production 137
 ///
 /// Drop: Color DropOpt /* Option */;
 ///
@@ -1317,7 +1323,7 @@ pub struct DropColorDropOpt<'t> {
 }
 
 ///
-/// Type derived for production 133
+/// Type derived for production 138
 ///
 /// Drop: NonColoredDrop DropOpt0 /* Option */;
 ///
@@ -1330,7 +1336,7 @@ pub struct DropNonColoredDropDropOpt0<'t> {
 }
 
 ///
-/// Type derived for production 138
+/// Type derived for production 143
 ///
 /// NonColoredDrop: Recovery;
 ///
@@ -1342,7 +1348,7 @@ pub struct NonColoredDropRecovery<'t> {
 }
 
 ///
-/// Type derived for production 139
+/// Type derived for production 144
 ///
 /// NonColoredDrop: Disturb;
 ///
@@ -1354,7 +1360,7 @@ pub struct NonColoredDropDisturb<'t> {
 }
 
 ///
-/// Type derived for production 140
+/// Type derived for production 145
 ///
 /// NonColoredDrop: Bomb;
 ///
@@ -1366,7 +1372,7 @@ pub struct NonColoredDropBomb<'t> {
 }
 
 ///
-/// Type derived for production 141
+/// Type derived for production 146
 ///
 /// NonColoredDrop: Poison;
 ///
@@ -1378,7 +1384,7 @@ pub struct NonColoredDropPoison<'t> {
 }
 
 ///
-/// Type derived for production 142
+/// Type derived for production 147
 ///
 /// NonColoredDrop: DeadlyPoison;
 ///
@@ -1390,7 +1396,7 @@ pub struct NonColoredDropDeadlyPoison<'t> {
 }
 
 ///
-/// Type derived for production 143
+/// Type derived for production 148
 ///
 /// Color: Fire;
 ///
@@ -1402,7 +1408,7 @@ pub struct ColorFire<'t> {
 }
 
 ///
-/// Type derived for production 144
+/// Type derived for production 149
 ///
 /// Color: Water;
 ///
@@ -1414,7 +1420,7 @@ pub struct ColorWater<'t> {
 }
 
 ///
-/// Type derived for production 145
+/// Type derived for production 150
 ///
 /// Color: Wood;
 ///
@@ -1426,7 +1432,7 @@ pub struct ColorWood<'t> {
 }
 
 ///
-/// Type derived for production 146
+/// Type derived for production 151
 ///
 /// Color: Lightning;
 ///
@@ -1438,7 +1444,7 @@ pub struct ColorLightning<'t> {
 }
 
 ///
-/// Type derived for production 147
+/// Type derived for production 152
 ///
 /// Color: Dark;
 ///
@@ -1450,7 +1456,7 @@ pub struct ColorDark<'t> {
 }
 
 ///
-/// Type derived for production 182
+/// Type derived for production 187
 ///
 /// WordCountOptGroup: '個';
 ///
@@ -1462,7 +1468,7 @@ pub struct WordCountOptGroup個<'t> {
 }
 
 ///
-/// Type derived for production 183
+/// Type derived for production 188
 ///
 /// WordCountOptGroup: 'つ';
 ///
@@ -1568,6 +1574,17 @@ pub struct ChangeDropStmtIncGenRandomDropList<'t> {
 }
 
 ///
+/// Type derived for non-terminal ChangeDropStmtIncGenRandomDropList0
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct ChangeDropStmtIncGenRandomDropList0<'t> {
+    pub camma: Box<Camma<'t>>,
+    pub gen_random_drop_block: Box<GenRandomDropBlock<'t>>,
+}
+
+///
 /// Type derived for non-terminal ChangeDropStmtIncGenRandomDropSuffix
 ///
 #[allow(dead_code)]
@@ -1579,7 +1596,9 @@ pub enum ChangeDropStmtIncGenRandomDropSuffix<'t> {
     RandomSuffixDropsNiWordChange(
         ChangeDropStmtIncGenRandomDropSuffixRandomSuffixDropsNiWordChange<'t>,
     ),
-    QuantityWordGen(ChangeDropStmtIncGenRandomDropSuffixQuantityWordGen<'t>),
+    QuantityChangeDropStmtIncGenRandomDropList0WordGen(
+        ChangeDropStmtIncGenRandomDropSuffixQuantityChangeDropStmtIncGenRandomDropList0WordGen<'t>,
+    ),
 }
 
 ///
@@ -1591,8 +1610,8 @@ pub enum ChangeDropStmtIncGenRandomDropSuffix0<'t> {
     WoChangeDropStmtIncGenRandomDropSuffix(
         ChangeDropStmtIncGenRandomDropSuffix0WoChangeDropStmtIncGenRandomDropSuffix<'t>,
     ),
-    WordOtherFromDropsWoQuantityWordGen(
-        ChangeDropStmtIncGenRandomDropSuffix0WordOtherFromDropsWoQuantityWordGen<'t>,
+    WordOtherFromGenRandomDropBlockWordGen(
+        ChangeDropStmtIncGenRandomDropSuffix0WordOtherFromGenRandomDropBlockWordGen<'t>,
     ),
 }
 
@@ -2054,17 +2073,39 @@ pub enum GSStartPosition<'t> {
 }
 
 ///
-/// Type derived for non-terminal GenRandomDropStmt1
+/// Type derived for non-terminal GenRandomDropBlock
 ///
 #[allow(dead_code)]
 #[derive(Builder, Debug, Clone)]
 #[builder(crate = "derive_builder")]
-pub struct GenRandomDropStmt1<'t> {
-    pub random_suffix: Box<RandomSuffix<'t>>,
+pub struct GenRandomDropBlock<'t> {
     pub drops: Box<Drops<'t>>,
     pub wo: Box<Wo<'t>>,
     pub quantity: Box<Quantity<'t>>,
+}
+
+///
+/// Type derived for non-terminal GenRandomDropStmt
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct GenRandomDropStmt<'t> {
+    pub random_suffix: Box<RandomSuffix<'t>>,
+    pub gen_random_drop_block: Box<GenRandomDropBlock<'t>>,
+    pub gen_random_drop_stmt_list: Vec<GenRandomDropStmtList<'t>>,
     pub word_gen: Box<WordGen<'t>>,
+}
+
+///
+/// Type derived for non-terminal GenRandomDropStmtList
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct GenRandomDropStmtList<'t> {
+    pub camma: Box<Camma<'t>>,
+    pub gen_random_drop_block: Box<GenRandomDropBlock<'t>>,
 }
 
 ///
@@ -2215,7 +2256,7 @@ pub struct GroupOfDropChangeOpt0<'t> {
 #[derive(Debug, Clone)]
 pub enum GroupOfDropChangeOpt0Group<'t> {
     ChangeDropStmtIncGenRandomDrop(GroupOfDropChangeOpt0GroupChangeDropStmtIncGenRandomDrop<'t>),
-    GenRandomDropStmt1(GroupOfDropChangeOpt0GroupGenRandomDropStmt1<'t>),
+    GenRandomDropStmt(GroupOfDropChangeOpt0GroupGenRandomDropStmt<'t>),
     GenShapeStmt(GroupOfDropChangeOpt0GroupGenShapeStmt<'t>),
 }
 
@@ -2983,6 +3024,7 @@ pub enum ASTType<'t> {
     ChangeDropBlockOtherFirst(ChangeDropBlockOtherFirst<'t>),
     ChangeDropStmtIncGenRandomDrop(ChangeDropStmtIncGenRandomDrop<'t>),
     ChangeDropStmtIncGenRandomDropList(Vec<ChangeDropStmtIncGenRandomDropList<'t>>),
+    ChangeDropStmtIncGenRandomDropList0(Vec<ChangeDropStmtIncGenRandomDropList0<'t>>),
     ChangeDropStmtIncGenRandomDropSuffix(ChangeDropStmtIncGenRandomDropSuffix<'t>),
     ChangeDropStmtIncGenRandomDropSuffix0(ChangeDropStmtIncGenRandomDropSuffix0<'t>),
     ChangeDropWithDropUnlockLine(ChangeDropWithDropUnlockLine<'t>),
@@ -3027,7 +3069,9 @@ pub enum ASTType<'t> {
     GSSPSideWriteWidth(GSSPSideWriteWidth<'t>),
     GSSPSideWriteWidthOpt(Option<Box<GSSPSideWriteWidthOpt<'t>>>),
     GSStartPosition(GSStartPosition<'t>),
-    GenRandomDropStmt1(GenRandomDropStmt1<'t>),
+    GenRandomDropBlock(GenRandomDropBlock<'t>),
+    GenRandomDropStmt(GenRandomDropStmt<'t>),
+    GenRandomDropStmtList(Vec<GenRandomDropStmtList<'t>>),
     GenShapeBlock(GenShapeBlock<'t>),
     GenShapeBlockList(Vec<GenShapeBlockList<'t>>),
     GenShapeBlockOtherRowCol(GenShapeBlockOtherRowCol<'t>),
@@ -3425,25 +3469,25 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
 
     /// Semantic action for production 8:
     ///
-    /// GroupOfDropChangeOpt0Group: GenRandomDropStmt1;
+    /// GroupOfDropChangeOpt0Group: GenRandomDropStmt;
     ///
     #[parol_runtime::function_name::named]
     fn group_of_drop_change_opt0_group_1(
         &mut self,
-        _gen_random_drop_stmt1: &ParseTreeStackEntry<'t>,
+        _gen_random_drop_stmt: &ParseTreeStackEntry<'t>,
         _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let gen_random_drop_stmt1 =
-            pop_item!(self, gen_random_drop_stmt1, GenRandomDropStmt1, context);
+        let gen_random_drop_stmt =
+            pop_item!(self, gen_random_drop_stmt, GenRandomDropStmt, context);
         let group_of_drop_change_opt0_group_1_built =
-            GroupOfDropChangeOpt0GroupGenRandomDropStmt1Builder::default()
-                .gen_random_drop_stmt1(Box::new(gen_random_drop_stmt1))
+            GroupOfDropChangeOpt0GroupGenRandomDropStmtBuilder::default()
+                .gen_random_drop_stmt(Box::new(gen_random_drop_stmt))
                 .build()
                 .into_diagnostic()?;
         let group_of_drop_change_opt0_group_1_built =
-            GroupOfDropChangeOpt0Group::GenRandomDropStmt1(group_of_drop_change_opt0_group_1_built);
+            GroupOfDropChangeOpt0Group::GenRandomDropStmt(group_of_drop_change_opt0_group_1_built);
         self.push(
             ASTType::GroupOfDropChangeOpt0Group(group_of_drop_change_opt0_group_1_built),
             context,
@@ -3875,38 +3919,33 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
 
     /// Semantic action for production 24:
     ///
-    /// ChangeDropStmtIncGenRandomDropSuffix0: WordOther From Drops Wo Quantity WordGen;
+    /// ChangeDropStmtIncGenRandomDropSuffix0: WordOther From GenRandomDropBlock WordGen;
     ///
     #[parol_runtime::function_name::named]
     fn change_drop_stmt_inc_gen_random_drop_suffix0_1(
         &mut self,
         _word_other: &ParseTreeStackEntry<'t>,
         _from: &ParseTreeStackEntry<'t>,
-        _drops: &ParseTreeStackEntry<'t>,
-        _wo: &ParseTreeStackEntry<'t>,
-        _quantity: &ParseTreeStackEntry<'t>,
+        _gen_random_drop_block: &ParseTreeStackEntry<'t>,
         _word_gen: &ParseTreeStackEntry<'t>,
         _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
         let word_gen = pop_item!(self, word_gen, WordGen, context);
-        let quantity = pop_item!(self, quantity, Quantity, context);
-        let wo = pop_item!(self, wo, Wo, context);
-        let drops = pop_item!(self, drops, Drops, context);
+        let gen_random_drop_block =
+            pop_item!(self, gen_random_drop_block, GenRandomDropBlock, context);
         let from = pop_item!(self, from, From, context);
         let word_other = pop_item!(self, word_other, WordOther, context);
-        let change_drop_stmt_inc_gen_random_drop_suffix0_1_built = ChangeDropStmtIncGenRandomDropSuffix0WordOtherFromDropsWoQuantityWordGenBuilder::default()
+        let change_drop_stmt_inc_gen_random_drop_suffix0_1_built = ChangeDropStmtIncGenRandomDropSuffix0WordOtherFromGenRandomDropBlockWordGenBuilder::default()
             .word_other(Box::new(word_other))
             .from(Box::new(from))
-            .drops(Box::new(drops))
-            .wo(Box::new(wo))
-            .quantity(Box::new(quantity))
+            .gen_random_drop_block(Box::new(gen_random_drop_block))
             .word_gen(Box::new(word_gen))
             .build()
             .into_diagnostic()?;
         let change_drop_stmt_inc_gen_random_drop_suffix0_1_built =
-            ChangeDropStmtIncGenRandomDropSuffix0::WordOtherFromDropsWoQuantityWordGen(
+            ChangeDropStmtIncGenRandomDropSuffix0::WordOtherFromGenRandomDropBlockWordGen(
                 change_drop_stmt_inc_gen_random_drop_suffix0_1_built,
             );
         self.push(
@@ -4001,29 +4040,33 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
 
     /// Semantic action for production 27:
     ///
-    /// ChangeDropStmtIncGenRandomDropSuffix: Quantity WordGen;
+    /// ChangeDropStmtIncGenRandomDropSuffix: Quantity ChangeDropStmtIncGenRandomDropList0 /* Vec */ WordGen;
     ///
     #[parol_runtime::function_name::named]
     fn change_drop_stmt_inc_gen_random_drop_suffix_2(
         &mut self,
         _quantity: &ParseTreeStackEntry<'t>,
+        _change_drop_stmt_inc_gen_random_drop_list0: &ParseTreeStackEntry<'t>,
         _word_gen: &ParseTreeStackEntry<'t>,
         _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
         let word_gen = pop_item!(self, word_gen, WordGen, context);
+        let change_drop_stmt_inc_gen_random_drop_list0 = pop_and_reverse_item!(
+            self,
+            change_drop_stmt_inc_gen_random_drop_list0,
+            ChangeDropStmtIncGenRandomDropList0,
+            context
+        );
         let quantity = pop_item!(self, quantity, Quantity, context);
-        let change_drop_stmt_inc_gen_random_drop_suffix_2_built =
-            ChangeDropStmtIncGenRandomDropSuffixQuantityWordGenBuilder::default()
-                .quantity(Box::new(quantity))
-                .word_gen(Box::new(word_gen))
-                .build()
-                .into_diagnostic()?;
-        let change_drop_stmt_inc_gen_random_drop_suffix_2_built =
-            ChangeDropStmtIncGenRandomDropSuffix::QuantityWordGen(
-                change_drop_stmt_inc_gen_random_drop_suffix_2_built,
-            );
+        let change_drop_stmt_inc_gen_random_drop_suffix_2_built = ChangeDropStmtIncGenRandomDropSuffixQuantityChangeDropStmtIncGenRandomDropList0WordGenBuilder::default()
+            .quantity(Box::new(quantity))
+            .change_drop_stmt_inc_gen_random_drop_list0(change_drop_stmt_inc_gen_random_drop_list0)
+            .word_gen(Box::new(word_gen))
+            .build()
+            .into_diagnostic()?;
+        let change_drop_stmt_inc_gen_random_drop_suffix_2_built = ChangeDropStmtIncGenRandomDropSuffix::QuantityChangeDropStmtIncGenRandomDropList0WordGen(change_drop_stmt_inc_gen_random_drop_suffix_2_built);
         self.push(
             ASTType::ChangeDropStmtIncGenRandomDropSuffix(
                 change_drop_stmt_inc_gen_random_drop_suffix_2_built,
@@ -4099,6 +4142,68 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
 
     /// Semantic action for production 30:
     ///
+    /// ChangeDropStmtIncGenRandomDropList0 /* Vec<T>::Push */: Camma GenRandomDropBlock ChangeDropStmtIncGenRandomDropList0;
+    ///
+    #[parol_runtime::function_name::named]
+    fn change_drop_stmt_inc_gen_random_drop_list0_0(
+        &mut self,
+        _camma: &ParseTreeStackEntry<'t>,
+        _gen_random_drop_block: &ParseTreeStackEntry<'t>,
+        _change_drop_stmt_inc_gen_random_drop_list0: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let mut change_drop_stmt_inc_gen_random_drop_list0 = pop_item!(
+            self,
+            change_drop_stmt_inc_gen_random_drop_list0,
+            ChangeDropStmtIncGenRandomDropList0,
+            context
+        );
+        let gen_random_drop_block =
+            pop_item!(self, gen_random_drop_block, GenRandomDropBlock, context);
+        let camma = pop_item!(self, camma, Camma, context);
+        let change_drop_stmt_inc_gen_random_drop_list0_0_built =
+            ChangeDropStmtIncGenRandomDropList0Builder::default()
+                .gen_random_drop_block(Box::new(gen_random_drop_block))
+                .camma(Box::new(camma))
+                .build()
+                .into_diagnostic()?;
+        // Add an element to the vector
+        change_drop_stmt_inc_gen_random_drop_list0
+            .push(change_drop_stmt_inc_gen_random_drop_list0_0_built);
+        self.push(
+            ASTType::ChangeDropStmtIncGenRandomDropList0(
+                change_drop_stmt_inc_gen_random_drop_list0,
+            ),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 31:
+    ///
+    /// ChangeDropStmtIncGenRandomDropList0 /* Vec<T>::New */: ;
+    ///
+    #[parol_runtime::function_name::named]
+    fn change_drop_stmt_inc_gen_random_drop_list0_1(
+        &mut self,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let change_drop_stmt_inc_gen_random_drop_list0_1_built = Vec::new();
+        self.push(
+            ASTType::ChangeDropStmtIncGenRandomDropList0(
+                change_drop_stmt_inc_gen_random_drop_list0_1_built,
+            ),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 32:
+    ///
     /// ChangeAllOfBoradBlock: Drops Ni WordChange;
     ///
     #[parol_runtime::function_name::named]
@@ -4130,46 +4235,135 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 31:
+    /// Semantic action for production 33:
     ///
-    /// GenRandomDropStmt1: RandomSuffix Drops Wo Quantity WordGen;
+    /// GenRandomDropStmt: RandomSuffix GenRandomDropBlock GenRandomDropStmtList /* Vec */ WordGen;
     ///
     #[parol_runtime::function_name::named]
-    fn gen_random_drop_stmt1(
+    fn gen_random_drop_stmt(
         &mut self,
         _random_suffix: &ParseTreeStackEntry<'t>,
-        _drops: &ParseTreeStackEntry<'t>,
-        _wo: &ParseTreeStackEntry<'t>,
-        _quantity: &ParseTreeStackEntry<'t>,
+        _gen_random_drop_block: &ParseTreeStackEntry<'t>,
+        _gen_random_drop_stmt_list: &ParseTreeStackEntry<'t>,
         _word_gen: &ParseTreeStackEntry<'t>,
         _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
         let word_gen = pop_item!(self, word_gen, WordGen, context);
-        let quantity = pop_item!(self, quantity, Quantity, context);
-        let wo = pop_item!(self, wo, Wo, context);
-        let drops = pop_item!(self, drops, Drops, context);
+        let gen_random_drop_stmt_list = pop_and_reverse_item!(
+            self,
+            gen_random_drop_stmt_list,
+            GenRandomDropStmtList,
+            context
+        );
+        let gen_random_drop_block =
+            pop_item!(self, gen_random_drop_block, GenRandomDropBlock, context);
         let random_suffix = pop_item!(self, random_suffix, RandomSuffix, context);
-        let gen_random_drop_stmt1_built = GenRandomDropStmt1Builder::default()
+        let gen_random_drop_stmt_built = GenRandomDropStmtBuilder::default()
             .random_suffix(Box::new(random_suffix))
-            .drops(Box::new(drops))
-            .wo(Box::new(wo))
-            .quantity(Box::new(quantity))
+            .gen_random_drop_block(Box::new(gen_random_drop_block))
+            .gen_random_drop_stmt_list(gen_random_drop_stmt_list)
             .word_gen(Box::new(word_gen))
             .build()
             .into_diagnostic()?;
         // Calling user action here
         self.user_grammar
-            .gen_random_drop_stmt1(&gen_random_drop_stmt1_built)?;
+            .gen_random_drop_stmt(&gen_random_drop_stmt_built)?;
         self.push(
-            ASTType::GenRandomDropStmt1(gen_random_drop_stmt1_built),
+            ASTType::GenRandomDropStmt(gen_random_drop_stmt_built),
             context,
         );
         Ok(())
     }
 
-    /// Semantic action for production 32:
+    /// Semantic action for production 34:
+    ///
+    /// GenRandomDropStmtList /* Vec<T>::Push */: Camma GenRandomDropBlock GenRandomDropStmtList;
+    ///
+    #[parol_runtime::function_name::named]
+    fn gen_random_drop_stmt_list_0(
+        &mut self,
+        _camma: &ParseTreeStackEntry<'t>,
+        _gen_random_drop_block: &ParseTreeStackEntry<'t>,
+        _gen_random_drop_stmt_list: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let mut gen_random_drop_stmt_list = pop_item!(
+            self,
+            gen_random_drop_stmt_list,
+            GenRandomDropStmtList,
+            context
+        );
+        let gen_random_drop_block =
+            pop_item!(self, gen_random_drop_block, GenRandomDropBlock, context);
+        let camma = pop_item!(self, camma, Camma, context);
+        let gen_random_drop_stmt_list_0_built = GenRandomDropStmtListBuilder::default()
+            .gen_random_drop_block(Box::new(gen_random_drop_block))
+            .camma(Box::new(camma))
+            .build()
+            .into_diagnostic()?;
+        // Add an element to the vector
+        gen_random_drop_stmt_list.push(gen_random_drop_stmt_list_0_built);
+        self.push(
+            ASTType::GenRandomDropStmtList(gen_random_drop_stmt_list),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 35:
+    ///
+    /// GenRandomDropStmtList /* Vec<T>::New */: ;
+    ///
+    #[parol_runtime::function_name::named]
+    fn gen_random_drop_stmt_list_1(&mut self, _parse_tree: &Tree<ParseTreeType<'t>>) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let gen_random_drop_stmt_list_1_built = Vec::new();
+        self.push(
+            ASTType::GenRandomDropStmtList(gen_random_drop_stmt_list_1_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 36:
+    ///
+    /// GenRandomDropBlock: Drops Wo Quantity;
+    ///
+    #[parol_runtime::function_name::named]
+    fn gen_random_drop_block(
+        &mut self,
+        _drops: &ParseTreeStackEntry<'t>,
+        _wo: &ParseTreeStackEntry<'t>,
+        _quantity: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let quantity = pop_item!(self, quantity, Quantity, context);
+        let wo = pop_item!(self, wo, Wo, context);
+        let drops = pop_item!(self, drops, Drops, context);
+        let gen_random_drop_block_built = GenRandomDropBlockBuilder::default()
+            .drops(Box::new(drops))
+            .wo(Box::new(wo))
+            .quantity(Box::new(quantity))
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar
+            .gen_random_drop_block(&gen_random_drop_block_built)?;
+        self.push(
+            ASTType::GenRandomDropBlock(gen_random_drop_block_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 37:
     ///
     /// GenShapeStmt: GenShapeBlock GenShapeStmtOpt /* Option */;
     ///
@@ -4195,7 +4389,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 33:
+    /// Semantic action for production 38:
     ///
     /// GenShapeStmtOpt /* Option<T>::Some */: GenShapeStmtOptGroup;
     ///
@@ -4224,7 +4418,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 34:
+    /// Semantic action for production 39:
     ///
     /// GenShapeStmtOptGroup: WordChange;
     ///
@@ -4250,7 +4444,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 35:
+    /// Semantic action for production 40:
     ///
     /// GenShapeStmtOptGroup: WordGen;
     ///
@@ -4276,7 +4470,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 36:
+    /// Semantic action for production 41:
     ///
     /// GenShapeStmtOpt /* Option<T>::None */: ;
     ///
@@ -4288,7 +4482,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 37:
+    /// Semantic action for production 42:
     ///
     /// DropRefreshStmt: RandomSuffix WordDrop Wo WordReplace;
     ///
@@ -4321,7 +4515,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 38:
+    /// Semantic action for production 43:
     ///
     /// DropUnLockStmt: WordDrop No WordLock WordState Wo WordRelease;
     ///
@@ -4360,7 +4554,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 39:
+    /// Semantic action for production 44:
     ///
     /// ChangeDropBlockOtherFirst: Drops Wo Drop Ni;
     ///
@@ -4396,7 +4590,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 40:
+    /// Semantic action for production 45:
     ///
     /// GenShapeBlock: GenShapeBlockRowCol GenShapeBlockList /* Vec */;
     ///
@@ -4428,7 +4622,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 41:
+    /// Semantic action for production 46:
     ///
     /// GenShapeBlockList /* Vec<T>::Push */: Camma GenShapeBlockRowCol GenShapeBlockList;
     ///
@@ -4458,7 +4652,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 42:
+    /// Semantic action for production 47:
     ///
     /// GenShapeBlockList /* Vec<T>::New */: ;
     ///
@@ -4474,7 +4668,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 43:
+    /// Semantic action for production 48:
     ///
     /// GenShapeBlock: GenShapeBlockOtherRowCol;
     ///
@@ -4505,7 +4699,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 44:
+    /// Semantic action for production 49:
     ///
     /// GenShapeBlockRowCol: GSStartPosition Wo Drop Ni;
     ///
@@ -4541,7 +4735,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 45:
+    /// Semantic action for production 50:
     ///
     /// GenShapeBlockOtherRowCol: ShapeType GenShapeBlockOtherRowColSuffix;
     ///
@@ -4576,7 +4770,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 46:
+    /// Semantic action for production 51:
     ///
     /// GenShapeBlockOtherRowColSuffix: Ni Drops Wo GenShapeBlockOtherRowColOpt /* Option */;
     ///
@@ -4619,7 +4813,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 47:
+    /// Semantic action for production 52:
     ///
     /// GenShapeBlockOtherRowColSuffix: Wo Drops Ni;
     ///
@@ -4652,7 +4846,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 48:
+    /// Semantic action for production 53:
     ///
     /// GenShapeBlockOtherRowColOpt /* Option<T>::Some */: Quantity;
     ///
@@ -4679,7 +4873,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 49:
+    /// Semantic action for production 54:
     ///
     /// GenShapeBlockOtherRowColOpt /* Option<T>::None */: ;
     ///
@@ -4694,7 +4888,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 50:
+    /// Semantic action for production 55:
     ///
     /// GSStartPosition: GSSPSide;
     ///
@@ -4722,7 +4916,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 51:
+    /// Semantic action for production 56:
     ///
     /// GSStartPosition: GSSPCenter;
     ///
@@ -4750,7 +4944,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 52:
+    /// Semantic action for production 57:
     ///
     /// GSSPSide: Position GSSPSideOpt /* Option */ GenShapeNumOfGen GSSPSideOpt0 /* Option */;
     ///
@@ -4782,7 +4976,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 53:
+    /// Semantic action for production 58:
     ///
     /// GSSPSideOpt0 /* Option<T>::Some */: And Position GSSPSideOpt1 /* Option */ GenShapeNumOfGen;
     ///
@@ -4815,7 +5009,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 54:
+    /// Semantic action for production 59:
     ///
     /// GSSPSideOpt1 /* Option<T>::Some */: WordHorizon;
     ///
@@ -4839,7 +5033,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 55:
+    /// Semantic action for production 60:
     ///
     /// GSSPSideOpt1 /* Option<T>::None */: ;
     ///
@@ -4851,7 +5045,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 56:
+    /// Semantic action for production 61:
     ///
     /// GSSPSideOpt0 /* Option<T>::None */: ;
     ///
@@ -4863,7 +5057,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 57:
+    /// Semantic action for production 62:
     ///
     /// GSSPSideOpt /* Option<T>::Some */: WordHorizon;
     ///
@@ -4887,7 +5081,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 58:
+    /// Semantic action for production 63:
     ///
     /// GSSPSideOpt /* Option<T>::None */: ;
     ///
@@ -4899,7 +5093,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 59:
+    /// Semantic action for production 64:
     ///
     /// GSSPCenter: GSSPCenterBlocks GSSPCenterOpt /* Option */ GSSPCenterOpt0 /* Option */ GenShapeNumOfGen;
     ///
@@ -4932,7 +5126,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 60:
+    /// Semantic action for production 65:
     ///
     /// GSSPCenterOpt0 /* Option<T>::Some */: GSSPCenterOpt0Group;
     ///
@@ -4961,7 +5155,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 61:
+    /// Semantic action for production 66:
     ///
     /// GSSPCenterOpt0Group: WordVertical;
     ///
@@ -4987,7 +5181,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 62:
+    /// Semantic action for production 67:
     ///
     /// GSSPCenterOpt0Group: WordHorizon;
     ///
@@ -5013,7 +5207,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 63:
+    /// Semantic action for production 68:
     ///
     /// GSSPCenterOpt0 /* Option<T>::None */: ;
     ///
@@ -5025,7 +5219,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 64:
+    /// Semantic action for production 69:
     ///
     /// GSSPCenterOpt /* Option<T>::Some */: No;
     ///
@@ -5049,7 +5243,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 65:
+    /// Semantic action for production 70:
     ///
     /// GSSPCenterOpt /* Option<T>::None */: ;
     ///
@@ -5061,7 +5255,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 66:
+    /// Semantic action for production 71:
     ///
     /// GSSPCenterBlocks: GSSPCenterBlock GSSPCenterBlocksOpt /* Option */;
     ///
@@ -5096,7 +5290,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 67:
+    /// Semantic action for production 72:
     ///
     /// GSSPCenterBlocksOpt /* Option<T>::Some */: And GSSPCenterBlock;
     ///
@@ -5123,7 +5317,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 68:
+    /// Semantic action for production 73:
     ///
     /// GSSPCenterBlocksOpt /* Option<T>::None */: ;
     ///
@@ -5135,7 +5329,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 69:
+    /// Semantic action for production 74:
     ///
     /// GSSPCenterBlock: PositionLRTB From PosInt GSSPCenterBlockOpt /* Option */ WordLook;
     ///
@@ -5175,7 +5369,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 70:
+    /// Semantic action for production 75:
     ///
     /// GSSPCenterBlockOpt /* Option<T>::Some */: GSSPCenterBlockOptGroup;
     ///
@@ -5204,7 +5398,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 71:
+    /// Semantic action for production 76:
     ///
     /// GSSPCenterBlockOptGroup: WordCol;
     ///
@@ -5231,7 +5425,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 72:
+    /// Semantic action for production 77:
     ///
     /// GSSPCenterBlockOptGroup: WordRow;
     ///
@@ -5258,7 +5452,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 73:
+    /// Semantic action for production 78:
     ///
     /// GSSPCenterBlockOpt /* Option<T>::None */: ;
     ///
@@ -5270,7 +5464,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 74:
+    /// Semantic action for production 79:
     ///
     /// Position: PositionLR GSSPSideWriteWidth;
     ///
@@ -5298,7 +5492,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 75:
+    /// Semantic action for production 80:
     ///
     /// Position: PositionTB;
     ///
@@ -5322,7 +5516,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 76:
+    /// Semantic action for production 81:
     ///
     /// GSSPSideWriteWidth: WordSide GSSPSideWriteWidthOpt /* Option */;
     ///
@@ -5360,7 +5554,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 77:
+    /// Semantic action for production 82:
     ///
     /// GSSPSideWriteWidth: WordVertical;
     ///
@@ -5389,7 +5583,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 78:
+    /// Semantic action for production 83:
     ///
     /// GSSPSideWriteWidthOpt /* Option<T>::Some */: WordVertical;
     ///
@@ -5413,7 +5607,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 79:
+    /// Semantic action for production 84:
     ///
     /// GSSPSideWriteWidthOpt /* Option<T>::None */: ;
     ///
@@ -5428,7 +5622,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 80:
+    /// Semantic action for production 85:
     ///
     /// PositionLRTB: WordLeft;
     ///
@@ -5453,7 +5647,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 81:
+    /// Semantic action for production 86:
     ///
     /// PositionLRTB: WordRight;
     ///
@@ -5478,7 +5672,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 82:
+    /// Semantic action for production 87:
     ///
     /// PositionLRTB: WordTop;
     ///
@@ -5503,7 +5697,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 83:
+    /// Semantic action for production 88:
     ///
     /// PositionLRTB: WordBottom;
     ///
@@ -5528,7 +5722,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 84:
+    /// Semantic action for production 89:
     ///
     /// PositionLR: WordLeft;
     ///
@@ -5552,7 +5746,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 85:
+    /// Semantic action for production 90:
     ///
     /// PositionLR: WordRight;
     ///
@@ -5576,7 +5770,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 86:
+    /// Semantic action for production 91:
     ///
     /// PositionLR: WordLeftAndRight;
     ///
@@ -5600,7 +5794,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 87:
+    /// Semantic action for production 92:
     ///
     /// PositionTB: PositionTBOpt /* Option */ PositionTOrB WordRow;
     ///
@@ -5629,7 +5823,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 88:
+    /// Semantic action for production 93:
     ///
     /// PositionTBOpt /* Option<T>::Some */: WordMost;
     ///
@@ -5653,7 +5847,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 89:
+    /// Semantic action for production 94:
     ///
     /// PositionTBOpt /* Option<T>::None */: ;
     ///
@@ -5665,7 +5859,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 90:
+    /// Semantic action for production 95:
     ///
     /// PositionTOrB: WordTop;
     ///
@@ -5690,7 +5884,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 91:
+    /// Semantic action for production 96:
     ///
     /// PositionTOrB: WordBottom;
     ///
@@ -5715,7 +5909,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 92:
+    /// Semantic action for production 97:
     ///
     /// GenShapeNumOfGen: PosInt WordCol;
     ///
@@ -5745,7 +5939,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 93:
+    /// Semantic action for production 98:
     ///
     /// ShapeType: ShapeOfL;
     ///
@@ -5769,7 +5963,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 94:
+    /// Semantic action for production 99:
     ///
     /// ShapeType: ShapeTypeOpt /* Option */ ShapeOfZ;
     ///
@@ -5796,7 +5990,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 95:
+    /// Semantic action for production 100:
     ///
     /// ShapeType: ShapeOfCross;
     ///
@@ -5820,7 +6014,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 96:
+    /// Semantic action for production 101:
     ///
     /// ShapeType: Size No ShapeOfSquare;
     ///
@@ -5850,7 +6044,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 97:
+    /// Semantic action for production 102:
     ///
     /// ShapeType: ShapeOfBoardPerimeter;
     ///
@@ -5879,7 +6073,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 98:
+    /// Semantic action for production 103:
     ///
     /// ShapeType: ShapeOfBoardCenter;
     ///
@@ -5904,7 +6098,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 99:
+    /// Semantic action for production 104:
     ///
     /// ShapeType: ShapeOfBoardTop;
     ///
@@ -5928,7 +6122,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 100:
+    /// Semantic action for production 105:
     ///
     /// ShapeType: ShapeOfBoardBottom;
     ///
@@ -5953,7 +6147,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 101:
+    /// Semantic action for production 106:
     ///
     /// ShapeType: ShapeOfBoardCorners;
     ///
@@ -5978,7 +6172,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 102:
+    /// Semantic action for production 107:
     ///
     /// ShapeType: ShapeOfSpiderweb;
     ///
@@ -6002,7 +6196,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 103:
+    /// Semantic action for production 108:
     ///
     /// ShapeType: ShapeOfCrescentMoon;
     ///
@@ -6027,7 +6221,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 104:
+    /// Semantic action for production 109:
     ///
     /// ShapeType: ShapeTypeOpt0 /* Option */ ShapeOfOblique;
     ///
@@ -6054,7 +6248,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 105:
+    /// Semantic action for production 110:
     ///
     /// ShapeType: PosInt ShapeOfSomeKind;
     ///
@@ -6081,7 +6275,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 106:
+    /// Semantic action for production 111:
     ///
     /// ShapeTypeOpt0 /* Option<T>::Some */: OnBoard;
     ///
@@ -6105,7 +6299,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 107:
+    /// Semantic action for production 112:
     ///
     /// ShapeTypeOpt0 /* Option<T>::None */: ;
     ///
@@ -6117,7 +6311,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 108:
+    /// Semantic action for production 113:
     ///
     /// ShapeTypeOpt /* Option<T>::Some */: OnBoard;
     ///
@@ -6141,7 +6335,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 109:
+    /// Semantic action for production 114:
     ///
     /// ShapeTypeOpt /* Option<T>::None */: ;
     ///
@@ -6153,7 +6347,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 110:
+    /// Semantic action for production 115:
     ///
     /// DropUnlockBlock: DropUnlockBlockOpt /* Option */ WordLock Wo WordRelease Si Camma;
     ///
@@ -6193,7 +6387,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 111:
+    /// Semantic action for production 116:
     ///
     /// DropUnlockBlockOpt /* Option<T>::Some */: DropUnlockBlockOpt0 /* Option */ No;
     ///
@@ -6221,7 +6415,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 112:
+    /// Semantic action for production 117:
     ///
     /// DropUnlockBlockOpt0 /* Option<T>::Some */: WordDrop;
     ///
@@ -6245,7 +6439,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 113:
+    /// Semantic action for production 118:
     ///
     /// DropUnlockBlockOpt0 /* Option<T>::None */: ;
     ///
@@ -6257,7 +6451,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 114:
+    /// Semantic action for production 119:
     ///
     /// DropUnlockBlockOpt /* Option<T>::None */: ;
     ///
@@ -6269,7 +6463,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 115:
+    /// Semantic action for production 120:
     ///
     /// Drops: Drop DropsSuffix;
     ///
@@ -6296,7 +6490,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 116:
+    /// Semantic action for production 121:
     ///
     /// DropsSuffix: DropsList /* Vec */;
     ///
@@ -6318,7 +6512,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 117:
+    /// Semantic action for production 122:
     ///
     /// Drops: FiveAttribute DropsList0 /* Vec */;
     ///
@@ -6345,7 +6539,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 118:
+    /// Semantic action for production 123:
     ///
     /// DropsSuffix: And Drop;
     ///
@@ -6370,7 +6564,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 119:
+    /// Semantic action for production 124:
     ///
     /// DropsList /* Vec<T>::Push */: ManyDrop DropsList;
     ///
@@ -6395,7 +6589,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 120:
+    /// Semantic action for production 125:
     ///
     /// DropsList /* Vec<T>::New */: ;
     ///
@@ -6408,7 +6602,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 121:
+    /// Semantic action for production 126:
     ///
     /// DropsList0 /* Vec<T>::Push */: Plus Drop DropsList0;
     ///
@@ -6436,7 +6630,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 122:
+    /// Semantic action for production 127:
     ///
     /// DropsList0 /* Vec<T>::New */: ;
     ///
@@ -6449,7 +6643,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 123:
+    /// Semantic action for production 128:
     ///
     /// ManyDrop: Camma Drop;
     ///
@@ -6476,7 +6670,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 124:
+    /// Semantic action for production 129:
     ///
     /// ManyDrop: Plus Drop;
     ///
@@ -6503,7 +6697,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 125:
+    /// Semantic action for production 130:
     ///
     /// AllDrops: WordAll WordDrop;
     ///
@@ -6529,7 +6723,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 126:
+    /// Semantic action for production 131:
     ///
     /// FiveAttribute: WordFiveAttribute FiveAttributeOpt /* Option */;
     ///
@@ -6555,7 +6749,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 127:
+    /// Semantic action for production 132:
     ///
     /// FiveAttributeOpt /* Option<T>::Some */: WordDrop;
     ///
@@ -6579,7 +6773,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 128:
+    /// Semantic action for production 133:
     ///
     /// FiveAttributeOpt /* Option<T>::None */: ;
     ///
@@ -6591,7 +6785,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 129:
+    /// Semantic action for production 134:
     ///
     /// Quantity: PosInt WordCount QuantityOpt /* Option */;
     ///
@@ -6620,7 +6814,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 130:
+    /// Semantic action for production 135:
     ///
     /// QuantityOpt /* Option<T>::Some */: Each;
     ///
@@ -6644,7 +6838,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 131:
+    /// Semantic action for production 136:
     ///
     /// QuantityOpt /* Option<T>::None */: ;
     ///
@@ -6656,7 +6850,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 132:
+    /// Semantic action for production 137:
     ///
     /// Drop: Color DropOpt /* Option */;
     ///
@@ -6683,7 +6877,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 133:
+    /// Semantic action for production 138:
     ///
     /// Drop: NonColoredDrop DropOpt0 /* Option */;
     ///
@@ -6710,7 +6904,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 134:
+    /// Semantic action for production 139:
     ///
     /// DropOpt0 /* Option<T>::Some */: WordDrop;
     ///
@@ -6734,7 +6928,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 135:
+    /// Semantic action for production 140:
     ///
     /// DropOpt0 /* Option<T>::None */: ;
     ///
@@ -6746,7 +6940,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 136:
+    /// Semantic action for production 141:
     ///
     /// DropOpt /* Option<T>::Some */: WordDrop;
     ///
@@ -6767,7 +6961,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 137:
+    /// Semantic action for production 142:
     ///
     /// DropOpt /* Option<T>::None */: ;
     ///
@@ -6779,7 +6973,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 138:
+    /// Semantic action for production 143:
     ///
     /// NonColoredDrop: Recovery;
     ///
@@ -6804,7 +6998,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 139:
+    /// Semantic action for production 144:
     ///
     /// NonColoredDrop: Disturb;
     ///
@@ -6829,7 +7023,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 140:
+    /// Semantic action for production 145:
     ///
     /// NonColoredDrop: Bomb;
     ///
@@ -6854,7 +7048,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 141:
+    /// Semantic action for production 146:
     ///
     /// NonColoredDrop: Poison;
     ///
@@ -6879,7 +7073,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 142:
+    /// Semantic action for production 147:
     ///
     /// NonColoredDrop: DeadlyPoison;
     ///
@@ -6904,7 +7098,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 143:
+    /// Semantic action for production 148:
     ///
     /// Color: Fire;
     ///
@@ -6928,7 +7122,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 144:
+    /// Semantic action for production 149:
     ///
     /// Color: Water;
     ///
@@ -6952,7 +7146,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 145:
+    /// Semantic action for production 150:
     ///
     /// Color: Wood;
     ///
@@ -6976,7 +7170,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 146:
+    /// Semantic action for production 151:
     ///
     /// Color: Lightning;
     ///
@@ -7000,7 +7194,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 147:
+    /// Semantic action for production 152:
     ///
     /// Color: Dark;
     ///
@@ -7024,7 +7218,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 148:
+    /// Semantic action for production 153:
     ///
     /// RandomSuffix: WordRandom So;
     ///
@@ -7050,7 +7244,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 149:
+    /// Semantic action for production 154:
     ///
     /// Size: PosInt Multi PosInt;
     ///
@@ -7079,7 +7273,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 150:
+    /// Semantic action for production 155:
     ///
     /// OnBoard: WordBoard WordTop Ni;
     ///
@@ -7108,7 +7302,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 151:
+    /// Semantic action for production 156:
     ///
     /// Fire: '火';
     ///
@@ -7131,7 +7325,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 152:
+    /// Semantic action for production 157:
     ///
     /// Water: '水';
     ///
@@ -7154,7 +7348,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 153:
+    /// Semantic action for production 158:
     ///
     /// Wood: '木';
     ///
@@ -7177,7 +7371,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 154:
+    /// Semantic action for production 159:
     ///
     /// Lightning: '光';
     ///
@@ -7200,7 +7394,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 155:
+    /// Semantic action for production 160:
     ///
     /// Dark: '闇';
     ///
@@ -7223,7 +7417,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 156:
+    /// Semantic action for production 161:
     ///
     /// Recovery: '回復';
     ///
@@ -7246,7 +7440,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 157:
+    /// Semantic action for production 162:
     ///
     /// Disturb: 'お邪魔';
     ///
@@ -7269,7 +7463,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 158:
+    /// Semantic action for production 163:
     ///
     /// Bomb: '爆弾';
     ///
@@ -7292,7 +7486,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 159:
+    /// Semantic action for production 164:
     ///
     /// DeadlyPoison: '猛毒';
     ///
@@ -7315,7 +7509,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 160:
+    /// Semantic action for production 165:
     ///
     /// Poison: '毒';
     ///
@@ -7338,7 +7532,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 161:
+    /// Semantic action for production 166:
     ///
     /// ShapeOfL: 'L字型';
     ///
@@ -7361,7 +7555,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 162:
+    /// Semantic action for production 167:
     ///
     /// ShapeOfZ: 'Z字型';
     ///
@@ -7384,7 +7578,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 163:
+    /// Semantic action for production 168:
     ///
     /// ShapeOfCross: '十字型';
     ///
@@ -7407,7 +7601,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 164:
+    /// Semantic action for production 169:
     ///
     /// ShapeOfSquare: '正方形';
     ///
@@ -7430,7 +7624,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 165:
+    /// Semantic action for production 170:
     ///
     /// ShapeOfBoardPerimeter: '盤面外周';
     ///
@@ -7457,7 +7651,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 166:
+    /// Semantic action for production 171:
     ///
     /// ShapeOfBoardCenter: '盤面中央';
     ///
@@ -7484,7 +7678,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 167:
+    /// Semantic action for production 172:
     ///
     /// ShapeOfBoardTop: '盤面上部';
     ///
@@ -7508,7 +7702,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 168:
+    /// Semantic action for production 173:
     ///
     /// ShapeOfBoardBottom: '盤面下部';
     ///
@@ -7535,7 +7729,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 169:
+    /// Semantic action for production 174:
     ///
     /// ShapeOfBoardCorners: '盤面4隅';
     ///
@@ -7562,7 +7756,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 170:
+    /// Semantic action for production 175:
     ///
     /// ShapeOfSpiderweb: '蜘蛛の巣状';
     ///
@@ -7586,7 +7780,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 171:
+    /// Semantic action for production 176:
     ///
     /// ShapeOfCrescentMoon: '三日月状';
     ///
@@ -7613,7 +7807,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 172:
+    /// Semantic action for production 177:
     ///
     /// ShapeOfOblique: '斜め';
     ///
@@ -7637,7 +7831,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 173:
+    /// Semantic action for production 178:
     ///
     /// ShapeOfSomeKind: 'の形';
     ///
@@ -7661,7 +7855,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 174:
+    /// Semantic action for production 179:
     ///
     /// WordChange: '変化';
     ///
@@ -7684,7 +7878,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 175:
+    /// Semantic action for production 180:
     ///
     /// WordDrop: 'ドロップ';
     ///
@@ -7707,7 +7901,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 176:
+    /// Semantic action for production 181:
     ///
     /// WordAll: '全';
     ///
@@ -7730,7 +7924,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 177:
+    /// Semantic action for production 182:
     ///
     /// WordFiveAttribute: '5属性';
     ///
@@ -7757,7 +7951,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 178:
+    /// Semantic action for production 183:
     ///
     /// WordRandom: 'ランダム';
     ///
@@ -7780,7 +7974,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 179:
+    /// Semantic action for production 184:
     ///
     /// WordReplace: '入れ替える';
     ///
@@ -7803,7 +7997,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 180:
+    /// Semantic action for production 185:
     ///
     /// WordCount: WordCountOpt /* Option */;
     ///
@@ -7826,7 +8020,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 181:
+    /// Semantic action for production 186:
     ///
     /// WordCountOpt /* Option<T>::Some */: WordCountOptGroup;
     ///
@@ -7851,7 +8045,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 182:
+    /// Semantic action for production 187:
     ///
     /// WordCountOptGroup: '個';
     ///
@@ -7876,7 +8070,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 183:
+    /// Semantic action for production 188:
     ///
     /// WordCountOptGroup: 'つ';
     ///
@@ -7901,7 +8095,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 184:
+    /// Semantic action for production 189:
     ///
     /// WordCountOpt /* Option<T>::None */: ;
     ///
@@ -7913,7 +8107,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 185:
+    /// Semantic action for production 190:
     ///
     /// WordGen: '生成';
     ///
@@ -7936,7 +8130,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 186:
+    /// Semantic action for production 191:
     ///
     /// WordOther: '以外';
     ///
@@ -7959,7 +8153,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 187:
+    /// Semantic action for production 192:
     ///
     /// WordVertical: '縦';
     ///
@@ -7982,7 +8176,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 188:
+    /// Semantic action for production 193:
     ///
     /// WordHorizon: '横';
     ///
@@ -8005,7 +8199,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 189:
+    /// Semantic action for production 194:
     ///
     /// WordRow: '段';
     ///
@@ -8028,7 +8222,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 190:
+    /// Semantic action for production 195:
     ///
     /// WordCol: '列';
     ///
@@ -8051,7 +8245,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 191:
+    /// Semantic action for production 196:
     ///
     /// WordSide: '端';
     ///
@@ -8074,7 +8268,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 192:
+    /// Semantic action for production 197:
     ///
     /// WordLeftAndRight: '両';
     ///
@@ -8101,7 +8295,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 193:
+    /// Semantic action for production 198:
     ///
     /// WordLeft: '左';
     ///
@@ -8124,7 +8318,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 194:
+    /// Semantic action for production 199:
     ///
     /// WordRight: '右';
     ///
@@ -8147,7 +8341,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 195:
+    /// Semantic action for production 200:
     ///
     /// WordTop: '上';
     ///
@@ -8170,7 +8364,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 196:
+    /// Semantic action for production 201:
     ///
     /// WordBottom: '下';
     ///
@@ -8193,7 +8387,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 197:
+    /// Semantic action for production 202:
     ///
     /// WordMost: '最';
     ///
@@ -8216,7 +8410,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 198:
+    /// Semantic action for production 203:
     ///
     /// WordLook: '目';
     ///
@@ -8239,7 +8433,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 199:
+    /// Semantic action for production 204:
     ///
     /// WordBoard: '盤面';
     ///
@@ -8262,7 +8456,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 200:
+    /// Semantic action for production 205:
     ///
     /// WordRelease: '解除';
     ///
@@ -8285,7 +8479,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 201:
+    /// Semantic action for production 206:
     ///
     /// WordLock: 'ロック';
     ///
@@ -8308,7 +8502,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 202:
+    /// Semantic action for production 207:
     ///
     /// WordState: '状態';
     ///
@@ -8331,7 +8525,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 203:
+    /// Semantic action for production 208:
     ///
     /// Wo: 'を';
     ///
@@ -8351,7 +8545,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 204:
+    /// Semantic action for production 209:
     ///
     /// Ni: 'に';
     ///
@@ -8371,7 +8565,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 205:
+    /// Semantic action for production 210:
     ///
     /// No: 'の';
     ///
@@ -8391,7 +8585,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 206:
+    /// Semantic action for production 211:
     ///
     /// So: 'で';
     ///
@@ -8411,7 +8605,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 207:
+    /// Semantic action for production 212:
     ///
     /// And: 'と';
     ///
@@ -8431,7 +8625,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 208:
+    /// Semantic action for production 213:
     ///
     /// Si: 'し';
     ///
@@ -8451,7 +8645,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 209:
+    /// Semantic action for production 214:
     ///
     /// Each: 'ずつ';
     ///
@@ -8474,7 +8668,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 210:
+    /// Semantic action for production 215:
     ///
     /// From: 'から';
     ///
@@ -8497,7 +8691,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 211:
+    /// Semantic action for production 216:
     ///
     /// Plus: '+';
     ///
@@ -8520,7 +8714,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 212:
+    /// Semantic action for production 217:
     ///
     /// Multi: '×';
     ///
@@ -8543,7 +8737,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 213:
+    /// Semantic action for production 218:
     ///
     /// Camma: '、';
     ///
@@ -8566,7 +8760,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 214:
+    /// Semantic action for production 219:
     ///
     /// Period: '。';
     ///
@@ -8589,7 +8783,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 215:
+    /// Semantic action for production 220:
     ///
     /// PosInt: "[1-9]([0-9])*";
     ///
@@ -8662,8 +8856,6 @@ impl<'t> UserActionsTrait<'t> for SkillGrammarAuto<'t, '_> {
                 &children[1],
                 &children[2],
                 &children[3],
-                &children[4],
-                &children[5],
                 parse_tree,
             ),
             25 => self.change_drop_stmt_inc_gen_random_drop_suffix_0(
@@ -8683,6 +8875,7 @@ impl<'t> UserActionsTrait<'t> for SkillGrammarAuto<'t, '_> {
             27 => self.change_drop_stmt_inc_gen_random_drop_suffix_2(
                 &children[0],
                 &children[1],
+                &children[2],
                 parse_tree,
             ),
             28 => self.change_drop_stmt_inc_gen_random_drop_list_0(
@@ -8692,158 +8885,44 @@ impl<'t> UserActionsTrait<'t> for SkillGrammarAuto<'t, '_> {
                 parse_tree,
             ),
             29 => self.change_drop_stmt_inc_gen_random_drop_list_1(parse_tree),
-            30 => {
+            30 => self.change_drop_stmt_inc_gen_random_drop_list0_0(
+                &children[0],
+                &children[1],
+                &children[2],
+                parse_tree,
+            ),
+            31 => self.change_drop_stmt_inc_gen_random_drop_list0_1(parse_tree),
+            32 => {
                 self.change_all_of_borad_block(&children[0], &children[1], &children[2], parse_tree)
             }
-            31 => self.gen_random_drop_stmt1(
-                &children[0],
-                &children[1],
-                &children[2],
-                &children[3],
-                &children[4],
-                parse_tree,
-            ),
-            32 => self.gen_shape_stmt(&children[0], &children[1], parse_tree),
-            33 => self.gen_shape_stmt_opt_0(&children[0], parse_tree),
-            34 => self.gen_shape_stmt_opt_group_0(&children[0], parse_tree),
-            35 => self.gen_shape_stmt_opt_group_1(&children[0], parse_tree),
-            36 => self.gen_shape_stmt_opt_1(parse_tree),
-            37 => self.drop_refresh_stmt(
+            33 => self.gen_random_drop_stmt(
                 &children[0],
                 &children[1],
                 &children[2],
                 &children[3],
                 parse_tree,
             ),
-            38 => self.drop_un_lock_stmt(
+            34 => self.gen_random_drop_stmt_list_0(
                 &children[0],
                 &children[1],
                 &children[2],
-                &children[3],
-                &children[4],
-                &children[5],
                 parse_tree,
             ),
-            39 => self.change_drop_block_other_first(
-                &children[0],
-                &children[1],
-                &children[2],
-                &children[3],
-                parse_tree,
-            ),
-            40 => self.gen_shape_block_0(&children[0], &children[1], parse_tree),
-            41 => self.gen_shape_block_list_0(&children[0], &children[1], &children[2], parse_tree),
-            42 => self.gen_shape_block_list_1(parse_tree),
-            43 => self.gen_shape_block_1(&children[0], parse_tree),
-            44 => self.gen_shape_block_row_col(
+            35 => self.gen_random_drop_stmt_list_1(parse_tree),
+            36 => self.gen_random_drop_block(&children[0], &children[1], &children[2], parse_tree),
+            37 => self.gen_shape_stmt(&children[0], &children[1], parse_tree),
+            38 => self.gen_shape_stmt_opt_0(&children[0], parse_tree),
+            39 => self.gen_shape_stmt_opt_group_0(&children[0], parse_tree),
+            40 => self.gen_shape_stmt_opt_group_1(&children[0], parse_tree),
+            41 => self.gen_shape_stmt_opt_1(parse_tree),
+            42 => self.drop_refresh_stmt(
                 &children[0],
                 &children[1],
                 &children[2],
                 &children[3],
                 parse_tree,
             ),
-            45 => self.gen_shape_block_other_row_col(&children[0], &children[1], parse_tree),
-            46 => self.gen_shape_block_other_row_col_suffix_0(
-                &children[0],
-                &children[1],
-                &children[2],
-                &children[3],
-                parse_tree,
-            ),
-            47 => self.gen_shape_block_other_row_col_suffix_1(
-                &children[0],
-                &children[1],
-                &children[2],
-                parse_tree,
-            ),
-            48 => self.gen_shape_block_other_row_col_opt_0(&children[0], parse_tree),
-            49 => self.gen_shape_block_other_row_col_opt_1(parse_tree),
-            50 => self.g_s_start_position_0(&children[0], parse_tree),
-            51 => self.g_s_start_position_1(&children[0], parse_tree),
-            52 => self.g_s_s_p_side(
-                &children[0],
-                &children[1],
-                &children[2],
-                &children[3],
-                parse_tree,
-            ),
-            53 => self.g_s_s_p_side_opt0_0(
-                &children[0],
-                &children[1],
-                &children[2],
-                &children[3],
-                parse_tree,
-            ),
-            54 => self.g_s_s_p_side_opt1_0(&children[0], parse_tree),
-            55 => self.g_s_s_p_side_opt1_1(parse_tree),
-            56 => self.g_s_s_p_side_opt0_1(parse_tree),
-            57 => self.g_s_s_p_side_opt_0(&children[0], parse_tree),
-            58 => self.g_s_s_p_side_opt_1(parse_tree),
-            59 => self.g_s_s_p_center(
-                &children[0],
-                &children[1],
-                &children[2],
-                &children[3],
-                parse_tree,
-            ),
-            60 => self.g_s_s_p_center_opt0_0(&children[0], parse_tree),
-            61 => self.g_s_s_p_center_opt0_group_0(&children[0], parse_tree),
-            62 => self.g_s_s_p_center_opt0_group_1(&children[0], parse_tree),
-            63 => self.g_s_s_p_center_opt0_1(parse_tree),
-            64 => self.g_s_s_p_center_opt_0(&children[0], parse_tree),
-            65 => self.g_s_s_p_center_opt_1(parse_tree),
-            66 => self.g_s_s_p_center_blocks(&children[0], &children[1], parse_tree),
-            67 => self.g_s_s_p_center_blocks_opt_0(&children[0], &children[1], parse_tree),
-            68 => self.g_s_s_p_center_blocks_opt_1(parse_tree),
-            69 => self.g_s_s_p_center_block(
-                &children[0],
-                &children[1],
-                &children[2],
-                &children[3],
-                &children[4],
-                parse_tree,
-            ),
-            70 => self.g_s_s_p_center_block_opt_0(&children[0], parse_tree),
-            71 => self.g_s_s_p_center_block_opt_group_0(&children[0], parse_tree),
-            72 => self.g_s_s_p_center_block_opt_group_1(&children[0], parse_tree),
-            73 => self.g_s_s_p_center_block_opt_1(parse_tree),
-            74 => self.position_0(&children[0], &children[1], parse_tree),
-            75 => self.position_1(&children[0], parse_tree),
-            76 => self.g_s_s_p_side_write_width_0(&children[0], &children[1], parse_tree),
-            77 => self.g_s_s_p_side_write_width_1(&children[0], parse_tree),
-            78 => self.g_s_s_p_side_write_width_opt_0(&children[0], parse_tree),
-            79 => self.g_s_s_p_side_write_width_opt_1(parse_tree),
-            80 => self.position_l_r_t_b_0(&children[0], parse_tree),
-            81 => self.position_l_r_t_b_1(&children[0], parse_tree),
-            82 => self.position_l_r_t_b_2(&children[0], parse_tree),
-            83 => self.position_l_r_t_b_3(&children[0], parse_tree),
-            84 => self.position_l_r_0(&children[0], parse_tree),
-            85 => self.position_l_r_1(&children[0], parse_tree),
-            86 => self.position_l_r_2(&children[0], parse_tree),
-            87 => self.position_t_b(&children[0], &children[1], &children[2], parse_tree),
-            88 => self.position_t_b_opt_0(&children[0], parse_tree),
-            89 => self.position_t_b_opt_1(parse_tree),
-            90 => self.position_t_or_b_0(&children[0], parse_tree),
-            91 => self.position_t_or_b_1(&children[0], parse_tree),
-            92 => self.gen_shape_num_of_gen(&children[0], &children[1], parse_tree),
-            93 => self.shape_type_0(&children[0], parse_tree),
-            94 => self.shape_type_1(&children[0], &children[1], parse_tree),
-            95 => self.shape_type_2(&children[0], parse_tree),
-            96 => self.shape_type_3(&children[0], &children[1], &children[2], parse_tree),
-            97 => self.shape_type_4(&children[0], parse_tree),
-            98 => self.shape_type_5(&children[0], parse_tree),
-            99 => self.shape_type_6(&children[0], parse_tree),
-            100 => self.shape_type_7(&children[0], parse_tree),
-            101 => self.shape_type_8(&children[0], parse_tree),
-            102 => self.shape_type_9(&children[0], parse_tree),
-            103 => self.shape_type_10(&children[0], parse_tree),
-            104 => self.shape_type_11(&children[0], &children[1], parse_tree),
-            105 => self.shape_type_12(&children[0], &children[1], parse_tree),
-            106 => self.shape_type_opt0_0(&children[0], parse_tree),
-            107 => self.shape_type_opt0_1(parse_tree),
-            108 => self.shape_type_opt_0(&children[0], parse_tree),
-            109 => self.shape_type_opt_1(parse_tree),
-            110 => self.drop_unlock_block(
+            43 => self.drop_un_lock_stmt(
                 &children[0],
                 &children[1],
                 &children[2],
@@ -8852,111 +8931,239 @@ impl<'t> UserActionsTrait<'t> for SkillGrammarAuto<'t, '_> {
                 &children[5],
                 parse_tree,
             ),
-            111 => self.drop_unlock_block_opt_0(&children[0], &children[1], parse_tree),
-            112 => self.drop_unlock_block_opt0_0(&children[0], parse_tree),
-            113 => self.drop_unlock_block_opt0_1(parse_tree),
-            114 => self.drop_unlock_block_opt_1(parse_tree),
-            115 => self.drops_0(&children[0], &children[1], parse_tree),
-            116 => self.drops_suffix_0(&children[0], parse_tree),
-            117 => self.drops_1(&children[0], &children[1], parse_tree),
-            118 => self.drops_suffix_1(&children[0], &children[1], parse_tree),
-            119 => self.drops_list_0(&children[0], &children[1], parse_tree),
-            120 => self.drops_list_1(parse_tree),
-            121 => self.drops_list0_0(&children[0], &children[1], &children[2], parse_tree),
-            122 => self.drops_list0_1(parse_tree),
-            123 => self.many_drop_0(&children[0], &children[1], parse_tree),
-            124 => self.many_drop_1(&children[0], &children[1], parse_tree),
-            125 => self.all_drops(&children[0], &children[1], parse_tree),
-            126 => self.five_attribute(&children[0], &children[1], parse_tree),
-            127 => self.five_attribute_opt_0(&children[0], parse_tree),
-            128 => self.five_attribute_opt_1(parse_tree),
-            129 => self.quantity(&children[0], &children[1], &children[2], parse_tree),
-            130 => self.quantity_opt_0(&children[0], parse_tree),
-            131 => self.quantity_opt_1(parse_tree),
-            132 => self.drop_0(&children[0], &children[1], parse_tree),
-            133 => self.drop_1(&children[0], &children[1], parse_tree),
-            134 => self.drop_opt0_0(&children[0], parse_tree),
-            135 => self.drop_opt0_1(parse_tree),
-            136 => self.drop_opt_0(&children[0], parse_tree),
-            137 => self.drop_opt_1(parse_tree),
-            138 => self.non_colored_drop_0(&children[0], parse_tree),
-            139 => self.non_colored_drop_1(&children[0], parse_tree),
-            140 => self.non_colored_drop_2(&children[0], parse_tree),
-            141 => self.non_colored_drop_3(&children[0], parse_tree),
-            142 => self.non_colored_drop_4(&children[0], parse_tree),
-            143 => self.color_0(&children[0], parse_tree),
-            144 => self.color_1(&children[0], parse_tree),
-            145 => self.color_2(&children[0], parse_tree),
-            146 => self.color_3(&children[0], parse_tree),
-            147 => self.color_4(&children[0], parse_tree),
-            148 => self.random_suffix(&children[0], &children[1], parse_tree),
-            149 => self.size(&children[0], &children[1], &children[2], parse_tree),
-            150 => self.on_board(&children[0], &children[1], &children[2], parse_tree),
-            151 => self.fire(&children[0], parse_tree),
-            152 => self.water(&children[0], parse_tree),
-            153 => self.wood(&children[0], parse_tree),
-            154 => self.lightning(&children[0], parse_tree),
-            155 => self.dark(&children[0], parse_tree),
-            156 => self.recovery(&children[0], parse_tree),
-            157 => self.disturb(&children[0], parse_tree),
-            158 => self.bomb(&children[0], parse_tree),
-            159 => self.deadly_poison(&children[0], parse_tree),
-            160 => self.poison(&children[0], parse_tree),
-            161 => self.shape_of_l(&children[0], parse_tree),
-            162 => self.shape_of_z(&children[0], parse_tree),
-            163 => self.shape_of_cross(&children[0], parse_tree),
-            164 => self.shape_of_square(&children[0], parse_tree),
-            165 => self.shape_of_board_perimeter(&children[0], parse_tree),
-            166 => self.shape_of_board_center(&children[0], parse_tree),
-            167 => self.shape_of_board_top(&children[0], parse_tree),
-            168 => self.shape_of_board_bottom(&children[0], parse_tree),
-            169 => self.shape_of_board_corners(&children[0], parse_tree),
-            170 => self.shape_of_spiderweb(&children[0], parse_tree),
-            171 => self.shape_of_crescent_moon(&children[0], parse_tree),
-            172 => self.shape_of_oblique(&children[0], parse_tree),
-            173 => self.shape_of_some_kind(&children[0], parse_tree),
-            174 => self.word_change(&children[0], parse_tree),
-            175 => self.word_drop(&children[0], parse_tree),
-            176 => self.word_all(&children[0], parse_tree),
-            177 => self.word_five_attribute(&children[0], parse_tree),
-            178 => self.word_random(&children[0], parse_tree),
-            179 => self.word_replace(&children[0], parse_tree),
-            180 => self.word_count(&children[0], parse_tree),
-            181 => self.word_count_opt_0(&children[0], parse_tree),
-            182 => self.word_count_opt_group_0(&children[0], parse_tree),
-            183 => self.word_count_opt_group_1(&children[0], parse_tree),
-            184 => self.word_count_opt_1(parse_tree),
-            185 => self.word_gen(&children[0], parse_tree),
-            186 => self.word_other(&children[0], parse_tree),
-            187 => self.word_vertical(&children[0], parse_tree),
-            188 => self.word_horizon(&children[0], parse_tree),
-            189 => self.word_row(&children[0], parse_tree),
-            190 => self.word_col(&children[0], parse_tree),
-            191 => self.word_side(&children[0], parse_tree),
-            192 => self.word_left_and_right(&children[0], parse_tree),
-            193 => self.word_left(&children[0], parse_tree),
-            194 => self.word_right(&children[0], parse_tree),
-            195 => self.word_top(&children[0], parse_tree),
-            196 => self.word_bottom(&children[0], parse_tree),
-            197 => self.word_most(&children[0], parse_tree),
-            198 => self.word_look(&children[0], parse_tree),
-            199 => self.word_board(&children[0], parse_tree),
-            200 => self.word_release(&children[0], parse_tree),
-            201 => self.word_lock(&children[0], parse_tree),
-            202 => self.word_state(&children[0], parse_tree),
-            203 => self.wo(&children[0], parse_tree),
-            204 => self.ni(&children[0], parse_tree),
-            205 => self.no(&children[0], parse_tree),
-            206 => self.so(&children[0], parse_tree),
-            207 => self.and(&children[0], parse_tree),
-            208 => self.si(&children[0], parse_tree),
-            209 => self.each(&children[0], parse_tree),
-            210 => self.from(&children[0], parse_tree),
-            211 => self.plus(&children[0], parse_tree),
-            212 => self.multi(&children[0], parse_tree),
-            213 => self.camma(&children[0], parse_tree),
-            214 => self.period(&children[0], parse_tree),
-            215 => self.pos_int(&children[0], parse_tree),
+            44 => self.change_drop_block_other_first(
+                &children[0],
+                &children[1],
+                &children[2],
+                &children[3],
+                parse_tree,
+            ),
+            45 => self.gen_shape_block_0(&children[0], &children[1], parse_tree),
+            46 => self.gen_shape_block_list_0(&children[0], &children[1], &children[2], parse_tree),
+            47 => self.gen_shape_block_list_1(parse_tree),
+            48 => self.gen_shape_block_1(&children[0], parse_tree),
+            49 => self.gen_shape_block_row_col(
+                &children[0],
+                &children[1],
+                &children[2],
+                &children[3],
+                parse_tree,
+            ),
+            50 => self.gen_shape_block_other_row_col(&children[0], &children[1], parse_tree),
+            51 => self.gen_shape_block_other_row_col_suffix_0(
+                &children[0],
+                &children[1],
+                &children[2],
+                &children[3],
+                parse_tree,
+            ),
+            52 => self.gen_shape_block_other_row_col_suffix_1(
+                &children[0],
+                &children[1],
+                &children[2],
+                parse_tree,
+            ),
+            53 => self.gen_shape_block_other_row_col_opt_0(&children[0], parse_tree),
+            54 => self.gen_shape_block_other_row_col_opt_1(parse_tree),
+            55 => self.g_s_start_position_0(&children[0], parse_tree),
+            56 => self.g_s_start_position_1(&children[0], parse_tree),
+            57 => self.g_s_s_p_side(
+                &children[0],
+                &children[1],
+                &children[2],
+                &children[3],
+                parse_tree,
+            ),
+            58 => self.g_s_s_p_side_opt0_0(
+                &children[0],
+                &children[1],
+                &children[2],
+                &children[3],
+                parse_tree,
+            ),
+            59 => self.g_s_s_p_side_opt1_0(&children[0], parse_tree),
+            60 => self.g_s_s_p_side_opt1_1(parse_tree),
+            61 => self.g_s_s_p_side_opt0_1(parse_tree),
+            62 => self.g_s_s_p_side_opt_0(&children[0], parse_tree),
+            63 => self.g_s_s_p_side_opt_1(parse_tree),
+            64 => self.g_s_s_p_center(
+                &children[0],
+                &children[1],
+                &children[2],
+                &children[3],
+                parse_tree,
+            ),
+            65 => self.g_s_s_p_center_opt0_0(&children[0], parse_tree),
+            66 => self.g_s_s_p_center_opt0_group_0(&children[0], parse_tree),
+            67 => self.g_s_s_p_center_opt0_group_1(&children[0], parse_tree),
+            68 => self.g_s_s_p_center_opt0_1(parse_tree),
+            69 => self.g_s_s_p_center_opt_0(&children[0], parse_tree),
+            70 => self.g_s_s_p_center_opt_1(parse_tree),
+            71 => self.g_s_s_p_center_blocks(&children[0], &children[1], parse_tree),
+            72 => self.g_s_s_p_center_blocks_opt_0(&children[0], &children[1], parse_tree),
+            73 => self.g_s_s_p_center_blocks_opt_1(parse_tree),
+            74 => self.g_s_s_p_center_block(
+                &children[0],
+                &children[1],
+                &children[2],
+                &children[3],
+                &children[4],
+                parse_tree,
+            ),
+            75 => self.g_s_s_p_center_block_opt_0(&children[0], parse_tree),
+            76 => self.g_s_s_p_center_block_opt_group_0(&children[0], parse_tree),
+            77 => self.g_s_s_p_center_block_opt_group_1(&children[0], parse_tree),
+            78 => self.g_s_s_p_center_block_opt_1(parse_tree),
+            79 => self.position_0(&children[0], &children[1], parse_tree),
+            80 => self.position_1(&children[0], parse_tree),
+            81 => self.g_s_s_p_side_write_width_0(&children[0], &children[1], parse_tree),
+            82 => self.g_s_s_p_side_write_width_1(&children[0], parse_tree),
+            83 => self.g_s_s_p_side_write_width_opt_0(&children[0], parse_tree),
+            84 => self.g_s_s_p_side_write_width_opt_1(parse_tree),
+            85 => self.position_l_r_t_b_0(&children[0], parse_tree),
+            86 => self.position_l_r_t_b_1(&children[0], parse_tree),
+            87 => self.position_l_r_t_b_2(&children[0], parse_tree),
+            88 => self.position_l_r_t_b_3(&children[0], parse_tree),
+            89 => self.position_l_r_0(&children[0], parse_tree),
+            90 => self.position_l_r_1(&children[0], parse_tree),
+            91 => self.position_l_r_2(&children[0], parse_tree),
+            92 => self.position_t_b(&children[0], &children[1], &children[2], parse_tree),
+            93 => self.position_t_b_opt_0(&children[0], parse_tree),
+            94 => self.position_t_b_opt_1(parse_tree),
+            95 => self.position_t_or_b_0(&children[0], parse_tree),
+            96 => self.position_t_or_b_1(&children[0], parse_tree),
+            97 => self.gen_shape_num_of_gen(&children[0], &children[1], parse_tree),
+            98 => self.shape_type_0(&children[0], parse_tree),
+            99 => self.shape_type_1(&children[0], &children[1], parse_tree),
+            100 => self.shape_type_2(&children[0], parse_tree),
+            101 => self.shape_type_3(&children[0], &children[1], &children[2], parse_tree),
+            102 => self.shape_type_4(&children[0], parse_tree),
+            103 => self.shape_type_5(&children[0], parse_tree),
+            104 => self.shape_type_6(&children[0], parse_tree),
+            105 => self.shape_type_7(&children[0], parse_tree),
+            106 => self.shape_type_8(&children[0], parse_tree),
+            107 => self.shape_type_9(&children[0], parse_tree),
+            108 => self.shape_type_10(&children[0], parse_tree),
+            109 => self.shape_type_11(&children[0], &children[1], parse_tree),
+            110 => self.shape_type_12(&children[0], &children[1], parse_tree),
+            111 => self.shape_type_opt0_0(&children[0], parse_tree),
+            112 => self.shape_type_opt0_1(parse_tree),
+            113 => self.shape_type_opt_0(&children[0], parse_tree),
+            114 => self.shape_type_opt_1(parse_tree),
+            115 => self.drop_unlock_block(
+                &children[0],
+                &children[1],
+                &children[2],
+                &children[3],
+                &children[4],
+                &children[5],
+                parse_tree,
+            ),
+            116 => self.drop_unlock_block_opt_0(&children[0], &children[1], parse_tree),
+            117 => self.drop_unlock_block_opt0_0(&children[0], parse_tree),
+            118 => self.drop_unlock_block_opt0_1(parse_tree),
+            119 => self.drop_unlock_block_opt_1(parse_tree),
+            120 => self.drops_0(&children[0], &children[1], parse_tree),
+            121 => self.drops_suffix_0(&children[0], parse_tree),
+            122 => self.drops_1(&children[0], &children[1], parse_tree),
+            123 => self.drops_suffix_1(&children[0], &children[1], parse_tree),
+            124 => self.drops_list_0(&children[0], &children[1], parse_tree),
+            125 => self.drops_list_1(parse_tree),
+            126 => self.drops_list0_0(&children[0], &children[1], &children[2], parse_tree),
+            127 => self.drops_list0_1(parse_tree),
+            128 => self.many_drop_0(&children[0], &children[1], parse_tree),
+            129 => self.many_drop_1(&children[0], &children[1], parse_tree),
+            130 => self.all_drops(&children[0], &children[1], parse_tree),
+            131 => self.five_attribute(&children[0], &children[1], parse_tree),
+            132 => self.five_attribute_opt_0(&children[0], parse_tree),
+            133 => self.five_attribute_opt_1(parse_tree),
+            134 => self.quantity(&children[0], &children[1], &children[2], parse_tree),
+            135 => self.quantity_opt_0(&children[0], parse_tree),
+            136 => self.quantity_opt_1(parse_tree),
+            137 => self.drop_0(&children[0], &children[1], parse_tree),
+            138 => self.drop_1(&children[0], &children[1], parse_tree),
+            139 => self.drop_opt0_0(&children[0], parse_tree),
+            140 => self.drop_opt0_1(parse_tree),
+            141 => self.drop_opt_0(&children[0], parse_tree),
+            142 => self.drop_opt_1(parse_tree),
+            143 => self.non_colored_drop_0(&children[0], parse_tree),
+            144 => self.non_colored_drop_1(&children[0], parse_tree),
+            145 => self.non_colored_drop_2(&children[0], parse_tree),
+            146 => self.non_colored_drop_3(&children[0], parse_tree),
+            147 => self.non_colored_drop_4(&children[0], parse_tree),
+            148 => self.color_0(&children[0], parse_tree),
+            149 => self.color_1(&children[0], parse_tree),
+            150 => self.color_2(&children[0], parse_tree),
+            151 => self.color_3(&children[0], parse_tree),
+            152 => self.color_4(&children[0], parse_tree),
+            153 => self.random_suffix(&children[0], &children[1], parse_tree),
+            154 => self.size(&children[0], &children[1], &children[2], parse_tree),
+            155 => self.on_board(&children[0], &children[1], &children[2], parse_tree),
+            156 => self.fire(&children[0], parse_tree),
+            157 => self.water(&children[0], parse_tree),
+            158 => self.wood(&children[0], parse_tree),
+            159 => self.lightning(&children[0], parse_tree),
+            160 => self.dark(&children[0], parse_tree),
+            161 => self.recovery(&children[0], parse_tree),
+            162 => self.disturb(&children[0], parse_tree),
+            163 => self.bomb(&children[0], parse_tree),
+            164 => self.deadly_poison(&children[0], parse_tree),
+            165 => self.poison(&children[0], parse_tree),
+            166 => self.shape_of_l(&children[0], parse_tree),
+            167 => self.shape_of_z(&children[0], parse_tree),
+            168 => self.shape_of_cross(&children[0], parse_tree),
+            169 => self.shape_of_square(&children[0], parse_tree),
+            170 => self.shape_of_board_perimeter(&children[0], parse_tree),
+            171 => self.shape_of_board_center(&children[0], parse_tree),
+            172 => self.shape_of_board_top(&children[0], parse_tree),
+            173 => self.shape_of_board_bottom(&children[0], parse_tree),
+            174 => self.shape_of_board_corners(&children[0], parse_tree),
+            175 => self.shape_of_spiderweb(&children[0], parse_tree),
+            176 => self.shape_of_crescent_moon(&children[0], parse_tree),
+            177 => self.shape_of_oblique(&children[0], parse_tree),
+            178 => self.shape_of_some_kind(&children[0], parse_tree),
+            179 => self.word_change(&children[0], parse_tree),
+            180 => self.word_drop(&children[0], parse_tree),
+            181 => self.word_all(&children[0], parse_tree),
+            182 => self.word_five_attribute(&children[0], parse_tree),
+            183 => self.word_random(&children[0], parse_tree),
+            184 => self.word_replace(&children[0], parse_tree),
+            185 => self.word_count(&children[0], parse_tree),
+            186 => self.word_count_opt_0(&children[0], parse_tree),
+            187 => self.word_count_opt_group_0(&children[0], parse_tree),
+            188 => self.word_count_opt_group_1(&children[0], parse_tree),
+            189 => self.word_count_opt_1(parse_tree),
+            190 => self.word_gen(&children[0], parse_tree),
+            191 => self.word_other(&children[0], parse_tree),
+            192 => self.word_vertical(&children[0], parse_tree),
+            193 => self.word_horizon(&children[0], parse_tree),
+            194 => self.word_row(&children[0], parse_tree),
+            195 => self.word_col(&children[0], parse_tree),
+            196 => self.word_side(&children[0], parse_tree),
+            197 => self.word_left_and_right(&children[0], parse_tree),
+            198 => self.word_left(&children[0], parse_tree),
+            199 => self.word_right(&children[0], parse_tree),
+            200 => self.word_top(&children[0], parse_tree),
+            201 => self.word_bottom(&children[0], parse_tree),
+            202 => self.word_most(&children[0], parse_tree),
+            203 => self.word_look(&children[0], parse_tree),
+            204 => self.word_board(&children[0], parse_tree),
+            205 => self.word_release(&children[0], parse_tree),
+            206 => self.word_lock(&children[0], parse_tree),
+            207 => self.word_state(&children[0], parse_tree),
+            208 => self.wo(&children[0], parse_tree),
+            209 => self.ni(&children[0], parse_tree),
+            210 => self.no(&children[0], parse_tree),
+            211 => self.so(&children[0], parse_tree),
+            212 => self.and(&children[0], parse_tree),
+            213 => self.si(&children[0], parse_tree),
+            214 => self.each(&children[0], parse_tree),
+            215 => self.from(&children[0], parse_tree),
+            216 => self.plus(&children[0], parse_tree),
+            217 => self.multi(&children[0], parse_tree),
+            218 => self.camma(&children[0], parse_tree),
+            219 => self.period(&children[0], parse_tree),
+            220 => self.pos_int(&children[0], parse_tree),
             _ => Err(miette!("Unhandled production number: {}", prod_num)),
         }
     }

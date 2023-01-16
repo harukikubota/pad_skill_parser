@@ -176,7 +176,8 @@ impl SkillGrammar<'_> {
     {
         let ret: &mut Vec<R> = &mut Vec::new();
 
-        let result = self.steal_if_(ret, type_check_fun, map_fun).to_vec();
+        let mut result = self.steal_if_(ret, type_check_fun, map_fun).to_vec();
+        result.reverse();
         result
     }
 
@@ -279,6 +280,7 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         &mut self,
         _arg: &crate::skill_grammar_trait::ChangeDropStmtIncGenRandomDrop<'t>,
     ) -> parol_runtime::miette::Result<()> {
+        self.show_stack_("change_drop_stmt_inc_gen_random_drop");
         let item = self.pop();
 
         if item.is_drop() {
@@ -304,10 +306,38 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
 
             let skill = self.build_change_drop_a_to_b(from, item.drops());
             self.skill_list.push(skill);
+        } else if item.is_gen_drops_with_qty() {
+            let mut list: Vec<GenDropsWithQty> = self.steal_if(
+                |e| e.is_gen_drops_with_qty(),
+                |e| e.clone().gen_drop_with_qty(),
+            );
+
+            list.push(item.gen_drop_with_qty());
+
+            let first: &mut GenDropsWithQty = &mut Vec::new();
+            let exc: &mut Drops = &mut Vec::new();
+            let qty_or_drops = self.pop();
+
+            if qty_or_drops.is_pos_int() {
+                let qty = qty_or_drops.pos_int();
+                let drops = self.pop().drops();
+
+                first.append(&mut Self::build_gen_drop_and_qty_list(drops, qty))
+            } else {
+                exc.append(&mut qty_or_drops.drops());
+            };
+
+            first.append(&mut list.concat());
+
+            let exc_from_drops = Self::build_gen_random_drop_exc_from(exc, first);
+
+            self.push_gen_drop_and_qty_list(exc_from_drops, first.to_owned());
         } else {
             // ランダム生成
             let qty = item.pos_int();
             let drops = self.pop().drops();
+
+            let to = &mut Self::build_gen_drop_and_qty_list(drops, qty);
 
             let exc: &mut Drops = &mut if !self.is_zero() {
                 self.pop().drops()
@@ -315,7 +345,6 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
                 vec![]
             };
 
-            let to = &mut Self::build_gen_drop_and_qty_list(drops, qty);
             let exc_from_drops = Self::build_gen_random_drop_exc_from(exc, to);
 
             self.push_gen_drop_and_qty_list(exc_from_drops, to.to_owned());
@@ -384,24 +413,41 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
-    fn gen_random_drop_stmt1(
+    fn gen_random_drop_stmt(
         &mut self,
-        _arg: &crate::skill_grammar_trait::GenRandomDropStmt1<'t>,
+        _arg: &crate::skill_grammar_trait::GenRandomDropStmt<'t>,
     ) -> miette::Result<()> {
-        let gen_quantity = self.pop().pos_int();
-        let gen_drops = self.pop().drops();
+        let list = &mut self
+            .steal_if(
+                |e| e.is_gen_drops_with_qty(),
+                |e| e.clone().gen_drop_with_qty(),
+            )
+            .concat();
 
-        let gen_drop_qty_list: &mut GenDropsWithQty = &mut Self::build_gen_drop_and_qty_list(gen_drops, gen_quantity);
+        let exc_from_drops = Self::build_gen_random_drop_exc_from(&mut vec![], list);
 
-        let exc_from_drops = Self::build_gen_random_drop_exc_from(&mut vec![], gen_drop_qty_list);
-
-        let se = SkillEffect::GenRandomDrop(exc_from_drops, gen_drop_qty_list.to_owned());
+        let se = SkillEffect::GenRandomDrop(exc_from_drops, list.to_owned());
 
         let skill = Skill {
             effect: se,
             ..Default::default()
         };
         self.skill_list.push(skill);
+        Ok(())
+    }
+
+    fn gen_random_drop_block(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::GenRandomDropBlock<'t>,
+    ) -> miette::Result<()> {
+        let gen_quantity = self.pop().pos_int();
+        let gen_drops = self.pop().drops();
+
+        let gen_drop_qty_list: &mut GenDropsWithQty =
+            &mut Self::build_gen_drop_and_qty_list(gen_drops, gen_quantity);
+
+        self.push(StackItem::GenDropsWithQty(gen_drop_qty_list.to_owned()));
+
         Ok(())
     }
 
@@ -543,13 +589,11 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
     ) -> miette::Result<()> {
         if self.stack.len() > 1 {
             // 2要素以上の場合、1つのリストにまとめる
-            let mut list: Vec<GenPositions> =
-                self.steal_if(|i| i.is_gen_positions(), |i| i.to_owned().gen_positions());
-            list.reverse();
+            let list: GenPositions = self
+                .steal_if(|i| i.is_gen_positions(), |i| i.to_owned().gen_positions())
+                .concat();
 
-            let concated = list.concat();
-
-            self.push(StackItem::GenPositions(concated));
+            self.push(StackItem::GenPositions(list));
         }
         Ok(())
     }
@@ -609,10 +653,9 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         &mut self,
         _arg: &crate::skill_grammar_trait::Drops<'t>,
     ) -> parol_runtime::miette::Result<()> {
-        let mut drops: Drops = self
+        let drops: Drops = self
             .steal_if(|i| i.is_drop(), |i| i.clone().drop())
             .to_vec();
-        drops.reverse();
 
         self.push(StackItem::Drops(drops));
         Ok(())
