@@ -224,10 +224,16 @@ impl SkillGrammar<'_> {
     /// * to: D1, D2, ...Dx 生成するドロップ
     /// * 生成が4色以下: 指定している色＋生成色
     /// * 生成が5色以上: 指定している色のみ
-    fn build_gen_random_drop_exc_from(specified: &mut Drops, to: &mut Drops) -> Drops {
-        if to.to_vec().len() < 5 {
-            // 4色以下の生成
-            specified.append(to);
+    /// * 生成数が30  : なし
+    fn build_gen_random_drop_exc_from(specified: &mut Drops, to: &mut GenDropsWithQty) -> Drops {
+        let to_drops: &mut Drops = &mut to.into_iter().map(|e| e.clone().0).collect();
+        let gen_drop_sum: usize = to.into_iter().map(|e| e.1).sum();
+
+        print!("sum:{}\n", gen_drop_sum);
+
+        if dbg!((to_drops.to_vec().len() < 5) && (gen_drop_sum != 30)) {
+            // 4色以下の生成 & 生成数が30ではない
+            specified.append(to_drops);
         }
         specified.to_vec()
     }
@@ -303,11 +309,10 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
                 vec![]
             };
 
-            let exc_from_drops = Self::build_gen_random_drop_exc_from(exc, &mut drops.to_vec());
+            let to = &mut Self::build_gen_drop_and_qty_list(drops, qty);
+            let exc_from_drops = Self::build_gen_random_drop_exc_from(exc, to);
 
-            let to = Self::build_gen_drop_and_qty_list(drops, qty);
-
-            self.push_gen_drop_and_qty_list(exc_from_drops, to);
+            self.push_gen_drop_and_qty_list(exc_from_drops, to.to_owned());
         }
         Ok(())
     }
@@ -380,13 +385,11 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         let gen_quantity = self.pop().pos_int();
         let gen_drops = self.pop().drops();
 
-        let gen_drop_qty_list: GenDropsWithQty = gen_drops
-            .to_vec()
-            .into_iter()
-            .map(|drop| (drop, gen_quantity))
-            .collect();
+        let gen_drop_qty_list: &mut GenDropsWithQty = &mut Self::build_gen_drop_and_qty_list(gen_drops, gen_quantity);
 
-        let se = SkillEffect::GenRandomDrop(gen_drops, gen_drop_qty_list);
+        let exc_from_drops = Self::build_gen_random_drop_exc_from(&mut vec![], gen_drop_qty_list);
+
+        let se = SkillEffect::GenRandomDrop(exc_from_drops, gen_drop_qty_list.to_owned());
 
         let skill = Skill {
             effect: se,

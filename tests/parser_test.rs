@@ -310,6 +310,56 @@ mod parser_test {
     }
 
     #[test]
+    fn gen_random_drop_15_2() {
+        let input = "ランダムで火と光を15個ずつ生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::GenRandomDrop(
+                vec![],
+                vec![
+                    (Drop::Colored(Color::Fire), 15),
+                    (Drop::Colored(Color::Lightning), 15),
+                ],
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_random_drop_10_3() {
+        let input = "ドロップのロックを解除し、水、光、回復を10個ずつ生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::DropUnLock,
+            },
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::GenRandomDrop(
+                    vec![],
+                    vec![
+                        (Drop::Colored(Color::Water), 10),
+                        (Drop::Colored(Color::Lightning), 10),
+                        (Drop::NonColored(NonColoredDrop::Recovery), 10)
+                    ],
+                ),
+            }
+        ]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
     fn gen_shape_col_leftside_1() {
         let input = "左端1列を光ドロップに変化。";
         let grammar = &mut SkillGrammar::new();
