@@ -24,6 +24,7 @@ ChangeDropWithDropUnlockLine
 
 ChangeDropStmtIncGenRandomDrop
     : Drops Wo Drop Ni { Camma ChangeDropBlockOtherFirst } WordChange
+    | Drops Wo RandomSuffix Drops Ni WordChange
     // 変換と衝突するためここで拾う
     // 火を5個生成 , 水と回復を6個ずつ生成
     // 頭に`ランダムで`は本来のStmtで拾える。

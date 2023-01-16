@@ -298,6 +298,12 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
                     other => self.set_tmp(other),
                 }
             }
+        } else if item.is_drops() {
+            // ランダムで複数色に変換
+            let from = self.pop().drops();
+
+            let skill = self.build_change_drop_a_to_b(from, item.drops());
+            self.skill_list.push(skill);
         } else {
             // ランダム生成
             let qty = item.pos_int();

@@ -101,6 +101,55 @@ mod parser_test {
     }
 
     #[test]
+    fn change_drops_rand_colors_1() {
+        let input = "火と木をランダムで光と回復に変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::ChangeDropAToB(
+                vec![
+                    Drop::Colored(Color::Fire),
+                    Drop::Colored(Color::Wood),
+                ],
+                vec![
+                    Drop::Colored(Color::Lightning),
+                    Drop::NonColored(NonColoredDrop::Recovery)
+                ],
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn change_drops_rand_colors_2() {
+        let input = "光と回復をランダムで火、水、木に変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::ChangeDropAToB(
+                vec![
+                    Drop::Colored(Color::Lightning),
+                    Drop::NonColored(NonColoredDrop::Recovery)
+                ],
+                vec![
+                    Drop::Colored(Color::Fire),
+                    Drop::Colored(Color::Water),
+                    Drop::Colored(Color::Wood),
+                ],
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
     fn change_all_of_board_five_att() {
         let input = "全ドロップを5属性に変化。";
         let grammar = &mut SkillGrammar::new();
