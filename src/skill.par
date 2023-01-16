@@ -20,7 +20,10 @@ GroupOfDropChange
     ;
 
 ChangeDropWithDropUnlockLine
-    : AllDrops [ DropUnlockBlock | Wo ] [ ChangeAllOfBoradBlock | GenShapeStmt ];
+    : AllDrops [ DropUnlockBlock | Wo ]
+        [ Drops Ni WordChange [Si Camma GenRandomDropBlock WordGen]
+        | GenShapeStmt
+        ];
 
 ChangeDropStmtIncGenRandomDrop
     : Drops Wo Drop Ni { Camma ChangeDropBlockOtherFirst } WordChange
@@ -31,9 +34,6 @@ ChangeDropStmtIncGenRandomDrop
     | Drops Wo Quantity { Camma GenRandomDropBlock } WordGen
     | Drops WordOther From GenRandomDropBlock WordGen
     ;
-
-ChangeAllOfBoradBlock
-    : Drops Ni WordChange;
 
 GenRandomDropStmt
     : RandomSuffix GenRandomDropBlock { Camma GenRandomDropBlock } WordGen;

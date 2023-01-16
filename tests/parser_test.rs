@@ -1371,6 +1371,38 @@ mod parser_test {
         assert_eq!(except, grammar);
     }
 
+    /// 図鑑No.9223 極醒の蒼龍契士・ティフォン
+    #[test]
+    fn blue_typhon() {
+        let input = "全ドロップを回復に変化し、火、水、光を9個ずつ生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::ChangeAllOfBoard(
+                    vec![Drop::NonColored(NonColoredDrop::Recovery),],
+                ),
+            },
+            Skill {
+                sub_effects: None,
+                turns_of_apply: None,
+                effect: SkillEffect::GenRandomDrop(
+                    vec![],
+                    vec![
+                        (Drop::Colored(Color::Fire), 9),
+                        (Drop::Colored(Color::Water), 9),
+                        (Drop::Colored(Color::Lightning), 9),
+                    ],
+                ),
+            }
+        ]);
+
+        assert_eq!(except, grammar);
+    }
+
     #[test]
     fn drop_refresh() {
         let input = "ランダムでドロップを入れ替える。";

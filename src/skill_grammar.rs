@@ -352,18 +352,38 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
-    fn change_all_of_borad_block(
-        &mut self,
-        _arg: &crate::skill_grammar_trait::ChangeAllOfBoradBlock<'t>,
-    ) -> parol_runtime::miette::Result<()> {
-        let drops = self.pop().drops();
+    fn change_drop_with_drop_unlock_line(
+            &mut self,
+            _arg: &crate::skill_grammar_trait::ChangeDropWithDropUnlockLine<'t>,
+    ) -> miette::Result<()> {
+        // 指定型生成はすでにスキルリストにプッシュされているため、スタックは0となる
+        if !self.is_zero() {
+            let item = self.pop();
 
-        let skill = Skill {
-            effect: SkillEffect::ChangeAllOfBoard(drops),
-            ..Default::default()
-        };
+            if item.is_drops() {
+                // N色陣のみ
+                let drops = item.drops();
 
-        self.skill_list.push(skill);
+                let skill = Skill {
+                    effect: SkillEffect::ChangeAllOfBoard(drops),
+                    ..Default::default()
+                };
+
+                self.skill_list.push(skill);
+            } else {
+                // 陣→ランダム生成
+                let gen_drops_with_qty = item.gen_drop_with_qty();
+                let drops = self.pop().drops();
+
+                let skill = Skill {
+                    effect: SkillEffect::ChangeAllOfBoard(drops),
+                    ..Default::default()
+                };
+
+                self.skill_list.push(skill);
+                self.push_gen_drop_and_qty_list(vec![], gen_drops_with_qty);
+            }
+        }
         Ok(())
     }
 
