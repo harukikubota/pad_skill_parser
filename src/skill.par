@@ -25,6 +25,8 @@ ChangeDropWithDropUnlockLine
         | GenShapeStmt
         // `全ドロップを強化`のみヒット
         | WordPowerUp
+        // `全ドロップをロック`のみヒット
+        | WordLock
         ];
 
 StartsWithDropLine
@@ -35,7 +37,7 @@ StartsWithDropLine
     // 頭に`ランダムで`は本来のStmtで拾える。
     | Drops Wo Quantity { Camma GenRandomDropBlock } WordGen
     | Drops WordOther From GenRandomDropBlock WordGen
-    | Drops Wo WordPowerUp
+    | Drops Wo [ WordPowerUp | WordLock ]
     ;
 
 GenRandomDropStmt

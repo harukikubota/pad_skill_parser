@@ -1382,9 +1382,9 @@ mod parser_test {
             Skill {
                 sub_effects: None,
                 turns_of_apply: None,
-                effect: SkillEffect::ChangeAllOfBoard(
-                    vec![Drop::NonColored(NonColoredDrop::Recovery),],
-                ),
+                effect: SkillEffect::ChangeAllOfBoard(vec![Drop::NonColored(
+                    NonColoredDrop::Recovery,
+                )]),
             },
             Skill {
                 sub_effects: None,
@@ -1397,7 +1397,7 @@ mod parser_test {
                         (Drop::Colored(Color::Lightning), 9),
                     ],
                 ),
-            }
+            },
         ]);
 
         assert_eq!(except, grammar);
@@ -1427,16 +1427,14 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::DropPowerUp(
-                vec![
-                    Drop::Colored(Color::Fire),
-                    Drop::Colored(Color::Water),
-                    Drop::Colored(Color::Wood),
-                    Drop::Colored(Color::Lightning),
-                    Drop::Colored(Color::Dark),
-                    Drop::NonColored(NonColoredDrop::Recovery),
-                ]
-            ),
+            effect: SkillEffect::DropPowerUp(vec![
+                Drop::Colored(Color::Fire),
+                Drop::Colored(Color::Water),
+                Drop::Colored(Color::Wood),
+                Drop::Colored(Color::Lightning),
+                Drop::Colored(Color::Dark),
+                Drop::NonColored(NonColoredDrop::Recovery),
+            ]),
         }]);
 
         assert_eq!(except, grammar);
@@ -1451,9 +1449,7 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::DropPowerUp(
-                vec![Drop::Colored(Color::Wood)]
-            ),
+            effect: SkillEffect::DropPowerUp(vec![Drop::Colored(Color::Wood)]),
         }]);
 
         assert_eq!(except, grammar);
@@ -1468,12 +1464,10 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: None,
-            effect: SkillEffect::DropPowerUp(
-                vec![
-                    Drop::Colored(Color::Water),
-                    Drop::NonColored(NonColoredDrop::Recovery),
-                ]
-            ),
+            effect: SkillEffect::DropPowerUp(vec![
+                Drop::Colored(Color::Water),
+                Drop::NonColored(NonColoredDrop::Recovery),
+            ]),
         }]);
 
         assert_eq!(except, grammar);

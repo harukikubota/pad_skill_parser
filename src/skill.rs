@@ -27,6 +27,8 @@ pub enum SkillEffect {
     DropShapeGen(Vec<ShapeType>),
     // ロック解除
     DropUnLock,
+    /// ドロップロック
+    DropLock(Drops),
     /// ドロップリフレッシュ
     DropRefresh,
     /// ドロップ強化

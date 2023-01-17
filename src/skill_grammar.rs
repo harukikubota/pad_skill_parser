@@ -276,7 +276,10 @@ impl SkillGrammar<'_> {
 }
 
 impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
-    fn starts_with_drop_line(&mut self, _arg: &crate::skill_grammar_trait::StartsWithDropLine<'t>) -> miette::Result<()> {
+    fn starts_with_drop_line(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::StartsWithDropLine<'t>,
+    ) -> miette::Result<()> {
         let item = self.pop();
 
         if item.is_drop() {
@@ -358,8 +361,8 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
     }
 
     fn change_drop_with_drop_unlock_line(
-            &mut self,
-            _arg: &crate::skill_grammar_trait::ChangeDropWithDropUnlockLine<'t>,
+        &mut self,
+        _arg: &crate::skill_grammar_trait::ChangeDropWithDropUnlockLine<'t>,
     ) -> miette::Result<()> {
         // 指定型生成はすでにスキルリストにプッシュされているため、スタックは0となる
         if !self.is_zero() {
@@ -377,15 +380,14 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
                 self.skill_list.push(skill);
             } else if item.is_drop_powerup() {
                 // 全ドロップ強化
-                let drops =
-                    vec![
-                        Drop::Colored(Color::Fire),
-                        Drop::Colored(Color::Water),
-                        Drop::Colored(Color::Wood),
-                        Drop::Colored(Color::Lightning),
-                        Drop::Colored(Color::Dark),
-                        Drop::NonColored(NonColoredDrop::Recovery)
-                    ];
+                let drops = vec![
+                    Drop::Colored(Color::Fire),
+                    Drop::Colored(Color::Water),
+                    Drop::Colored(Color::Wood),
+                    Drop::Colored(Color::Lightning),
+                    Drop::Colored(Color::Dark),
+                    Drop::NonColored(NonColoredDrop::Recovery),
+                ];
 
                 let skill = Skill {
                     effect: SkillEffect::DropPowerUp(drops),
@@ -414,6 +416,8 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         &mut self,
         _arg: &crate::skill_grammar_trait::DropUnLockStmt<'t>,
     ) -> miette::Result<()> {
+        // Stackから削除する
+        let _ = self.pop();
         let skill = Skill {
             effect: SkillEffect::DropUnLock,
             ..Default::default()
@@ -664,6 +668,8 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         &mut self,
         _arg: &crate::skill_grammar_trait::DropUnlockBlock<'t>,
     ) -> miette::Result<()> {
+        // Stackから削除する
+        let _ = self.pop();
         let skill = Skill {
             effect: SkillEffect::DropUnLock,
             ..Default::default()
@@ -970,7 +976,15 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
-    fn word_power_up(&mut self, _arg: &crate::skill_grammar_trait::WordPowerUp<'t>) -> miette::Result<()> {
+    fn word_lock(&mut self, _arg: &crate::skill_grammar_trait::WordLock<'t>) -> miette::Result<()> {
+        self.stack.push(StackItem::DropLock);
+        Ok(())
+    }
+
+    fn word_power_up(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::WordPowerUp<'t>,
+    ) -> miette::Result<()> {
         self.stack.push(StackItem::DropPowerUp);
         Ok(())
     }
