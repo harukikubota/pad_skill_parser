@@ -10,6 +10,7 @@ pub(super) enum StackItem {
     Position(Position),
     GenPositions(GenPositions),
     DropShapeGenShapeType(ShapeType),
+    DropPowerUp,
 }
 
 #[allow(dead_code)]
@@ -70,6 +71,13 @@ impl StackItem {
         }
     }
 
+    pub(super) fn drop_powerup(self: Self) -> () {
+        match self {
+            Self::DropPowerUp => (),
+            _ => panic!("from StackItem::pop(). this Item isn't ShapeType!"),
+        }
+    }
+
     pub(super) fn is_color(self: &Self) -> bool {
         match self {
             Self::Color(_) => true,
@@ -122,6 +130,13 @@ impl StackItem {
     pub(super) fn is_shape_type(self: &Self) -> bool {
         match self {
             Self::DropShapeGenShapeType(_) => true,
+            _ => false,
+        }
+    }
+
+    pub(super) fn is_drop_powerup(self: &Self) -> bool {
+        match self {
+            Self::DropPowerUp => true,
             _ => false,
         }
     }

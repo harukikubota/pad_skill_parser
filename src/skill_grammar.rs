@@ -276,11 +276,7 @@ impl SkillGrammar<'_> {
 }
 
 impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
-    fn change_drop_stmt_inc_gen_random_drop(
-        &mut self,
-        _arg: &crate::skill_grammar_trait::ChangeDropStmtIncGenRandomDrop<'t>,
-    ) -> parol_runtime::miette::Result<()> {
-        self.show_stack_("change_drop_stmt_inc_gen_random_drop");
+    fn starts_with_drop_line(&mut self, _arg: &crate::skill_grammar_trait::StartsWithDropLine<'t>) -> miette::Result<()> {
         let item = self.pop();
 
         if item.is_drop() {
@@ -332,6 +328,15 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
             let exc_from_drops = Self::build_gen_random_drop_exc_from(exc, first);
 
             self.push_gen_drop_and_qty_list(exc_from_drops, first.to_owned());
+        } else if item.is_drop_powerup() {
+            let drops = self.pop().drops();
+
+            let skill = Skill {
+                effect: SkillEffect::DropPowerUp(drops),
+                ..Default::default()
+            };
+
+            self.skill_list.push(skill);
         } else {
             // ランダム生成
             let qty = item.pos_int();
@@ -366,6 +371,24 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
 
                 let skill = Skill {
                     effect: SkillEffect::ChangeAllOfBoard(drops),
+                    ..Default::default()
+                };
+
+                self.skill_list.push(skill);
+            } else if item.is_drop_powerup() {
+                // 全ドロップ強化
+                let drops =
+                    vec![
+                        Drop::Colored(Color::Fire),
+                        Drop::Colored(Color::Water),
+                        Drop::Colored(Color::Wood),
+                        Drop::Colored(Color::Lightning),
+                        Drop::Colored(Color::Dark),
+                        Drop::NonColored(NonColoredDrop::Recovery)
+                    ];
+
+                let skill = Skill {
+                    effect: SkillEffect::DropPowerUp(drops),
                     ..Default::default()
                 };
 
@@ -944,6 +967,11 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         let position = Position::from(arg.word_bottom.text());
 
         self.stack.push(StackItem::Position(position));
+        Ok(())
+    }
+
+    fn word_power_up(&mut self, _arg: &crate::skill_grammar_trait::WordPowerUp<'t>) -> miette::Result<()> {
+        self.stack.push(StackItem::DropPowerUp);
         Ok(())
     }
 

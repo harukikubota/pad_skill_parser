@@ -15,7 +15,7 @@ Line
     ;
 
 GroupOfDropChange
-    : [ DropUnlockBlock ] [ ChangeDropStmtIncGenRandomDrop | GenRandomDropStmt | GenShapeStmt ]
+    : [ DropUnlockBlock ] [ StartsWithDropLine | GenRandomDropStmt | GenShapeStmt ]
     | ChangeDropWithDropUnlockLine
     ;
 
@@ -23,9 +23,11 @@ ChangeDropWithDropUnlockLine
     : AllDrops [ DropUnlockBlock | Wo ]
         [ Drops Ni WordChange [Si Camma GenRandomDropBlock WordGen]
         | GenShapeStmt
+        // `全ドロップを強化`のみヒット
+        | WordPowerUp
         ];
 
-ChangeDropStmtIncGenRandomDrop
+StartsWithDropLine
     : Drops Wo Drop Ni { Camma ChangeDropBlockOtherFirst } WordChange
     | Drops Wo RandomSuffix Drops Ni WordChange
     // 変換と衝突するためここで拾う
@@ -33,6 +35,7 @@ ChangeDropStmtIncGenRandomDrop
     // 頭に`ランダムで`は本来のStmtで拾える。
     | Drops Wo Quantity { Camma GenRandomDropBlock } WordGen
     | Drops WordOther From GenRandomDropBlock WordGen
+    | Drops Wo WordPowerUp
     ;
 
 GenRandomDropStmt
@@ -242,6 +245,7 @@ WordBoard         : '盤面';
 WordRelease       : '解除';
 WordLock          : 'ロック';
 WordState         : '状態';
+WordPowerUp       : '強化';
 
 Wo     : 'を';
 Ni     : 'に';

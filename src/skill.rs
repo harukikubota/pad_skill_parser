@@ -29,6 +29,8 @@ pub enum SkillEffect {
     DropUnLock,
     /// ドロップリフレッシュ
     DropRefresh,
+    /// ドロップ強化
+    DropPowerUp(Drops),
 }
 
 impl Default for SkillEffect {

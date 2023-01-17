@@ -1417,4 +1417,65 @@ mod parser_test {
 
         assert_eq!(except, grammar);
     }
+
+    #[test]
+    fn drop_powerup_all() {
+        let input = "全ドロップを強化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropPowerUp(
+                vec![
+                    Drop::Colored(Color::Fire),
+                    Drop::Colored(Color::Water),
+                    Drop::Colored(Color::Wood),
+                    Drop::Colored(Color::Lightning),
+                    Drop::Colored(Color::Dark),
+                    Drop::NonColored(NonColoredDrop::Recovery),
+                ]
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn drop_powerup_color_1() {
+        let input = "木ドロップを強化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropPowerUp(
+                vec![Drop::Colored(Color::Wood)]
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn drop_powerup_color_2() {
+        let input = "水と回復ドロップを強化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: None,
+            effect: SkillEffect::DropPowerUp(
+                vec![
+                    Drop::Colored(Color::Water),
+                    Drop::NonColored(NonColoredDrop::Recovery),
+                ]
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
 }
