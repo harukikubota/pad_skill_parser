@@ -1,0 +1,6 @@
+[book]
+authors = ["HarukiKubota"]
+language = "jp"
+multilingual = false
+src = "src"
+title = "pad_skill_parser"
