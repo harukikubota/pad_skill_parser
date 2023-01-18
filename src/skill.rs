@@ -48,6 +48,8 @@ pub enum SkillEffect {
     GenRoulette(usize),
     /// 雲生成
     GenCloud(BoardPosition, Size),
+    /// テープ生成
+    GenTeap(BoardPosition),
 }
 
 impl Default for SkillEffect {

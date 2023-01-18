@@ -239,13 +239,23 @@ GenRoulette
     : RandomSuffix WordRoulette Wo Quantity WordGen;
 
 BoardChange
-    // 雲生成
-    : [ WordBoard | Position ] Ni Size No WordCloud Ga WordOccurrence;
+    : BoardPosition
+        // 雲生成
+        [ Ni Size No WordCloud Ga WordOccurrence
+        // テープ生成
+        | Ga WordCantBeOperated Ni Naru
+        ]
+    ;
 
 SkillVolumeVariation
     : WordLittleMore
     | WordLittle
     | WordOnly
+    ;
+
+BoardPosition
+    : WordBoard
+    | Position [ [ WordHorizon ] GenShapeNumOfGen ]
     ;
 
 Fire         : '火';
@@ -273,45 +283,46 @@ ShapeOfCrescentMoon   : '三日月状';
 ShapeOfOblique        : '斜め';
 ShapeOfSomeKind       : 'の形';
 
-WordChange        : '変化';
-WordDrop          : 'ドロップ';
-WordAll           : '全';
-WordFiveAttribute : '5属性';
-WordRandom        : 'ランダム';
-WordReplace       : '入れ替える';
-WordCount         : ['個' | 'つ'];
-WordGen           : '生成';
-WordOther         : '以外';
-WordVertical      : '縦';
-WordHorizon       : '横';
-WordRow           : '段';
-WordCol           : '列';
-WordSide          : '端';
-WordLeftAndRight  : '両';
-WordLeft          : '左';
-WordRight         : '右';
-WordTop           : '上';
-WordBottom        : '下';
-WordMost          : '最';
-WordLook          : '目';
-WordBoard         : '盤面';
-WordRelease       : '解除';
-WordLock          : 'ロック';
-WordState         : '状態';
-WordPowerUp       : '強化';
-WordTurn          : 'ターン';
-WordBetween       : '間';
-WordLittleMore    : 'ほんの少し';
-WordLittle        : '少し';
-WordOnly          : 'のみ';
-WordFalloff       : '落ちやすくなる';
-WordFall          : '落ちてくる';
-WordProbability   : '確率';
-WordNail          : '釘';
-WordNotFalling    : '落ちコンなし';
-WordRoulette      : 'ルーレット';
-WordOccurrence    : '発生';
-WordCloud         : '雲';
+WordChange         : '変化';
+WordDrop           : 'ドロップ';
+WordAll            : '全';
+WordFiveAttribute  : '5属性';
+WordRandom         : 'ランダム';
+WordReplace        : '入れ替える';
+WordCount          : ['個' | 'つ'];
+WordGen            : '生成';
+WordOther          : '以外';
+WordVertical       : '縦';
+WordHorizon        : '横';
+WordRow            : '段';
+WordCol            : '列';
+WordSide           : '端';
+WordLeftAndRight   : '両';
+WordLeft           : '左';
+WordRight          : '右';
+WordTop            : '上';
+WordBottom         : '下';
+WordMost           : '最';
+WordLook           : '目';
+WordBoard          : '盤面';
+WordRelease        : '解除';
+WordLock           : 'ロック';
+WordState          : '状態';
+WordPowerUp        : '強化';
+WordTurn           : 'ターン';
+WordBetween        : '間';
+WordLittleMore     : 'ほんの少し';
+WordLittle         : '少し';
+WordOnly           : 'のみ';
+WordFalloff        : '落ちやすくなる';
+WordFall           : '落ちてくる';
+WordProbability    : '確率';
+WordNail           : '釘';
+WordNotFalling     : '落ちコンなし';
+WordRoulette       : 'ルーレット';
+WordOccurrence     : '発生';
+WordCloud          : '雲';
+WordCantBeOperated : '操作不可';
 
 Wo     : 'を';
 Ni     : 'に';
@@ -322,6 +333,7 @@ Si     : 'し';
 Ga     : 'が';
 Each   : 'ずつ';
 From   : 'から';
+Naru   : 'なる';
 
 Camma  : '、';
 Period : '。';

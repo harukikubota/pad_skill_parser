@@ -1079,12 +1079,20 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         _arg: &crate::skill_grammar_trait::BoardChange<'t>,
     ) -> miette::Result<()> {
         let se = self.pop().apply_in_turns_skill();
-        let size = self.pop().size();
+        let size = self.pop_if(|i| i.is_size()).map(|i| i.size());
 
-        let position = self.pop_if(|i|i.is_position()).map_or_else(||BoardPosition::Random, |i|BoardPosition::from(i.position()));
+        if size.is_none() {
+            let _ = self.pop();
+        } // PosInt N列
+
+        let position = self.pop_if(|i| i.is_position()).map_or_else(
+            || BoardPosition::Random,
+            |i| BoardPosition::from(i.position()),
+        );
 
         let se = match se {
-            SkillEffect::GenCloud(_, _) => SkillEffect::GenCloud(position, size),
+            SkillEffect::GenCloud(_, _) => SkillEffect::GenCloud(position, size.unwrap()),
+            SkillEffect::GenTeap(_) => SkillEffect::GenTeap(position),
             _ => todo!(),
         };
 
@@ -1208,6 +1216,17 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
             .push(StackItem::ApplyInTurnsSkill(SkillEffect::GenCloud(
                 BoardPosition::Random,
                 Size(0, 0),
+            )));
+        Ok(())
+    }
+
+    fn word_cant_be_operated(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::WordCantBeOperated<'t>,
+    ) -> miette::Result<()> {
+        self.stack
+            .push(StackItem::ApplyInTurnsSkill(SkillEffect::GenTeap(
+                BoardPosition::Random,
             )));
         Ok(())
     }

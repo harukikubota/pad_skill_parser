@@ -158,7 +158,7 @@ impl From<Position> for BoardPosition {
             Position::Right => Self::Col(-1),
             Position::Top => Self::Row(1),
             Position::Bottom => Self::Row(-1),
-            _ => panic!("両端は未対応")
+            _ => panic!("両端は未対応"),
         }
     }
 }

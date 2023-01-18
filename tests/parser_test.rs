@@ -1791,4 +1791,35 @@ mod parser_test {
 
         assert_eq!(except, grammar);
     }
+
+    #[test]
+    fn gen_teap_1() {
+        let input = "1ターンの間、左端1列が操作不可になる。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(1),
+            effect: SkillEffect::GenTeap(BoardPosition::Col(1)),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_teap_2() {
+        // 該当スキルは存在しないが、ロジックの検証のためのテストケース
+        let input = "1ターンの間、最下段横1列が操作不可になる。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(1),
+            effect: SkillEffect::GenTeap(BoardPosition::Col(1)),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
 }

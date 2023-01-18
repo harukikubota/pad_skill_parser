@@ -282,6 +282,11 @@ pub trait SkillGrammarTrait<'t> {
         Ok(())
     }
 
+    /// Semantic action for non-terminal 'BoardPosition'
+    fn board_position(&mut self, _arg: &BoardPosition<'t>) -> Result<()> {
+        Ok(())
+    }
+
     /// Semantic action for non-terminal 'Fire'
     fn fire(&mut self, _arg: &Fire<'t>) -> Result<()> {
         Ok(())
@@ -592,6 +597,11 @@ pub trait SkillGrammarTrait<'t> {
         Ok(())
     }
 
+    /// Semantic action for non-terminal 'WordCantBeOperated'
+    fn word_cant_be_operated(&mut self, _arg: &WordCantBeOperated<'t>) -> Result<()> {
+        Ok(())
+    }
+
     /// Semantic action for non-terminal 'Wo'
     fn wo(&mut self, _arg: &Wo<'t>) -> Result<()> {
         Ok(())
@@ -634,6 +644,11 @@ pub trait SkillGrammarTrait<'t> {
 
     /// Semantic action for non-terminal 'From'
     fn from(&mut self, _arg: &From<'t>) -> Result<()> {
+        Ok(())
+    }
+
+    /// Semantic action for non-terminal 'Naru'
+    fn naru(&mut self, _arg: &Naru<'t>) -> Result<()> {
         Ok(())
     }
 
@@ -1826,25 +1841,33 @@ pub struct PowerupDropsEasierToFalloffOpt0GroupWordLittleWordFalloff<'t> {
 ///
 /// Type derived for production 201
 ///
-/// BoardChangeOptGroup: WordBoard;
+/// BoardChangeOptGroup: Ni Size No WordCloud Ga WordOccurrence;
 ///
 #[allow(dead_code)]
 #[derive(Builder, Debug, Clone)]
 #[builder(crate = "derive_builder")]
-pub struct BoardChangeOptGroupWordBoard<'t> {
-    pub word_board: Box<WordBoard<'t>>,
+pub struct BoardChangeOptGroupNiSizeNoWordCloudGaWordOccurrence<'t> {
+    pub ni: Box<Ni<'t>>,
+    pub size: Box<Size<'t>>,
+    pub no: Box<No<'t>>,
+    pub word_cloud: Box<WordCloud<'t>>,
+    pub ga: Box<Ga<'t>>,
+    pub word_occurrence: Box<WordOccurrence<'t>>,
 }
 
 ///
 /// Type derived for production 202
 ///
-/// BoardChangeOptGroup: Position;
+/// BoardChangeOptGroup: Ga WordCantBeOperated Ni Naru;
 ///
 #[allow(dead_code)]
 #[derive(Builder, Debug, Clone)]
 #[builder(crate = "derive_builder")]
-pub struct BoardChangeOptGroupPosition<'t> {
-    pub position: Box<Position<'t>>,
+pub struct BoardChangeOptGroupGaWordCantBeOperatedNiNaru<'t> {
+    pub ga: Box<Ga<'t>>,
+    pub word_cant_be_operated: Box<WordCantBeOperated<'t>>,
+    pub ni: Box<Ni<'t>>,
+    pub naru: Box<Naru<'t>>,
 }
 
 ///
@@ -1884,7 +1907,32 @@ pub struct SkillVolumeVariationWordOnly<'t> {
 }
 
 ///
-/// Type derived for production 238
+/// Type derived for production 207
+///
+/// BoardPosition: WordBoard;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct BoardPositionWordBoard<'t> {
+    pub word_board: Box<WordBoard<'t>>,
+}
+
+///
+/// Type derived for production 208
+///
+/// BoardPosition: Position BoardPositionOpt /* Option */;
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct BoardPositionPositionBoardPositionOpt<'t> {
+    pub position: Box<Position<'t>>,
+    pub board_position_opt: Option<Box<BoardPositionOpt<'t>>>,
+}
+
+///
+/// Type derived for production 244
 ///
 /// WordCountOptGroup: '個';
 ///
@@ -1896,7 +1944,7 @@ pub struct WordCountOptGroup個<'t> {
 }
 
 ///
-/// Type derived for production 239
+/// Type derived for production 245
 ///
 /// WordCountOptGroup: 'つ';
 ///
@@ -1940,13 +1988,8 @@ pub struct And<'t> {
 #[derive(Builder, Debug, Clone)]
 #[builder(crate = "derive_builder")]
 pub struct BoardChange<'t> {
+    pub board_position: Box<BoardPosition<'t>>,
     pub board_change_opt: Option<Box<BoardChangeOpt<'t>>>,
-    pub ni: Box<Ni<'t>>,
-    pub size: Box<Size<'t>>,
-    pub no: Box<No<'t>>,
-    pub word_cloud: Box<WordCloud<'t>>,
-    pub ga: Box<Ga<'t>>,
-    pub word_occurrence: Box<WordOccurrence<'t>>,
 }
 
 ///
@@ -1965,8 +2008,39 @@ pub struct BoardChangeOpt<'t> {
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub enum BoardChangeOptGroup<'t> {
-    WordBoard(BoardChangeOptGroupWordBoard<'t>),
-    Position(BoardChangeOptGroupPosition<'t>),
+    NiSizeNoWordCloudGaWordOccurrence(BoardChangeOptGroupNiSizeNoWordCloudGaWordOccurrence<'t>),
+    GaWordCantBeOperatedNiNaru(BoardChangeOptGroupGaWordCantBeOperatedNiNaru<'t>),
+}
+
+///
+/// Type derived for non-terminal BoardPosition
+///
+#[allow(dead_code)]
+#[derive(Debug, Clone)]
+pub enum BoardPosition<'t> {
+    WordBoard(BoardPositionWordBoard<'t>),
+    PositionBoardPositionOpt(BoardPositionPositionBoardPositionOpt<'t>),
+}
+
+///
+/// Type derived for non-terminal BoardPositionOpt
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct BoardPositionOpt<'t> {
+    pub board_position_opt0: Option<Box<BoardPositionOpt0<'t>>>,
+    pub gen_shape_num_of_gen: Box<GenShapeNumOfGen<'t>>,
+}
+
+///
+/// Type derived for non-terminal BoardPositionOpt0
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct BoardPositionOpt0<'t> {
+    pub word_horizon: Box<WordHorizon<'t>>,
 }
 
 ///
@@ -2863,6 +2937,16 @@ pub struct Multi<'t> {
 }
 
 ///
+/// Type derived for non-terminal Naru
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct Naru<'t> {
+    pub naru: Token<'t>, /* なる */
+}
+
+///
 /// Type derived for non-terminal Ni
 ///
 #[allow(dead_code)]
@@ -3519,6 +3603,16 @@ pub struct WordBottom<'t> {
 }
 
 ///
+/// Type derived for non-terminal WordCantBeOperated
+///
+#[allow(dead_code)]
+#[derive(Builder, Debug, Clone)]
+#[builder(crate = "derive_builder")]
+pub struct WordCantBeOperated<'t> {
+    pub word_cant_be_operated: Token<'t>, /* 操作不可 */
+}
+
+///
 /// Type derived for non-terminal WordChange
 ///
 #[allow(dead_code)]
@@ -3901,6 +3995,9 @@ pub enum ASTType<'t> {
     BoardChange(BoardChange<'t>),
     BoardChangeOpt(Option<Box<BoardChangeOpt<'t>>>),
     BoardChangeOptGroup(BoardChangeOptGroup<'t>),
+    BoardPosition(BoardPosition<'t>),
+    BoardPositionOpt(Option<Box<BoardPositionOpt<'t>>>),
+    BoardPositionOpt0(Option<Box<BoardPositionOpt0<'t>>>),
     Bomb(Bomb<'t>),
     Camma(Camma<'t>),
     ChangeDropBlockOtherFirst(ChangeDropBlockOtherFirst<'t>),
@@ -3981,6 +4078,7 @@ pub enum ASTType<'t> {
     Line(Line<'t>),
     ManyDrop(ManyDrop<'t>),
     Multi(Multi<'t>),
+    Naru(Naru<'t>),
     Ni(Ni<'t>),
     No(No<'t>),
     NonColoredDrop(NonColoredDrop<'t>),
@@ -4041,6 +4139,7 @@ pub enum ASTType<'t> {
     WordBetween(WordBetween<'t>),
     WordBoard(WordBoard<'t>),
     WordBottom(WordBottom<'t>),
+    WordCantBeOperated(WordCantBeOperated<'t>),
     WordChange(WordChange<'t>),
     WordCloud(WordCloud<'t>),
     WordCol(WordCol<'t>),
@@ -9522,37 +9621,22 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
 
     /// Semantic action for production 199:
     ///
-    /// BoardChange: BoardChangeOpt /* Option */ Ni Size No WordCloud Ga WordOccurrence;
+    /// BoardChange: BoardPosition BoardChangeOpt /* Option */;
     ///
     #[parol_runtime::function_name::named]
     fn board_change(
         &mut self,
+        _board_position: &ParseTreeStackEntry<'t>,
         _board_change_opt: &ParseTreeStackEntry<'t>,
-        _ni: &ParseTreeStackEntry<'t>,
-        _size: &ParseTreeStackEntry<'t>,
-        _no: &ParseTreeStackEntry<'t>,
-        _word_cloud: &ParseTreeStackEntry<'t>,
-        _ga: &ParseTreeStackEntry<'t>,
-        _word_occurrence: &ParseTreeStackEntry<'t>,
         _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let word_occurrence = pop_item!(self, word_occurrence, WordOccurrence, context);
-        let ga = pop_item!(self, ga, Ga, context);
-        let word_cloud = pop_item!(self, word_cloud, WordCloud, context);
-        let no = pop_item!(self, no, No, context);
-        let size = pop_item!(self, size, Size, context);
-        let ni = pop_item!(self, ni, Ni, context);
         let board_change_opt = pop_item!(self, board_change_opt, BoardChangeOpt, context);
+        let board_position = pop_item!(self, board_position, BoardPosition, context);
         let board_change_built = BoardChangeBuilder::default()
+            .board_position(Box::new(board_position))
             .board_change_opt(board_change_opt)
-            .ni(Box::new(ni))
-            .size(Box::new(size))
-            .no(Box::new(no))
-            .word_cloud(Box::new(word_cloud))
-            .ga(Box::new(ga))
-            .word_occurrence(Box::new(word_occurrence))
             .build()
             .into_diagnostic()?;
         // Calling user action here
@@ -9588,23 +9672,39 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
 
     /// Semantic action for production 201:
     ///
-    /// BoardChangeOptGroup: WordBoard;
+    /// BoardChangeOptGroup: Ni Size No WordCloud Ga WordOccurrence;
     ///
     #[parol_runtime::function_name::named]
     fn board_change_opt_group_0(
         &mut self,
-        _word_board: &ParseTreeStackEntry<'t>,
+        _ni: &ParseTreeStackEntry<'t>,
+        _size: &ParseTreeStackEntry<'t>,
+        _no: &ParseTreeStackEntry<'t>,
+        _word_cloud: &ParseTreeStackEntry<'t>,
+        _ga: &ParseTreeStackEntry<'t>,
+        _word_occurrence: &ParseTreeStackEntry<'t>,
         _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let word_board = pop_item!(self, word_board, WordBoard, context);
-        let board_change_opt_group_0_built = BoardChangeOptGroupWordBoardBuilder::default()
-            .word_board(Box::new(word_board))
-            .build()
-            .into_diagnostic()?;
+        let word_occurrence = pop_item!(self, word_occurrence, WordOccurrence, context);
+        let ga = pop_item!(self, ga, Ga, context);
+        let word_cloud = pop_item!(self, word_cloud, WordCloud, context);
+        let no = pop_item!(self, no, No, context);
+        let size = pop_item!(self, size, Size, context);
+        let ni = pop_item!(self, ni, Ni, context);
         let board_change_opt_group_0_built =
-            BoardChangeOptGroup::WordBoard(board_change_opt_group_0_built);
+            BoardChangeOptGroupNiSizeNoWordCloudGaWordOccurrenceBuilder::default()
+                .ni(Box::new(ni))
+                .size(Box::new(size))
+                .no(Box::new(no))
+                .word_cloud(Box::new(word_cloud))
+                .ga(Box::new(ga))
+                .word_occurrence(Box::new(word_occurrence))
+                .build()
+                .into_diagnostic()?;
+        let board_change_opt_group_0_built =
+            BoardChangeOptGroup::NiSizeNoWordCloudGaWordOccurrence(board_change_opt_group_0_built);
         self.push(
             ASTType::BoardChangeOptGroup(board_change_opt_group_0_built),
             context,
@@ -9614,23 +9714,34 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
 
     /// Semantic action for production 202:
     ///
-    /// BoardChangeOptGroup: Position;
+    /// BoardChangeOptGroup: Ga WordCantBeOperated Ni Naru;
     ///
     #[parol_runtime::function_name::named]
     fn board_change_opt_group_1(
         &mut self,
-        _position: &ParseTreeStackEntry<'t>,
+        _ga: &ParseTreeStackEntry<'t>,
+        _word_cant_be_operated: &ParseTreeStackEntry<'t>,
+        _ni: &ParseTreeStackEntry<'t>,
+        _naru: &ParseTreeStackEntry<'t>,
         _parse_tree: &Tree<ParseTreeType<'t>>,
     ) -> Result<()> {
         let context = function_name!();
         trace!("{}", self.trace_item_stack(context));
-        let position = pop_item!(self, position, Position, context);
-        let board_change_opt_group_1_built = BoardChangeOptGroupPositionBuilder::default()
-            .position(Box::new(position))
-            .build()
-            .into_diagnostic()?;
+        let naru = pop_item!(self, naru, Naru, context);
+        let ni = pop_item!(self, ni, Ni, context);
+        let word_cant_be_operated =
+            pop_item!(self, word_cant_be_operated, WordCantBeOperated, context);
+        let ga = pop_item!(self, ga, Ga, context);
         let board_change_opt_group_1_built =
-            BoardChangeOptGroup::Position(board_change_opt_group_1_built);
+            BoardChangeOptGroupGaWordCantBeOperatedNiNaruBuilder::default()
+                .ga(Box::new(ga))
+                .word_cant_be_operated(Box::new(word_cant_be_operated))
+                .ni(Box::new(ni))
+                .naru(Box::new(naru))
+                .build()
+                .into_diagnostic()?;
+        let board_change_opt_group_1_built =
+            BoardChangeOptGroup::GaWordCantBeOperatedNiNaru(board_change_opt_group_1_built);
         self.push(
             ASTType::BoardChangeOptGroup(board_change_opt_group_1_built),
             context,
@@ -9739,6 +9850,133 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
 
     /// Semantic action for production 207:
     ///
+    /// BoardPosition: WordBoard;
+    ///
+    #[parol_runtime::function_name::named]
+    fn board_position_0(
+        &mut self,
+        _word_board: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_board = pop_item!(self, word_board, WordBoard, context);
+        let board_position_0_built = BoardPositionWordBoardBuilder::default()
+            .word_board(Box::new(word_board))
+            .build()
+            .into_diagnostic()?;
+        let board_position_0_built = BoardPosition::WordBoard(board_position_0_built);
+        // Calling user action here
+        self.user_grammar.board_position(&board_position_0_built)?;
+        self.push(ASTType::BoardPosition(board_position_0_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 208:
+    ///
+    /// BoardPosition: Position BoardPositionOpt /* Option */;
+    ///
+    #[parol_runtime::function_name::named]
+    fn board_position_1(
+        &mut self,
+        _position: &ParseTreeStackEntry<'t>,
+        _board_position_opt: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let board_position_opt = pop_item!(self, board_position_opt, BoardPositionOpt, context);
+        let position = pop_item!(self, position, Position, context);
+        let board_position_1_built = BoardPositionPositionBoardPositionOptBuilder::default()
+            .position(Box::new(position))
+            .board_position_opt(board_position_opt)
+            .build()
+            .into_diagnostic()?;
+        let board_position_1_built =
+            BoardPosition::PositionBoardPositionOpt(board_position_1_built);
+        // Calling user action here
+        self.user_grammar.board_position(&board_position_1_built)?;
+        self.push(ASTType::BoardPosition(board_position_1_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 209:
+    ///
+    /// BoardPositionOpt /* Option<T>::Some */: BoardPositionOpt0 /* Option */ GenShapeNumOfGen;
+    ///
+    #[parol_runtime::function_name::named]
+    fn board_position_opt_0(
+        &mut self,
+        _board_position_opt0: &ParseTreeStackEntry<'t>,
+        _gen_shape_num_of_gen: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let gen_shape_num_of_gen = pop_item!(self, gen_shape_num_of_gen, GenShapeNumOfGen, context);
+        let board_position_opt0 = pop_item!(self, board_position_opt0, BoardPositionOpt0, context);
+        let board_position_opt_0_built = BoardPositionOptBuilder::default()
+            .board_position_opt0(board_position_opt0)
+            .gen_shape_num_of_gen(Box::new(gen_shape_num_of_gen))
+            .build()
+            .into_diagnostic()?;
+        self.push(
+            ASTType::BoardPositionOpt(Some(Box::new(board_position_opt_0_built))),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 210:
+    ///
+    /// BoardPositionOpt0 /* Option<T>::Some */: WordHorizon;
+    ///
+    #[parol_runtime::function_name::named]
+    fn board_position_opt0_0(
+        &mut self,
+        _word_horizon: &ParseTreeStackEntry<'t>,
+        _parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_horizon = pop_item!(self, word_horizon, WordHorizon, context);
+        let board_position_opt0_0_built = BoardPositionOpt0Builder::default()
+            .word_horizon(Box::new(word_horizon))
+            .build()
+            .into_diagnostic()?;
+        self.push(
+            ASTType::BoardPositionOpt0(Some(Box::new(board_position_opt0_0_built))),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 211:
+    ///
+    /// BoardPositionOpt0 /* Option<T>::None */: ;
+    ///
+    #[parol_runtime::function_name::named]
+    fn board_position_opt0_1(&mut self, _parse_tree: &Tree<ParseTreeType<'t>>) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        self.push(ASTType::BoardPositionOpt0(None), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 212:
+    ///
+    /// BoardPositionOpt /* Option<T>::None */: ;
+    ///
+    #[parol_runtime::function_name::named]
+    fn board_position_opt_1(&mut self, _parse_tree: &Tree<ParseTreeType<'t>>) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        self.push(ASTType::BoardPositionOpt(None), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 213:
+    ///
     /// Fire: '火';
     ///
     #[parol_runtime::function_name::named]
@@ -9760,7 +9998,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 208:
+    /// Semantic action for production 214:
     ///
     /// Water: '水';
     ///
@@ -9783,7 +10021,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 209:
+    /// Semantic action for production 215:
     ///
     /// Wood: '木';
     ///
@@ -9806,7 +10044,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 210:
+    /// Semantic action for production 216:
     ///
     /// Lightning: '光';
     ///
@@ -9829,7 +10067,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 211:
+    /// Semantic action for production 217:
     ///
     /// Dark: '闇';
     ///
@@ -9852,7 +10090,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 212:
+    /// Semantic action for production 218:
     ///
     /// Recovery: '回復';
     ///
@@ -9875,7 +10113,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 213:
+    /// Semantic action for production 219:
     ///
     /// Disturb: 'お邪魔';
     ///
@@ -9898,7 +10136,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 214:
+    /// Semantic action for production 220:
     ///
     /// Bomb: '爆弾';
     ///
@@ -9921,7 +10159,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 215:
+    /// Semantic action for production 221:
     ///
     /// DeadlyPoison: '猛毒';
     ///
@@ -9944,7 +10182,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 216:
+    /// Semantic action for production 222:
     ///
     /// Poison: '毒';
     ///
@@ -9967,7 +10205,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 217:
+    /// Semantic action for production 223:
     ///
     /// ShapeOfL: 'L字型';
     ///
@@ -9990,7 +10228,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 218:
+    /// Semantic action for production 224:
     ///
     /// ShapeOfZ: 'Z字型';
     ///
@@ -10013,7 +10251,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 219:
+    /// Semantic action for production 225:
     ///
     /// ShapeOfCross: '十字型';
     ///
@@ -10036,7 +10274,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 220:
+    /// Semantic action for production 226:
     ///
     /// ShapeOfSquare: '正方形';
     ///
@@ -10059,7 +10297,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 221:
+    /// Semantic action for production 227:
     ///
     /// ShapeOfBoardPerimeter: '盤面外周';
     ///
@@ -10086,7 +10324,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 222:
+    /// Semantic action for production 228:
     ///
     /// ShapeOfBoardCenter: '盤面中央';
     ///
@@ -10113,7 +10351,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 223:
+    /// Semantic action for production 229:
     ///
     /// ShapeOfBoardTop: '盤面上部';
     ///
@@ -10137,7 +10375,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 224:
+    /// Semantic action for production 230:
     ///
     /// ShapeOfBoardBottom: '盤面下部';
     ///
@@ -10164,7 +10402,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 225:
+    /// Semantic action for production 231:
     ///
     /// ShapeOfBoardCorners: '盤面4隅';
     ///
@@ -10191,7 +10429,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 226:
+    /// Semantic action for production 232:
     ///
     /// ShapeOfSpiderweb: '蜘蛛の巣状';
     ///
@@ -10215,7 +10453,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 227:
+    /// Semantic action for production 233:
     ///
     /// ShapeOfCrescentMoon: '三日月状';
     ///
@@ -10242,7 +10480,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 228:
+    /// Semantic action for production 234:
     ///
     /// ShapeOfOblique: '斜め';
     ///
@@ -10266,7 +10504,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 229:
+    /// Semantic action for production 235:
     ///
     /// ShapeOfSomeKind: 'の形';
     ///
@@ -10290,7 +10528,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 230:
+    /// Semantic action for production 236:
     ///
     /// WordChange: '変化';
     ///
@@ -10313,7 +10551,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 231:
+    /// Semantic action for production 237:
     ///
     /// WordDrop: 'ドロップ';
     ///
@@ -10336,7 +10574,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 232:
+    /// Semantic action for production 238:
     ///
     /// WordAll: '全';
     ///
@@ -10359,7 +10597,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 233:
+    /// Semantic action for production 239:
     ///
     /// WordFiveAttribute: '5属性';
     ///
@@ -10386,7 +10624,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 234:
+    /// Semantic action for production 240:
     ///
     /// WordRandom: 'ランダム';
     ///
@@ -10409,7 +10647,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 235:
+    /// Semantic action for production 241:
     ///
     /// WordReplace: '入れ替える';
     ///
@@ -10432,7 +10670,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 236:
+    /// Semantic action for production 242:
     ///
     /// WordCount: WordCountOpt /* Option */;
     ///
@@ -10455,7 +10693,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 237:
+    /// Semantic action for production 243:
     ///
     /// WordCountOpt /* Option<T>::Some */: WordCountOptGroup;
     ///
@@ -10480,7 +10718,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 238:
+    /// Semantic action for production 244:
     ///
     /// WordCountOptGroup: '個';
     ///
@@ -10505,7 +10743,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 239:
+    /// Semantic action for production 245:
     ///
     /// WordCountOptGroup: 'つ';
     ///
@@ -10530,7 +10768,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 240:
+    /// Semantic action for production 246:
     ///
     /// WordCountOpt /* Option<T>::None */: ;
     ///
@@ -10542,7 +10780,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 241:
+    /// Semantic action for production 247:
     ///
     /// WordGen: '生成';
     ///
@@ -10565,7 +10803,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 242:
+    /// Semantic action for production 248:
     ///
     /// WordOther: '以外';
     ///
@@ -10588,7 +10826,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 243:
+    /// Semantic action for production 249:
     ///
     /// WordVertical: '縦';
     ///
@@ -10611,7 +10849,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 244:
+    /// Semantic action for production 250:
     ///
     /// WordHorizon: '横';
     ///
@@ -10634,7 +10872,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 245:
+    /// Semantic action for production 251:
     ///
     /// WordRow: '段';
     ///
@@ -10657,7 +10895,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 246:
+    /// Semantic action for production 252:
     ///
     /// WordCol: '列';
     ///
@@ -10680,7 +10918,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 247:
+    /// Semantic action for production 253:
     ///
     /// WordSide: '端';
     ///
@@ -10703,7 +10941,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 248:
+    /// Semantic action for production 254:
     ///
     /// WordLeftAndRight: '両';
     ///
@@ -10730,7 +10968,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 249:
+    /// Semantic action for production 255:
     ///
     /// WordLeft: '左';
     ///
@@ -10753,7 +10991,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 250:
+    /// Semantic action for production 256:
     ///
     /// WordRight: '右';
     ///
@@ -10776,7 +11014,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 251:
+    /// Semantic action for production 257:
     ///
     /// WordTop: '上';
     ///
@@ -10799,7 +11037,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 252:
+    /// Semantic action for production 258:
     ///
     /// WordBottom: '下';
     ///
@@ -10822,7 +11060,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 253:
+    /// Semantic action for production 259:
     ///
     /// WordMost: '最';
     ///
@@ -10845,7 +11083,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 254:
+    /// Semantic action for production 260:
     ///
     /// WordLook: '目';
     ///
@@ -10868,7 +11106,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 255:
+    /// Semantic action for production 261:
     ///
     /// WordBoard: '盤面';
     ///
@@ -10891,7 +11129,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 256:
+    /// Semantic action for production 262:
     ///
     /// WordRelease: '解除';
     ///
@@ -10914,7 +11152,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 257:
+    /// Semantic action for production 263:
     ///
     /// WordLock: 'ロック';
     ///
@@ -10937,7 +11175,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 258:
+    /// Semantic action for production 264:
     ///
     /// WordState: '状態';
     ///
@@ -10960,7 +11198,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 259:
+    /// Semantic action for production 265:
     ///
     /// WordPowerUp: '強化';
     ///
@@ -10983,7 +11221,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 260:
+    /// Semantic action for production 266:
     ///
     /// WordTurn: 'ターン';
     ///
@@ -11006,7 +11244,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 261:
+    /// Semantic action for production 267:
     ///
     /// WordBetween: '間';
     ///
@@ -11029,7 +11267,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 262:
+    /// Semantic action for production 268:
     ///
     /// WordLittleMore: 'ほんの少し';
     ///
@@ -11053,7 +11291,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 263:
+    /// Semantic action for production 269:
     ///
     /// WordLittle: '少し';
     ///
@@ -11076,7 +11314,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 264:
+    /// Semantic action for production 270:
     ///
     /// WordOnly: 'のみ';
     ///
@@ -11099,7 +11337,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 265:
+    /// Semantic action for production 271:
     ///
     /// WordFalloff: '落ちやすくなる';
     ///
@@ -11122,7 +11360,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 266:
+    /// Semantic action for production 272:
     ///
     /// WordFall: '落ちてくる';
     ///
@@ -11145,7 +11383,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 267:
+    /// Semantic action for production 273:
     ///
     /// WordProbability: '確率';
     ///
@@ -11169,7 +11407,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 268:
+    /// Semantic action for production 274:
     ///
     /// WordNail: '釘';
     ///
@@ -11192,7 +11430,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 269:
+    /// Semantic action for production 275:
     ///
     /// WordNotFalling: '落ちコンなし';
     ///
@@ -11216,7 +11454,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 270:
+    /// Semantic action for production 276:
     ///
     /// WordRoulette: 'ルーレット';
     ///
@@ -11239,7 +11477,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 271:
+    /// Semantic action for production 277:
     ///
     /// WordOccurrence: '発生';
     ///
@@ -11262,7 +11500,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 272:
+    /// Semantic action for production 278:
     ///
     /// WordCloud: '雲';
     ///
@@ -11285,7 +11523,34 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 273:
+    /// Semantic action for production 279:
+    ///
+    /// WordCantBeOperated: '操作不可';
+    ///
+    #[parol_runtime::function_name::named]
+    fn word_cant_be_operated(
+        &mut self,
+        word_cant_be_operated: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let word_cant_be_operated = word_cant_be_operated.token(parse_tree)?.clone();
+        let word_cant_be_operated_built = WordCantBeOperatedBuilder::default()
+            .word_cant_be_operated(word_cant_be_operated)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar
+            .word_cant_be_operated(&word_cant_be_operated_built)?;
+        self.push(
+            ASTType::WordCantBeOperated(word_cant_be_operated_built),
+            context,
+        );
+        Ok(())
+    }
+
+    /// Semantic action for production 280:
     ///
     /// Wo: 'を';
     ///
@@ -11305,7 +11570,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 274:
+    /// Semantic action for production 281:
     ///
     /// Ni: 'に';
     ///
@@ -11325,7 +11590,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 275:
+    /// Semantic action for production 282:
     ///
     /// No: 'の';
     ///
@@ -11345,7 +11610,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 276:
+    /// Semantic action for production 283:
     ///
     /// De: 'で';
     ///
@@ -11365,7 +11630,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 277:
+    /// Semantic action for production 284:
     ///
     /// And: 'と';
     ///
@@ -11385,7 +11650,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 278:
+    /// Semantic action for production 285:
     ///
     /// Si: 'し';
     ///
@@ -11405,7 +11670,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 279:
+    /// Semantic action for production 286:
     ///
     /// Ga: 'が';
     ///
@@ -11425,7 +11690,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 280:
+    /// Semantic action for production 287:
     ///
     /// Each: 'ずつ';
     ///
@@ -11448,7 +11713,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 281:
+    /// Semantic action for production 288:
     ///
     /// From: 'から';
     ///
@@ -11471,7 +11736,30 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 282:
+    /// Semantic action for production 289:
+    ///
+    /// Naru: 'なる';
+    ///
+    #[parol_runtime::function_name::named]
+    fn naru(
+        &mut self,
+        naru: &ParseTreeStackEntry<'t>,
+        parse_tree: &Tree<ParseTreeType<'t>>,
+    ) -> Result<()> {
+        let context = function_name!();
+        trace!("{}", self.trace_item_stack(context));
+        let naru = naru.token(parse_tree)?.clone();
+        let naru_built = NaruBuilder::default()
+            .naru(naru)
+            .build()
+            .into_diagnostic()?;
+        // Calling user action here
+        self.user_grammar.naru(&naru_built)?;
+        self.push(ASTType::Naru(naru_built), context);
+        Ok(())
+    }
+
+    /// Semantic action for production 290:
     ///
     /// Camma: '、';
     ///
@@ -11494,7 +11782,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 283:
+    /// Semantic action for production 291:
     ///
     /// Period: '。';
     ///
@@ -11517,7 +11805,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 284:
+    /// Semantic action for production 292:
     ///
     /// Plus: '+';
     ///
@@ -11540,7 +11828,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 285:
+    /// Semantic action for production 293:
     ///
     /// Multi: '×';
     ///
@@ -11563,7 +11851,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 286:
+    /// Semantic action for production 294:
     ///
     /// Percent: '%';
     ///
@@ -11586,7 +11874,7 @@ impl<'t, 'u> SkillGrammarAuto<'t, 'u> {
         Ok(())
     }
 
-    /// Semantic action for production 287:
+    /// Semantic action for production 295:
     ///
     /// PosInt: "[1-9]([0-9])*";
     ///
@@ -12022,104 +12310,117 @@ impl<'t> UserActionsTrait<'t> for SkillGrammarAuto<'t, '_> {
                 &children[4],
                 parse_tree,
             ),
-            199 => self.board_change(
+            199 => self.board_change(&children[0], &children[1], parse_tree),
+            200 => self.board_change_opt_0(&children[0], parse_tree),
+            201 => self.board_change_opt_group_0(
                 &children[0],
                 &children[1],
                 &children[2],
                 &children[3],
                 &children[4],
                 &children[5],
-                &children[6],
                 parse_tree,
             ),
-            200 => self.board_change_opt_0(&children[0], parse_tree),
-            201 => self.board_change_opt_group_0(&children[0], parse_tree),
-            202 => self.board_change_opt_group_1(&children[0], parse_tree),
+            202 => self.board_change_opt_group_1(
+                &children[0],
+                &children[1],
+                &children[2],
+                &children[3],
+                parse_tree,
+            ),
             203 => self.board_change_opt_1(parse_tree),
             204 => self.skill_volume_variation_0(&children[0], parse_tree),
             205 => self.skill_volume_variation_1(&children[0], parse_tree),
             206 => self.skill_volume_variation_2(&children[0], parse_tree),
-            207 => self.fire(&children[0], parse_tree),
-            208 => self.water(&children[0], parse_tree),
-            209 => self.wood(&children[0], parse_tree),
-            210 => self.lightning(&children[0], parse_tree),
-            211 => self.dark(&children[0], parse_tree),
-            212 => self.recovery(&children[0], parse_tree),
-            213 => self.disturb(&children[0], parse_tree),
-            214 => self.bomb(&children[0], parse_tree),
-            215 => self.deadly_poison(&children[0], parse_tree),
-            216 => self.poison(&children[0], parse_tree),
-            217 => self.shape_of_l(&children[0], parse_tree),
-            218 => self.shape_of_z(&children[0], parse_tree),
-            219 => self.shape_of_cross(&children[0], parse_tree),
-            220 => self.shape_of_square(&children[0], parse_tree),
-            221 => self.shape_of_board_perimeter(&children[0], parse_tree),
-            222 => self.shape_of_board_center(&children[0], parse_tree),
-            223 => self.shape_of_board_top(&children[0], parse_tree),
-            224 => self.shape_of_board_bottom(&children[0], parse_tree),
-            225 => self.shape_of_board_corners(&children[0], parse_tree),
-            226 => self.shape_of_spiderweb(&children[0], parse_tree),
-            227 => self.shape_of_crescent_moon(&children[0], parse_tree),
-            228 => self.shape_of_oblique(&children[0], parse_tree),
-            229 => self.shape_of_some_kind(&children[0], parse_tree),
-            230 => self.word_change(&children[0], parse_tree),
-            231 => self.word_drop(&children[0], parse_tree),
-            232 => self.word_all(&children[0], parse_tree),
-            233 => self.word_five_attribute(&children[0], parse_tree),
-            234 => self.word_random(&children[0], parse_tree),
-            235 => self.word_replace(&children[0], parse_tree),
-            236 => self.word_count(&children[0], parse_tree),
-            237 => self.word_count_opt_0(&children[0], parse_tree),
-            238 => self.word_count_opt_group_0(&children[0], parse_tree),
-            239 => self.word_count_opt_group_1(&children[0], parse_tree),
-            240 => self.word_count_opt_1(parse_tree),
-            241 => self.word_gen(&children[0], parse_tree),
-            242 => self.word_other(&children[0], parse_tree),
-            243 => self.word_vertical(&children[0], parse_tree),
-            244 => self.word_horizon(&children[0], parse_tree),
-            245 => self.word_row(&children[0], parse_tree),
-            246 => self.word_col(&children[0], parse_tree),
-            247 => self.word_side(&children[0], parse_tree),
-            248 => self.word_left_and_right(&children[0], parse_tree),
-            249 => self.word_left(&children[0], parse_tree),
-            250 => self.word_right(&children[0], parse_tree),
-            251 => self.word_top(&children[0], parse_tree),
-            252 => self.word_bottom(&children[0], parse_tree),
-            253 => self.word_most(&children[0], parse_tree),
-            254 => self.word_look(&children[0], parse_tree),
-            255 => self.word_board(&children[0], parse_tree),
-            256 => self.word_release(&children[0], parse_tree),
-            257 => self.word_lock(&children[0], parse_tree),
-            258 => self.word_state(&children[0], parse_tree),
-            259 => self.word_power_up(&children[0], parse_tree),
-            260 => self.word_turn(&children[0], parse_tree),
-            261 => self.word_between(&children[0], parse_tree),
-            262 => self.word_little_more(&children[0], parse_tree),
-            263 => self.word_little(&children[0], parse_tree),
-            264 => self.word_only(&children[0], parse_tree),
-            265 => self.word_falloff(&children[0], parse_tree),
-            266 => self.word_fall(&children[0], parse_tree),
-            267 => self.word_probability(&children[0], parse_tree),
-            268 => self.word_nail(&children[0], parse_tree),
-            269 => self.word_not_falling(&children[0], parse_tree),
-            270 => self.word_roulette(&children[0], parse_tree),
-            271 => self.word_occurrence(&children[0], parse_tree),
-            272 => self.word_cloud(&children[0], parse_tree),
-            273 => self.wo(&children[0], parse_tree),
-            274 => self.ni(&children[0], parse_tree),
-            275 => self.no(&children[0], parse_tree),
-            276 => self.de(&children[0], parse_tree),
-            277 => self.and(&children[0], parse_tree),
-            278 => self.si(&children[0], parse_tree),
-            279 => self.ga(&children[0], parse_tree),
-            280 => self.each(&children[0], parse_tree),
-            281 => self.from(&children[0], parse_tree),
-            282 => self.camma(&children[0], parse_tree),
-            283 => self.period(&children[0], parse_tree),
-            284 => self.plus(&children[0], parse_tree),
-            285 => self.multi(&children[0], parse_tree),
-            286 => self.percent(&children[0], parse_tree),
-            287 => self.pos_int(&children[0], parse_tree),
+            207 => self.board_position_0(&children[0], parse_tree),
+            208 => self.board_position_1(&children[0], &children[1], parse_tree),
+            209 => self.board_position_opt_0(&children[0], &children[1], parse_tree),
+            210 => self.board_position_opt0_0(&children[0], parse_tree),
+            211 => self.board_position_opt0_1(parse_tree),
+            212 => self.board_position_opt_1(parse_tree),
+            213 => self.fire(&children[0], parse_tree),
+            214 => self.water(&children[0], parse_tree),
+            215 => self.wood(&children[0], parse_tree),
+            216 => self.lightning(&children[0], parse_tree),
+            217 => self.dark(&children[0], parse_tree),
+            218 => self.recovery(&children[0], parse_tree),
+            219 => self.disturb(&children[0], parse_tree),
+            220 => self.bomb(&children[0], parse_tree),
+            221 => self.deadly_poison(&children[0], parse_tree),
+            222 => self.poison(&children[0], parse_tree),
+            223 => self.shape_of_l(&children[0], parse_tree),
+            224 => self.shape_of_z(&children[0], parse_tree),
+            225 => self.shape_of_cross(&children[0], parse_tree),
+            226 => self.shape_of_square(&children[0], parse_tree),
+            227 => self.shape_of_board_perimeter(&children[0], parse_tree),
+            228 => self.shape_of_board_center(&children[0], parse_tree),
+            229 => self.shape_of_board_top(&children[0], parse_tree),
+            230 => self.shape_of_board_bottom(&children[0], parse_tree),
+            231 => self.shape_of_board_corners(&children[0], parse_tree),
+            232 => self.shape_of_spiderweb(&children[0], parse_tree),
+            233 => self.shape_of_crescent_moon(&children[0], parse_tree),
+            234 => self.shape_of_oblique(&children[0], parse_tree),
+            235 => self.shape_of_some_kind(&children[0], parse_tree),
+            236 => self.word_change(&children[0], parse_tree),
+            237 => self.word_drop(&children[0], parse_tree),
+            238 => self.word_all(&children[0], parse_tree),
+            239 => self.word_five_attribute(&children[0], parse_tree),
+            240 => self.word_random(&children[0], parse_tree),
+            241 => self.word_replace(&children[0], parse_tree),
+            242 => self.word_count(&children[0], parse_tree),
+            243 => self.word_count_opt_0(&children[0], parse_tree),
+            244 => self.word_count_opt_group_0(&children[0], parse_tree),
+            245 => self.word_count_opt_group_1(&children[0], parse_tree),
+            246 => self.word_count_opt_1(parse_tree),
+            247 => self.word_gen(&children[0], parse_tree),
+            248 => self.word_other(&children[0], parse_tree),
+            249 => self.word_vertical(&children[0], parse_tree),
+            250 => self.word_horizon(&children[0], parse_tree),
+            251 => self.word_row(&children[0], parse_tree),
+            252 => self.word_col(&children[0], parse_tree),
+            253 => self.word_side(&children[0], parse_tree),
+            254 => self.word_left_and_right(&children[0], parse_tree),
+            255 => self.word_left(&children[0], parse_tree),
+            256 => self.word_right(&children[0], parse_tree),
+            257 => self.word_top(&children[0], parse_tree),
+            258 => self.word_bottom(&children[0], parse_tree),
+            259 => self.word_most(&children[0], parse_tree),
+            260 => self.word_look(&children[0], parse_tree),
+            261 => self.word_board(&children[0], parse_tree),
+            262 => self.word_release(&children[0], parse_tree),
+            263 => self.word_lock(&children[0], parse_tree),
+            264 => self.word_state(&children[0], parse_tree),
+            265 => self.word_power_up(&children[0], parse_tree),
+            266 => self.word_turn(&children[0], parse_tree),
+            267 => self.word_between(&children[0], parse_tree),
+            268 => self.word_little_more(&children[0], parse_tree),
+            269 => self.word_little(&children[0], parse_tree),
+            270 => self.word_only(&children[0], parse_tree),
+            271 => self.word_falloff(&children[0], parse_tree),
+            272 => self.word_fall(&children[0], parse_tree),
+            273 => self.word_probability(&children[0], parse_tree),
+            274 => self.word_nail(&children[0], parse_tree),
+            275 => self.word_not_falling(&children[0], parse_tree),
+            276 => self.word_roulette(&children[0], parse_tree),
+            277 => self.word_occurrence(&children[0], parse_tree),
+            278 => self.word_cloud(&children[0], parse_tree),
+            279 => self.word_cant_be_operated(&children[0], parse_tree),
+            280 => self.wo(&children[0], parse_tree),
+            281 => self.ni(&children[0], parse_tree),
+            282 => self.no(&children[0], parse_tree),
+            283 => self.de(&children[0], parse_tree),
+            284 => self.and(&children[0], parse_tree),
+            285 => self.si(&children[0], parse_tree),
+            286 => self.ga(&children[0], parse_tree),
+            287 => self.each(&children[0], parse_tree),
+            288 => self.from(&children[0], parse_tree),
+            289 => self.naru(&children[0], parse_tree),
+            290 => self.camma(&children[0], parse_tree),
+            291 => self.period(&children[0], parse_tree),
+            292 => self.plus(&children[0], parse_tree),
+            293 => self.multi(&children[0], parse_tree),
+            294 => self.percent(&children[0], parse_tree),
+            295 => self.pos_int(&children[0], parse_tree),
             _ => Err(miette!("Unhandled production number: {}", prod_num)),
         }
     }
