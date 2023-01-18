@@ -460,6 +460,9 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         &mut self,
         _arg: &crate::skill_grammar_trait::TurnsOfApplyStmt<'t>,
     ) -> miette::Result<()> {
+        // 個数が指定されているならSome
+        let qty = self.pop_if(|i| i.is_pos_int()).map(|i| i.pos_int());
+
         let se_list = self.steal_if(
             |i| i.is_apply_in_turns_skill(),
             |i| i.clone().apply_in_turns_skill(),
@@ -468,6 +471,11 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         let turn = self.pop().pos_int();
 
         se_list.into_iter().for_each(|se| {
+            let se = match se {
+                SkillEffect::GenRoulette(_) => SkillEffect::GenRoulette(qty.unwrap()),
+                other => other,
+            };
+
             let skill = Skill {
                 turns_of_apply: Some(turn),
                 effect: se,
@@ -1148,9 +1156,21 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
-    fn word_not_falling(&mut self, _arg: &crate::skill_grammar_trait::WordNotFalling<'t>) -> miette::Result<()> {
+    fn word_not_falling(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::WordNotFalling<'t>,
+    ) -> miette::Result<()> {
         self.stack
             .push(StackItem::ApplyInTurnsSkill(SkillEffect::DropsNotFalling));
+        Ok(())
+    }
+
+    fn word_roulette(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::WordRoulette<'t>,
+    ) -> miette::Result<()> {
+        self.stack
+            .push(StackItem::ApplyInTurnsSkill(SkillEffect::GenRoulette(0)));
         Ok(())
     }
 

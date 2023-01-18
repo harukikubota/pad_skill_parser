@@ -1731,4 +1731,34 @@ mod parser_test {
 
         assert_eq!(except, grammar);
     }
+
+    #[test]
+    fn gen_roulette_1() {
+        let input = "1ターンの間、ランダムでルーレットを1個生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(1),
+            effect: SkillEffect::GenRoulette(1),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_roulette_2() {
+        let input = "3ターンの間、ランダムでルーレットを2個生成。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(3),
+            effect: SkillEffect::GenRoulette(2),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
 }

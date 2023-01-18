@@ -43,6 +43,9 @@ pub enum SkillEffect {
     FallNailDropEasierToFalloff(VolumeVariation),
     /// 落ちコンなし
     DropsNotFalling,
+    /// ルーレット生成
+    /// * 0: 個数
+    GenRoulette(usize),
 }
 
 impl Default for SkillEffect {

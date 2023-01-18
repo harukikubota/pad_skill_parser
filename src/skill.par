@@ -211,6 +211,7 @@ TurnsOfApplyBlock
     | FallLockDropOfAll
     | FallNailDropEasierToFalloff
     | WordNotFalling
+    | GenRoulette
     ;
 
 DropsEasierToFalloffOrFallLockDrop
@@ -232,6 +233,9 @@ FallLockDropOfAll
 
 FallNailDropEasierToFalloff
     : WordNail WordDrop Ga [ SkillVolumeVariation ] WordFalloff;
+
+GenRoulette
+    : RandomSuffix WordRoulette Wo Quantity WordGen;
 
 SkillVolumeVariation
     : WordLittleMore
@@ -300,6 +304,7 @@ WordFall          : '落ちてくる';
 WordProbability   : '確率';
 WordNail          : '釘';
 WordNotFalling    : '落ちコンなし';
+WordRoulette      : 'ルーレット';
 
 Wo     : 'を';
 Ni     : 'に';
