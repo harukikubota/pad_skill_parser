@@ -210,6 +210,7 @@ TurnsOfApplyBlock
     | PowerupDropsEasierToFalloff
     | FallLockDropOfAll
     | FallNailDropEasierToFalloff
+    | WordNotFalling
     ;
 
 DropsEasierToFalloffOrFallLockDrop
@@ -298,6 +299,7 @@ WordFalloff       : '落ちやすくなる';
 WordFall          : '落ちてくる';
 WordProbability   : '確率';
 WordNail          : '釘';
+WordNotFalling    : '落ちコンなし';
 
 Wo     : 'を';
 Ni     : 'に';

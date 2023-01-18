@@ -1716,4 +1716,19 @@ mod parser_test {
 
         assert_eq!(except, grammar);
     }
+
+    #[test]
+    fn drops_not_falling() {
+        let input = "1ターンの間、落ちコンなし。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(1),
+            effect: SkillEffect::DropsNotFalling,
+        }]);
+
+        assert_eq!(except, grammar);
+    }
 }

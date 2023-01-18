@@ -1148,6 +1148,12 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
+    fn word_not_falling(&mut self, _arg: &crate::skill_grammar_trait::WordNotFalling<'t>) -> miette::Result<()> {
+        self.stack
+            .push(StackItem::ApplyInTurnsSkill(SkillEffect::DropsNotFalling));
+        Ok(())
+    }
+
     fn pos_int(&mut self, arg: &crate::skill_grammar_trait::PosInt<'t>) -> miette::Result<()> {
         let text = arg.pos_int.text();
         let num = text.parse::<usize>().unwrap();

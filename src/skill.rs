@@ -41,6 +41,8 @@ pub enum SkillEffect {
     FallLockDrop(Drops),
     /// 釘ドロップ目覚め
     FallNailDropEasierToFalloff(VolumeVariation),
+    /// 落ちコンなし
+    DropsNotFalling,
 }
 
 impl Default for SkillEffect {
