@@ -1093,6 +1093,7 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         let se = match se {
             SkillEffect::GenCloud(_, _) => SkillEffect::GenCloud(position, size.unwrap()),
             SkillEffect::GenTeap(_) => SkillEffect::GenTeap(position),
+            SkillEffect::ChangeBoardSize(_) => SkillEffect::ChangeBoardSize(size.unwrap()),
             _ => todo!(),
         };
 
@@ -1227,6 +1228,15 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         self.stack
             .push(StackItem::ApplyInTurnsSkill(SkillEffect::GenTeap(
                 BoardPosition::Random,
+            )));
+        Ok(())
+    }
+
+    /// 盤面サイズ変更のみで出現する文言のため、`SkillEffect::ChangeBoardSize`をスタックへ積む
+    fn word_mass(&mut self, _arg: &crate::skill_grammar_trait::WordMass<'t>) -> miette::Result<()> {
+        self.stack
+            .push(StackItem::ApplyInTurnsSkill(SkillEffect::ChangeBoardSize(
+                Size(0, 0),
             )));
         Ok(())
     }

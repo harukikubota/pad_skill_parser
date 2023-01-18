@@ -50,6 +50,8 @@ pub enum SkillEffect {
     GenCloud(BoardPosition, Size),
     /// テープ生成
     GenTeap(BoardPosition),
+    /// 盤面サイズ変更
+    ChangeBoardSize(Size),
 }
 
 impl Default for SkillEffect {

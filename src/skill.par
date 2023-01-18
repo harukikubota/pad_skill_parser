@@ -244,6 +244,8 @@ BoardChange
         [ Ni Size No WordCloud Ga WordOccurrence
         // テープ生成
         | Ga WordCantBeOperated Ni Naru
+        // 盤面変更
+        | Wo Size WordMass Ni Do
         ]
     ;
 
@@ -323,6 +325,7 @@ WordRoulette       : 'ルーレット';
 WordOccurrence     : '発生';
 WordCloud          : '雲';
 WordCantBeOperated : '操作不可';
+WordMass           : 'マス';
 
 Wo     : 'を';
 Ni     : 'に';
@@ -334,6 +337,7 @@ Ga     : 'が';
 Each   : 'ずつ';
 From   : 'から';
 Naru   : 'なる';
+Do     : 'する';
 
 Camma  : '、';
 Period : '。';

@@ -1817,7 +1817,52 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: Some(1),
-            effect: SkillEffect::GenTeap(BoardPosition::Col(1)),
+            effect: SkillEffect::GenTeap(BoardPosition::Row(-1)),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn change_board_size_76() {
+        let input = "1ターンの間、盤面を7×6マスにする。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(1),
+            effect: SkillEffect::ChangeBoardSize(Size(7, 6)),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn change_board_size_65() {
+        let input = "3ターンの間、盤面を6×5マスにする。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(3),
+            effect: SkillEffect::ChangeBoardSize(Size(6, 5)),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn change_board_size_54() {
+        let input = "5ターンの間、盤面を5×4マスにする。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(5),
+            effect: SkillEffect::ChangeBoardSize(Size(5, 4)),
         }]);
 
         assert_eq!(except, grammar);
