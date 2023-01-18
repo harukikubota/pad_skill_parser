@@ -193,7 +193,7 @@ Color
     ;
 
 RandomSuffix
-    : WordRandom So;
+    : WordRandom De;
 
 Size
     : PosInt Multi PosInt;
@@ -207,10 +207,18 @@ Turns
 
 TurnsOfApplyBlock
     : DropsEasierToFalloff
+    | PowerupDropsEasierToFalloff
     ;
 
 DropsEasierToFalloff
-    : Drops [ Ga ] [ SkillVolumeVariation ] [ WordFalloff | WordFall ];
+    : Drops [ Camma WordPowerUp WordDrop ] [ Ga ] [ SkillVolumeVariation ] [ WordFalloff | WordFall ];
+
+PowerupDropsEasierToFalloff
+    : WordPowerUp WordDrop [ And Drops ] Ga
+        [ PosInt Percent No WordProbability De WordFall
+        | WordLittle WordFalloff
+        ]
+    ;
 
 SkillVolumeVariation
     : WordLittleMore
@@ -276,19 +284,23 @@ WordLittle        : '少し';
 WordOnly          : 'のみ';
 WordFalloff       : '落ちやすくなる';
 WordFall          : '落ちてくる';
+WordProbability   : '確率';
 
 Wo     : 'を';
 Ni     : 'に';
 No     : 'の';
-So     : 'で';
+De     : 'で';
 And    : 'と';
 Si     : 'し';
 Ga     : 'が';
 Each   : 'ずつ';
 From   : 'から';
-Plus   : '+';
-Multi  : '×';
+
 Camma  : '、';
 Period : '。';
+
+Plus    : '+';
+Multi   : '×';
+Percent : '%';
 
 PosInt : "[1-9]([0-9])*";

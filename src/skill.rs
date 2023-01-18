@@ -35,6 +35,8 @@ pub enum SkillEffect {
     DropPowerUp(Drops),
     /// ドロップ目覚め
     DropFallout(Drops, VolumeVariation),
+    /// 強化ドロップ目覚め
+    PowerupDropFallout(PowerupDropFalloutKind),
 }
 
 impl Default for SkillEffect {
@@ -225,4 +227,12 @@ impl From<&str> for ShapeType {
             panic!("from Color::from(&str). Expected ShapeType {item}");
         }
     }
+}
+
+#[derive(Clone, Debug, PartialEq)]
+pub enum PowerupDropFalloutKind {
+    /// N%
+    Num(usize),
+    /// 少し
+    VolumeVariation(VolumeVariation),
 }

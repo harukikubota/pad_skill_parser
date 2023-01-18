@@ -965,11 +965,55 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         let volume = self
             .pop_if(|i| i.is_volume_variation())
             .map_or_else(|| VolumeVariation::Normal, |i| i.volume_variation());
+
+        // 強化ドロップが複合しているならSome
+        let powerup_drop = self.pop_if(|i| i.is_drop_powerup());
+
         let drops = self.pop().drops();
 
-        let effect = SkillEffect::DropFallout(drops, volume);
+        let effect = SkillEffect::DropFallout(drops, volume.clone());
 
         self.push(StackItem::ApplyInTurnsSkill(effect));
+
+        if powerup_drop.is_some() {
+            let effect =
+                SkillEffect::PowerupDropFallout(PowerupDropFalloutKind::VolumeVariation(volume));
+            self.push(StackItem::ApplyInTurnsSkill(effect));
+        }
+        Ok(())
+    }
+
+    /// 強化ドロップ目覚め
+    fn powerup_drops_easier_to_falloff(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::PowerupDropsEasierToFalloff<'t>,
+    ) -> miette::Result<()> {
+        // ドロップ目覚めが複合しているならSome
+        let mut drop_falloff: Option<Drops> = None;
+
+        let kind = if let Some(percent) = self.pop_if(|i| i.is_pos_int()) {
+            let _ = self.pop(); // WordPowerup
+
+            PowerupDropFalloutKind::Num(percent.pos_int())
+        } else {
+            let _ = self.pop(); // WordLittle
+            drop_falloff = self.pop_if(|i| i.is_drops()).map(|i| i.drops());
+            let _ = self.pop(); // WordPowerup
+
+            PowerupDropFalloutKind::VolumeVariation(VolumeVariation::Little)
+        };
+
+        self.push(StackItem::ApplyInTurnsSkill(
+            SkillEffect::PowerupDropFallout(kind),
+        ));
+
+        if let Some(drops) = drop_falloff {
+            // 複合する場合は`少し`のみ
+            let se = SkillEffect::DropFallout(drops, VolumeVariation::Little);
+            self.push(StackItem::ApplyInTurnsSkill(se));
+        }
+
+        self.show_stack();
         Ok(())
     }
 

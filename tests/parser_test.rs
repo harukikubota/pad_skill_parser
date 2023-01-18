@@ -1556,4 +1556,120 @@ mod parser_test {
 
         assert_eq!(except, grammar);
     }
+
+    #[test]
+    fn powerup_drop_falloff_1() {
+        let input = "1ターンの間、強化ドロップが少し落ちやすくなる。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(1),
+            effect: SkillEffect::PowerupDropFallout(PowerupDropFalloutKind::VolumeVariation(
+                VolumeVariation::Little,
+            )),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn powerup_drop_falloff_2() {
+        let input = "2ターンの間、強化ドロップが25%の確率で落ちてくる。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(2),
+            effect: SkillEffect::PowerupDropFallout(PowerupDropFalloutKind::Num(25)),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn powerup_drop_falloff_3() {
+        let input = "4ターンの間、強化ドロップが50%の確率で落ちてくる。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(4),
+            effect: SkillEffect::PowerupDropFallout(PowerupDropFalloutKind::Num(50)),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn powerup_drop_falloff_4() {
+        let input = "6ターンの間、強化ドロップが100%の確率で落ちてくる。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(6),
+            effect: SkillEffect::PowerupDropFallout(PowerupDropFalloutKind::Num(100)),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn drop_and_powerup_drop_falloff_1() {
+        let input = "1ターンの間、水と光ドロップ、強化ドロップが少し落ちやすくなる。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![
+            Skill {
+                sub_effects: None,
+                turns_of_apply: Some(1),
+                effect: SkillEffect::DropFallout(
+                    vec![Drop::Colored(Color::Water), Drop::Colored(Color::Lightning)],
+                    VolumeVariation::Little,
+                ),
+            },
+            Skill {
+                sub_effects: None,
+                turns_of_apply: Some(1),
+                effect: SkillEffect::PowerupDropFallout(PowerupDropFalloutKind::VolumeVariation(
+                    VolumeVariation::Little,
+                )),
+            },
+        ]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn drop_and_powerup_drop_falloff_2() {
+        let input = "1ターンの間、強化ドロップと火ドロップが少し落ちやすくなる。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![
+            Skill {
+                sub_effects: None,
+                turns_of_apply: Some(1),
+                effect: SkillEffect::PowerupDropFallout(PowerupDropFalloutKind::VolumeVariation(
+                    VolumeVariation::Little,
+                )),
+            },
+            Skill {
+                sub_effects: None,
+                turns_of_apply: Some(1),
+                effect: SkillEffect::DropFallout(
+                    vec![Drop::Colored(Color::Fire)],
+                    VolumeVariation::Little,
+                ),
+            },
+        ]);
+
+        assert_eq!(except, grammar);
+    }
 }
