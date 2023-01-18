@@ -273,6 +273,22 @@ impl SkillGrammar<'_> {
 
         result
     }
+
+    /// 5属性＋回復、お邪魔、毒、猛毒、爆弾
+    fn all_drops_10() -> Drops {
+        vec![
+            Drop::Colored(Color::Fire),
+            Drop::Colored(Color::Water),
+            Drop::Colored(Color::Wood),
+            Drop::Colored(Color::Lightning),
+            Drop::Colored(Color::Dark),
+            Drop::NonColored(NonColoredDrop::Recovery),
+            Drop::NonColored(NonColoredDrop::Disturb),
+            Drop::NonColored(NonColoredDrop::Bomb),
+            Drop::NonColored(NonColoredDrop::Poison),
+            Drop::NonColored(NonColoredDrop::DeadlyPoison),
+        ]
+    }
 }
 
 impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
@@ -958,27 +974,37 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
 
     /// ○ドロップが落ちやすくなる
     /// ○ドロップのみ落ちてくる
-    fn drops_easier_to_falloff(
+    /// ○ドロップがロック状態で落ちてくる
+    fn drops_easier_to_falloff_or_fall_lock_drop(
         &mut self,
-        _arg: &crate::skill_grammar_trait::DropsEasierToFalloff<'t>,
+        _arg: &crate::skill_grammar_trait::DropsEasierToFalloffOrFallLockDrop<'t>,
     ) -> miette::Result<()> {
-        let volume = self
-            .pop_if(|i| i.is_volume_variation())
-            .map_or_else(|| VolumeVariation::Normal, |i| i.volume_variation());
+        if self.pop_if(|i| i.is_drop_lock()).is_some() {
+            // ロック目覚め
+            let drops = self.pop().drops();
+            let se = SkillEffect::FallLockDrop(drops);
 
-        // 強化ドロップが複合しているならSome
-        let powerup_drop = self.pop_if(|i| i.is_drop_powerup());
+            self.push(StackItem::ApplyInTurnsSkill(se));
+        } else {
+            let volume = self
+                .pop_if(|i| i.is_volume_variation())
+                .map_or_else(|| VolumeVariation::Normal, |i| i.volume_variation());
 
-        let drops = self.pop().drops();
+            // 強化ドロップが複合しているならSome
+            let powerup_drop = self.pop_if(|i| i.is_drop_powerup());
 
-        let effect = SkillEffect::DropFallout(drops, volume.clone());
+            let drops = self.pop().drops();
 
-        self.push(StackItem::ApplyInTurnsSkill(effect));
+            let effect = SkillEffect::DropFalloff(drops, volume.clone());
 
-        if powerup_drop.is_some() {
-            let effect =
-                SkillEffect::PowerupDropFallout(PowerupDropFalloutKind::VolumeVariation(volume));
             self.push(StackItem::ApplyInTurnsSkill(effect));
+
+            if powerup_drop.is_some() {
+                let effect = SkillEffect::PowerupDropFalloff(
+                    PowerupDropFalloffKind::VolumeVariation(volume),
+                );
+                self.push(StackItem::ApplyInTurnsSkill(effect));
+            }
         }
         Ok(())
     }
@@ -994,26 +1020,37 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         let kind = if let Some(percent) = self.pop_if(|i| i.is_pos_int()) {
             let _ = self.pop(); // WordPowerup
 
-            PowerupDropFalloutKind::Num(percent.pos_int())
+            PowerupDropFalloffKind::Num(percent.pos_int())
         } else {
             let _ = self.pop(); // WordLittle
             drop_falloff = self.pop_if(|i| i.is_drops()).map(|i| i.drops());
             let _ = self.pop(); // WordPowerup
 
-            PowerupDropFalloutKind::VolumeVariation(VolumeVariation::Little)
+            PowerupDropFalloffKind::VolumeVariation(VolumeVariation::Little)
         };
 
         self.push(StackItem::ApplyInTurnsSkill(
-            SkillEffect::PowerupDropFallout(kind),
+            SkillEffect::PowerupDropFalloff(kind),
         ));
 
         if let Some(drops) = drop_falloff {
             // 複合する場合は`少し`のみ
-            let se = SkillEffect::DropFallout(drops, VolumeVariation::Little);
+            let se = SkillEffect::DropFalloff(drops, VolumeVariation::Little);
             self.push(StackItem::ApplyInTurnsSkill(se));
         }
 
         self.show_stack();
+        Ok(())
+    }
+
+    fn fall_lock_drop_of_all(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::FallLockDropOfAll<'t>,
+    ) -> miette::Result<()> {
+        let _ = self.pop(); // WordLock
+        let se = SkillEffect::FallLockDrop(Self::all_drops_10());
+
+        self.push(StackItem::ApplyInTurnsSkill(se));
         Ok(())
     }
 

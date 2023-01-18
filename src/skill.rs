@@ -34,9 +34,11 @@ pub enum SkillEffect {
     /// ドロップ強化
     DropPowerUp(Drops),
     /// ドロップ目覚め
-    DropFallout(Drops, VolumeVariation),
+    DropFalloff(Drops, VolumeVariation),
     /// 強化ドロップ目覚め
-    PowerupDropFallout(PowerupDropFalloutKind),
+    PowerupDropFalloff(PowerupDropFalloffKind),
+    /// ロック目覚め
+    FallLockDrop(Drops),
 }
 
 impl Default for SkillEffect {
@@ -230,7 +232,7 @@ impl From<&str> for ShapeType {
 }
 
 #[derive(Clone, Debug, PartialEq)]
-pub enum PowerupDropFalloutKind {
+pub enum PowerupDropFalloffKind {
     /// N%
     Num(usize),
     /// 少し

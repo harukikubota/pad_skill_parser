@@ -274,7 +274,7 @@ const SCANNER_0: (&[&str; 5], &[usize; 73]) = (
 
 const MAX_K: usize = 4;
 
-pub const NON_TERMINALS: &[&str; 169] = &[
+pub const NON_TERMINALS: &[&str; 171] = &[
     /*   0 */ "AllDrops",
     /*   1 */ "And",
     /*   2 */ "Bomb",
@@ -300,153 +300,155 @@ pub const NON_TERMINALS: &[&str; 169] = &[
     /*  22 */ "DropUnlockBlockOpt",
     /*  23 */ "DropUnlockBlockOpt0",
     /*  24 */ "Drops",
-    /*  25 */ "DropsEasierToFalloff",
-    /*  26 */ "DropsEasierToFalloffOpt",
-    /*  27 */ "DropsEasierToFalloffOpt0",
-    /*  28 */ "DropsEasierToFalloffOpt1",
-    /*  29 */ "DropsEasierToFalloffOpt2",
-    /*  30 */ "DropsEasierToFalloffOpt2Group",
-    /*  31 */ "DropsList",
-    /*  32 */ "DropsList0",
-    /*  33 */ "DropsSuffix",
-    /*  34 */ "Each",
-    /*  35 */ "Fire",
-    /*  36 */ "FiveAttribute",
-    /*  37 */ "FiveAttributeOpt",
-    /*  38 */ "From",
-    /*  39 */ "GSSPCenter",
-    /*  40 */ "GSSPCenterBlock",
-    /*  41 */ "GSSPCenterBlockOpt",
-    /*  42 */ "GSSPCenterBlockOptGroup",
-    /*  43 */ "GSSPCenterBlocks",
-    /*  44 */ "GSSPCenterBlocksOpt",
-    /*  45 */ "GSSPCenterOpt",
-    /*  46 */ "GSSPCenterOpt0",
-    /*  47 */ "GSSPCenterOpt0Group",
-    /*  48 */ "GSSPSide",
-    /*  49 */ "GSSPSideOpt",
-    /*  50 */ "GSSPSideOpt0",
-    /*  51 */ "GSSPSideOpt1",
-    /*  52 */ "GSSPSideWriteWidth",
-    /*  53 */ "GSSPSideWriteWidthOpt",
-    /*  54 */ "GSStartPosition",
-    /*  55 */ "Ga",
-    /*  56 */ "GenRandomDropBlock",
-    /*  57 */ "GenRandomDropStmt",
-    /*  58 */ "GenRandomDropStmtList",
-    /*  59 */ "GenShapeBlock",
-    /*  60 */ "GenShapeBlockList",
-    /*  61 */ "GenShapeBlockOtherRowCol",
-    /*  62 */ "GenShapeBlockOtherRowColOpt",
-    /*  63 */ "GenShapeBlockOtherRowColSuffix",
-    /*  64 */ "GenShapeBlockRowCol",
-    /*  65 */ "GenShapeNumOfGen",
-    /*  66 */ "GenShapeStmt",
-    /*  67 */ "GenShapeStmtOpt",
-    /*  68 */ "GenShapeStmtOptGroup",
-    /*  69 */ "GroupOfDropChange",
-    /*  70 */ "GroupOfDropChangeOpt",
-    /*  71 */ "GroupOfDropChangeOpt0",
-    /*  72 */ "GroupOfDropChangeOpt0Group",
-    /*  73 */ "Lightning",
-    /*  74 */ "Line",
-    /*  75 */ "ManyDrop",
-    /*  76 */ "Multi",
-    /*  77 */ "Ni",
-    /*  78 */ "No",
-    /*  79 */ "NonColoredDrop",
-    /*  80 */ "OnBoard",
-    /*  81 */ "Percent",
-    /*  82 */ "Period",
-    /*  83 */ "Plus",
-    /*  84 */ "Poison",
-    /*  85 */ "PosInt",
-    /*  86 */ "Position",
-    /*  87 */ "PositionLR",
-    /*  88 */ "PositionLRTB",
-    /*  89 */ "PositionTB",
-    /*  90 */ "PositionTBOpt",
-    /*  91 */ "PositionTOrB",
-    /*  92 */ "PowerupDropsEasierToFalloff",
-    /*  93 */ "PowerupDropsEasierToFalloffOpt",
-    /*  94 */ "PowerupDropsEasierToFalloffOpt0",
-    /*  95 */ "PowerupDropsEasierToFalloffOpt0Group",
-    /*  96 */ "Quantity",
-    /*  97 */ "QuantityOpt",
-    /*  98 */ "RandomSuffix",
-    /*  99 */ "Recovery",
-    /* 100 */ "ShapeOfBoardBottom",
-    /* 101 */ "ShapeOfBoardCenter",
-    /* 102 */ "ShapeOfBoardCorners",
-    /* 103 */ "ShapeOfBoardPerimeter",
-    /* 104 */ "ShapeOfBoardTop",
-    /* 105 */ "ShapeOfCrescentMoon",
-    /* 106 */ "ShapeOfCross",
-    /* 107 */ "ShapeOfL",
-    /* 108 */ "ShapeOfOblique",
-    /* 109 */ "ShapeOfSomeKind",
-    /* 110 */ "ShapeOfSpiderweb",
-    /* 111 */ "ShapeOfSquare",
-    /* 112 */ "ShapeOfZ",
-    /* 113 */ "ShapeType",
-    /* 114 */ "ShapeTypeOpt",
-    /* 115 */ "ShapeTypeOpt0",
-    /* 116 */ "Si",
-    /* 117 */ "Size",
-    /* 118 */ "SkillLines",
-    /* 119 */ "SkillVolumeVariation",
-    /* 120 */ "StartsWithDropLine",
-    /* 121 */ "StartsWithDropLineList",
-    /* 122 */ "StartsWithDropLineList0",
-    /* 123 */ "StartsWithDropLineOpt",
-    /* 124 */ "StartsWithDropLineOptGroup",
-    /* 125 */ "StartsWithDropLineSuffix",
-    /* 126 */ "StartsWithDropLineSuffix0",
-    /* 127 */ "Turns",
-    /* 128 */ "TurnsOfApplyBlock",
-    /* 129 */ "TurnsOfApplyStmt",
-    /* 130 */ "Water",
-    /* 131 */ "Wo",
-    /* 132 */ "Wood",
-    /* 133 */ "WordAll",
-    /* 134 */ "WordBetween",
-    /* 135 */ "WordBoard",
-    /* 136 */ "WordBottom",
-    /* 137 */ "WordChange",
-    /* 138 */ "WordCol",
-    /* 139 */ "WordCount",
-    /* 140 */ "WordCountOpt",
-    /* 141 */ "WordCountOptGroup",
-    /* 142 */ "WordDrop",
-    /* 143 */ "WordFall",
-    /* 144 */ "WordFalloff",
-    /* 145 */ "WordFiveAttribute",
-    /* 146 */ "WordGen",
-    /* 147 */ "WordHorizon",
-    /* 148 */ "WordLeft",
-    /* 149 */ "WordLeftAndRight",
-    /* 150 */ "WordLittle",
-    /* 151 */ "WordLittleMore",
-    /* 152 */ "WordLock",
-    /* 153 */ "WordLook",
-    /* 154 */ "WordMost",
-    /* 155 */ "WordOnly",
-    /* 156 */ "WordOther",
-    /* 157 */ "WordPowerUp",
-    /* 158 */ "WordProbability",
-    /* 159 */ "WordRandom",
-    /* 160 */ "WordRelease",
-    /* 161 */ "WordReplace",
-    /* 162 */ "WordRight",
-    /* 163 */ "WordRow",
-    /* 164 */ "WordSide",
-    /* 165 */ "WordState",
-    /* 166 */ "WordTop",
-    /* 167 */ "WordTurn",
-    /* 168 */ "WordVertical",
+    /*  25 */ "DropsEasierToFalloffOrFallLockDrop",
+    /*  26 */ "DropsEasierToFalloffOrFallLockDropOpt",
+    /*  27 */ "DropsEasierToFalloffOrFallLockDropOpt0",
+    /*  28 */ "DropsEasierToFalloffOrFallLockDropOpt1",
+    /*  29 */ "DropsEasierToFalloffOrFallLockDropOpt1Group",
+    /*  30 */ "DropsEasierToFalloffOrFallLockDropOpt2",
+    /*  31 */ "DropsEasierToFalloffOrFallLockDropOpt2Group",
+    /*  32 */ "DropsList",
+    /*  33 */ "DropsList0",
+    /*  34 */ "DropsSuffix",
+    /*  35 */ "Each",
+    /*  36 */ "FallLockDropOfAll",
+    /*  37 */ "Fire",
+    /*  38 */ "FiveAttribute",
+    /*  39 */ "FiveAttributeOpt",
+    /*  40 */ "From",
+    /*  41 */ "GSSPCenter",
+    /*  42 */ "GSSPCenterBlock",
+    /*  43 */ "GSSPCenterBlockOpt",
+    /*  44 */ "GSSPCenterBlockOptGroup",
+    /*  45 */ "GSSPCenterBlocks",
+    /*  46 */ "GSSPCenterBlocksOpt",
+    /*  47 */ "GSSPCenterOpt",
+    /*  48 */ "GSSPCenterOpt0",
+    /*  49 */ "GSSPCenterOpt0Group",
+    /*  50 */ "GSSPSide",
+    /*  51 */ "GSSPSideOpt",
+    /*  52 */ "GSSPSideOpt0",
+    /*  53 */ "GSSPSideOpt1",
+    /*  54 */ "GSSPSideWriteWidth",
+    /*  55 */ "GSSPSideWriteWidthOpt",
+    /*  56 */ "GSStartPosition",
+    /*  57 */ "Ga",
+    /*  58 */ "GenRandomDropBlock",
+    /*  59 */ "GenRandomDropStmt",
+    /*  60 */ "GenRandomDropStmtList",
+    /*  61 */ "GenShapeBlock",
+    /*  62 */ "GenShapeBlockList",
+    /*  63 */ "GenShapeBlockOtherRowCol",
+    /*  64 */ "GenShapeBlockOtherRowColOpt",
+    /*  65 */ "GenShapeBlockOtherRowColSuffix",
+    /*  66 */ "GenShapeBlockRowCol",
+    /*  67 */ "GenShapeNumOfGen",
+    /*  68 */ "GenShapeStmt",
+    /*  69 */ "GenShapeStmtOpt",
+    /*  70 */ "GenShapeStmtOptGroup",
+    /*  71 */ "GroupOfDropChange",
+    /*  72 */ "GroupOfDropChangeOpt",
+    /*  73 */ "GroupOfDropChangeOpt0",
+    /*  74 */ "GroupOfDropChangeOpt0Group",
+    /*  75 */ "Lightning",
+    /*  76 */ "Line",
+    /*  77 */ "ManyDrop",
+    /*  78 */ "Multi",
+    /*  79 */ "Ni",
+    /*  80 */ "No",
+    /*  81 */ "NonColoredDrop",
+    /*  82 */ "OnBoard",
+    /*  83 */ "Percent",
+    /*  84 */ "Period",
+    /*  85 */ "Plus",
+    /*  86 */ "Poison",
+    /*  87 */ "PosInt",
+    /*  88 */ "Position",
+    /*  89 */ "PositionLR",
+    /*  90 */ "PositionLRTB",
+    /*  91 */ "PositionTB",
+    /*  92 */ "PositionTBOpt",
+    /*  93 */ "PositionTOrB",
+    /*  94 */ "PowerupDropsEasierToFalloff",
+    /*  95 */ "PowerupDropsEasierToFalloffOpt",
+    /*  96 */ "PowerupDropsEasierToFalloffOpt0",
+    /*  97 */ "PowerupDropsEasierToFalloffOpt0Group",
+    /*  98 */ "Quantity",
+    /*  99 */ "QuantityOpt",
+    /* 100 */ "RandomSuffix",
+    /* 101 */ "Recovery",
+    /* 102 */ "ShapeOfBoardBottom",
+    /* 103 */ "ShapeOfBoardCenter",
+    /* 104 */ "ShapeOfBoardCorners",
+    /* 105 */ "ShapeOfBoardPerimeter",
+    /* 106 */ "ShapeOfBoardTop",
+    /* 107 */ "ShapeOfCrescentMoon",
+    /* 108 */ "ShapeOfCross",
+    /* 109 */ "ShapeOfL",
+    /* 110 */ "ShapeOfOblique",
+    /* 111 */ "ShapeOfSomeKind",
+    /* 112 */ "ShapeOfSpiderweb",
+    /* 113 */ "ShapeOfSquare",
+    /* 114 */ "ShapeOfZ",
+    /* 115 */ "ShapeType",
+    /* 116 */ "ShapeTypeOpt",
+    /* 117 */ "ShapeTypeOpt0",
+    /* 118 */ "Si",
+    /* 119 */ "Size",
+    /* 120 */ "SkillLines",
+    /* 121 */ "SkillVolumeVariation",
+    /* 122 */ "StartsWithDropLine",
+    /* 123 */ "StartsWithDropLineList",
+    /* 124 */ "StartsWithDropLineList0",
+    /* 125 */ "StartsWithDropLineOpt",
+    /* 126 */ "StartsWithDropLineOptGroup",
+    /* 127 */ "StartsWithDropLineSuffix",
+    /* 128 */ "StartsWithDropLineSuffix0",
+    /* 129 */ "Turns",
+    /* 130 */ "TurnsOfApplyBlock",
+    /* 131 */ "TurnsOfApplyStmt",
+    /* 132 */ "Water",
+    /* 133 */ "Wo",
+    /* 134 */ "Wood",
+    /* 135 */ "WordAll",
+    /* 136 */ "WordBetween",
+    /* 137 */ "WordBoard",
+    /* 138 */ "WordBottom",
+    /* 139 */ "WordChange",
+    /* 140 */ "WordCol",
+    /* 141 */ "WordCount",
+    /* 142 */ "WordCountOpt",
+    /* 143 */ "WordCountOptGroup",
+    /* 144 */ "WordDrop",
+    /* 145 */ "WordFall",
+    /* 146 */ "WordFalloff",
+    /* 147 */ "WordFiveAttribute",
+    /* 148 */ "WordGen",
+    /* 149 */ "WordHorizon",
+    /* 150 */ "WordLeft",
+    /* 151 */ "WordLeftAndRight",
+    /* 152 */ "WordLittle",
+    /* 153 */ "WordLittleMore",
+    /* 154 */ "WordLock",
+    /* 155 */ "WordLook",
+    /* 156 */ "WordMost",
+    /* 157 */ "WordOnly",
+    /* 158 */ "WordOther",
+    /* 159 */ "WordPowerUp",
+    /* 160 */ "WordProbability",
+    /* 161 */ "WordRandom",
+    /* 162 */ "WordRelease",
+    /* 163 */ "WordReplace",
+    /* 164 */ "WordRight",
+    /* 165 */ "WordRow",
+    /* 166 */ "WordSide",
+    /* 167 */ "WordState",
+    /* 168 */ "WordTop",
+    /* 169 */ "WordTurn",
+    /* 170 */ "WordVertical",
 ];
 
-pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
+pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 171] = &[
     /* 0 - "AllDrops" */
     LookaheadDFA {
         states: &[Some(140)],
@@ -455,19 +457,19 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
     },
     /* 1 - "And" */
     LookaheadDFA {
-        states: &[Some(255)],
+        states: &[Some(259)],
         transitions: &[],
         k: 0,
     },
     /* 2 - "Bomb" */
     LookaheadDFA {
-        states: &[Some(197)],
+        states: &[Some(201)],
         transitions: &[],
         k: 0,
     },
     /* 3 - "Camma" */
     LookaheadDFA {
-        states: &[Some(260)],
+        states: &[Some(264)],
         transitions: &[],
         k: 0,
     },
@@ -807,25 +809,25 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
     },
     /* 12 - "Dark" */
     LookaheadDFA {
-        states: &[Some(194)],
+        states: &[Some(198)],
         transitions: &[],
         k: 0,
     },
     /* 13 - "De" */
     LookaheadDFA {
-        states: &[Some(254)],
+        states: &[Some(258)],
         transitions: &[],
         k: 0,
     },
     /* 14 - "DeadlyPoison" */
     LookaheadDFA {
-        states: &[Some(198)],
+        states: &[Some(202)],
         transitions: &[],
         k: 0,
     },
     /* 15 - "Disturb" */
     LookaheadDFA {
-        states: &[Some(196)],
+        states: &[Some(200)],
         transitions: &[],
         k: 0,
     },
@@ -852,6 +854,7 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         transitions: &[
             DFATransition(0, 29, 1),
             DFATransition(0, 37, 2),
+            DFATransition(0, 52, 2),
             DFATransition(0, 57, 2),
             DFATransition(0, 58, 2),
             DFATransition(0, 59, 2),
@@ -873,6 +876,7 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         transitions: &[
             DFATransition(0, 29, 1),
             DFATransition(0, 37, 2),
+            DFATransition(0, 52, 2),
             DFATransition(0, 57, 2),
             DFATransition(0, 58, 2),
             DFATransition(0, 59, 2),
@@ -940,16 +944,17 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 25 - "DropsEasierToFalloff" */
+    /* 25 - "DropsEasierToFalloffOrFallLockDrop" */
     LookaheadDFA {
-        states: &[Some(169)],
+        states: &[Some(170)],
         transitions: &[],
         k: 0,
     },
-    /* 26 - "DropsEasierToFalloffOpt" */
+    /* 26 - "DropsEasierToFalloffOrFallLockDropOpt" */
     LookaheadDFA {
-        states: &[None, Some(178), Some(179)],
+        states: &[None, Some(181), Some(182)],
         transitions: &[
+            DFATransition(0, 52, 2),
             DFATransition(0, 57, 2),
             DFATransition(0, 58, 2),
             DFATransition(0, 59, 2),
@@ -961,10 +966,11 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 27 - "DropsEasierToFalloffOpt0" */
+    /* 27 - "DropsEasierToFalloffOrFallLockDropOpt0" */
     LookaheadDFA {
-        states: &[None, Some(176), Some(177)],
+        states: &[None, Some(179), Some(180)],
         transitions: &[
+            DFATransition(0, 52, 2),
             DFATransition(0, 57, 2),
             DFATransition(0, 58, 2),
             DFATransition(0, 59, 2),
@@ -975,10 +981,11 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 28 - "DropsEasierToFalloffOpt1" */
+    /* 28 - "DropsEasierToFalloffOrFallLockDropOpt1" */
     LookaheadDFA {
-        states: &[None, Some(174), Some(175)],
+        states: &[None, Some(175), Some(178)],
         transitions: &[
+            DFATransition(0, 52, 1),
             DFATransition(0, 57, 1),
             DFATransition(0, 58, 1),
             DFATransition(0, 59, 1),
@@ -988,9 +995,20 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 29 - "DropsEasierToFalloffOpt2" */
+    /* 29 - "DropsEasierToFalloffOrFallLockDropOpt1Group" */
     LookaheadDFA {
-        states: &[None, Some(170), Some(173)],
+        states: &[None, Some(176), Some(177)],
+        transitions: &[
+            DFATransition(0, 52, 2),
+            DFATransition(0, 57, 1),
+            DFATransition(0, 58, 1),
+            DFATransition(0, 59, 1),
+        ],
+        k: 1,
+    },
+    /* 30 - "DropsEasierToFalloffOrFallLockDropOpt2" */
+    LookaheadDFA {
+        states: &[None, Some(171), Some(174)],
         transitions: &[
             DFATransition(0, 60, 1),
             DFATransition(0, 61, 1),
@@ -998,13 +1016,13 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 30 - "DropsEasierToFalloffOpt2Group" */
+    /* 31 - "DropsEasierToFalloffOrFallLockDropOpt2Group" */
     LookaheadDFA {
-        states: &[None, Some(171), Some(172)],
+        states: &[None, Some(172), Some(173)],
         transitions: &[DFATransition(0, 60, 1), DFATransition(0, 61, 2)],
         k: 1,
     },
-    /* 31 - "DropsList" */
+    /* 32 - "DropsList" */
     LookaheadDFA {
         states: &[
             None,
@@ -1021,20 +1039,22 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
             None,
             None,
             None,
+            None,
             Some(135),
         ],
         transitions: &[
             DFATransition(0, 37, 4),
-            DFATransition(0, 57, 5),
-            DFATransition(0, 58, 6),
-            DFATransition(0, 59, 7),
-            DFATransition(0, 60, 8),
-            DFATransition(0, 61, 9),
-            DFATransition(0, 63, 10),
-            DFATransition(0, 64, 11),
-            DFATransition(0, 69, 12),
+            DFATransition(0, 52, 5),
+            DFATransition(0, 57, 6),
+            DFATransition(0, 58, 7),
+            DFATransition(0, 59, 8),
+            DFATransition(0, 60, 9),
+            DFATransition(0, 61, 10),
+            DFATransition(0, 63, 11),
+            DFATransition(0, 64, 12),
+            DFATransition(0, 69, 13),
             DFATransition(0, 72, 1),
-            DFATransition(0, 73, 13),
+            DFATransition(0, 73, 14),
             DFATransition(0, 74, 3),
             DFATransition(1, 5, 2),
             DFATransition(1, 6, 2),
@@ -1046,7 +1066,7 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
             DFATransition(1, 12, 2),
             DFATransition(1, 13, 2),
             DFATransition(1, 14, 2),
-            DFATransition(1, 54, 14),
+            DFATransition(1, 54, 15),
             DFATransition(3, 5, 2),
             DFATransition(3, 6, 2),
             DFATransition(3, 7, 2),
@@ -1057,54 +1077,57 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
             DFATransition(3, 12, 2),
             DFATransition(3, 13, 2),
             DFATransition(3, 14, 2),
-            DFATransition(4, 71, 14),
-            DFATransition(5, 60, 14),
-            DFATransition(5, 61, 14),
-            DFATransition(5, 73, 14),
-            DFATransition(6, 60, 14),
-            DFATransition(6, 61, 14),
-            DFATransition(6, 73, 14),
-            DFATransition(7, 60, 14),
-            DFATransition(7, 61, 14),
-            DFATransition(7, 73, 14),
-            DFATransition(8, 73, 14),
-            DFATransition(9, 73, 14),
-            DFATransition(10, 5, 14),
-            DFATransition(10, 6, 14),
-            DFATransition(10, 7, 14),
-            DFATransition(10, 8, 14),
-            DFATransition(10, 9, 14),
-            DFATransition(10, 10, 14),
-            DFATransition(10, 11, 14),
-            DFATransition(10, 12, 14),
-            DFATransition(10, 13, 14),
-            DFATransition(10, 14, 14),
-            DFATransition(10, 28, 14),
-            DFATransition(10, 32, 14),
-            DFATransition(10, 36, 14),
-            DFATransition(10, 52, 14),
-            DFATransition(10, 54, 14),
-            DFATransition(10, 73, 14),
-            DFATransition(10, 77, 14),
-            DFATransition(11, 28, 14),
-            DFATransition(11, 36, 14),
-            DFATransition(11, 73, 14),
-            DFATransition(12, 57, 14),
-            DFATransition(12, 58, 14),
-            DFATransition(12, 59, 14),
-            DFATransition(12, 60, 14),
-            DFATransition(12, 61, 14),
-            DFATransition(12, 73, 14),
-            DFATransition(12, 77, 14),
-            DFATransition(13, 0, 14),
+            DFATransition(4, 71, 15),
+            DFATransition(5, 53, 15),
+            DFATransition(6, 60, 15),
+            DFATransition(6, 61, 15),
+            DFATransition(6, 73, 15),
+            DFATransition(7, 60, 15),
+            DFATransition(7, 61, 15),
+            DFATransition(7, 73, 15),
+            DFATransition(8, 60, 15),
+            DFATransition(8, 61, 15),
+            DFATransition(8, 73, 15),
+            DFATransition(9, 73, 15),
+            DFATransition(10, 73, 15),
+            DFATransition(11, 5, 15),
+            DFATransition(11, 6, 15),
+            DFATransition(11, 7, 15),
+            DFATransition(11, 8, 15),
+            DFATransition(11, 9, 15),
+            DFATransition(11, 10, 15),
+            DFATransition(11, 11, 15),
+            DFATransition(11, 12, 15),
+            DFATransition(11, 13, 15),
+            DFATransition(11, 14, 15),
+            DFATransition(11, 28, 15),
+            DFATransition(11, 32, 15),
+            DFATransition(11, 36, 15),
+            DFATransition(11, 52, 15),
+            DFATransition(11, 54, 15),
+            DFATransition(11, 73, 15),
+            DFATransition(11, 77, 15),
+            DFATransition(12, 28, 15),
+            DFATransition(12, 36, 15),
+            DFATransition(12, 73, 15),
+            DFATransition(13, 52, 15),
+            DFATransition(13, 57, 15),
+            DFATransition(13, 58, 15),
+            DFATransition(13, 59, 15),
+            DFATransition(13, 60, 15),
+            DFATransition(13, 61, 15),
+            DFATransition(13, 73, 15),
+            DFATransition(13, 77, 15),
+            DFATransition(14, 0, 15),
         ],
         k: 2,
     },
-    /* 32 - "DropsList0" */
+    /* 33 - "DropsList0" */
     LookaheadDFA {
         states: &[None, Some(136), Some(137)],
         transitions: &[
             DFATransition(0, 37, 2),
+            DFATransition(0, 52, 2),
             DFATransition(0, 57, 2),
             DFATransition(0, 58, 2),
             DFATransition(0, 59, 2),
@@ -1119,11 +1142,12 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 33 - "DropsSuffix" */
+    /* 34 - "DropsSuffix" */
     LookaheadDFA {
         states: &[None, Some(131), Some(133)],
         transitions: &[
             DFATransition(0, 37, 1),
+            DFATransition(0, 52, 1),
             DFATransition(0, 57, 1),
             DFATransition(0, 58, 1),
             DFATransition(0, 59, 1),
@@ -1139,30 +1163,37 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 34 - "Each" */
+    /* 35 - "Each" */
     LookaheadDFA {
-        states: &[Some(258)],
+        states: &[Some(262)],
         transitions: &[],
         k: 0,
     },
-    /* 35 - "Fire" */
+    /* 36 - "FallLockDropOfAll" */
     LookaheadDFA {
         states: &[Some(190)],
         transitions: &[],
         k: 0,
     },
-    /* 36 - "FiveAttribute" */
+    /* 37 - "Fire" */
+    LookaheadDFA {
+        states: &[Some(194)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 38 - "FiveAttribute" */
     LookaheadDFA {
         states: &[Some(141)],
         transitions: &[],
         k: 0,
     },
-    /* 37 - "FiveAttributeOpt" */
+    /* 39 - "FiveAttributeOpt" */
     LookaheadDFA {
         states: &[None, Some(142), Some(143)],
         transitions: &[
             DFATransition(0, 29, 1),
             DFATransition(0, 37, 2),
+            DFATransition(0, 52, 2),
             DFATransition(0, 57, 2),
             DFATransition(0, 58, 2),
             DFATransition(0, 59, 2),
@@ -1177,25 +1208,25 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 38 - "From" */
+    /* 40 - "From" */
     LookaheadDFA {
-        states: &[Some(259)],
+        states: &[Some(263)],
         transitions: &[],
         k: 0,
     },
-    /* 39 - "GSSPCenter" */
+    /* 41 - "GSSPCenter" */
     LookaheadDFA {
         states: &[Some(74)],
         transitions: &[],
         k: 0,
     },
-    /* 40 - "GSSPCenterBlock" */
+    /* 42 - "GSSPCenterBlock" */
     LookaheadDFA {
         states: &[Some(84)],
         transitions: &[],
         k: 0,
     },
-    /* 41 - "GSSPCenterBlockOpt" */
+    /* 43 - "GSSPCenterBlockOpt" */
     LookaheadDFA {
         states: &[None, Some(85), Some(88)],
         transitions: &[
@@ -1205,19 +1236,19 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 42 - "GSSPCenterBlockOptGroup" */
+    /* 44 - "GSSPCenterBlockOptGroup" */
     LookaheadDFA {
         states: &[None, Some(86), Some(87)],
         transitions: &[DFATransition(0, 40, 2), DFATransition(0, 41, 1)],
         k: 1,
     },
-    /* 43 - "GSSPCenterBlocks" */
+    /* 45 - "GSSPCenterBlocks" */
     LookaheadDFA {
         states: &[Some(81)],
         transitions: &[],
         k: 0,
     },
-    /* 44 - "GSSPCenterBlocksOpt" */
+    /* 46 - "GSSPCenterBlocksOpt" */
     LookaheadDFA {
         states: &[None, Some(82), Some(83)],
         transitions: &[
@@ -1229,7 +1260,7 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 45 - "GSSPCenterOpt" */
+    /* 47 - "GSSPCenterOpt" */
     LookaheadDFA {
         states: &[None, Some(79), Some(80)],
         transitions: &[
@@ -1240,7 +1271,7 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 46 - "GSSPCenterOpt0" */
+    /* 48 - "GSSPCenterOpt0" */
     LookaheadDFA {
         states: &[None, Some(75), Some(78)],
         transitions: &[
@@ -1250,43 +1281,43 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 47 - "GSSPCenterOpt0Group" */
+    /* 49 - "GSSPCenterOpt0Group" */
     LookaheadDFA {
         states: &[None, Some(76), Some(77)],
         transitions: &[DFATransition(0, 38, 1), DFATransition(0, 39, 2)],
         k: 1,
     },
-    /* 48 - "GSSPSide" */
+    /* 50 - "GSSPSide" */
     LookaheadDFA {
         states: &[Some(67)],
         transitions: &[],
         k: 0,
     },
-    /* 49 - "GSSPSideOpt" */
+    /* 51 - "GSSPSideOpt" */
     LookaheadDFA {
         states: &[None, Some(72), Some(73)],
         transitions: &[DFATransition(0, 39, 1), DFATransition(0, 77, 2)],
         k: 1,
     },
-    /* 50 - "GSSPSideOpt0" */
+    /* 52 - "GSSPSideOpt0" */
     LookaheadDFA {
         states: &[None, Some(68), Some(71)],
         transitions: &[DFATransition(0, 63, 2), DFATransition(0, 67, 1)],
         k: 1,
     },
-    /* 51 - "GSSPSideOpt1" */
+    /* 53 - "GSSPSideOpt1" */
     LookaheadDFA {
         states: &[None, Some(69), Some(70)],
         transitions: &[DFATransition(0, 39, 1), DFATransition(0, 77, 2)],
         k: 1,
     },
-    /* 52 - "GSSPSideWriteWidth" */
+    /* 54 - "GSSPSideWriteWidth" */
     LookaheadDFA {
         states: &[None, Some(91), Some(92)],
         transitions: &[DFATransition(0, 38, 2), DFATransition(0, 42, 1)],
         k: 1,
     },
-    /* 53 - "GSSPSideWriteWidthOpt" */
+    /* 55 - "GSSPSideWriteWidthOpt" */
     LookaheadDFA {
         states: &[None, Some(93), Some(94)],
         transitions: &[
@@ -1296,7 +1327,7 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 54 - "GSStartPosition" */
+    /* 56 - "GSStartPosition" */
     LookaheadDFA {
         states: &[None, None, Some(65), None, None, None, None, None, Some(66)],
         transitions: &[
@@ -1323,31 +1354,31 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 2,
     },
-    /* 55 - "Ga" */
+    /* 57 - "Ga" */
     LookaheadDFA {
-        states: &[Some(257)],
+        states: &[Some(261)],
         transitions: &[],
         k: 0,
     },
-    /* 56 - "GenRandomDropBlock" */
+    /* 58 - "GenRandomDropBlock" */
     LookaheadDFA {
         states: &[Some(45)],
         transitions: &[],
         k: 0,
     },
-    /* 57 - "GenRandomDropStmt" */
+    /* 59 - "GenRandomDropStmt" */
     LookaheadDFA {
         states: &[Some(42)],
         transitions: &[],
         k: 0,
     },
-    /* 58 - "GenRandomDropStmtList" */
+    /* 60 - "GenRandomDropStmtList" */
     LookaheadDFA {
         states: &[None, Some(43), Some(44)],
         transitions: &[DFATransition(0, 36, 2), DFATransition(0, 72, 1)],
         k: 1,
     },
-    /* 59 - "GenShapeBlock" */
+    /* 61 - "GenShapeBlock" */
     LookaheadDFA {
         states: &[None, Some(55), Some(58)],
         transitions: &[
@@ -1373,7 +1404,7 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 60 - "GenShapeBlockList" */
+    /* 62 - "GenShapeBlockList" */
     LookaheadDFA {
         states: &[None, Some(56), Some(57)],
         transitions: &[
@@ -1384,13 +1415,13 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 61 - "GenShapeBlockOtherRowCol" */
+    /* 63 - "GenShapeBlockOtherRowCol" */
     LookaheadDFA {
         states: &[Some(60)],
         transitions: &[],
         k: 0,
     },
-    /* 62 - "GenShapeBlockOtherRowColOpt" */
+    /* 64 - "GenShapeBlockOtherRowColOpt" */
     LookaheadDFA {
         states: &[None, Some(63), Some(64)],
         transitions: &[
@@ -1401,31 +1432,31 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 63 - "GenShapeBlockOtherRowColSuffix" */
+    /* 65 - "GenShapeBlockOtherRowColSuffix" */
     LookaheadDFA {
         states: &[None, Some(61), Some(62)],
         transitions: &[DFATransition(0, 63, 2), DFATransition(0, 64, 1)],
         k: 1,
     },
-    /* 64 - "GenShapeBlockRowCol" */
+    /* 66 - "GenShapeBlockRowCol" */
     LookaheadDFA {
         states: &[Some(59)],
         transitions: &[],
         k: 0,
     },
-    /* 65 - "GenShapeNumOfGen" */
+    /* 67 - "GenShapeNumOfGen" */
     LookaheadDFA {
         states: &[Some(107)],
         transitions: &[],
         k: 0,
     },
-    /* 66 - "GenShapeStmt" */
+    /* 68 - "GenShapeStmt" */
     LookaheadDFA {
         states: &[Some(46)],
         transitions: &[],
         k: 0,
     },
-    /* 67 - "GenShapeStmtOpt" */
+    /* 69 - "GenShapeStmtOpt" */
     LookaheadDFA {
         states: &[None, Some(47), Some(50)],
         transitions: &[
@@ -1435,13 +1466,13 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 68 - "GenShapeStmtOptGroup" */
+    /* 70 - "GenShapeStmtOptGroup" */
     LookaheadDFA {
         states: &[None, Some(48), Some(49)],
         transitions: &[DFATransition(0, 28, 1), DFATransition(0, 36, 2)],
         k: 1,
     },
-    /* 69 - "GroupOfDropChange" */
+    /* 71 - "GroupOfDropChange" */
     LookaheadDFA {
         states: &[None, Some(5), Some(6)],
         transitions: &[
@@ -1484,7 +1515,7 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 70 - "GroupOfDropChangeOpt" */
+    /* 72 - "GroupOfDropChangeOpt" */
     LookaheadDFA {
         states: &[None, Some(12), Some(13)],
         transitions: &[
@@ -1526,7 +1557,7 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 71 - "GroupOfDropChangeOpt0" */
+    /* 73 - "GroupOfDropChangeOpt0" */
     LookaheadDFA {
         states: &[None, Some(7), Some(11)],
         transitions: &[
@@ -1565,7 +1596,7 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 72 - "GroupOfDropChangeOpt0Group" */
+    /* 74 - "GroupOfDropChangeOpt0Group" */
     LookaheadDFA {
         states: &[None, Some(8), Some(9), Some(10)],
         transitions: &[
@@ -1603,13 +1634,13 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 73 - "Lightning" */
+    /* 75 - "Lightning" */
     LookaheadDFA {
-        states: &[Some(193)],
+        states: &[Some(197)],
         transitions: &[],
         k: 0,
     },
-    /* 74 - "Line" */
+    /* 76 - "Line" */
     LookaheadDFA {
         states: &[
             None,
@@ -7322,31 +7353,31 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 4,
     },
-    /* 75 - "ManyDrop" */
+    /* 77 - "ManyDrop" */
     LookaheadDFA {
         states: &[None, Some(138), Some(139)],
         transitions: &[DFATransition(0, 72, 1), DFATransition(0, 74, 2)],
         k: 1,
     },
-    /* 76 - "Multi" */
+    /* 78 - "Multi" */
     LookaheadDFA {
-        states: &[Some(263)],
+        states: &[Some(267)],
         transitions: &[],
         k: 0,
     },
-    /* 77 - "Ni" */
+    /* 79 - "Ni" */
     LookaheadDFA {
-        states: &[Some(252)],
+        states: &[Some(256)],
         transitions: &[],
         k: 0,
     },
-    /* 78 - "No" */
+    /* 80 - "No" */
     LookaheadDFA {
-        states: &[Some(253)],
+        states: &[Some(257)],
         transitions: &[],
         k: 0,
     },
-    /* 79 - "NonColoredDrop" */
+    /* 81 - "NonColoredDrop" */
     LookaheadDFA {
         states: &[None, Some(153), Some(154), Some(155), Some(156), Some(157)],
         transitions: &[
@@ -7358,43 +7389,43 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 80 - "OnBoard" */
+    /* 82 - "OnBoard" */
     LookaheadDFA {
         states: &[Some(165)],
         transitions: &[],
         k: 0,
     },
-    /* 81 - "Percent" */
+    /* 83 - "Percent" */
     LookaheadDFA {
-        states: &[Some(264)],
+        states: &[Some(268)],
         transitions: &[],
         k: 0,
     },
-    /* 82 - "Period" */
-    LookaheadDFA {
-        states: &[Some(261)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 83 - "Plus" */
-    LookaheadDFA {
-        states: &[Some(262)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 84 - "Poison" */
-    LookaheadDFA {
-        states: &[Some(199)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 85 - "PosInt" */
+    /* 84 - "Period" */
     LookaheadDFA {
         states: &[Some(265)],
         transitions: &[],
         k: 0,
     },
-    /* 86 - "Position" */
+    /* 85 - "Plus" */
+    LookaheadDFA {
+        states: &[Some(266)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 86 - "Poison" */
+    LookaheadDFA {
+        states: &[Some(203)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 87 - "PosInt" */
+    LookaheadDFA {
+        states: &[Some(269)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 88 - "Position" */
     LookaheadDFA {
         states: &[None, Some(89), Some(90)],
         transitions: &[
@@ -7407,7 +7438,7 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 87 - "PositionLR" */
+    /* 89 - "PositionLR" */
     LookaheadDFA {
         states: &[None, Some(99), Some(100), Some(101)],
         transitions: &[
@@ -7417,7 +7448,7 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 88 - "PositionLRTB" */
+    /* 90 - "PositionLRTB" */
     LookaheadDFA {
         states: &[None, Some(95), Some(96), Some(97), Some(98)],
         transitions: &[
@@ -7428,13 +7459,13 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 89 - "PositionTB" */
+    /* 91 - "PositionTB" */
     LookaheadDFA {
         states: &[Some(102)],
         transitions: &[],
         k: 0,
     },
-    /* 90 - "PositionTBOpt" */
+    /* 92 - "PositionTBOpt" */
     LookaheadDFA {
         states: &[None, Some(103), Some(104)],
         transitions: &[
@@ -7444,27 +7475,27 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 91 - "PositionTOrB" */
+    /* 93 - "PositionTOrB" */
     LookaheadDFA {
         states: &[None, Some(105), Some(106)],
         transitions: &[DFATransition(0, 46, 1), DFATransition(0, 47, 2)],
         k: 1,
     },
-    /* 92 - "PowerupDropsEasierToFalloff" */
+    /* 94 - "PowerupDropsEasierToFalloff" */
     LookaheadDFA {
-        states: &[Some(180)],
+        states: &[Some(183)],
         transitions: &[],
         k: 0,
     },
-    /* 93 - "PowerupDropsEasierToFalloffOpt" */
+    /* 95 - "PowerupDropsEasierToFalloffOpt" */
     LookaheadDFA {
-        states: &[None, Some(185), Some(186)],
+        states: &[None, Some(188), Some(189)],
         transitions: &[DFATransition(0, 67, 1), DFATransition(0, 69, 2)],
         k: 1,
     },
-    /* 94 - "PowerupDropsEasierToFalloffOpt0" */
+    /* 96 - "PowerupDropsEasierToFalloffOpt0" */
     LookaheadDFA {
-        states: &[None, Some(181), Some(184)],
+        states: &[None, Some(184), Some(187)],
         transitions: &[
             DFATransition(0, 58, 1),
             DFATransition(0, 73, 2),
@@ -7472,19 +7503,19 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 95 - "PowerupDropsEasierToFalloffOpt0Group" */
+    /* 97 - "PowerupDropsEasierToFalloffOpt0Group" */
     LookaheadDFA {
-        states: &[None, Some(182), Some(183)],
+        states: &[None, Some(185), Some(186)],
         transitions: &[DFATransition(0, 58, 2), DFATransition(0, 77, 1)],
         k: 1,
     },
-    /* 96 - "Quantity" */
+    /* 98 - "Quantity" */
     LookaheadDFA {
         states: &[Some(144)],
         transitions: &[],
         k: 0,
     },
-    /* 97 - "QuantityOpt" */
+    /* 99 - "QuantityOpt" */
     LookaheadDFA {
         states: &[None, Some(145), Some(146)],
         transitions: &[
@@ -7496,97 +7527,97 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 98 - "RandomSuffix" */
+    /* 100 - "RandomSuffix" */
     LookaheadDFA {
         states: &[Some(163)],
         transitions: &[],
         k: 0,
     },
-    /* 99 - "Recovery" */
+    /* 101 - "Recovery" */
     LookaheadDFA {
-        states: &[Some(195)],
+        states: &[Some(199)],
         transitions: &[],
         k: 0,
     },
-    /* 100 - "ShapeOfBoardBottom" */
-    LookaheadDFA {
-        states: &[Some(207)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 101 - "ShapeOfBoardCenter" */
-    LookaheadDFA {
-        states: &[Some(205)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 102 - "ShapeOfBoardCorners" */
-    LookaheadDFA {
-        states: &[Some(208)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 103 - "ShapeOfBoardPerimeter" */
-    LookaheadDFA {
-        states: &[Some(204)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 104 - "ShapeOfBoardTop" */
-    LookaheadDFA {
-        states: &[Some(206)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 105 - "ShapeOfCrescentMoon" */
-    LookaheadDFA {
-        states: &[Some(210)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 106 - "ShapeOfCross" */
-    LookaheadDFA {
-        states: &[Some(202)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 107 - "ShapeOfL" */
-    LookaheadDFA {
-        states: &[Some(200)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 108 - "ShapeOfOblique" */
+    /* 102 - "ShapeOfBoardBottom" */
     LookaheadDFA {
         states: &[Some(211)],
         transitions: &[],
         k: 0,
     },
-    /* 109 - "ShapeOfSomeKind" */
-    LookaheadDFA {
-        states: &[Some(212)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 110 - "ShapeOfSpiderweb" */
+    /* 103 - "ShapeOfBoardCenter" */
     LookaheadDFA {
         states: &[Some(209)],
         transitions: &[],
         k: 0,
     },
-    /* 111 - "ShapeOfSquare" */
+    /* 104 - "ShapeOfBoardCorners" */
     LookaheadDFA {
-        states: &[Some(203)],
+        states: &[Some(212)],
         transitions: &[],
         k: 0,
     },
-    /* 112 - "ShapeOfZ" */
+    /* 105 - "ShapeOfBoardPerimeter" */
     LookaheadDFA {
-        states: &[Some(201)],
+        states: &[Some(208)],
         transitions: &[],
         k: 0,
     },
-    /* 113 - "ShapeType" */
+    /* 106 - "ShapeOfBoardTop" */
+    LookaheadDFA {
+        states: &[Some(210)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 107 - "ShapeOfCrescentMoon" */
+    LookaheadDFA {
+        states: &[Some(214)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 108 - "ShapeOfCross" */
+    LookaheadDFA {
+        states: &[Some(206)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 109 - "ShapeOfL" */
+    LookaheadDFA {
+        states: &[Some(204)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 110 - "ShapeOfOblique" */
+    LookaheadDFA {
+        states: &[Some(215)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 111 - "ShapeOfSomeKind" */
+    LookaheadDFA {
+        states: &[Some(216)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 112 - "ShapeOfSpiderweb" */
+    LookaheadDFA {
+        states: &[Some(213)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 113 - "ShapeOfSquare" */
+    LookaheadDFA {
+        states: &[Some(207)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 114 - "ShapeOfZ" */
+    LookaheadDFA {
+        states: &[Some(205)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 115 - "ShapeType" */
     LookaheadDFA {
         states: &[
             None,
@@ -9367,39 +9398,39 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 4,
     },
-    /* 114 - "ShapeTypeOpt" */
+    /* 116 - "ShapeTypeOpt" */
     LookaheadDFA {
         states: &[None, Some(123), Some(124)],
         transitions: &[DFATransition(0, 16, 2), DFATransition(0, 50, 1)],
         k: 1,
     },
-    /* 115 - "ShapeTypeOpt0" */
+    /* 117 - "ShapeTypeOpt0" */
     LookaheadDFA {
         states: &[None, Some(121), Some(122)],
         transitions: &[DFATransition(0, 26, 2), DFATransition(0, 50, 1)],
         k: 1,
     },
-    /* 116 - "Si" */
+    /* 118 - "Si" */
     LookaheadDFA {
-        states: &[Some(256)],
+        states: &[Some(260)],
         transitions: &[],
         k: 0,
     },
-    /* 117 - "Size" */
+    /* 119 - "Size" */
     LookaheadDFA {
         states: &[Some(164)],
         transitions: &[],
         k: 0,
     },
-    /* 118 - "SkillLines" */
+    /* 120 - "SkillLines" */
     LookaheadDFA {
         states: &[Some(0)],
         transitions: &[],
         k: 0,
     },
-    /* 119 - "SkillVolumeVariation" */
+    /* 121 - "SkillVolumeVariation" */
     LookaheadDFA {
-        states: &[None, Some(187), Some(188), Some(189)],
+        states: &[None, Some(191), Some(192), Some(193)],
         transitions: &[
             DFATransition(0, 57, 1),
             DFATransition(0, 58, 2),
@@ -9407,25 +9438,25 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 120 - "StartsWithDropLine" */
+    /* 122 - "StartsWithDropLine" */
     LookaheadDFA {
         states: &[Some(27)],
         transitions: &[],
         k: 0,
     },
-    /* 121 - "StartsWithDropLineList" */
+    /* 123 - "StartsWithDropLineList" */
     LookaheadDFA {
         states: &[None, Some(34), Some(35)],
         transitions: &[DFATransition(0, 28, 2), DFATransition(0, 72, 1)],
         k: 1,
     },
-    /* 122 - "StartsWithDropLineList0" */
+    /* 124 - "StartsWithDropLineList0" */
     LookaheadDFA {
         states: &[None, Some(36), Some(37)],
         transitions: &[DFATransition(0, 36, 2), DFATransition(0, 72, 1)],
         k: 1,
     },
-    /* 123 - "StartsWithDropLineOpt" */
+    /* 125 - "StartsWithDropLineOpt" */
     LookaheadDFA {
         states: &[None, Some(38), Some(41)],
         transitions: &[
@@ -9435,13 +9466,13 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 124 - "StartsWithDropLineOptGroup" */
+    /* 126 - "StartsWithDropLineOptGroup" */
     LookaheadDFA {
         states: &[None, Some(39), Some(40)],
         transitions: &[DFATransition(0, 52, 2), DFATransition(0, 54, 1)],
         k: 1,
     },
-    /* 125 - "StartsWithDropLineSuffix" */
+    /* 127 - "StartsWithDropLineSuffix" */
     LookaheadDFA {
         states: &[None, Some(30), Some(31), Some(32), Some(33)],
         transitions: &[
@@ -9463,21 +9494,21 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 126 - "StartsWithDropLineSuffix0" */
+    /* 128 - "StartsWithDropLineSuffix0" */
     LookaheadDFA {
         states: &[None, Some(28), Some(29)],
         transitions: &[DFATransition(0, 37, 2), DFATransition(0, 63, 1)],
         k: 1,
     },
-    /* 127 - "Turns" */
+    /* 129 - "Turns" */
     LookaheadDFA {
         states: &[Some(166)],
         transitions: &[],
         k: 0,
     },
-    /* 128 - "TurnsOfApplyBlock" */
+    /* 130 - "TurnsOfApplyBlock" */
     LookaheadDFA {
-        states: &[None, Some(167), Some(168)],
+        states: &[None, Some(167), Some(168), Some(169)],
         transitions: &[
             DFATransition(0, 5, 1),
             DFATransition(0, 6, 1),
@@ -9489,80 +9520,81 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
             DFATransition(0, 12, 1),
             DFATransition(0, 13, 1),
             DFATransition(0, 14, 1),
+            DFATransition(0, 30, 3),
             DFATransition(0, 31, 1),
             DFATransition(0, 54, 2),
         ],
         k: 1,
     },
-    /* 129 - "TurnsOfApplyStmt" */
+    /* 131 - "TurnsOfApplyStmt" */
     LookaheadDFA {
         states: &[Some(53)],
         transitions: &[],
         k: 0,
     },
-    /* 130 - "Water" */
+    /* 132 - "Water" */
     LookaheadDFA {
-        states: &[Some(191)],
+        states: &[Some(195)],
         transitions: &[],
         k: 0,
     },
-    /* 131 - "Wo" */
+    /* 133 - "Wo" */
     LookaheadDFA {
-        states: &[Some(251)],
+        states: &[Some(255)],
         transitions: &[],
         k: 0,
     },
-    /* 132 - "Wood" */
+    /* 134 - "Wood" */
     LookaheadDFA {
-        states: &[Some(192)],
+        states: &[Some(196)],
         transitions: &[],
         k: 0,
     },
-    /* 133 - "WordAll" */
-    LookaheadDFA {
-        states: &[Some(215)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 134 - "WordBetween" */
-    LookaheadDFA {
-        states: &[Some(244)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 135 - "WordBoard" */
-    LookaheadDFA {
-        states: &[Some(238)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 136 - "WordBottom" */
-    LookaheadDFA {
-        states: &[Some(235)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 137 - "WordChange" */
-    LookaheadDFA {
-        states: &[Some(213)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 138 - "WordCol" */
-    LookaheadDFA {
-        states: &[Some(229)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 139 - "WordCount" */
+    /* 135 - "WordAll" */
     LookaheadDFA {
         states: &[Some(219)],
         transitions: &[],
         k: 0,
     },
-    /* 140 - "WordCountOpt" */
+    /* 136 - "WordBetween" */
     LookaheadDFA {
-        states: &[None, Some(220), Some(223)],
+        states: &[Some(248)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 137 - "WordBoard" */
+    LookaheadDFA {
+        states: &[Some(242)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 138 - "WordBottom" */
+    LookaheadDFA {
+        states: &[Some(239)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 139 - "WordChange" */
+    LookaheadDFA {
+        states: &[Some(217)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 140 - "WordCol" */
+    LookaheadDFA {
+        states: &[Some(233)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 141 - "WordCount" */
+    LookaheadDFA {
+        states: &[Some(223)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 142 - "WordCountOpt" */
+    LookaheadDFA {
+        states: &[None, Some(224), Some(227)],
         transitions: &[
             DFATransition(0, 28, 2),
             DFATransition(0, 34, 1),
@@ -9574,245 +9606,245 @@ pub const LOOKAHEAD_AUTOMATA: &[LookaheadDFA; 169] = &[
         ],
         k: 1,
     },
-    /* 141 - "WordCountOptGroup" */
+    /* 143 - "WordCountOptGroup" */
     LookaheadDFA {
-        states: &[None, Some(221), Some(222)],
+        states: &[None, Some(225), Some(226)],
         transitions: &[DFATransition(0, 34, 1), DFATransition(0, 35, 2)],
         k: 1,
     },
-    /* 142 - "WordDrop" */
-    LookaheadDFA {
-        states: &[Some(214)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 143 - "WordFall" */
-    LookaheadDFA {
-        states: &[Some(249)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 144 - "WordFalloff" */
-    LookaheadDFA {
-        states: &[Some(248)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 145 - "WordFiveAttribute" */
-    LookaheadDFA {
-        states: &[Some(216)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 146 - "WordGen" */
-    LookaheadDFA {
-        states: &[Some(224)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 147 - "WordHorizon" */
-    LookaheadDFA {
-        states: &[Some(227)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 148 - "WordLeft" */
-    LookaheadDFA {
-        states: &[Some(232)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 149 - "WordLeftAndRight" */
-    LookaheadDFA {
-        states: &[Some(231)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 150 - "WordLittle" */
-    LookaheadDFA {
-        states: &[Some(246)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 151 - "WordLittleMore" */
-    LookaheadDFA {
-        states: &[Some(245)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 152 - "WordLock" */
-    LookaheadDFA {
-        states: &[Some(240)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 153 - "WordLook" */
-    LookaheadDFA {
-        states: &[Some(237)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 154 - "WordMost" */
-    LookaheadDFA {
-        states: &[Some(236)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 155 - "WordOnly" */
-    LookaheadDFA {
-        states: &[Some(247)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 156 - "WordOther" */
-    LookaheadDFA {
-        states: &[Some(225)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 157 - "WordPowerUp" */
-    LookaheadDFA {
-        states: &[Some(242)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 158 - "WordProbability" */
-    LookaheadDFA {
-        states: &[Some(250)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 159 - "WordRandom" */
-    LookaheadDFA {
-        states: &[Some(217)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 160 - "WordRelease" */
-    LookaheadDFA {
-        states: &[Some(239)],
-        transitions: &[],
-        k: 0,
-    },
-    /* 161 - "WordReplace" */
+    /* 144 - "WordDrop" */
     LookaheadDFA {
         states: &[Some(218)],
         transitions: &[],
         k: 0,
     },
-    /* 162 - "WordRight" */
+    /* 145 - "WordFall" */
     LookaheadDFA {
-        states: &[Some(233)],
+        states: &[Some(253)],
         transitions: &[],
         k: 0,
     },
-    /* 163 - "WordRow" */
+    /* 146 - "WordFalloff" */
+    LookaheadDFA {
+        states: &[Some(252)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 147 - "WordFiveAttribute" */
+    LookaheadDFA {
+        states: &[Some(220)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 148 - "WordGen" */
     LookaheadDFA {
         states: &[Some(228)],
         transitions: &[],
         k: 0,
     },
-    /* 164 - "WordSide" */
+    /* 149 - "WordHorizon" */
     LookaheadDFA {
-        states: &[Some(230)],
+        states: &[Some(231)],
         transitions: &[],
         k: 0,
     },
-    /* 165 - "WordState" */
+    /* 150 - "WordLeft" */
+    LookaheadDFA {
+        states: &[Some(236)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 151 - "WordLeftAndRight" */
+    LookaheadDFA {
+        states: &[Some(235)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 152 - "WordLittle" */
+    LookaheadDFA {
+        states: &[Some(250)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 153 - "WordLittleMore" */
+    LookaheadDFA {
+        states: &[Some(249)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 154 - "WordLock" */
+    LookaheadDFA {
+        states: &[Some(244)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 155 - "WordLook" */
     LookaheadDFA {
         states: &[Some(241)],
         transitions: &[],
         k: 0,
     },
-    /* 166 - "WordTop" */
+    /* 156 - "WordMost" */
     LookaheadDFA {
-        states: &[Some(234)],
+        states: &[Some(240)],
         transitions: &[],
         k: 0,
     },
-    /* 167 - "WordTurn" */
+    /* 157 - "WordOnly" */
+    LookaheadDFA {
+        states: &[Some(251)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 158 - "WordOther" */
+    LookaheadDFA {
+        states: &[Some(229)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 159 - "WordPowerUp" */
+    LookaheadDFA {
+        states: &[Some(246)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 160 - "WordProbability" */
+    LookaheadDFA {
+        states: &[Some(254)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 161 - "WordRandom" */
+    LookaheadDFA {
+        states: &[Some(221)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 162 - "WordRelease" */
     LookaheadDFA {
         states: &[Some(243)],
         transitions: &[],
         k: 0,
     },
-    /* 168 - "WordVertical" */
+    /* 163 - "WordReplace" */
     LookaheadDFA {
-        states: &[Some(226)],
+        states: &[Some(222)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 164 - "WordRight" */
+    LookaheadDFA {
+        states: &[Some(237)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 165 - "WordRow" */
+    LookaheadDFA {
+        states: &[Some(232)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 166 - "WordSide" */
+    LookaheadDFA {
+        states: &[Some(234)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 167 - "WordState" */
+    LookaheadDFA {
+        states: &[Some(245)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 168 - "WordTop" */
+    LookaheadDFA {
+        states: &[Some(238)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 169 - "WordTurn" */
+    LookaheadDFA {
+        states: &[Some(247)],
+        transitions: &[],
+        k: 0,
+    },
+    /* 170 - "WordVertical" */
+    LookaheadDFA {
+        states: &[Some(230)],
         transitions: &[],
         k: 0,
     },
 ];
 
-pub const PRODUCTIONS: &[Production; 266] = &[
+pub const PRODUCTIONS: &[Production; 270] = &[
     // 0 - SkillLines: Line Period;
     Production {
-        lhs: 118,
-        production: &[ParseType::N(82), ParseType::N(74)],
+        lhs: 120,
+        production: &[ParseType::N(84), ParseType::N(76)],
     },
     // 1 - Line: GroupOfDropChange;
     Production {
-        lhs: 74,
-        production: &[ParseType::N(69)],
+        lhs: 76,
+        production: &[ParseType::N(71)],
     },
     // 2 - Line: DropRefreshStmt;
     Production {
-        lhs: 74,
+        lhs: 76,
         production: &[ParseType::N(19)],
     },
     // 3 - Line: DropUnLockStmt;
     Production {
-        lhs: 74,
+        lhs: 76,
         production: &[ParseType::N(20)],
     },
     // 4 - Line: TurnsOfApplyStmt;
     Production {
-        lhs: 74,
-        production: &[ParseType::N(129)],
+        lhs: 76,
+        production: &[ParseType::N(131)],
     },
     // 5 - GroupOfDropChange: GroupOfDropChangeOpt /* Option */ GroupOfDropChangeOpt0 /* Option */;
     Production {
-        lhs: 69,
-        production: &[ParseType::N(71), ParseType::N(70)],
+        lhs: 71,
+        production: &[ParseType::N(73), ParseType::N(72)],
     },
     // 6 - GroupOfDropChange: ChangeDropWithDropUnlockLine;
     Production {
-        lhs: 69,
+        lhs: 71,
         production: &[ParseType::N(5)],
     },
     // 7 - GroupOfDropChangeOpt0: GroupOfDropChangeOpt0Group;
     Production {
-        lhs: 71,
-        production: &[ParseType::N(72)],
+        lhs: 73,
+        production: &[ParseType::N(74)],
     },
     // 8 - GroupOfDropChangeOpt0Group: StartsWithDropLine;
     Production {
-        lhs: 72,
-        production: &[ParseType::N(120)],
+        lhs: 74,
+        production: &[ParseType::N(122)],
     },
     // 9 - GroupOfDropChangeOpt0Group: GenRandomDropStmt;
     Production {
-        lhs: 72,
-        production: &[ParseType::N(57)],
+        lhs: 74,
+        production: &[ParseType::N(59)],
     },
     // 10 - GroupOfDropChangeOpt0Group: GenShapeStmt;
     Production {
-        lhs: 72,
-        production: &[ParseType::N(66)],
+        lhs: 74,
+        production: &[ParseType::N(68)],
     },
     // 11 - GroupOfDropChangeOpt0: ;
     Production {
-        lhs: 71,
+        lhs: 73,
         production: &[],
     },
     // 12 - GroupOfDropChangeOpt: DropUnlockBlock;
     Production {
-        lhs: 70,
+        lhs: 72,
         production: &[ParseType::N(21)],
     },
     // 13 - GroupOfDropChangeOpt: ;
     Production {
-        lhs: 70,
+        lhs: 72,
         production: &[],
     },
     // 14 - ChangeDropWithDropUnlockLine: AllDrops ChangeDropWithDropUnlockLineOpt /* Option */ ChangeDropWithDropUnlockLineOpt0 /* Option */;
@@ -9830,34 +9862,34 @@ pub const PRODUCTIONS: &[Production; 266] = &[
         lhs: 8,
         production: &[
             ParseType::N(9),
-            ParseType::N(137),
-            ParseType::N(77),
+            ParseType::N(139),
+            ParseType::N(79),
             ParseType::N(24),
         ],
     },
     // 17 - ChangeDropWithDropUnlockLineOpt0Group: GenShapeStmt;
     Production {
         lhs: 8,
-        production: &[ParseType::N(66)],
+        production: &[ParseType::N(68)],
     },
     // 18 - ChangeDropWithDropUnlockLineOpt0Group: WordPowerUp;
     Production {
         lhs: 8,
-        production: &[ParseType::N(157)],
+        production: &[ParseType::N(159)],
     },
     // 19 - ChangeDropWithDropUnlockLineOpt0Group: WordLock;
     Production {
         lhs: 8,
-        production: &[ParseType::N(152)],
+        production: &[ParseType::N(154)],
     },
     // 20 - ChangeDropWithDropUnlockLineOpt1: Si Camma GenRandomDropBlock WordGen;
     Production {
         lhs: 9,
         production: &[
-            ParseType::N(146),
-            ParseType::N(56),
+            ParseType::N(148),
+            ParseType::N(58),
             ParseType::N(3),
-            ParseType::N(116),
+            ParseType::N(118),
         ],
     },
     // 21 - ChangeDropWithDropUnlockLineOpt1: ;
@@ -9883,7 +9915,7 @@ pub const PRODUCTIONS: &[Production; 266] = &[
     // 25 - ChangeDropWithDropUnlockLineOptGroup: Wo;
     Production {
         lhs: 10,
-        production: &[ParseType::N(131)],
+        production: &[ParseType::N(133)],
     },
     // 26 - ChangeDropWithDropUnlockLineOpt: ;
     Production {
@@ -9892,560 +9924,560 @@ pub const PRODUCTIONS: &[Production; 266] = &[
     },
     // 27 - StartsWithDropLine: Drops StartsWithDropLineSuffix0;
     Production {
-        lhs: 120,
-        production: &[ParseType::N(126), ParseType::N(24)],
+        lhs: 122,
+        production: &[ParseType::N(128), ParseType::N(24)],
     },
     // 28 - StartsWithDropLineSuffix0: Wo StartsWithDropLineSuffix;
     Production {
-        lhs: 126,
-        production: &[ParseType::N(125), ParseType::N(131)],
+        lhs: 128,
+        production: &[ParseType::N(127), ParseType::N(133)],
     },
     // 29 - StartsWithDropLineSuffix0: WordOther From GenRandomDropBlock WordGen;
     Production {
-        lhs: 126,
+        lhs: 128,
         production: &[
-            ParseType::N(146),
-            ParseType::N(56),
-            ParseType::N(38),
-            ParseType::N(156),
+            ParseType::N(148),
+            ParseType::N(58),
+            ParseType::N(40),
+            ParseType::N(158),
         ],
     },
     // 30 - StartsWithDropLineSuffix: Drop Ni StartsWithDropLineList /* Vec */ WordChange;
     Production {
-        lhs: 125,
+        lhs: 127,
         production: &[
-            ParseType::N(137),
-            ParseType::N(121),
-            ParseType::N(77),
+            ParseType::N(139),
+            ParseType::N(123),
+            ParseType::N(79),
             ParseType::N(16),
         ],
     },
     // 31 - StartsWithDropLineSuffix: RandomSuffix Drops Ni WordChange;
     Production {
-        lhs: 125,
+        lhs: 127,
         production: &[
-            ParseType::N(137),
-            ParseType::N(77),
+            ParseType::N(139),
+            ParseType::N(79),
             ParseType::N(24),
-            ParseType::N(98),
+            ParseType::N(100),
         ],
     },
     // 32 - StartsWithDropLineSuffix: Quantity StartsWithDropLineList0 /* Vec */ WordGen;
     Production {
-        lhs: 125,
-        production: &[ParseType::N(146), ParseType::N(122), ParseType::N(96)],
+        lhs: 127,
+        production: &[ParseType::N(148), ParseType::N(124), ParseType::N(98)],
     },
     // 33 - StartsWithDropLineSuffix: StartsWithDropLineOpt /* Option */;
     Production {
-        lhs: 125,
-        production: &[ParseType::N(123)],
+        lhs: 127,
+        production: &[ParseType::N(125)],
     },
     // 34 - StartsWithDropLineList: Camma ChangeDropBlockOtherFirst StartsWithDropLineList;
     Production {
-        lhs: 121,
-        production: &[ParseType::N(121), ParseType::N(4), ParseType::N(3)],
+        lhs: 123,
+        production: &[ParseType::N(123), ParseType::N(4), ParseType::N(3)],
     },
     // 35 - StartsWithDropLineList: ;
     Production {
-        lhs: 121,
+        lhs: 123,
         production: &[],
     },
     // 36 - StartsWithDropLineList0: Camma GenRandomDropBlock StartsWithDropLineList0;
     Production {
-        lhs: 122,
-        production: &[ParseType::N(122), ParseType::N(56), ParseType::N(3)],
+        lhs: 124,
+        production: &[ParseType::N(124), ParseType::N(58), ParseType::N(3)],
     },
     // 37 - StartsWithDropLineList0: ;
     Production {
-        lhs: 122,
+        lhs: 124,
         production: &[],
     },
     // 38 - StartsWithDropLineOpt: StartsWithDropLineOptGroup;
     Production {
-        lhs: 123,
-        production: &[ParseType::N(124)],
+        lhs: 125,
+        production: &[ParseType::N(126)],
     },
     // 39 - StartsWithDropLineOptGroup: WordPowerUp;
     Production {
-        lhs: 124,
-        production: &[ParseType::N(157)],
+        lhs: 126,
+        production: &[ParseType::N(159)],
     },
     // 40 - StartsWithDropLineOptGroup: WordLock;
     Production {
-        lhs: 124,
-        production: &[ParseType::N(152)],
+        lhs: 126,
+        production: &[ParseType::N(154)],
     },
     // 41 - StartsWithDropLineOpt: ;
     Production {
-        lhs: 123,
+        lhs: 125,
         production: &[],
     },
     // 42 - GenRandomDropStmt: RandomSuffix GenRandomDropBlock GenRandomDropStmtList /* Vec */ WordGen;
     Production {
-        lhs: 57,
+        lhs: 59,
         production: &[
-            ParseType::N(146),
+            ParseType::N(148),
+            ParseType::N(60),
             ParseType::N(58),
-            ParseType::N(56),
-            ParseType::N(98),
+            ParseType::N(100),
         ],
     },
     // 43 - GenRandomDropStmtList: Camma GenRandomDropBlock GenRandomDropStmtList;
     Production {
-        lhs: 58,
-        production: &[ParseType::N(58), ParseType::N(56), ParseType::N(3)],
+        lhs: 60,
+        production: &[ParseType::N(60), ParseType::N(58), ParseType::N(3)],
     },
     // 44 - GenRandomDropStmtList: ;
     Production {
-        lhs: 58,
+        lhs: 60,
         production: &[],
     },
     // 45 - GenRandomDropBlock: Drops Wo Quantity;
     Production {
-        lhs: 56,
-        production: &[ParseType::N(96), ParseType::N(131), ParseType::N(24)],
+        lhs: 58,
+        production: &[ParseType::N(98), ParseType::N(133), ParseType::N(24)],
     },
     // 46 - GenShapeStmt: GenShapeBlock GenShapeStmtOpt /* Option */;
     Production {
-        lhs: 66,
-        production: &[ParseType::N(67), ParseType::N(59)],
+        lhs: 68,
+        production: &[ParseType::N(69), ParseType::N(61)],
     },
     // 47 - GenShapeStmtOpt: GenShapeStmtOptGroup;
     Production {
-        lhs: 67,
-        production: &[ParseType::N(68)],
+        lhs: 69,
+        production: &[ParseType::N(70)],
     },
     // 48 - GenShapeStmtOptGroup: WordChange;
     Production {
-        lhs: 68,
-        production: &[ParseType::N(137)],
+        lhs: 70,
+        production: &[ParseType::N(139)],
     },
     // 49 - GenShapeStmtOptGroup: WordGen;
     Production {
-        lhs: 68,
-        production: &[ParseType::N(146)],
+        lhs: 70,
+        production: &[ParseType::N(148)],
     },
     // 50 - GenShapeStmtOpt: ;
     Production {
-        lhs: 67,
+        lhs: 69,
         production: &[],
     },
     // 51 - DropRefreshStmt: RandomSuffix WordDrop Wo WordReplace;
     Production {
         lhs: 19,
         production: &[
-            ParseType::N(161),
-            ParseType::N(131),
-            ParseType::N(142),
-            ParseType::N(98),
+            ParseType::N(163),
+            ParseType::N(133),
+            ParseType::N(144),
+            ParseType::N(100),
         ],
     },
     // 52 - DropUnLockStmt: WordDrop No WordLock WordState Wo WordRelease;
     Production {
         lhs: 20,
         production: &[
-            ParseType::N(160),
-            ParseType::N(131),
-            ParseType::N(165),
-            ParseType::N(152),
-            ParseType::N(78),
-            ParseType::N(142),
+            ParseType::N(162),
+            ParseType::N(133),
+            ParseType::N(167),
+            ParseType::N(154),
+            ParseType::N(80),
+            ParseType::N(144),
         ],
     },
     // 53 - TurnsOfApplyStmt: Turns TurnsOfApplyBlock;
     Production {
-        lhs: 129,
-        production: &[ParseType::N(128), ParseType::N(127)],
+        lhs: 131,
+        production: &[ParseType::N(130), ParseType::N(129)],
     },
     // 54 - ChangeDropBlockOtherFirst: Drops Wo Drop Ni;
     Production {
         lhs: 4,
         production: &[
-            ParseType::N(77),
+            ParseType::N(79),
             ParseType::N(16),
-            ParseType::N(131),
+            ParseType::N(133),
             ParseType::N(24),
         ],
     },
     // 55 - GenShapeBlock: GenShapeBlockRowCol GenShapeBlockList /* Vec */;
     Production {
-        lhs: 59,
-        production: &[ParseType::N(60), ParseType::N(64)],
+        lhs: 61,
+        production: &[ParseType::N(62), ParseType::N(66)],
     },
     // 56 - GenShapeBlockList: Camma GenShapeBlockRowCol GenShapeBlockList;
     Production {
-        lhs: 60,
-        production: &[ParseType::N(60), ParseType::N(64), ParseType::N(3)],
+        lhs: 62,
+        production: &[ParseType::N(62), ParseType::N(66), ParseType::N(3)],
     },
     // 57 - GenShapeBlockList: ;
     Production {
-        lhs: 60,
+        lhs: 62,
         production: &[],
     },
     // 58 - GenShapeBlock: GenShapeBlockOtherRowCol;
     Production {
-        lhs: 59,
-        production: &[ParseType::N(61)],
+        lhs: 61,
+        production: &[ParseType::N(63)],
     },
     // 59 - GenShapeBlockRowCol: GSStartPosition Wo Drop Ni;
     Production {
-        lhs: 64,
+        lhs: 66,
         production: &[
-            ParseType::N(77),
+            ParseType::N(79),
             ParseType::N(16),
-            ParseType::N(131),
-            ParseType::N(54),
+            ParseType::N(133),
+            ParseType::N(56),
         ],
     },
     // 60 - GenShapeBlockOtherRowCol: ShapeType GenShapeBlockOtherRowColSuffix;
     Production {
-        lhs: 61,
-        production: &[ParseType::N(63), ParseType::N(113)],
+        lhs: 63,
+        production: &[ParseType::N(65), ParseType::N(115)],
     },
     // 61 - GenShapeBlockOtherRowColSuffix: Ni Drops Wo GenShapeBlockOtherRowColOpt /* Option */;
     Production {
-        lhs: 63,
+        lhs: 65,
         production: &[
-            ParseType::N(62),
-            ParseType::N(131),
+            ParseType::N(64),
+            ParseType::N(133),
             ParseType::N(24),
-            ParseType::N(77),
+            ParseType::N(79),
         ],
     },
     // 62 - GenShapeBlockOtherRowColSuffix: Wo Drops Ni;
     Production {
-        lhs: 63,
-        production: &[ParseType::N(77), ParseType::N(24), ParseType::N(131)],
+        lhs: 65,
+        production: &[ParseType::N(79), ParseType::N(24), ParseType::N(133)],
     },
     // 63 - GenShapeBlockOtherRowColOpt: Quantity;
     Production {
-        lhs: 62,
-        production: &[ParseType::N(96)],
+        lhs: 64,
+        production: &[ParseType::N(98)],
     },
     // 64 - GenShapeBlockOtherRowColOpt: ;
     Production {
-        lhs: 62,
+        lhs: 64,
         production: &[],
     },
     // 65 - GSStartPosition: GSSPSide;
     Production {
-        lhs: 54,
-        production: &[ParseType::N(48)],
+        lhs: 56,
+        production: &[ParseType::N(50)],
     },
     // 66 - GSStartPosition: GSSPCenter;
     Production {
-        lhs: 54,
-        production: &[ParseType::N(39)],
+        lhs: 56,
+        production: &[ParseType::N(41)],
     },
     // 67 - GSSPSide: Position GSSPSideOpt /* Option */ GenShapeNumOfGen GSSPSideOpt0 /* Option */;
     Production {
-        lhs: 48,
+        lhs: 50,
         production: &[
-            ParseType::N(50),
-            ParseType::N(65),
-            ParseType::N(49),
-            ParseType::N(86),
+            ParseType::N(52),
+            ParseType::N(67),
+            ParseType::N(51),
+            ParseType::N(88),
         ],
     },
     // 68 - GSSPSideOpt0: And Position GSSPSideOpt1 /* Option */ GenShapeNumOfGen;
     Production {
-        lhs: 50,
+        lhs: 52,
         production: &[
-            ParseType::N(65),
-            ParseType::N(51),
-            ParseType::N(86),
+            ParseType::N(67),
+            ParseType::N(53),
+            ParseType::N(88),
             ParseType::N(1),
         ],
     },
     // 69 - GSSPSideOpt1: WordHorizon;
     Production {
-        lhs: 51,
-        production: &[ParseType::N(147)],
+        lhs: 53,
+        production: &[ParseType::N(149)],
     },
     // 70 - GSSPSideOpt1: ;
     Production {
-        lhs: 51,
+        lhs: 53,
         production: &[],
     },
     // 71 - GSSPSideOpt0: ;
     Production {
-        lhs: 50,
+        lhs: 52,
         production: &[],
     },
     // 72 - GSSPSideOpt: WordHorizon;
     Production {
-        lhs: 49,
-        production: &[ParseType::N(147)],
+        lhs: 51,
+        production: &[ParseType::N(149)],
     },
     // 73 - GSSPSideOpt: ;
     Production {
-        lhs: 49,
+        lhs: 51,
         production: &[],
     },
     // 74 - GSSPCenter: GSSPCenterBlocks GSSPCenterOpt /* Option */ GSSPCenterOpt0 /* Option */ GenShapeNumOfGen;
     Production {
-        lhs: 39,
+        lhs: 41,
         production: &[
-            ParseType::N(65),
-            ParseType::N(46),
+            ParseType::N(67),
+            ParseType::N(48),
+            ParseType::N(47),
             ParseType::N(45),
-            ParseType::N(43),
         ],
     },
     // 75 - GSSPCenterOpt0: GSSPCenterOpt0Group;
     Production {
-        lhs: 46,
-        production: &[ParseType::N(47)],
+        lhs: 48,
+        production: &[ParseType::N(49)],
     },
     // 76 - GSSPCenterOpt0Group: WordVertical;
     Production {
-        lhs: 47,
-        production: &[ParseType::N(168)],
+        lhs: 49,
+        production: &[ParseType::N(170)],
     },
     // 77 - GSSPCenterOpt0Group: WordHorizon;
     Production {
-        lhs: 47,
-        production: &[ParseType::N(147)],
+        lhs: 49,
+        production: &[ParseType::N(149)],
     },
     // 78 - GSSPCenterOpt0: ;
     Production {
-        lhs: 46,
+        lhs: 48,
         production: &[],
     },
     // 79 - GSSPCenterOpt: No;
     Production {
-        lhs: 45,
-        production: &[ParseType::N(78)],
+        lhs: 47,
+        production: &[ParseType::N(80)],
     },
     // 80 - GSSPCenterOpt: ;
     Production {
-        lhs: 45,
+        lhs: 47,
         production: &[],
     },
     // 81 - GSSPCenterBlocks: GSSPCenterBlock GSSPCenterBlocksOpt /* Option */;
     Production {
-        lhs: 43,
-        production: &[ParseType::N(44), ParseType::N(40)],
+        lhs: 45,
+        production: &[ParseType::N(46), ParseType::N(42)],
     },
     // 82 - GSSPCenterBlocksOpt: And GSSPCenterBlock;
     Production {
-        lhs: 44,
-        production: &[ParseType::N(40), ParseType::N(1)],
+        lhs: 46,
+        production: &[ParseType::N(42), ParseType::N(1)],
     },
     // 83 - GSSPCenterBlocksOpt: ;
     Production {
-        lhs: 44,
+        lhs: 46,
         production: &[],
     },
     // 84 - GSSPCenterBlock: PositionLRTB From PosInt GSSPCenterBlockOpt /* Option */ WordLook;
     Production {
-        lhs: 40,
+        lhs: 42,
         production: &[
-            ParseType::N(153),
-            ParseType::N(41),
-            ParseType::N(85),
-            ParseType::N(38),
-            ParseType::N(88),
+            ParseType::N(155),
+            ParseType::N(43),
+            ParseType::N(87),
+            ParseType::N(40),
+            ParseType::N(90),
         ],
     },
     // 85 - GSSPCenterBlockOpt: GSSPCenterBlockOptGroup;
     Production {
-        lhs: 41,
-        production: &[ParseType::N(42)],
+        lhs: 43,
+        production: &[ParseType::N(44)],
     },
     // 86 - GSSPCenterBlockOptGroup: WordCol;
     Production {
-        lhs: 42,
-        production: &[ParseType::N(138)],
+        lhs: 44,
+        production: &[ParseType::N(140)],
     },
     // 87 - GSSPCenterBlockOptGroup: WordRow;
     Production {
-        lhs: 42,
-        production: &[ParseType::N(163)],
+        lhs: 44,
+        production: &[ParseType::N(165)],
     },
     // 88 - GSSPCenterBlockOpt: ;
     Production {
-        lhs: 41,
+        lhs: 43,
         production: &[],
     },
     // 89 - Position: PositionLR GSSPSideWriteWidth;
     Production {
-        lhs: 86,
-        production: &[ParseType::N(52), ParseType::N(87)],
+        lhs: 88,
+        production: &[ParseType::N(54), ParseType::N(89)],
     },
     // 90 - Position: PositionTB;
     Production {
-        lhs: 86,
-        production: &[ParseType::N(89)],
+        lhs: 88,
+        production: &[ParseType::N(91)],
     },
     // 91 - GSSPSideWriteWidth: WordSide GSSPSideWriteWidthOpt /* Option */;
     Production {
-        lhs: 52,
-        production: &[ParseType::N(53), ParseType::N(164)],
+        lhs: 54,
+        production: &[ParseType::N(55), ParseType::N(166)],
     },
     // 92 - GSSPSideWriteWidth: WordVertical;
     Production {
-        lhs: 52,
-        production: &[ParseType::N(168)],
+        lhs: 54,
+        production: &[ParseType::N(170)],
     },
     // 93 - GSSPSideWriteWidthOpt: WordVertical;
     Production {
-        lhs: 53,
-        production: &[ParseType::N(168)],
+        lhs: 55,
+        production: &[ParseType::N(170)],
     },
     // 94 - GSSPSideWriteWidthOpt: ;
     Production {
-        lhs: 53,
+        lhs: 55,
         production: &[],
     },
     // 95 - PositionLRTB: WordLeft;
     Production {
-        lhs: 88,
-        production: &[ParseType::N(148)],
+        lhs: 90,
+        production: &[ParseType::N(150)],
     },
     // 96 - PositionLRTB: WordRight;
     Production {
-        lhs: 88,
-        production: &[ParseType::N(162)],
+        lhs: 90,
+        production: &[ParseType::N(164)],
     },
     // 97 - PositionLRTB: WordTop;
     Production {
-        lhs: 88,
-        production: &[ParseType::N(166)],
+        lhs: 90,
+        production: &[ParseType::N(168)],
     },
     // 98 - PositionLRTB: WordBottom;
     Production {
-        lhs: 88,
-        production: &[ParseType::N(136)],
+        lhs: 90,
+        production: &[ParseType::N(138)],
     },
     // 99 - PositionLR: WordLeft;
     Production {
-        lhs: 87,
-        production: &[ParseType::N(148)],
+        lhs: 89,
+        production: &[ParseType::N(150)],
     },
     // 100 - PositionLR: WordRight;
     Production {
-        lhs: 87,
-        production: &[ParseType::N(162)],
+        lhs: 89,
+        production: &[ParseType::N(164)],
     },
     // 101 - PositionLR: WordLeftAndRight;
     Production {
-        lhs: 87,
-        production: &[ParseType::N(149)],
+        lhs: 89,
+        production: &[ParseType::N(151)],
     },
     // 102 - PositionTB: PositionTBOpt /* Option */ PositionTOrB WordRow;
     Production {
-        lhs: 89,
-        production: &[ParseType::N(163), ParseType::N(91), ParseType::N(90)],
+        lhs: 91,
+        production: &[ParseType::N(165), ParseType::N(93), ParseType::N(92)],
     },
     // 103 - PositionTBOpt: WordMost;
     Production {
-        lhs: 90,
-        production: &[ParseType::N(154)],
+        lhs: 92,
+        production: &[ParseType::N(156)],
     },
     // 104 - PositionTBOpt: ;
     Production {
-        lhs: 90,
+        lhs: 92,
         production: &[],
     },
     // 105 - PositionTOrB: WordTop;
     Production {
-        lhs: 91,
-        production: &[ParseType::N(166)],
+        lhs: 93,
+        production: &[ParseType::N(168)],
     },
     // 106 - PositionTOrB: WordBottom;
     Production {
-        lhs: 91,
-        production: &[ParseType::N(136)],
+        lhs: 93,
+        production: &[ParseType::N(138)],
     },
     // 107 - GenShapeNumOfGen: PosInt WordCol;
     Production {
-        lhs: 65,
-        production: &[ParseType::N(138), ParseType::N(85)],
+        lhs: 67,
+        production: &[ParseType::N(140), ParseType::N(87)],
     },
     // 108 - ShapeType: ShapeOfL;
     Production {
-        lhs: 113,
-        production: &[ParseType::N(107)],
+        lhs: 115,
+        production: &[ParseType::N(109)],
     },
     // 109 - ShapeType: ShapeTypeOpt /* Option */ ShapeOfZ;
     Production {
-        lhs: 113,
-        production: &[ParseType::N(112), ParseType::N(114)],
+        lhs: 115,
+        production: &[ParseType::N(114), ParseType::N(116)],
     },
     // 110 - ShapeType: ShapeOfCross;
     Production {
-        lhs: 113,
-        production: &[ParseType::N(106)],
+        lhs: 115,
+        production: &[ParseType::N(108)],
     },
     // 111 - ShapeType: Size No ShapeOfSquare;
     Production {
-        lhs: 113,
-        production: &[ParseType::N(111), ParseType::N(78), ParseType::N(117)],
+        lhs: 115,
+        production: &[ParseType::N(113), ParseType::N(80), ParseType::N(119)],
     },
     // 112 - ShapeType: ShapeOfBoardPerimeter;
     Production {
-        lhs: 113,
-        production: &[ParseType::N(103)],
+        lhs: 115,
+        production: &[ParseType::N(105)],
     },
     // 113 - ShapeType: ShapeOfBoardCenter;
     Production {
-        lhs: 113,
-        production: &[ParseType::N(101)],
+        lhs: 115,
+        production: &[ParseType::N(103)],
     },
     // 114 - ShapeType: ShapeOfBoardTop;
     Production {
-        lhs: 113,
-        production: &[ParseType::N(104)],
+        lhs: 115,
+        production: &[ParseType::N(106)],
     },
     // 115 - ShapeType: ShapeOfBoardBottom;
     Production {
-        lhs: 113,
-        production: &[ParseType::N(100)],
+        lhs: 115,
+        production: &[ParseType::N(102)],
     },
     // 116 - ShapeType: ShapeOfBoardCorners;
     Production {
-        lhs: 113,
-        production: &[ParseType::N(102)],
+        lhs: 115,
+        production: &[ParseType::N(104)],
     },
     // 117 - ShapeType: ShapeOfSpiderweb;
     Production {
-        lhs: 113,
-        production: &[ParseType::N(110)],
+        lhs: 115,
+        production: &[ParseType::N(112)],
     },
     // 118 - ShapeType: ShapeOfCrescentMoon;
     Production {
-        lhs: 113,
-        production: &[ParseType::N(105)],
+        lhs: 115,
+        production: &[ParseType::N(107)],
     },
     // 119 - ShapeType: ShapeTypeOpt0 /* Option */ ShapeOfOblique;
     Production {
-        lhs: 113,
-        production: &[ParseType::N(108), ParseType::N(115)],
+        lhs: 115,
+        production: &[ParseType::N(110), ParseType::N(117)],
     },
     // 120 - ShapeType: PosInt ShapeOfSomeKind;
     Production {
-        lhs: 113,
-        production: &[ParseType::N(109), ParseType::N(85)],
+        lhs: 115,
+        production: &[ParseType::N(111), ParseType::N(87)],
     },
     // 121 - ShapeTypeOpt0: OnBoard;
     Production {
-        lhs: 115,
-        production: &[ParseType::N(80)],
+        lhs: 117,
+        production: &[ParseType::N(82)],
     },
     // 122 - ShapeTypeOpt0: ;
     Production {
-        lhs: 115,
+        lhs: 117,
         production: &[],
     },
     // 123 - ShapeTypeOpt: OnBoard;
     Production {
-        lhs: 114,
-        production: &[ParseType::N(80)],
+        lhs: 116,
+        production: &[ParseType::N(82)],
     },
     // 124 - ShapeTypeOpt: ;
     Production {
-        lhs: 114,
+        lhs: 116,
         production: &[],
     },
     // 125 - DropUnlockBlock: DropUnlockBlockOpt /* Option */ WordLock Wo WordRelease Si Camma;
@@ -10453,22 +10485,22 @@ pub const PRODUCTIONS: &[Production; 266] = &[
         lhs: 21,
         production: &[
             ParseType::N(3),
-            ParseType::N(116),
-            ParseType::N(160),
-            ParseType::N(131),
-            ParseType::N(152),
+            ParseType::N(118),
+            ParseType::N(162),
+            ParseType::N(133),
+            ParseType::N(154),
             ParseType::N(22),
         ],
     },
     // 126 - DropUnlockBlockOpt: DropUnlockBlockOpt0 /* Option */ No;
     Production {
         lhs: 22,
-        production: &[ParseType::N(78), ParseType::N(23)],
+        production: &[ParseType::N(80), ParseType::N(23)],
     },
     // 127 - DropUnlockBlockOpt0: WordDrop;
     Production {
         lhs: 23,
-        production: &[ParseType::N(142)],
+        production: &[ParseType::N(144)],
     },
     // 128 - DropUnlockBlockOpt0: ;
     Production {
@@ -10483,86 +10515,86 @@ pub const PRODUCTIONS: &[Production; 266] = &[
     // 130 - Drops: Drop DropsSuffix;
     Production {
         lhs: 24,
-        production: &[ParseType::N(33), ParseType::N(16)],
+        production: &[ParseType::N(34), ParseType::N(16)],
     },
     // 131 - DropsSuffix: DropsList /* Vec */;
     Production {
-        lhs: 33,
-        production: &[ParseType::N(31)],
+        lhs: 34,
+        production: &[ParseType::N(32)],
     },
     // 132 - Drops: FiveAttribute DropsList0 /* Vec */;
     Production {
         lhs: 24,
-        production: &[ParseType::N(32), ParseType::N(36)],
+        production: &[ParseType::N(33), ParseType::N(38)],
     },
     // 133 - DropsSuffix: And Drop;
     Production {
-        lhs: 33,
+        lhs: 34,
         production: &[ParseType::N(16), ParseType::N(1)],
     },
     // 134 - DropsList: ManyDrop DropsList;
     Production {
-        lhs: 31,
-        production: &[ParseType::N(31), ParseType::N(75)],
+        lhs: 32,
+        production: &[ParseType::N(32), ParseType::N(77)],
     },
     // 135 - DropsList: ;
     Production {
-        lhs: 31,
+        lhs: 32,
         production: &[],
     },
     // 136 - DropsList0: Plus Drop DropsList0;
     Production {
-        lhs: 32,
-        production: &[ParseType::N(32), ParseType::N(16), ParseType::N(83)],
+        lhs: 33,
+        production: &[ParseType::N(33), ParseType::N(16), ParseType::N(85)],
     },
     // 137 - DropsList0: ;
     Production {
-        lhs: 32,
+        lhs: 33,
         production: &[],
     },
     // 138 - ManyDrop: Camma Drop;
     Production {
-        lhs: 75,
+        lhs: 77,
         production: &[ParseType::N(16), ParseType::N(3)],
     },
     // 139 - ManyDrop: Plus Drop;
     Production {
-        lhs: 75,
-        production: &[ParseType::N(16), ParseType::N(83)],
+        lhs: 77,
+        production: &[ParseType::N(16), ParseType::N(85)],
     },
     // 140 - AllDrops: WordAll WordDrop;
     Production {
         lhs: 0,
-        production: &[ParseType::N(142), ParseType::N(133)],
+        production: &[ParseType::N(144), ParseType::N(135)],
     },
     // 141 - FiveAttribute: WordFiveAttribute FiveAttributeOpt /* Option */;
     Production {
-        lhs: 36,
-        production: &[ParseType::N(37), ParseType::N(145)],
+        lhs: 38,
+        production: &[ParseType::N(39), ParseType::N(147)],
     },
     // 142 - FiveAttributeOpt: WordDrop;
     Production {
-        lhs: 37,
-        production: &[ParseType::N(142)],
+        lhs: 39,
+        production: &[ParseType::N(144)],
     },
     // 143 - FiveAttributeOpt: ;
     Production {
-        lhs: 37,
+        lhs: 39,
         production: &[],
     },
     // 144 - Quantity: PosInt WordCount QuantityOpt /* Option */;
     Production {
-        lhs: 96,
-        production: &[ParseType::N(97), ParseType::N(139), ParseType::N(85)],
+        lhs: 98,
+        production: &[ParseType::N(99), ParseType::N(141), ParseType::N(87)],
     },
     // 145 - QuantityOpt: Each;
     Production {
-        lhs: 97,
-        production: &[ParseType::N(34)],
+        lhs: 99,
+        production: &[ParseType::N(35)],
     },
     // 146 - QuantityOpt: ;
     Production {
-        lhs: 97,
+        lhs: 99,
         production: &[],
     },
     // 147 - Drop: Color DropOpt /* Option */;
@@ -10573,12 +10605,12 @@ pub const PRODUCTIONS: &[Production; 266] = &[
     // 148 - Drop: NonColoredDrop DropOpt0 /* Option */;
     Production {
         lhs: 16,
-        production: &[ParseType::N(18), ParseType::N(79)],
+        production: &[ParseType::N(18), ParseType::N(81)],
     },
     // 149 - DropOpt0: WordDrop;
     Production {
         lhs: 18,
-        production: &[ParseType::N(142)],
+        production: &[ParseType::N(144)],
     },
     // 150 - DropOpt0: ;
     Production {
@@ -10588,7 +10620,7 @@ pub const PRODUCTIONS: &[Production; 266] = &[
     // 151 - DropOpt: WordDrop;
     Production {
         lhs: 17,
-        production: &[ParseType::N(142)],
+        production: &[ParseType::N(144)],
     },
     // 152 - DropOpt: ;
     Production {
@@ -10597,48 +10629,48 @@ pub const PRODUCTIONS: &[Production; 266] = &[
     },
     // 153 - NonColoredDrop: Recovery;
     Production {
-        lhs: 79,
-        production: &[ParseType::N(99)],
+        lhs: 81,
+        production: &[ParseType::N(101)],
     },
     // 154 - NonColoredDrop: Disturb;
     Production {
-        lhs: 79,
+        lhs: 81,
         production: &[ParseType::N(15)],
     },
     // 155 - NonColoredDrop: Bomb;
     Production {
-        lhs: 79,
+        lhs: 81,
         production: &[ParseType::N(2)],
     },
     // 156 - NonColoredDrop: Poison;
     Production {
-        lhs: 79,
-        production: &[ParseType::N(84)],
+        lhs: 81,
+        production: &[ParseType::N(86)],
     },
     // 157 - NonColoredDrop: DeadlyPoison;
     Production {
-        lhs: 79,
+        lhs: 81,
         production: &[ParseType::N(14)],
     },
     // 158 - Color: Fire;
     Production {
         lhs: 11,
-        production: &[ParseType::N(35)],
+        production: &[ParseType::N(37)],
     },
     // 159 - Color: Water;
     Production {
         lhs: 11,
-        production: &[ParseType::N(130)],
+        production: &[ParseType::N(132)],
     },
     // 160 - Color: Wood;
     Production {
         lhs: 11,
-        production: &[ParseType::N(132)],
+        production: &[ParseType::N(134)],
     },
     // 161 - Color: Lightning;
     Production {
         lhs: 11,
-        production: &[ParseType::N(73)],
+        production: &[ParseType::N(75)],
     },
     // 162 - Color: Dark;
     Production {
@@ -10647,542 +10679,570 @@ pub const PRODUCTIONS: &[Production; 266] = &[
     },
     // 163 - RandomSuffix: WordRandom De;
     Production {
-        lhs: 98,
-        production: &[ParseType::N(13), ParseType::N(159)],
+        lhs: 100,
+        production: &[ParseType::N(13), ParseType::N(161)],
     },
     // 164 - Size: PosInt Multi PosInt;
     Production {
-        lhs: 117,
-        production: &[ParseType::N(85), ParseType::N(76), ParseType::N(85)],
+        lhs: 119,
+        production: &[ParseType::N(87), ParseType::N(78), ParseType::N(87)],
     },
     // 165 - OnBoard: WordBoard WordTop Ni;
     Production {
-        lhs: 80,
-        production: &[ParseType::N(77), ParseType::N(166), ParseType::N(135)],
+        lhs: 82,
+        production: &[ParseType::N(79), ParseType::N(168), ParseType::N(137)],
     },
     // 166 - Turns: PosInt WordTurn No WordBetween Camma;
     Production {
-        lhs: 127,
+        lhs: 129,
         production: &[
             ParseType::N(3),
-            ParseType::N(134),
-            ParseType::N(78),
-            ParseType::N(167),
-            ParseType::N(85),
+            ParseType::N(136),
+            ParseType::N(80),
+            ParseType::N(169),
+            ParseType::N(87),
         ],
     },
-    // 167 - TurnsOfApplyBlock: DropsEasierToFalloff;
+    // 167 - TurnsOfApplyBlock: DropsEasierToFalloffOrFallLockDrop;
     Production {
-        lhs: 128,
+        lhs: 130,
         production: &[ParseType::N(25)],
     },
     // 168 - TurnsOfApplyBlock: PowerupDropsEasierToFalloff;
     Production {
-        lhs: 128,
-        production: &[ParseType::N(92)],
+        lhs: 130,
+        production: &[ParseType::N(94)],
     },
-    // 169 - DropsEasierToFalloff: Drops DropsEasierToFalloffOpt /* Option */ DropsEasierToFalloffOpt0 /* Option */ DropsEasierToFalloffOpt1 /* Option */ DropsEasierToFalloffOpt2 /* Option */;
+    // 169 - TurnsOfApplyBlock: FallLockDropOfAll;
+    Production {
+        lhs: 130,
+        production: &[ParseType::N(36)],
+    },
+    // 170 - DropsEasierToFalloffOrFallLockDrop: Drops DropsEasierToFalloffOrFallLockDropOpt /* Option */ DropsEasierToFalloffOrFallLockDropOpt0 /* Option */ DropsEasierToFalloffOrFallLockDropOpt1 /* Option */ DropsEasierToFalloffOrFallLockDropOpt2 /* Option */;
     Production {
         lhs: 25,
         production: &[
-            ParseType::N(29),
+            ParseType::N(30),
             ParseType::N(28),
             ParseType::N(27),
             ParseType::N(26),
             ParseType::N(24),
         ],
     },
-    // 170 - DropsEasierToFalloffOpt2: DropsEasierToFalloffOpt2Group;
-    Production {
-        lhs: 29,
-        production: &[ParseType::N(30)],
-    },
-    // 171 - DropsEasierToFalloffOpt2Group: WordFalloff;
+    // 171 - DropsEasierToFalloffOrFallLockDropOpt2: DropsEasierToFalloffOrFallLockDropOpt2Group;
     Production {
         lhs: 30,
-        production: &[ParseType::N(144)],
+        production: &[ParseType::N(31)],
     },
-    // 172 - DropsEasierToFalloffOpt2Group: WordFall;
+    // 172 - DropsEasierToFalloffOrFallLockDropOpt2Group: WordFalloff;
+    Production {
+        lhs: 31,
+        production: &[ParseType::N(146)],
+    },
+    // 173 - DropsEasierToFalloffOrFallLockDropOpt2Group: WordFall;
+    Production {
+        lhs: 31,
+        production: &[ParseType::N(145)],
+    },
+    // 174 - DropsEasierToFalloffOrFallLockDropOpt2: ;
     Production {
         lhs: 30,
-        production: &[ParseType::N(143)],
+        production: &[],
     },
-    // 173 - DropsEasierToFalloffOpt2: ;
+    // 175 - DropsEasierToFalloffOrFallLockDropOpt1: DropsEasierToFalloffOrFallLockDropOpt1Group;
+    Production {
+        lhs: 28,
+        production: &[ParseType::N(29)],
+    },
+    // 176 - DropsEasierToFalloffOrFallLockDropOpt1Group: SkillVolumeVariation;
     Production {
         lhs: 29,
-        production: &[],
+        production: &[ParseType::N(121)],
     },
-    // 174 - DropsEasierToFalloffOpt1: SkillVolumeVariation;
+    // 177 - DropsEasierToFalloffOrFallLockDropOpt1Group: WordLock WordState De;
+    Production {
+        lhs: 29,
+        production: &[ParseType::N(13), ParseType::N(167), ParseType::N(154)],
+    },
+    // 178 - DropsEasierToFalloffOrFallLockDropOpt1: ;
     Production {
         lhs: 28,
-        production: &[ParseType::N(119)],
-    },
-    // 175 - DropsEasierToFalloffOpt1: ;
-    Production {
-        lhs: 28,
         production: &[],
     },
-    // 176 - DropsEasierToFalloffOpt0: Ga;
+    // 179 - DropsEasierToFalloffOrFallLockDropOpt0: Ga;
     Production {
         lhs: 27,
-        production: &[ParseType::N(55)],
+        production: &[ParseType::N(57)],
     },
-    // 177 - DropsEasierToFalloffOpt0: ;
+    // 180 - DropsEasierToFalloffOrFallLockDropOpt0: ;
     Production {
         lhs: 27,
         production: &[],
     },
-    // 178 - DropsEasierToFalloffOpt: Camma WordPowerUp WordDrop;
+    // 181 - DropsEasierToFalloffOrFallLockDropOpt: Camma WordPowerUp WordDrop;
     Production {
         lhs: 26,
-        production: &[ParseType::N(142), ParseType::N(157), ParseType::N(3)],
+        production: &[ParseType::N(144), ParseType::N(159), ParseType::N(3)],
     },
-    // 179 - DropsEasierToFalloffOpt: ;
+    // 182 - DropsEasierToFalloffOrFallLockDropOpt: ;
     Production {
         lhs: 26,
         production: &[],
     },
-    // 180 - PowerupDropsEasierToFalloff: WordPowerUp WordDrop PowerupDropsEasierToFalloffOpt /* Option */ Ga PowerupDropsEasierToFalloffOpt0 /* Option */;
-    Production {
-        lhs: 92,
-        production: &[
-            ParseType::N(94),
-            ParseType::N(55),
-            ParseType::N(93),
-            ParseType::N(142),
-            ParseType::N(157),
-        ],
-    },
-    // 181 - PowerupDropsEasierToFalloffOpt0: PowerupDropsEasierToFalloffOpt0Group;
+    // 183 - PowerupDropsEasierToFalloff: WordPowerUp WordDrop PowerupDropsEasierToFalloffOpt /* Option */ Ga PowerupDropsEasierToFalloffOpt0 /* Option */;
     Production {
         lhs: 94,
-        production: &[ParseType::N(95)],
-    },
-    // 182 - PowerupDropsEasierToFalloffOpt0Group: PosInt Percent No WordProbability De WordFall;
-    Production {
-        lhs: 95,
         production: &[
-            ParseType::N(143),
+            ParseType::N(96),
+            ParseType::N(57),
+            ParseType::N(95),
+            ParseType::N(144),
+            ParseType::N(159),
+        ],
+    },
+    // 184 - PowerupDropsEasierToFalloffOpt0: PowerupDropsEasierToFalloffOpt0Group;
+    Production {
+        lhs: 96,
+        production: &[ParseType::N(97)],
+    },
+    // 185 - PowerupDropsEasierToFalloffOpt0Group: PosInt Percent No WordProbability De WordFall;
+    Production {
+        lhs: 97,
+        production: &[
+            ParseType::N(145),
             ParseType::N(13),
-            ParseType::N(158),
-            ParseType::N(78),
-            ParseType::N(81),
-            ParseType::N(85),
+            ParseType::N(160),
+            ParseType::N(80),
+            ParseType::N(83),
+            ParseType::N(87),
         ],
     },
-    // 183 - PowerupDropsEasierToFalloffOpt0Group: WordLittle WordFalloff;
+    // 186 - PowerupDropsEasierToFalloffOpt0Group: WordLittle WordFalloff;
     Production {
-        lhs: 95,
-        production: &[ParseType::N(144), ParseType::N(150)],
+        lhs: 97,
+        production: &[ParseType::N(146), ParseType::N(152)],
     },
-    // 184 - PowerupDropsEasierToFalloffOpt0: ;
+    // 187 - PowerupDropsEasierToFalloffOpt0: ;
     Production {
-        lhs: 94,
+        lhs: 96,
         production: &[],
     },
-    // 185 - PowerupDropsEasierToFalloffOpt: And Drops;
+    // 188 - PowerupDropsEasierToFalloffOpt: And Drops;
     Production {
-        lhs: 93,
+        lhs: 95,
         production: &[ParseType::N(24), ParseType::N(1)],
     },
-    // 186 - PowerupDropsEasierToFalloffOpt: ;
+    // 189 - PowerupDropsEasierToFalloffOpt: ;
     Production {
-        lhs: 93,
+        lhs: 95,
         production: &[],
     },
-    // 187 - SkillVolumeVariation: WordLittleMore;
+    // 190 - FallLockDropOfAll: WordAll WordDrop Ga WordLock WordState De WordFall;
     Production {
-        lhs: 119,
-        production: &[ParseType::N(151)],
+        lhs: 36,
+        production: &[
+            ParseType::N(145),
+            ParseType::N(13),
+            ParseType::N(167),
+            ParseType::N(154),
+            ParseType::N(57),
+            ParseType::N(144),
+            ParseType::N(135),
+        ],
     },
-    // 188 - SkillVolumeVariation: WordLittle;
+    // 191 - SkillVolumeVariation: WordLittleMore;
     Production {
-        lhs: 119,
-        production: &[ParseType::N(150)],
+        lhs: 121,
+        production: &[ParseType::N(153)],
     },
-    // 189 - SkillVolumeVariation: WordOnly;
+    // 192 - SkillVolumeVariation: WordLittle;
     Production {
-        lhs: 119,
-        production: &[ParseType::N(155)],
+        lhs: 121,
+        production: &[ParseType::N(152)],
     },
-    // 190 - Fire: '火';
+    // 193 - SkillVolumeVariation: WordOnly;
     Production {
-        lhs: 35,
+        lhs: 121,
+        production: &[ParseType::N(157)],
+    },
+    // 194 - Fire: '火';
+    Production {
+        lhs: 37,
         production: &[ParseType::T(5)],
     },
-    // 191 - Water: '水';
-    Production {
-        lhs: 130,
-        production: &[ParseType::T(6)],
-    },
-    // 192 - Wood: '木';
+    // 195 - Water: '水';
     Production {
         lhs: 132,
+        production: &[ParseType::T(6)],
+    },
+    // 196 - Wood: '木';
+    Production {
+        lhs: 134,
         production: &[ParseType::T(7)],
     },
-    // 193 - Lightning: '光';
+    // 197 - Lightning: '光';
     Production {
-        lhs: 73,
+        lhs: 75,
         production: &[ParseType::T(8)],
     },
-    // 194 - Dark: '闇';
+    // 198 - Dark: '闇';
     Production {
         lhs: 12,
         production: &[ParseType::T(9)],
     },
-    // 195 - Recovery: '回復';
+    // 199 - Recovery: '回復';
     Production {
-        lhs: 99,
+        lhs: 101,
         production: &[ParseType::T(10)],
     },
-    // 196 - Disturb: 'お邪魔';
+    // 200 - Disturb: 'お邪魔';
     Production {
         lhs: 15,
         production: &[ParseType::T(11)],
     },
-    // 197 - Bomb: '爆弾';
+    // 201 - Bomb: '爆弾';
     Production {
         lhs: 2,
         production: &[ParseType::T(12)],
     },
-    // 198 - DeadlyPoison: '猛毒';
+    // 202 - DeadlyPoison: '猛毒';
     Production {
         lhs: 14,
         production: &[ParseType::T(13)],
     },
-    // 199 - Poison: '毒';
+    // 203 - Poison: '毒';
     Production {
-        lhs: 84,
+        lhs: 86,
         production: &[ParseType::T(14)],
     },
-    // 200 - ShapeOfL: 'L字型';
-    Production {
-        lhs: 107,
-        production: &[ParseType::T(15)],
-    },
-    // 201 - ShapeOfZ: 'Z字型';
-    Production {
-        lhs: 112,
-        production: &[ParseType::T(16)],
-    },
-    // 202 - ShapeOfCross: '十字型';
-    Production {
-        lhs: 106,
-        production: &[ParseType::T(17)],
-    },
-    // 203 - ShapeOfSquare: '正方形';
-    Production {
-        lhs: 111,
-        production: &[ParseType::T(18)],
-    },
-    // 204 - ShapeOfBoardPerimeter: '盤面外周';
-    Production {
-        lhs: 103,
-        production: &[ParseType::T(19)],
-    },
-    // 205 - ShapeOfBoardCenter: '盤面中央';
-    Production {
-        lhs: 101,
-        production: &[ParseType::T(20)],
-    },
-    // 206 - ShapeOfBoardTop: '盤面上部';
-    Production {
-        lhs: 104,
-        production: &[ParseType::T(21)],
-    },
-    // 207 - ShapeOfBoardBottom: '盤面下部';
-    Production {
-        lhs: 100,
-        production: &[ParseType::T(22)],
-    },
-    // 208 - ShapeOfBoardCorners: '盤面4隅';
-    Production {
-        lhs: 102,
-        production: &[ParseType::T(23)],
-    },
-    // 209 - ShapeOfSpiderweb: '蜘蛛の巣状';
-    Production {
-        lhs: 110,
-        production: &[ParseType::T(24)],
-    },
-    // 210 - ShapeOfCrescentMoon: '三日月状';
-    Production {
-        lhs: 105,
-        production: &[ParseType::T(25)],
-    },
-    // 211 - ShapeOfOblique: '斜め';
-    Production {
-        lhs: 108,
-        production: &[ParseType::T(26)],
-    },
-    // 212 - ShapeOfSomeKind: 'の形';
+    // 204 - ShapeOfL: 'L字型';
     Production {
         lhs: 109,
+        production: &[ParseType::T(15)],
+    },
+    // 205 - ShapeOfZ: 'Z字型';
+    Production {
+        lhs: 114,
+        production: &[ParseType::T(16)],
+    },
+    // 206 - ShapeOfCross: '十字型';
+    Production {
+        lhs: 108,
+        production: &[ParseType::T(17)],
+    },
+    // 207 - ShapeOfSquare: '正方形';
+    Production {
+        lhs: 113,
+        production: &[ParseType::T(18)],
+    },
+    // 208 - ShapeOfBoardPerimeter: '盤面外周';
+    Production {
+        lhs: 105,
+        production: &[ParseType::T(19)],
+    },
+    // 209 - ShapeOfBoardCenter: '盤面中央';
+    Production {
+        lhs: 103,
+        production: &[ParseType::T(20)],
+    },
+    // 210 - ShapeOfBoardTop: '盤面上部';
+    Production {
+        lhs: 106,
+        production: &[ParseType::T(21)],
+    },
+    // 211 - ShapeOfBoardBottom: '盤面下部';
+    Production {
+        lhs: 102,
+        production: &[ParseType::T(22)],
+    },
+    // 212 - ShapeOfBoardCorners: '盤面4隅';
+    Production {
+        lhs: 104,
+        production: &[ParseType::T(23)],
+    },
+    // 213 - ShapeOfSpiderweb: '蜘蛛の巣状';
+    Production {
+        lhs: 112,
+        production: &[ParseType::T(24)],
+    },
+    // 214 - ShapeOfCrescentMoon: '三日月状';
+    Production {
+        lhs: 107,
+        production: &[ParseType::T(25)],
+    },
+    // 215 - ShapeOfOblique: '斜め';
+    Production {
+        lhs: 110,
+        production: &[ParseType::T(26)],
+    },
+    // 216 - ShapeOfSomeKind: 'の形';
+    Production {
+        lhs: 111,
         production: &[ParseType::T(27)],
     },
-    // 213 - WordChange: '変化';
-    Production {
-        lhs: 137,
-        production: &[ParseType::T(28)],
-    },
-    // 214 - WordDrop: 'ドロップ';
-    Production {
-        lhs: 142,
-        production: &[ParseType::T(29)],
-    },
-    // 215 - WordAll: '全';
-    Production {
-        lhs: 133,
-        production: &[ParseType::T(30)],
-    },
-    // 216 - WordFiveAttribute: '5属性';
-    Production {
-        lhs: 145,
-        production: &[ParseType::T(31)],
-    },
-    // 217 - WordRandom: 'ランダム';
-    Production {
-        lhs: 159,
-        production: &[ParseType::T(32)],
-    },
-    // 218 - WordReplace: '入れ替える';
-    Production {
-        lhs: 161,
-        production: &[ParseType::T(33)],
-    },
-    // 219 - WordCount: WordCountOpt /* Option */;
+    // 217 - WordChange: '変化';
     Production {
         lhs: 139,
-        production: &[ParseType::N(140)],
+        production: &[ParseType::T(28)],
     },
-    // 220 - WordCountOpt: WordCountOptGroup;
-    Production {
-        lhs: 140,
-        production: &[ParseType::N(141)],
-    },
-    // 221 - WordCountOptGroup: '個';
-    Production {
-        lhs: 141,
-        production: &[ParseType::T(34)],
-    },
-    // 222 - WordCountOptGroup: 'つ';
-    Production {
-        lhs: 141,
-        production: &[ParseType::T(35)],
-    },
-    // 223 - WordCountOpt: ;
-    Production {
-        lhs: 140,
-        production: &[],
-    },
-    // 224 - WordGen: '生成';
-    Production {
-        lhs: 146,
-        production: &[ParseType::T(36)],
-    },
-    // 225 - WordOther: '以外';
-    Production {
-        lhs: 156,
-        production: &[ParseType::T(37)],
-    },
-    // 226 - WordVertical: '縦';
-    Production {
-        lhs: 168,
-        production: &[ParseType::T(38)],
-    },
-    // 227 - WordHorizon: '横';
-    Production {
-        lhs: 147,
-        production: &[ParseType::T(39)],
-    },
-    // 228 - WordRow: '段';
-    Production {
-        lhs: 163,
-        production: &[ParseType::T(40)],
-    },
-    // 229 - WordCol: '列';
-    Production {
-        lhs: 138,
-        production: &[ParseType::T(41)],
-    },
-    // 230 - WordSide: '端';
-    Production {
-        lhs: 164,
-        production: &[ParseType::T(42)],
-    },
-    // 231 - WordLeftAndRight: '両';
-    Production {
-        lhs: 149,
-        production: &[ParseType::T(43)],
-    },
-    // 232 - WordLeft: '左';
-    Production {
-        lhs: 148,
-        production: &[ParseType::T(44)],
-    },
-    // 233 - WordRight: '右';
-    Production {
-        lhs: 162,
-        production: &[ParseType::T(45)],
-    },
-    // 234 - WordTop: '上';
-    Production {
-        lhs: 166,
-        production: &[ParseType::T(46)],
-    },
-    // 235 - WordBottom: '下';
-    Production {
-        lhs: 136,
-        production: &[ParseType::T(47)],
-    },
-    // 236 - WordMost: '最';
-    Production {
-        lhs: 154,
-        production: &[ParseType::T(48)],
-    },
-    // 237 - WordLook: '目';
-    Production {
-        lhs: 153,
-        production: &[ParseType::T(49)],
-    },
-    // 238 - WordBoard: '盤面';
-    Production {
-        lhs: 135,
-        production: &[ParseType::T(50)],
-    },
-    // 239 - WordRelease: '解除';
-    Production {
-        lhs: 160,
-        production: &[ParseType::T(51)],
-    },
-    // 240 - WordLock: 'ロック';
-    Production {
-        lhs: 152,
-        production: &[ParseType::T(52)],
-    },
-    // 241 - WordState: '状態';
-    Production {
-        lhs: 165,
-        production: &[ParseType::T(53)],
-    },
-    // 242 - WordPowerUp: '強化';
-    Production {
-        lhs: 157,
-        production: &[ParseType::T(54)],
-    },
-    // 243 - WordTurn: 'ターン';
-    Production {
-        lhs: 167,
-        production: &[ParseType::T(55)],
-    },
-    // 244 - WordBetween: '間';
-    Production {
-        lhs: 134,
-        production: &[ParseType::T(56)],
-    },
-    // 245 - WordLittleMore: 'ほんの少し';
-    Production {
-        lhs: 151,
-        production: &[ParseType::T(57)],
-    },
-    // 246 - WordLittle: '少し';
-    Production {
-        lhs: 150,
-        production: &[ParseType::T(58)],
-    },
-    // 247 - WordOnly: 'のみ';
-    Production {
-        lhs: 155,
-        production: &[ParseType::T(59)],
-    },
-    // 248 - WordFalloff: '落ちやすくなる';
+    // 218 - WordDrop: 'ドロップ';
     Production {
         lhs: 144,
-        production: &[ParseType::T(60)],
+        production: &[ParseType::T(29)],
     },
-    // 249 - WordFall: '落ちてくる';
+    // 219 - WordAll: '全';
+    Production {
+        lhs: 135,
+        production: &[ParseType::T(30)],
+    },
+    // 220 - WordFiveAttribute: '5属性';
+    Production {
+        lhs: 147,
+        production: &[ParseType::T(31)],
+    },
+    // 221 - WordRandom: 'ランダム';
+    Production {
+        lhs: 161,
+        production: &[ParseType::T(32)],
+    },
+    // 222 - WordReplace: '入れ替える';
+    Production {
+        lhs: 163,
+        production: &[ParseType::T(33)],
+    },
+    // 223 - WordCount: WordCountOpt /* Option */;
+    Production {
+        lhs: 141,
+        production: &[ParseType::N(142)],
+    },
+    // 224 - WordCountOpt: WordCountOptGroup;
+    Production {
+        lhs: 142,
+        production: &[ParseType::N(143)],
+    },
+    // 225 - WordCountOptGroup: '個';
     Production {
         lhs: 143,
-        production: &[ParseType::T(61)],
+        production: &[ParseType::T(34)],
     },
-    // 250 - WordProbability: '確率';
+    // 226 - WordCountOptGroup: 'つ';
+    Production {
+        lhs: 143,
+        production: &[ParseType::T(35)],
+    },
+    // 227 - WordCountOpt: ;
+    Production {
+        lhs: 142,
+        production: &[],
+    },
+    // 228 - WordGen: '生成';
+    Production {
+        lhs: 148,
+        production: &[ParseType::T(36)],
+    },
+    // 229 - WordOther: '以外';
     Production {
         lhs: 158,
+        production: &[ParseType::T(37)],
+    },
+    // 230 - WordVertical: '縦';
+    Production {
+        lhs: 170,
+        production: &[ParseType::T(38)],
+    },
+    // 231 - WordHorizon: '横';
+    Production {
+        lhs: 149,
+        production: &[ParseType::T(39)],
+    },
+    // 232 - WordRow: '段';
+    Production {
+        lhs: 165,
+        production: &[ParseType::T(40)],
+    },
+    // 233 - WordCol: '列';
+    Production {
+        lhs: 140,
+        production: &[ParseType::T(41)],
+    },
+    // 234 - WordSide: '端';
+    Production {
+        lhs: 166,
+        production: &[ParseType::T(42)],
+    },
+    // 235 - WordLeftAndRight: '両';
+    Production {
+        lhs: 151,
+        production: &[ParseType::T(43)],
+    },
+    // 236 - WordLeft: '左';
+    Production {
+        lhs: 150,
+        production: &[ParseType::T(44)],
+    },
+    // 237 - WordRight: '右';
+    Production {
+        lhs: 164,
+        production: &[ParseType::T(45)],
+    },
+    // 238 - WordTop: '上';
+    Production {
+        lhs: 168,
+        production: &[ParseType::T(46)],
+    },
+    // 239 - WordBottom: '下';
+    Production {
+        lhs: 138,
+        production: &[ParseType::T(47)],
+    },
+    // 240 - WordMost: '最';
+    Production {
+        lhs: 156,
+        production: &[ParseType::T(48)],
+    },
+    // 241 - WordLook: '目';
+    Production {
+        lhs: 155,
+        production: &[ParseType::T(49)],
+    },
+    // 242 - WordBoard: '盤面';
+    Production {
+        lhs: 137,
+        production: &[ParseType::T(50)],
+    },
+    // 243 - WordRelease: '解除';
+    Production {
+        lhs: 162,
+        production: &[ParseType::T(51)],
+    },
+    // 244 - WordLock: 'ロック';
+    Production {
+        lhs: 154,
+        production: &[ParseType::T(52)],
+    },
+    // 245 - WordState: '状態';
+    Production {
+        lhs: 167,
+        production: &[ParseType::T(53)],
+    },
+    // 246 - WordPowerUp: '強化';
+    Production {
+        lhs: 159,
+        production: &[ParseType::T(54)],
+    },
+    // 247 - WordTurn: 'ターン';
+    Production {
+        lhs: 169,
+        production: &[ParseType::T(55)],
+    },
+    // 248 - WordBetween: '間';
+    Production {
+        lhs: 136,
+        production: &[ParseType::T(56)],
+    },
+    // 249 - WordLittleMore: 'ほんの少し';
+    Production {
+        lhs: 153,
+        production: &[ParseType::T(57)],
+    },
+    // 250 - WordLittle: '少し';
+    Production {
+        lhs: 152,
+        production: &[ParseType::T(58)],
+    },
+    // 251 - WordOnly: 'のみ';
+    Production {
+        lhs: 157,
+        production: &[ParseType::T(59)],
+    },
+    // 252 - WordFalloff: '落ちやすくなる';
+    Production {
+        lhs: 146,
+        production: &[ParseType::T(60)],
+    },
+    // 253 - WordFall: '落ちてくる';
+    Production {
+        lhs: 145,
+        production: &[ParseType::T(61)],
+    },
+    // 254 - WordProbability: '確率';
+    Production {
+        lhs: 160,
         production: &[ParseType::T(62)],
     },
-    // 251 - Wo: 'を';
+    // 255 - Wo: 'を';
     Production {
-        lhs: 131,
+        lhs: 133,
         production: &[ParseType::T(63)],
     },
-    // 252 - Ni: 'に';
+    // 256 - Ni: 'に';
     Production {
-        lhs: 77,
+        lhs: 79,
         production: &[ParseType::T(64)],
     },
-    // 253 - No: 'の';
+    // 257 - No: 'の';
     Production {
-        lhs: 78,
+        lhs: 80,
         production: &[ParseType::T(65)],
     },
-    // 254 - De: 'で';
+    // 258 - De: 'で';
     Production {
         lhs: 13,
         production: &[ParseType::T(66)],
     },
-    // 255 - And: 'と';
+    // 259 - And: 'と';
     Production {
         lhs: 1,
         production: &[ParseType::T(67)],
     },
-    // 256 - Si: 'し';
+    // 260 - Si: 'し';
     Production {
-        lhs: 116,
+        lhs: 118,
         production: &[ParseType::T(68)],
     },
-    // 257 - Ga: 'が';
+    // 261 - Ga: 'が';
     Production {
-        lhs: 55,
+        lhs: 57,
         production: &[ParseType::T(69)],
     },
-    // 258 - Each: 'ずつ';
+    // 262 - Each: 'ずつ';
     Production {
-        lhs: 34,
+        lhs: 35,
         production: &[ParseType::T(70)],
     },
-    // 259 - From: 'から';
+    // 263 - From: 'から';
     Production {
-        lhs: 38,
+        lhs: 40,
         production: &[ParseType::T(71)],
     },
-    // 260 - Camma: '、';
+    // 264 - Camma: '、';
     Production {
         lhs: 3,
         production: &[ParseType::T(72)],
     },
-    // 261 - Period: '。';
+    // 265 - Period: '。';
     Production {
-        lhs: 82,
+        lhs: 84,
         production: &[ParseType::T(73)],
     },
-    // 262 - Plus: '+';
-    Production {
-        lhs: 83,
-        production: &[ParseType::T(74)],
-    },
-    // 263 - Multi: '×';
-    Production {
-        lhs: 76,
-        production: &[ParseType::T(75)],
-    },
-    // 264 - Percent: '%';
-    Production {
-        lhs: 81,
-        production: &[ParseType::T(76)],
-    },
-    // 265 - PosInt: "[1-9]([0-9])*";
+    // 266 - Plus: '+';
     Production {
         lhs: 85,
+        production: &[ParseType::T(74)],
+    },
+    // 267 - Multi: '×';
+    Production {
+        lhs: 78,
+        production: &[ParseType::T(75)],
+    },
+    // 268 - Percent: '%';
+    Production {
+        lhs: 83,
+        production: &[ParseType::T(76)],
+    },
+    // 269 - PosInt: "[1-9]([0-9])*";
+    Production {
+        lhs: 87,
         production: &[ParseType::T(77)],
     },
 ];
@@ -11203,7 +11263,7 @@ where
     T: AsRef<Path>,
 {
     let mut llk_parser = LLKParser::new(
-        118,
+        120,
         LOOKAHEAD_AUTOMATA,
         PRODUCTIONS,
         TERMINAL_NAMES,

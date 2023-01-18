@@ -206,12 +206,17 @@ Turns
     : PosInt WordTurn No WordBetween Camma;
 
 TurnsOfApplyBlock
-    : DropsEasierToFalloff
+    : DropsEasierToFalloffOrFallLockDrop
     | PowerupDropsEasierToFalloff
+    | FallLockDropOfAll
     ;
 
-DropsEasierToFalloff
-    : Drops [ Camma WordPowerUp WordDrop ] [ Ga ] [ SkillVolumeVariation ] [ WordFalloff | WordFall ];
+DropsEasierToFalloffOrFallLockDrop
+    : Drops [ Camma WordPowerUp WordDrop ] [ Ga ]
+        [ SkillVolumeVariation
+        | WordLock WordState De
+        ]
+    [ WordFalloff | WordFall ];
 
 PowerupDropsEasierToFalloff
     : WordPowerUp WordDrop [ And Drops ] Ga
@@ -219,6 +224,9 @@ PowerupDropsEasierToFalloff
         | WordLittle WordFalloff
         ]
     ;
+
+FallLockDropOfAll
+    : WordAll WordDrop Ga WordLock WordState De WordFall;
 
 SkillVolumeVariation
     : WordLittleMore

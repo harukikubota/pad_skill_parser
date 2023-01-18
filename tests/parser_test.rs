@@ -1482,7 +1482,7 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: Some(1),
-            effect: SkillEffect::DropFallout(
+            effect: SkillEffect::DropFalloff(
                 vec![Drop::Colored(Color::Fire)],
                 VolumeVariation::Normal,
             ),
@@ -1500,7 +1500,7 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: Some(3),
-            effect: SkillEffect::DropFallout(
+            effect: SkillEffect::DropFalloff(
                 vec![
                     Drop::Colored(Color::Water),
                     Drop::NonColored(NonColoredDrop::Recovery),
@@ -1521,7 +1521,7 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: Some(99),
-            effect: SkillEffect::DropFallout(
+            effect: SkillEffect::DropFalloff(
                 vec![
                     Drop::Colored(Color::Lightning),
                     Drop::Colored(Color::Dark),
@@ -1543,7 +1543,7 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: Some(1),
-            effect: SkillEffect::DropFallout(
+            effect: SkillEffect::DropFalloff(
                 vec![
                     Drop::Colored(Color::Fire),
                     Drop::Colored(Color::Water),
@@ -1566,7 +1566,7 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: Some(1),
-            effect: SkillEffect::PowerupDropFallout(PowerupDropFalloutKind::VolumeVariation(
+            effect: SkillEffect::PowerupDropFalloff(PowerupDropFalloffKind::VolumeVariation(
                 VolumeVariation::Little,
             )),
         }]);
@@ -1583,7 +1583,7 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: Some(2),
-            effect: SkillEffect::PowerupDropFallout(PowerupDropFalloutKind::Num(25)),
+            effect: SkillEffect::PowerupDropFalloff(PowerupDropFalloffKind::Num(25)),
         }]);
 
         assert_eq!(except, grammar);
@@ -1598,7 +1598,7 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: Some(4),
-            effect: SkillEffect::PowerupDropFallout(PowerupDropFalloutKind::Num(50)),
+            effect: SkillEffect::PowerupDropFalloff(PowerupDropFalloffKind::Num(50)),
         }]);
 
         assert_eq!(except, grammar);
@@ -1613,7 +1613,7 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: Some(6),
-            effect: SkillEffect::PowerupDropFallout(PowerupDropFalloutKind::Num(100)),
+            effect: SkillEffect::PowerupDropFalloff(PowerupDropFalloffKind::Num(100)),
         }]);
 
         assert_eq!(except, grammar);
@@ -1629,7 +1629,7 @@ mod parser_test {
             Skill {
                 sub_effects: None,
                 turns_of_apply: Some(1),
-                effect: SkillEffect::DropFallout(
+                effect: SkillEffect::DropFalloff(
                     vec![Drop::Colored(Color::Water), Drop::Colored(Color::Lightning)],
                     VolumeVariation::Little,
                 ),
@@ -1637,7 +1637,7 @@ mod parser_test {
             Skill {
                 sub_effects: None,
                 turns_of_apply: Some(1),
-                effect: SkillEffect::PowerupDropFallout(PowerupDropFalloutKind::VolumeVariation(
+                effect: SkillEffect::PowerupDropFalloff(PowerupDropFalloffKind::VolumeVariation(
                     VolumeVariation::Little,
                 )),
             },
@@ -1656,14 +1656,14 @@ mod parser_test {
             Skill {
                 sub_effects: None,
                 turns_of_apply: Some(1),
-                effect: SkillEffect::PowerupDropFallout(PowerupDropFalloutKind::VolumeVariation(
+                effect: SkillEffect::PowerupDropFalloff(PowerupDropFalloffKind::VolumeVariation(
                     VolumeVariation::Little,
                 )),
             },
             Skill {
                 sub_effects: None,
                 turns_of_apply: Some(1),
-                effect: SkillEffect::DropFallout(
+                effect: SkillEffect::DropFalloff(
                     vec![Drop::Colored(Color::Fire)],
                     VolumeVariation::Little,
                 ),
@@ -1671,5 +1671,40 @@ mod parser_test {
         ]);
 
         assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn lock_drop_fall() {
+        let input = "1ターンの間、火ドロップがロック状態で落ちてくる。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(1),
+            effect: SkillEffect::FallLockDrop(vec![Drop::Colored(Color::Fire)]),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn lock_drop_fall_all() {
+        let input = "10ターンの間、全ドロップがロック状態で落ちてくる。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let _except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(1),
+            effect: SkillEffect::FallLockDrop(vec![Drop::Colored(Color::Fire)]),
+        }]);
+
+        let except = match grammar.skill_list.pop().unwrap().effect {
+            SkillEffect::FallLockDrop(drops) => drops.len(),
+            _ => 0,
+        };
+
+        assert_eq!(except, 10);
     }
 }
