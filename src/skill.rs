@@ -39,6 +39,8 @@ pub enum SkillEffect {
     PowerupDropFalloff(PowerupDropFalloffKind),
     /// ロック目覚め
     FallLockDrop(Drops),
+    /// 釘ドロップ目覚め
+    FallNailDropEasierToFalloff(VolumeVariation),
 }
 
 impl Default for SkillEffect {

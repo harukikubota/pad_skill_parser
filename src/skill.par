@@ -209,6 +209,7 @@ TurnsOfApplyBlock
     : DropsEasierToFalloffOrFallLockDrop
     | PowerupDropsEasierToFalloff
     | FallLockDropOfAll
+    | FallNailDropEasierToFalloff
     ;
 
 DropsEasierToFalloffOrFallLockDrop
@@ -227,6 +228,9 @@ PowerupDropsEasierToFalloff
 
 FallLockDropOfAll
     : WordAll WordDrop Ga WordLock WordState De WordFall;
+
+FallNailDropEasierToFalloff
+    : WordNail WordDrop Ga [ SkillVolumeVariation ] WordFalloff;
 
 SkillVolumeVariation
     : WordLittleMore
@@ -293,6 +297,7 @@ WordOnly          : 'のみ';
 WordFalloff       : '落ちやすくなる';
 WordFall          : '落ちてくる';
 WordProbability   : '確率';
+WordNail          : '釘';
 
 Wo     : 'を';
 Ni     : 'に';

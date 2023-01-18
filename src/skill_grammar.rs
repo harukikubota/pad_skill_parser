@@ -1054,6 +1054,19 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
+    fn fall_nail_drop_easier_to_falloff(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::FallNailDropEasierToFalloff<'t>,
+    ) -> miette::Result<()> {
+        let volume = self
+            .pop_if(|i| i.is_volume_variation())
+            .map_or_else(|| VolumeVariation::Normal, |i| i.volume_variation());
+
+        let se = SkillEffect::FallNailDropEasierToFalloff(volume);
+        self.push(StackItem::ApplyInTurnsSkill(se));
+        Ok(())
+    }
+
     fn word_left(&mut self, arg: &crate::skill_grammar_trait::WordLeft<'t>) -> miette::Result<()> {
         let position = Position::from(arg.word_left.text());
 

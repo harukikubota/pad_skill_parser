@@ -1694,17 +1694,26 @@ mod parser_test {
         let grammar = &mut SkillGrammar::new();
         let _parsed = parse(input, FILE_NAME, grammar).unwrap();
 
-        let _except = &mut new(vec![Skill {
-            sub_effects: None,
-            turns_of_apply: Some(1),
-            effect: SkillEffect::FallLockDrop(vec![Drop::Colored(Color::Fire)]),
-        }]);
-
         let except = match grammar.skill_list.pop().unwrap().effect {
             SkillEffect::FallLockDrop(drops) => drops.len(),
             _ => 0,
         };
 
         assert_eq!(except, 10);
+    }
+
+    #[test]
+    fn fall_nail_drop() {
+        let input = "3ターンの間、釘ドロップが落ちやすくなる。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(3),
+            effect: SkillEffect::FallNailDropEasierToFalloff(VolumeVariation::Normal),
+        }]);
+
+        assert_eq!(except, grammar);
     }
 }
