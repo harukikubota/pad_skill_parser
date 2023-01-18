@@ -12,6 +12,7 @@ Line
     : GroupOfDropChange
     | DropRefreshStmt
     | DropUnLockStmt
+    | TurnsOfApplyStmt
     ;
 
 GroupOfDropChange
@@ -54,6 +55,9 @@ DropRefreshStmt
 
 DropUnLockStmt
     : WordDrop No WordLock WordState Wo WordRelease;
+
+TurnsOfApplyStmt
+    : Turns TurnsOfApplyBlock;
 
 // 木ドロップ を 水ドロップ に, 光ドロップ を 回復ドロップ に
 //                          ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -197,6 +201,23 @@ Size
 OnBoard
     : WordBoard WordTop Ni;
 
+Turns
+    // Nターンの間、
+    : PosInt WordTurn No WordBetween Camma;
+
+TurnsOfApplyBlock
+    : DropsEasierToFalloff
+    ;
+
+DropsEasierToFalloff
+    : Drops [ Ga ] [ SkillVolumeVariation ] [ WordFalloff | WordFall ];
+
+SkillVolumeVariation
+    : WordLittleMore
+    | WordLittle
+    | WordOnly
+    ;
+
 Fire         : '火';
 Water        : '水';
 Wood         : '木';
@@ -248,6 +269,13 @@ WordRelease       : '解除';
 WordLock          : 'ロック';
 WordState         : '状態';
 WordPowerUp       : '強化';
+WordTurn          : 'ターン';
+WordBetween       : '間';
+WordLittleMore    : 'ほんの少し';
+WordLittle        : '少し';
+WordOnly          : 'のみ';
+WordFalloff       : '落ちやすくなる';
+WordFall          : '落ちてくる';
 
 Wo     : 'を';
 Ni     : 'に';
@@ -255,6 +283,7 @@ No     : 'の';
 So     : 'で';
 And    : 'と';
 Si     : 'し';
+Ga     : 'が';
 Each   : 'ずつ';
 From   : 'から';
 Plus   : '+';

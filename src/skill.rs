@@ -33,6 +33,8 @@ pub enum SkillEffect {
     DropRefresh,
     /// ドロップ強化
     DropPowerUp(Drops),
+    /// ドロップ目覚め
+    DropFallout(Drops, VolumeVariation),
 }
 
 impl Default for SkillEffect {

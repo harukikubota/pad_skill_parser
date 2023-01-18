@@ -12,6 +12,8 @@ pub(super) enum StackItem {
     DropShapeGenShapeType(ShapeType),
     DropLock,
     DropPowerUp,
+    ApplyInTurnsSkill(SkillEffect),
+    VolumeVariation(VolumeVariation),
 }
 
 #[allow(dead_code)]
@@ -69,6 +71,20 @@ impl StackItem {
         match self {
             Self::DropShapeGenShapeType(elem) => elem,
             _ => panic!("from StackItem::pop(). this Item isn't ShapeType!"),
+        }
+    }
+
+    pub(super) fn apply_in_turns_skill(self: Self) -> SkillEffect {
+        match self {
+            Self::ApplyInTurnsSkill(elem) => elem,
+            _ => panic!("from StackItem::pop(). this Item isn't ApplyInTurnsSkill!"),
+        }
+    }
+
+    pub(super) fn volume_variation(self: Self) -> VolumeVariation {
+        match self {
+            Self::VolumeVariation(elem) => elem,
+            _ => panic!("from StackItem::pop(). this Item isn't VolumeVariation!"),
         }
     }
 
@@ -138,6 +154,20 @@ impl StackItem {
     pub(super) fn is_drop_powerup(self: &Self) -> bool {
         match self {
             Self::DropPowerUp => true,
+            _ => false,
+        }
+    }
+
+    pub(super) fn is_apply_in_turns_skill(self: &Self) -> bool {
+        match self {
+            Self::ApplyInTurnsSkill(_) => true,
+            _ => false,
+        }
+    }
+
+    pub(super) fn is_volume_variation(self: &Self) -> bool {
+        match self {
+            Self::VolumeVariation(_) => true,
             _ => false,
         }
     }

@@ -440,6 +440,30 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
+    fn turns_of_apply_stmt(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::TurnsOfApplyStmt<'t>,
+    ) -> miette::Result<()> {
+        let se_list = self.steal_if(
+            |i| i.is_apply_in_turns_skill(),
+            |i| i.clone().apply_in_turns_skill(),
+        );
+
+        let turn = self.pop().pos_int();
+
+        se_list.into_iter().for_each(|se| {
+            let skill = Skill {
+                turns_of_apply: Some(turn),
+                effect: se,
+                ..Default::default()
+            };
+
+            self.skill_list.push(skill);
+        });
+
+        Ok(())
+    }
+
     /// A ドロップ を B ドロップ に 2回目の出現時のみ呼ばれる
     /// 現在のところ、3色目の変換は別の行に別れるため問題なし
     fn change_drop_block_other_first(
@@ -932,6 +956,23 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
+    /// ○ドロップが落ちやすくなる
+    /// ○ドロップのみ落ちてくる
+    fn drops_easier_to_falloff(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::DropsEasierToFalloff<'t>,
+    ) -> miette::Result<()> {
+        let volume = self
+            .pop_if(|i| i.is_volume_variation())
+            .map_or_else(|| VolumeVariation::Normal, |i| i.volume_variation());
+        let drops = self.pop().drops();
+
+        let effect = SkillEffect::DropFallout(drops, volume);
+
+        self.push(StackItem::ApplyInTurnsSkill(effect));
+        Ok(())
+    }
+
     fn word_left(&mut self, arg: &crate::skill_grammar_trait::WordLeft<'t>) -> miette::Result<()> {
         let position = Position::from(arg.word_left.text());
 
@@ -986,6 +1027,30 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         _arg: &crate::skill_grammar_trait::WordPowerUp<'t>,
     ) -> miette::Result<()> {
         self.stack.push(StackItem::DropPowerUp);
+        Ok(())
+    }
+
+    fn word_little_more(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::WordLittleMore<'t>,
+    ) -> miette::Result<()> {
+        self.stack
+            .push(StackItem::VolumeVariation(VolumeVariation::LittleMore));
+        Ok(())
+    }
+
+    fn word_little(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::WordLittle<'t>,
+    ) -> miette::Result<()> {
+        self.stack
+            .push(StackItem::VolumeVariation(VolumeVariation::Little));
+        Ok(())
+    }
+
+    fn word_only(&mut self, _arg: &crate::skill_grammar_trait::WordOnly<'t>) -> miette::Result<()> {
+        self.stack
+            .push(StackItem::VolumeVariation(VolumeVariation::Only));
         Ok(())
     }
 

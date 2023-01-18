@@ -1472,4 +1472,88 @@ mod parser_test {
 
         assert_eq!(except, grammar);
     }
+
+    #[test]
+    fn drop_falloff_color_1() {
+        let input = "1ターンの間、火ドロップが落ちやすくなる。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(1),
+            effect: SkillEffect::DropFallout(
+                vec![Drop::Colored(Color::Fire)],
+                VolumeVariation::Normal,
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn drop_falloff_color_2() {
+        let input = "3ターンの間、水と回復ドロップが少し落ちやすくなる。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(3),
+            effect: SkillEffect::DropFallout(
+                vec![
+                    Drop::Colored(Color::Water),
+                    Drop::NonColored(NonColoredDrop::Recovery),
+                ],
+                VolumeVariation::Little,
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn drop_falloff_color_3() {
+        let input = "99ターンの間、光、闇、回復ドロップがほんの少し落ちやすくなる。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(99),
+            effect: SkillEffect::DropFallout(
+                vec![
+                    Drop::Colored(Color::Lightning),
+                    Drop::Colored(Color::Dark),
+                    Drop::NonColored(NonColoredDrop::Recovery),
+                ],
+                VolumeVariation::LittleMore,
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn drop_falloff_only_colors() {
+        let input = "1ターンの間、火、水、光、回復ドロップのみ落ちてくる。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(1),
+            effect: SkillEffect::DropFallout(
+                vec![
+                    Drop::Colored(Color::Fire),
+                    Drop::Colored(Color::Water),
+                    Drop::Colored(Color::Lightning),
+                    Drop::NonColored(NonColoredDrop::Recovery),
+                ],
+                VolumeVariation::Only,
+            ),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
 }

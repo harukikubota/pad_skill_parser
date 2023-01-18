@@ -126,3 +126,16 @@ impl GenShapeRowCol {
 }
 
 pub type GenPositions = Vec<GenShapeRowCol>;
+
+/// スキルの効果がどの程度及ぼすかの変化量
+#[derive(Clone, Debug, PartialEq)]
+pub enum VolumeVariation {
+    // ほんの少し
+    LittleMore,
+    // 少し
+    Little,
+    // 普通
+    Normal,
+    // のみ
+    Only,
+}
