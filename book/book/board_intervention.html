@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>pad_skill_parser</title>
-        <meta name="robots" content="noindex" />
+        <title>盤面干渉スキル - pad_skill_parser</title>
 
 
         <!-- Custom HTML head -->
@@ -81,7 +80,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="change_drop.html"><strong aria-hidden="true">1.</strong> 変換スキル</a></li><li class="chapter-item expanded "><a href="board_intervention.html"><strong aria-hidden="true">2.</strong> 盤面干渉スキル</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="change_drop.html"><strong aria-hidden="true">1.</strong> 変換スキル</a></li><li class="chapter-item expanded "><a href="board_intervention.html" class="active"><strong aria-hidden="true">2.</strong> 盤面干渉スキル</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -142,350 +141,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="変換スキル"><a class="header" href="#変換スキル">変換スキル</a></h1>
-<h2 id="単色変換"><a class="header" href="#単色変換">単色変換</a></h2>
-<p>指定されているドロップを別のドロップへ変化させる。
-以下のようなスキルが該当する。</p>
-<ul>
-<li>火ドロップを木ドロップに変化。</li>
-<li>水ドロップを光ドロップに、闇ドロップを回復に変化。</li>
-<li>火、回復ドロップを水ドロップに変化。</li>
-<li>火と木をランダムで光と回復に変化。</li>
-</ul>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let input = &quot;火ドロップを木ドロップに変化。&quot;;
-Skill {
-    sub_effects: None,
-    turns_of_apply: None,
-    // 単色変換
-    effect: SkillEffect::ChangeDropAToB(
-        // from: 変換元
-        vec![Drop::Colored(Color::Fire)],
-        // to:   変換先
-        vec![Drop::Colored(Color::Wood)],
-    ),
-}
-<span class="boring">}</span></code></pre></pre>
-<hr />
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let input = &quot;水ドロップを光ドロップに、闇ドロップを回復に変化。&quot;;
-//           ①~~~~~~~~~~~~~~~~~~  ②~~~~~~~~~~~~~
-[
-    // ①
-    Skill {
-        sub_effects: None,
-        turns_of_apply: None,
-        effect: SkillEffect::ChangeDropAToB(
-            vec![Drop::Colored(Color::Water)],
-            vec![Drop::Colored(Color::Lightning)],
-        ),
-    },
-    // ②
-    Skill {
-        sub_effects: None,
-        turns_of_apply: None,
-        effect: SkillEffect::ChangeDropAToB(
-            vec![Drop::Colored(Color::Dark)],
-            vec![Drop::NonColored(NonColoredDrop::Recovery)],
-        ),
-    },
-]
-<span class="boring">}</span></code></pre></pre>
-<p>複数回変換を行う場合、スキルは２つに別れる。</p>
-<hr />
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let input = &quot;火と木をランダムで光と回復に変化。&quot;;
-Skill {
-    sub_effects: None,
-    turns_of_apply: None,
-    effect: SkillEffect::ChangeDropAToB(
-        vec![
-            Drop::Colored(Color::Fire),
-            Drop::Colored(Color::Wood)
-        ],
-        vec![
-            Drop::Colored(Color::Lightning),
-            Drop::NonColored(NonColoredDrop::Recovery)
-        ]
-    ),
-}
-<span class="boring">}</span></code></pre></pre>
-<p>上記スキルパターンは<code>NO. 5361 シロオンマル</code>、<code>NO. 5362 クロオンマル</code>のみが持つ。(23/01/17)</p>
-<h2 id="全ドロップ変化"><a class="header" href="#全ドロップ変化">全ドロップ変化</a></h2>
-<p>盤面全てを特定の色のみに変換するスキル群。所謂N色陣や花火。</p>
-<p>以下のようなスキルが該当する。</p>
-<ul>
-<li>全ドロップを闇ドロップに変化。</li>
-<li>全ドロップを火と光ドロップに変化。</li>
-<li>全ドロップを木、光、回復ドロップに変化。</li>
-<li>全ドロップを5属性に変化。</li>
-<li>全ドロップを5属性+回復に変化。</li>
-</ul>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let input = &quot;全ドロップを闇ドロップに変化。&quot;;
-Skill {
-    sub_effects: None,
-    turns_of_apply: None,
-    effect: SkillEffect::ChangeAllOfBoard(
-        // 変化先
-        vec![Drop::Colored(Color::Dark)]
-    ),
-}
-<span class="boring">}</span></code></pre></pre>
-<hr />
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let input = &quot;全ドロップを5属性+回復に変化。&quot;;
-Skill {
-    sub_effects: None,
-    turns_of_apply: None,
-    effect: SkillEffect::ChangeAllOfBoard(
-        vec![
-            Drop::Colored(Color::Fire),
-            Drop::Colored(Color::Water),
-            Drop::Colored(Color::Wood),
-            Drop::Colored(Color::Lightning),
-            Drop::Colored(Color::Dark),
-            Drop::NonColored(NonColoredDrop::Recovery),
-        ]
-    ),
-}
-<span class="boring">}</span></code></pre></pre>
-<h2 id="ランダム生成"><a class="header" href="#ランダム生成">ランダム生成</a></h2>
-<p>特定のドロップを指定個数生成するスキル群。
-以下のようなスキルが該当する。</p>
-<ul>
-<li>ランダムで火ドロップを1個生成。</li>
-<li>ランダムで火と光ドロップを5個ずつ生成。</li>
-<li>回復以外から火ドロップを6個生成。</li>
-<li>ランダムで木ドロップを11個、闇ドロップを7個、回復ドロップを5個生成。</li>
-<li>ランダムで火と光を15個ずつ生成。</li>
-<li>5属性+回復を4個ずつ生成。</li>
-</ul>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let input = &quot;ランダムで火ドロップを1個生成。&quot;;
-Skill {
-    sub_effects: None,
-    turns_of_apply: None,
-    effect: SkillEffect::GenRandomDrop(
-        // ①
-        vec![Drop::Colored(Color::Fire)],
-        // ②
-        vec![
-            (
-                // ③
-                Drop::Colored(Color::Fire)
-                // ④
-                ,1
-            )
-        ],
-    ),
-}
-<span class="boring">}</span></code></pre></pre>
-<p>①. ここに指定されているドロップ以外から、②を生成する
-②. 生成するドロップの種類と個数のリスト
-③. ドロップの種類
-④. ③の生成数。</p>
-<h3 id="①を設定する基準"><a class="header" href="#①を設定する基準">①を設定する基準</a></h3>
-<ul>
-<li>明記されていない場合は、生成するドロップと等しい</li>
-<li>明記されている場合は、生成するドロップと合わせる</li>
-<li>生成するドロップが5種類以上または生成するドロップの合計が30の場合、盤面を上書きする仕様となるため空になる。</li>
-</ul>
-<hr />
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let input = &quot;ランダムで火と光ドロップを5個ずつ生成。&quot;;
-Skill {
-    sub_effects: None,
-    turns_of_apply: None,
-    effect: SkillEffect::GenRandomDrop(
-        vec![
-            Drop::Colored(Color::Fire),
-            Drop::Colored(Color::Lightning),
-        ],
-        vec![
-            (Drop::Colored(Color::Fire), 5),
-            (Drop::Colored(Color::Lightning), 5),
-        ],
-    ),
-}
-<span class="boring">}</span></code></pre></pre>
-<hr />
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let input = &quot;回復以外から火ドロップを6個生成。&quot;;
-Skill {
-    sub_effects: None,
-    turns_of_apply: None,
-    effect: SkillEffect::GenRandomDrop(
-        vec![
-            Drop::NonColored(NonColoredDrop::Recovery),
-            Drop::Colored(Color::Fire)
-        ],
-        vec![(Drop::Colored(Color::Fire), 6)],
-    ),
-}
-<span class="boring">}</span></code></pre></pre>
-<hr />
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let input = &quot;ランダムで木ドロップを11個、闇ドロップを7個、回復ドロップを5個生成。&quot;;
-Skill {
-    sub_effects: None,
-    turns_of_apply: None,
-    effect: SkillEffect::GenRandomDrop(
-        vec![
-            Drop::Colored(Color::Wood),
-            Drop::Colored(Color::Dark),
-            Drop::NonColored(NonColoredDrop::Recovery),
-        ],
-        vec![
-            (Drop::Colored(Color::Wood), 11),
-            (Drop::Colored(Color::Dark), 7),
-            (Drop::NonColored(NonColoredDrop::Recovery), 5),
-        ],
-    ),
-}
-<span class="boring">}</span></code></pre></pre>
-<hr />
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let input = &quot;ランダムで火と光を15個ずつ生成。&quot;;
-Skill {
-    sub_effects: None,
-    turns_of_apply: None,
-    effect: SkillEffect::GenRandomDrop(
-        // 生成するドロップの合計が30のため、空になる
-        vec![],
-        vec![
-            (Drop::Colored(Color::Fire), 15),
-            (Drop::Colored(Color::Lightning), 15),
-        ],
-    ),
-}
-<span class="boring">}</span></code></pre></pre>
-<hr />
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let input = &quot;5属性+回復を4個ずつ生成。&quot;;
-Skill {
-    sub_effects: None,
-    turns_of_apply: None,
-    effect: SkillEffect::GenRandomDrop(
-        vec![],
-        vec![
-            (Drop::Colored(Color::Fire),4),
-            (Drop::Colored(Color::Water),4),
-            (Drop::Colored(Color::Wood),4),
-            (Drop::Colored(Color::Lightning),4),
-            (Drop::Colored(Color::Dark),4),
-            (Drop::NonColored(NonColoredDrop::Recovery)4)
-        ],
-    ),
-}
-<span class="boring">}</span></code></pre></pre>
-<h2 id="指定型生成"><a class="header" href="#指定型生成">指定型生成</a></h2>
-<p>形状に沿ってドロップを生成するスキル群。
-以下のようなスキルが該当する。</p>
-<ul>
-<li>左端1列を光ドロップに変化。</li>
-<li>左端2列と右端2列を水ドロップに変化。</li>
-<li>最上段横1列を水ドロップに変化。</li>
-<li>L字型に光を1つ生成。</li>
-</ul>
-<p><code>ShapeType::Row</code>、<code>ShapeType::Col</code>の1要素目は以下のようにして設定される。</p>
-<ul>
-<li>Row@Pos: 上からN番目</li>
-<li>Row@Neg: 下からN番目</li>
-<li>Col@Pos: 左からN番目</li>
-<li>Col@Neg: 右からN番目</li>
-</ul>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let input = &quot;左端1列を光ドロップに変化。&quot;;
-Skill {
-    sub_effects: None,
-    turns_of_apply: None,
-    effect: SkillEffect::DropShapeGen(
-        vec![
-            // どのような形状を生成するか
-            // 詳細は`skill::ShapeType`を参照
-            ShapeType::Col(1, Drop::Colored(Color::Lightning))
-        ]
-    ),
-}
-<span class="boring">}</span></code></pre></pre>
-<hr />
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let input = &quot;左端2列と右端2列を水ドロップに変化。&quot;;
-Skill {
-    sub_effects: None,
-    turns_of_apply: None,
-    effect: SkillEffect::DropShapeGen(
-        vec![
-            // 生成する行、列毎に要素が生成される
-            ShapeType::Col(1, Drop::Colored(Color::Water)),
-            ShapeType::Col(2, Drop::Colored(Color::Water)),
-            ShapeType::Col(-1, Drop::Colored(Color::Water)),
-            ShapeType::Col(-2, Drop::Colored(Color::Water))
-        ]
-    ),
-}
-<span class="boring">}</span></code></pre></pre>
-<hr />
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let input = &quot;最上段横1列を水ドロップに変化。&quot;;
-Skill {
-    sub_effects: None,
-    turns_of_apply: None,
-    effect: SkillEffect::DropShapeGen(
-        vec![ShapeType::Row(1, Drop::Colored(Color::Water))]
-    ),
-}
-<span class="boring">}</span></code></pre></pre>
-<hr />
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let input = &quot;L字型に光を1つ生成。&quot;;
-Skill {
-    sub_effects: None,
-    turns_of_apply: None,
-    effect: SkillEffect::DropShapeGen(
-        vec![ShapeType::LShape(Drop::Colored(Color::Lightning), 1)]
-    ),
-}
-<span class="boring">}</span></code></pre></pre>
-<p>L字型以外にも形状生成はあるが、特に変わりはないのでどのようなデータか列挙する。</p>
-<h3 id="生成する数量が設定されている"><a class="header" href="#生成する数量が設定されている">生成する数量が設定されている</a></h3>
-<ul>
-<li>L字型</li>
-<li>十字型(5個生成)</li>
-<li>正方形(3×3)</li>
-<li>7の形</li>
-</ul>
-<h3 id="盤面の特定の位置にドロップを生成する"><a class="header" href="#盤面の特定の位置にドロップを生成する">盤面の特定の位置にドロップを生成する</a></h3>
-<ul>
-<li>縦列、横列</li>
-<li>Z字型</li>
-<li>十字型(10個生成)</li>
-<li>盤面外周</li>
-<li>盤面上部(該当スキルなし(23/01/17 現在))</li>
-<li>盤面中央</li>
-<li>盤面下部</li>
-<li>盤面4隅</li>
-<li>蜘蛛の巣状</li>
-<li>三日月状</li>
-<li>斜め</li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="盤面干渉スキル"><a class="header" href="#盤面干渉スキル">盤面干渉スキル</a></h1>
+                        <h1 id="盤面干渉スキル"><a class="header" href="#盤面干渉スキル">盤面干渉スキル</a></h1>
 <p>変換スキル以外の、盤面に干渉するスキル群。</p>
 <h2 id="ロック解除"><a class="header" href="#ロック解除">ロック解除</a></h2>
 <ul>
@@ -724,6 +380,9 @@ Skill {
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="change_drop.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
 
                         <div style="clear: both"></div>
@@ -732,6 +391,9 @@ Skill {
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="change_drop.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
             </nav>
 
@@ -771,11 +433,6 @@ Skill {
 
         <!-- Custom JS scripts -->
 
-        <script>
-        window.addEventListener('load', function() {
-            window.setTimeout(window.print, 100);
-        });
-        </script>
 
     </body>
 </html>
