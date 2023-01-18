@@ -139,3 +139,26 @@ pub enum VolumeVariation {
     // のみ
     Only,
 }
+
+/// row * col
+#[derive(Clone, Debug, PartialEq)]
+pub struct Size(pub usize, pub usize);
+
+#[derive(Clone, Debug, PartialEq)]
+pub enum BoardPosition {
+    Row(isize),
+    Col(isize),
+    Random,
+}
+
+impl From<Position> for BoardPosition {
+    fn from(value: Position) -> Self {
+        match value {
+            Position::Left => Self::Col(1),
+            Position::Right => Self::Col(-1),
+            Position::Top => Self::Row(1),
+            Position::Bottom => Self::Row(-1),
+            _ => panic!("両端は未対応")
+        }
+    }
+}

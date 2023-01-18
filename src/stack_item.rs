@@ -14,6 +14,7 @@ pub(super) enum StackItem {
     DropPowerUp,
     ApplyInTurnsSkill(SkillEffect),
     VolumeVariation(VolumeVariation),
+    Size(Size),
 }
 
 #[allow(dead_code)]
@@ -85,6 +86,13 @@ impl StackItem {
         match self {
             Self::VolumeVariation(elem) => elem,
             _ => panic!("from StackItem::pop(). this Item isn't VolumeVariation!"),
+        }
+    }
+
+    pub(super) fn size(self: Self) -> Size {
+        match self {
+            Self::Size(elem) => elem,
+            _ => panic!("from StackItem::pop(). this Item isn't Size!"),
         }
     }
 
@@ -168,6 +176,13 @@ impl StackItem {
     pub(super) fn is_volume_variation(self: &Self) -> bool {
         match self {
             Self::VolumeVariation(_) => true,
+            _ => false,
+        }
+    }
+
+    pub(super) fn is_size(self: &Self) -> bool {
+        match self {
+            Self::Size(_) => true,
             _ => false,
         }
     }

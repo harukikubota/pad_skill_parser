@@ -609,8 +609,7 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
 
             let shape = if shape.is_square() {
                 // 1辺だけ分かればいいので、片方は捨てる
-                let size = self.pop().pos_int();
-                let _ = self.pop();
+                let size = self.pop().size().0;
 
                 shape.set_for_square(drop, size, qty)
             } else if shape.is_some_kind() {
@@ -1075,6 +1074,33 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
+    fn board_change(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::BoardChange<'t>,
+    ) -> miette::Result<()> {
+        let se = self.pop().apply_in_turns_skill();
+        let size = self.pop().size();
+
+        let position = self.pop_if(|i|i.is_position()).map_or_else(||BoardPosition::Random, |i|BoardPosition::from(i.position()));
+
+        let se = match se {
+            SkillEffect::GenCloud(_, _) => SkillEffect::GenCloud(position, size),
+            _ => todo!(),
+        };
+
+        self.push(StackItem::ApplyInTurnsSkill(se));
+        Ok(())
+    }
+
+    fn size(&mut self, _arg: &crate::skill_grammar_trait::Size<'t>) -> miette::Result<()> {
+        let col = self.pop().pos_int();
+        let row = self.pop().pos_int();
+
+        self.push(StackItem::Size(Size(row, col)));
+
+        Ok(())
+    }
+
     fn word_left(&mut self, arg: &crate::skill_grammar_trait::WordLeft<'t>) -> miette::Result<()> {
         let position = Position::from(arg.word_left.text());
 
@@ -1171,6 +1197,18 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
     ) -> miette::Result<()> {
         self.stack
             .push(StackItem::ApplyInTurnsSkill(SkillEffect::GenRoulette(0)));
+        Ok(())
+    }
+
+    fn word_cloud(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::WordCloud<'t>,
+    ) -> miette::Result<()> {
+        self.stack
+            .push(StackItem::ApplyInTurnsSkill(SkillEffect::GenCloud(
+                BoardPosition::Random,
+                Size(0, 0),
+            )));
         Ok(())
     }
 

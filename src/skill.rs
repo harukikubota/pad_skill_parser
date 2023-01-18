@@ -46,6 +46,8 @@ pub enum SkillEffect {
     /// ルーレット生成
     /// * 0: 個数
     GenRoulette(usize),
+    /// 雲生成
+    GenCloud(BoardPosition, Size),
 }
 
 impl Default for SkillEffect {

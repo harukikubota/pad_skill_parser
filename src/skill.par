@@ -212,6 +212,7 @@ TurnsOfApplyBlock
     | FallNailDropEasierToFalloff
     | WordNotFalling
     | GenRoulette
+    | BoardChange
     ;
 
 DropsEasierToFalloffOrFallLockDrop
@@ -236,6 +237,10 @@ FallNailDropEasierToFalloff
 
 GenRoulette
     : RandomSuffix WordRoulette Wo Quantity WordGen;
+
+BoardChange
+    // 雲生成
+    : [ WordBoard | Position ] Ni Size No WordCloud Ga WordOccurrence;
 
 SkillVolumeVariation
     : WordLittleMore
@@ -305,6 +310,8 @@ WordProbability   : '確率';
 WordNail          : '釘';
 WordNotFalling    : '落ちコンなし';
 WordRoulette      : 'ルーレット';
+WordOccurrence    : '発生';
+WordCloud         : '雲';
 
 Wo     : 'を';
 Ni     : 'に';

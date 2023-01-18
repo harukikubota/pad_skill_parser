@@ -1761,4 +1761,34 @@ mod parser_test {
 
         assert_eq!(except, grammar);
     }
+
+    #[test]
+    fn gen_cloud_1() {
+        let input = "1ターンの間、盤面に2×2の雲が発生。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(1),
+            effect: SkillEffect::GenCloud(BoardPosition::Random, Size(2, 2)),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn gen_cloud_2() {
+        let input = "4ターンの間、最上段に5×1の雲が発生。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(4),
+            effect: SkillEffect::GenCloud(BoardPosition::Row(1), Size(5, 1)),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
 }
