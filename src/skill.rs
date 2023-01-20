@@ -52,6 +52,12 @@ pub enum SkillEffect {
     GenTeap(BoardPosition),
     /// 盤面サイズ変更
     ChangeBoardSize(Size),
+    /// ダメージ吸収無効
+    NullificationDamageAbsorption,
+    /// 属性吸収無効
+    NullificationAttributeAbsorption,
+    /// ダメージ無効貫通
+    PenetrationDamageNullification,
 }
 
 impl Default for SkillEffect {

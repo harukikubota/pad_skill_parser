@@ -213,6 +213,11 @@ TurnsOfApplyBlock
     | WordNotFalling
     | GenRoulette
     | BoardChange
+    | [
+        NullificationDamageAbsorption [ And NullificationAttributeAbsorption ]
+        | NullificationAttributeAbsorption
+        ] Wo WordNullification
+    | PenetrationDamageNullification Wo WordPenetration
     ;
 
 DropsEasierToFalloffOrFallLockDrop
@@ -285,6 +290,15 @@ ShapeOfCrescentMoon   : '三日月状';
 ShapeOfOblique        : '斜め';
 ShapeOfSomeKind       : 'の形';
 
+NullificationDamageAbsorption
+    : 'ダメージ吸収';
+
+NullificationAttributeAbsorption
+    : '属性吸収';
+
+PenetrationDamageNullification
+    : 'ダメージ無効を貫通';
+
 WordChange         : '変化';
 WordDrop           : 'ドロップ';
 WordAll            : '全';
@@ -326,6 +340,8 @@ WordOccurrence     : '発生';
 WordCloud          : '雲';
 WordCantBeOperated : '操作不可';
 WordMass           : 'マス';
+WordNullification  : '無効化';
+WordPenetration    : '貫通';
 
 Wo     : 'を';
 Ni     : 'に';

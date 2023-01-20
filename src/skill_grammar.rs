@@ -1110,6 +1110,36 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
+    fn nullification_damage_absorption(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::NullificationDamageAbsorption<'t>,
+    ) -> miette::Result<()> {
+        self.push(StackItem::ApplyInTurnsSkill(
+            SkillEffect::NullificationDamageAbsorption,
+        ));
+        Ok(())
+    }
+
+    fn nullification_attribute_absorption(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::NullificationAttributeAbsorption<'t>,
+    ) -> miette::Result<()> {
+        self.push(StackItem::ApplyInTurnsSkill(
+            SkillEffect::NullificationAttributeAbsorption,
+        ));
+        Ok(())
+    }
+
+    fn penetration_damage_nullification(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::PenetrationDamageNullification<'t>,
+    ) -> miette::Result<()> {
+        self.push(StackItem::ApplyInTurnsSkill(
+            SkillEffect::PenetrationDamageNullification,
+        ));
+        Ok(())
+    }
+
     fn word_left(&mut self, arg: &crate::skill_grammar_trait::WordLeft<'t>) -> miette::Result<()> {
         let position = Position::from(arg.word_left.text());
 
