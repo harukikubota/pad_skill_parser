@@ -58,6 +58,8 @@ pub enum SkillEffect {
     NullificationAttributeAbsorption,
     /// ダメージ無効貫通
     PenetrationDamageNullification,
+    /// 敵の属性変更
+    EnemyAttributeChange(Color),
 }
 
 impl Default for SkillEffect {

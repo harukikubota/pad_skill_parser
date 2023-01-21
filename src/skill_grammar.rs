@@ -456,6 +456,31 @@ impl<'t> SkillGrammarTrait<'t> for SkillGrammar<'t> {
         Ok(())
     }
 
+    fn towards_the_enemy_stmt(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::TowardsTheEnemyStmt<'t>,
+    ) -> miette::Result<()> {
+        let se = self.pop().apply_in_turns_skill();
+        let skill = Skill {
+            effect: se,
+            turns_of_apply: Some(999),
+            ..Default::default()
+        };
+        self.skill_list.push(skill);
+
+        Ok(())
+    }
+
+    fn change_enemy_attribute_block(
+        &mut self,
+        _arg: &crate::skill_grammar_trait::ChangeEnemyAttributeBlock<'t>,
+    ) -> miette::Result<()> {
+        let se = SkillEffect::EnemyAttributeChange(self.pop().color());
+        self.push(StackItem::ApplyInTurnsSkill(se));
+
+        Ok(())
+    }
+
     fn turns_of_apply_stmt(
         &mut self,
         _arg: &crate::skill_grammar_trait::TurnsOfApplyStmt<'t>,

@@ -13,6 +13,7 @@ Line
     | DropRefreshStmt
     | DropUnLockStmt
     | TurnsOfApplyStmt
+    | TowardsTheEnemyStmt
     ;
 
 GroupOfDropChange
@@ -58,6 +59,9 @@ DropUnLockStmt
 
 TurnsOfApplyStmt
     : Turns TurnsOfApplyBlock;
+
+TowardsTheEnemyStmt
+    : WordEnemy ChangeEnemyAttributeBlock;
 
 // 木ドロップ を 水ドロップ に, 光ドロップ を 回復ドロップ に
 //                          ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -217,7 +221,8 @@ TurnsOfApplyBlock
         NullificationDamageAbsorption [ And NullificationAttributeAbsorption ]
         | NullificationAttributeAbsorption
         ] Wo WordNullification
-    | PenetrationDamageNullification Wo WordPenetration
+    | PenetrationDamageNullification
+    | ChangeEnemyAttributeBlock
     ;
 
 DropsEasierToFalloffOrFallLockDrop
@@ -242,6 +247,9 @@ FallNailDropEasierToFalloff
 
 GenRoulette
     : RandomSuffix WordRoulette Wo Quantity WordGen;
+
+ChangeEnemyAttributeBlock
+    : [ WordEnemy ] WordWhole Ga Color WordAttribute Ni WordChange;
 
 BoardChange
     : BoardPosition
@@ -301,6 +309,9 @@ PenetrationDamageNullification
 
 WordChange         : '変化';
 WordDrop           : 'ドロップ';
+WordEnemy          : '敵';
+WordWhole          : '全体';
+WordAttribute      : '属性';
 WordAll            : '全';
 WordFiveAttribute  : '5属性';
 WordRandom         : 'ランダム';
@@ -341,7 +352,6 @@ WordCloud          : '雲';
 WordCantBeOperated : '操作不可';
 WordMass           : 'マス';
 WordNullification  : '無効化';
-WordPenetration    : '貫通';
 
 Wo     : 'を';
 Ni     : 'に';

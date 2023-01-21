@@ -65,7 +65,7 @@ mod parser_test {
         assert_eq!(except, grammar);
     }
 
-    //#[test]
+    #[test]
     fn penetrate_damage_nullification() {
         let input = "1ターンの間、ダメージ無効を貫通。";
         let grammar = &mut SkillGrammar::new();
@@ -74,7 +74,37 @@ mod parser_test {
         let except = &mut new(vec![Skill {
             sub_effects: None,
             turns_of_apply: Some(1),
-            effect: SkillEffect::NullificationAttributeAbsorption,
+            effect: SkillEffect::PenetrationDamageNullification,
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn enemy_attribute_change_999() {
+        let input = "敵全体が火属性に変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(999),
+            effect: SkillEffect::EnemyAttributeChange(Color::Fire),
+        }]);
+
+        assert_eq!(except, grammar);
+    }
+
+    #[test]
+    fn enemy_attribute_change_1() {
+        let input = "1ターンの間、敵全体が水属性に変化。";
+        let grammar = &mut SkillGrammar::new();
+        let _parsed = parse(input, FILE_NAME, grammar).unwrap();
+
+        let except = &mut new(vec![Skill {
+            sub_effects: None,
+            turns_of_apply: Some(1),
+            effect: SkillEffect::EnemyAttributeChange(Color::Water),
         }]);
 
         assert_eq!(except, grammar);
